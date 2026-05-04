@@ -1,0 +1,17 @@
+.DS_Store
+**/.DS_Store
+.git
+.gitignore
+
+# Raw working assets (not referenced by site)
+LHFF STILLS EDITED/
+studio one /
+app/
+
+# Editors
+.vscode
+.idea
+
+# Logs
+*.log
+node_modules/
