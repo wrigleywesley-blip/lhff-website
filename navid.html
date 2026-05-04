@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>NAVID — The virtual voice of the Foundation</title>
+<meta name="description" content="NAVID is LHFF's custom AI companion. Trained on the 7 Pillars curriculum and retreat work. Built to hold presence, not to perform it." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+<style>
+  body.navid-page { background: var(--obsidian); color: var(--bone); }
+  body.navid-page .nav { background: rgba(12,12,14,0.85); border-bottom: 1px solid var(--line-dark); }
+  body.navid-page .nav__link { color: var(--bone); }
+  body.navid-page .nav__cta { background: var(--bone); color: var(--obsidian); }
+  body.navid-page .nav__cta:hover { background: var(--terracotta); color: var(--bone); }
+  body.navid-page .nav__mark { background: var(--bone); }
+  body.navid-page .nav__mark::after { background: var(--terracotta); }
+  body.navid-page .page-hero { border-bottom: 1px solid var(--line-dark); }
+  body.navid-page .divider { background: var(--line-dark); }
+  body.navid-page .caption, body.navid-page .body-s, body.navid-page .page-hero__sub,
+  body.navid-page .section-head__body { color: var(--ink-inverse-muted); }
+  body.navid-page .voice { background: var(--obsidian-80); border-block: 1px solid var(--line-dark); }
+  body.navid-page .voice__attribution { border-top-color: var(--line-dark); }
+  body.navid-page .cta-band { background: var(--obsidian-80); border-block: 1px solid var(--line-dark); }
+  body.navid-page .cta-band__action { background: var(--obsidian); border-color: var(--line-dark); color: var(--bone); }
+  body.navid-page .cta-band__action:hover { background: var(--bone); color: var(--obsidian); }
+</style>
+</head>
+<body class="navid-page">
+
+<header class="nav">
+  <div class="nav__inner">
+    <a class="nav__brand" href="index.html">
+      <span class="nav__mark" aria-hidden="true"></span>
+      <span>LHF Foundation</span>
+    </a>
+    <nav class="nav__menu" aria-label="Primary">
+      <a class="nav__link" href="mission.html">Mission</a>
+      <a class="nav__link" href="programs.html">Programs</a>
+      <a class="nav__link" href="navid.html" style="opacity:1;">NAVID</a>
+      <a class="nav__link" href="impact.html">Impact</a>
+      <a class="nav__link" href="research.html">Research</a>
+      <a class="nav__link" href="get-involved.html">Get Involved</a>
+    </nav>
+    <a class="nav__cta" href="get-involved.html">Apply</a>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="container fade-in">
+    <div class="eyebrow page-hero__eyebrow">NAVID</div>
+    <h1 class="display-xl page-hero__title" style="color:var(--bone);">
+      A guide that <em>remembers</em> you.
+    </h1>
+    <p class="lede page-hero__sub">
+      NAVID is the Foundation's custom AI companion. Not a chatbot, not a hotline, not a wellness app. A trained presence built on seven years of curriculum, retreat work, and honest conversations with young women.
+    </p>
+  </div>
+</section>
+
+<!-- Live chat mock (centerpiece) -->
+<section class="section" style="padding-block:clamp(3rem,6vw,5rem);">
+  <div class="container" style="max-width:780px;">
+    <div class="chat-mock fade-in" style="padding:1.75rem;">
+      <div class="chat-mock__header">
+        <div class="chat-mock__title">NAVID</div>
+        <div class="chat-mock__mode">Live · Replies instantly</div>
+      </div>
+
+      <div class="chat-msg">
+        <div class="chat-msg__avatar chat-msg__avatar--navid">N</div>
+        <div class="chat-msg__body">
+          <div class="chat-msg__name">NAVID</div>
+          Welcome. I'm NAVID, the Foundation's voice. I can walk you through the work, help you find the right program, or just sit with you if you're not sure what you need. Where would you like to start?
+        </div>
+      </div>
+
+      <div style="display:flex;flex-wrap:wrap;gap:0.5rem;padding:0.5rem 0;">
+        <button class="btn btn--outline-inverse" style="padding:0.5rem 0.875rem;font-size:0.8125rem;">Tell me about the retreats</button>
+        <button class="btn btn--outline-inverse" style="padding:0.5rem 0.875rem;font-size:0.8125rem;">Who is LHFF for?</button>
+        <button class="btn btn--outline-inverse" style="padding:0.5rem 0.875rem;font-size:0.8125rem;">I just need to talk</button>
+        <button class="btn btn--outline-inverse" style="padding:0.5rem 0.875rem;font-size:0.8125rem;">How do I apply?</button>
+      </div>
+
+      <div class="chat-mock__input">
+        <span class="chat-mock__input-placeholder">Ask NAVID anything...</span>
+        <span class="chat-mock__send" aria-hidden="true">→</span>
+      </div>
+    </div>
+    <p class="caption" style="text-align:center;margin-top:1.5rem;color:var(--ink-inverse-muted);">
+      NAVID v2.3 · Private by default · Powered by the Foundation's curriculum library
+    </p>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- What NAVID is -->
+<section class="section">
+  <div class="container">
+    <div class="section-head fade-in">
+      <div>
+        <span class="section-head__num" style="color:var(--terracotta);">01 / What it is</span>
+        <h2 class="display-l section-head__title" style="color:var(--bone);">
+          Not a <em style="color:var(--terracotta);">product.</em> A practice, in software form.
+        </h2>
+      </div>
+      <p class="section-head__body body-l">
+        Every wellness app on the market optimises for engagement. NAVID is built to optimise for your life outside the app. We measure it on whether you close the window and do something real.
+      </p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr;gap:2rem;" class="fade-in">
+      <div style="display:grid;grid-template-columns:1fr;gap:2rem;">
+        <div style="display:grid;grid-template-columns:1fr;gap:1.25rem;" class="ecosystem">
+          <article class="eco-card" style="background:var(--obsidian-80);border-color:var(--line-dark);">
+            <div class="eco-card__role">Principle 01</div>
+            <h3 class="eco-card__name" style="color:var(--bone);">Grounded in our work</h3>
+            <p class="eco-card__body" style="color:var(--ink-inverse-muted);">
+              Trained on the 7 Pillars curriculum, My Purpose, Triangle Empowerment, and the Foundation's research library. Not a generic LLM with a coat of paint.
+            </p>
+          </article>
+          <article class="eco-card" style="background:var(--obsidian-80);border-color:var(--line-dark);">
+            <div class="eco-card__role">Principle 02</div>
+            <h3 class="eco-card__name" style="color:var(--bone);">Continuity, not conversation</h3>
+            <p class="eco-card__body" style="color:var(--ink-inverse-muted);">
+              For retreat graduates, NAVID remembers your pillar work. You come back to it, not to a cold start. It walks with you between retreats, not instead of them.
+            </p>
+          </article>
+          <article class="eco-card" style="background:var(--obsidian-80);border-color:var(--line-dark);">
+            <div class="eco-card__role">Principle 03</div>
+            <h3 class="eco-card__name" style="color:var(--bone);">Private by default</h3>
+            <p class="eco-card__body" style="color:var(--ink-inverse-muted);">
+              Your conversations with NAVID belong to you. We don't sell them, analyse them for ad spend, or surface them in reporting. Full data policy below.
+            </p>
+          </article>
+          <article class="eco-card" style="background:var(--obsidian-80);border-color:var(--line-dark);">
+            <div class="eco-card__role">Principle 04</div>
+            <h3 class="eco-card__name" style="color:var(--bone);">Knows its limits</h3>
+            <p class="eco-card__body" style="color:var(--ink-inverse-muted);">
+              NAVID is not a crisis service, a therapist, or a replacement for any of them. When a conversation needs a human, NAVID says so and offers real referrals.
+            </p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- How it works -->
+<section class="section" id="how">
+  <div class="container">
+    <div class="page-split fade-in">
+      <div class="page-split__label" style="color:var(--terracotta);">02 / How it works</div>
+      <div class="prose" style="color:var(--bone);">
+        <h2 style="color:var(--bone);">A presence, in three layers.</h2>
+        <p style="color:var(--ink-inverse-muted);">
+          <strong style="color:var(--bone);">Public layer.</strong> Anyone can speak to NAVID. Answers about the Foundation, the programs, and the broader mission. Use it to navigate, not to confide.
+        </p>
+        <p style="color:var(--ink-inverse-muted);">
+          <strong style="color:var(--bone);">Member layer.</strong> For retreat graduates and program participants. NAVID holds your pillar notes, your intentions, and the specific work you did with a practitioner. It picks up where the retreat left off.
+        </p>
+        <p style="color:var(--ink-inverse-muted);">
+          <strong style="color:var(--bone);">Practitioner layer.</strong> For Foundation facilitators running retreats and school programs. NAVID drafts session outlines, surfaces research, and tracks cohort themes. It augments the practitioner, it doesn't replace them.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Voice -->
+<section class="voice">
+  <div class="container fade-in">
+    <p class="voice__quote" style="color:var(--bone);">
+      NAVID isn't meant to replace a conversation with a wise friend. It's meant to be the thing you open while you're <em style="color:var(--terracotta);">waiting</em> for that conversation.
+    </p>
+    <div class="voice__attribution">
+      <div>
+        <div class="voice__name" style="color:var(--bone);">Wesley, Divergence Media</div>
+        <div class="voice__role" style="color:var(--ink-inverse-muted);">Strategic partner &amp; NAVID lead</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <div class="container">
+    <div class="cta-band__inner fade-in">
+      <div>
+        <span class="section-head__num" style="color:var(--terracotta);">Next</span>
+        <h2 class="display-l cta-band__title" style="color:var(--bone);">Start a <em style="color:var(--terracotta);">real</em> conversation.</h2>
+      </div>
+      <div class="cta-band__actions">
+        <a class="cta-band__action" href="#">
+          <span class="cta-band__action-title">Open NAVID full-screen</span>
+          <span class="cta-band__action-arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="cta-band__action" href="get-involved.html">
+          <span class="cta-band__action-title">Apply for a retreat and unlock member NAVID</span>
+          <span class="cta-band__action-arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="cta-band__action" href="contact.html">
+          <span class="cta-band__action-title">Integrate NAVID into your programme</span>
+          <span class="cta-band__action-arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <div class="footer__brand-name">Love Happiness Freedom Foundation</div>
+        <p class="footer__brand-body">
+          A seven-year mission scaling love, happiness, and freedom through education, spirituality, and sustainability. Cape Town &amp; Maputo.
+        </p>
+        <form class="footer__newsletter" action="#" method="post">
+          <input type="email" placeholder="Your email for the quarterly letter" required />
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+      <div>
+        <div class="footer__col-title">Foundation</div>
+        <ul class="footer__list">
+          <li><a href="mission.html">Mission</a></li>
+          <li><a href="programs.html">Programs</a></li>
+          <li><a href="impact.html">Impact</a></li>
+          <li><a href="research.html">Research</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer__col-title">Ecosystem</div>
+        <ul class="footer__list">
+          <li><a href="navid.html">NAVID</a></li>
+          <li><a href="#">EduAI</a></li>
+          <li><a href="#">Ilha Do Fogo</a></li>
+          <li><a href="#">MOVA</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer__col-title">Connect</div>
+        <ul class="footer__list">
+          <li><a href="get-involved.html">Get involved</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="https://www.instagram.com/lhf.foundatio322" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="#">Press</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__base">
+      <div>© <span data-year>2026</span> Love Happiness Freedom Foundation. All rights reserved.</div>
+      <div class="footer__legal">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Annual reports</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="scripts.js"></script>
+</body>
+</html>

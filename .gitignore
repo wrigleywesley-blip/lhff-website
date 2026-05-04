@@ -1,0 +1,22 @@
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Vercel
+.vercel
+
+# Editors
+.vscode
+.idea
+
+# Raw working assets (not referenced by site)
+LHFF STILLS EDITED/
+studio one /
+app/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Node
+node_modules/
