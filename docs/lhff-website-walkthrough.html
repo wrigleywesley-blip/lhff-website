@@ -1,0 +1,986 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>The Website &middot; A walkthrough &middot; Love Happiness Freedom Foundation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Open+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  :root {
+    --paper: #faf7f2;
+    --ink: #1a1a1a;
+    --ink-soft: #4a4a4a;
+    --rule: rgba(26,26,26,0.14);
+    --rainbow-red: #e84a3f;
+    --rainbow-orange: #f08a3a;
+    --rainbow-yellow: #f5c63a;
+    --rainbow-green: #5fa85a;
+    --rainbow-sky: #5ab8d9;
+    --rainbow-blue: #3a72b8;
+    --rainbow-purple: #8654b8;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Open Sans", -apple-system, system-ui, sans-serif;
+    font-weight: 400;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Each .page is a single A4 page */
+  .page {
+    width: 210mm;
+    height: 297mm;
+    page-break-after: always;
+    break-after: page;
+    padding: 22mm 22mm 18mm;
+    position: relative;
+    overflow: hidden;
+  }
+  .page:last-child {
+    page-break-after: auto;
+    break-after: auto;
+  }
+
+  /* Running header / footer */
+  .runner {
+    position: absolute;
+    left: 22mm;
+    right: 22mm;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 8.5pt;
+    color: var(--ink-soft);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+  }
+  .runner--top { top: 12mm; }
+  .runner--bot { bottom: 12mm; }
+
+  /* Typography primitives */
+  .eyebrow {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9pt;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 0 0 18px;
+  }
+  .display {
+    font-family: "Playfair Display", Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.02;
+    color: var(--ink);
+    margin: 0;
+  }
+  .display--xl { font-size: 78pt; }
+  .display--lg { font-size: 52pt; }
+  .display--md { font-size: 32pt; }
+  .display--sm { font-size: 22pt; }
+  h1, h2, h3 { margin: 0; font-weight: 500; }
+  h2.section-title {
+    font-family: "Playfair Display", Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 36pt;
+    line-height: 1.05;
+    margin: 0 0 14px;
+  }
+  h3.sub {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 600;
+    font-size: 12pt;
+    letter-spacing: 0.02em;
+    margin: 22px 0 6px;
+    color: var(--ink);
+  }
+  p { margin: 0 0 12px; font-size: 11pt; line-height: 1.6; color: var(--ink); }
+  p.lead { font-size: 14pt; line-height: 1.5; color: var(--ink); }
+  p.small { font-size: 9.5pt; line-height: 1.55; color: var(--ink-soft); }
+  ul, ol { margin: 0 0 14px; padding-left: 18px; }
+  li { font-size: 11pt; line-height: 1.6; margin-bottom: 6px; }
+  ul.tight li { margin-bottom: 3px; }
+  strong { font-weight: 600; }
+  em { font-style: italic; }
+  a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--rule); }
+  code, .mono {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9.5pt;
+    background: rgba(26,26,26,0.05);
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+  hr.rule {
+    border: 0;
+    border-top: 1px solid var(--rule);
+    margin: 22px 0;
+  }
+
+  /* COVER */
+  .cover {
+    background: var(--ink);
+    color: var(--paper);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .cover .runner { color: rgba(250,247,242,0.55); }
+  .cover .display { color: var(--paper); }
+  .cover__rainbow {
+    display: flex;
+    height: 6px;
+    width: 60mm;
+    margin-bottom: 24px;
+    border-radius: 1px;
+    overflow: hidden;
+  }
+  .cover__rainbow span { flex: 1; }
+  .cover__rainbow span:nth-child(1) { background: var(--rainbow-red); }
+  .cover__rainbow span:nth-child(2) { background: var(--rainbow-orange); }
+  .cover__rainbow span:nth-child(3) { background: var(--rainbow-yellow); }
+  .cover__rainbow span:nth-child(4) { background: var(--rainbow-green); }
+  .cover__rainbow span:nth-child(5) { background: var(--rainbow-sky); }
+  .cover__rainbow span:nth-child(6) { background: var(--rainbow-blue); }
+  .cover__rainbow span:nth-child(7) { background: var(--rainbow-purple); }
+  .cover__title { margin-top: auto; }
+  .cover__meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 36px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9.5pt;
+    color: rgba(250,247,242,0.7);
+    letter-spacing: 0.06em;
+  }
+  .cover__meta strong {
+    display: block;
+    font-weight: 500;
+    color: var(--paper);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 8.5pt;
+    margin-bottom: 4px;
+  }
+
+  /* CONTENTS */
+  .toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid var(--rule);
+  }
+  .toc-list li {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 12pt;
+    margin: 0;
+  }
+  .toc-list .num {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9.5pt;
+    color: var(--ink-soft);
+    letter-spacing: 0.08em;
+    width: 32px;
+    flex-shrink: 0;
+  }
+  .toc-list .title {
+    font-family: "Playfair Display", Georgia, serif;
+    font-style: italic;
+    font-size: 18pt;
+    flex: 1;
+  }
+  .toc-list .pg {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9.5pt;
+    color: var(--ink-soft);
+  }
+
+  /* Two-column body */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 18px;
+  }
+
+  /* Pull quote */
+  .pull {
+    border-left: 3px solid var(--ink);
+    padding-left: 18px;
+    margin: 24px 0;
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-size: 18pt;
+    line-height: 1.3;
+    color: var(--ink);
+  }
+
+  /* Stat / data row */
+  .data-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin: 18px 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 16px 0;
+  }
+  .data-row .item .k {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 8.5pt;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 4px;
+  }
+  .data-row .item .v {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-size: 18pt;
+    line-height: 1.1;
+  }
+
+  /* Sitemap rows */
+  .sitemap {
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    column-gap: 14px;
+    row-gap: 0;
+    margin-top: 12px;
+  }
+  .sitemap .n {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9pt;
+    color: var(--ink-soft);
+    padding-top: 9px;
+    border-top: 1px solid var(--rule);
+  }
+  .sitemap .row {
+    padding: 9px 0;
+    border-top: 1px solid var(--rule);
+  }
+  .sitemap .row__title {
+    font-weight: 600;
+    font-size: 10.5pt;
+    margin-bottom: 2px;
+  }
+  .sitemap .row__desc {
+    font-size: 9.5pt;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+  .sitemap .swatch {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+  .sitemap .row:last-child, .sitemap .n:last-child {
+    border-bottom: 1px solid var(--rule);
+  }
+
+  /* Card */
+  .card {
+    border: 1px solid var(--rule);
+    padding: 18px 20px;
+    border-radius: 2px;
+    margin: 14px 0;
+    background: rgba(255,255,255,0.5);
+  }
+  .card h3 {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-size: 16pt;
+    margin: 0 0 6px;
+  }
+  .card .label {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 8pt;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  /* Color block tile */
+  .blocks {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 18px 0;
+  }
+  .block {
+    padding: 18px 16px;
+    border-radius: 2px;
+    color: #fff;
+    min-height: 80px;
+  }
+  .block .lab {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 8pt;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    opacity: 0.85;
+    margin-bottom: 6px;
+  }
+  .block .ti {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-size: 18pt;
+    line-height: 1.05;
+  }
+
+  /* NAVID chat mock */
+  .chat {
+    background: #15171b;
+    color: #f4f1ec;
+    border-radius: 6px;
+    padding: 18px;
+    margin: 16px 0;
+  }
+  .chat__head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding-bottom: 12px;
+    margin-bottom: 14px;
+  }
+  .chat__avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--rainbow-purple);
+    color: #fff;
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14pt;
+  }
+  .chat__name { font-weight: 600; font-size: 10.5pt; }
+  .chat__status { font-family: "JetBrains Mono", monospace; font-size: 8pt; color: rgba(255,255,255,0.55); letter-spacing: 0.1em; text-transform: uppercase; }
+  .msg { display: flex; gap: 8px; margin-bottom: 10px; align-items: flex-start; }
+  .msg__bub {
+    background: rgba(255,255,255,0.07);
+    padding: 9px 12px;
+    border-radius: 10px;
+    font-size: 10pt;
+    line-height: 1.5;
+    max-width: 78%;
+  }
+  .msg--user { justify-content: flex-end; }
+  .msg--user .msg__bub { background: var(--rainbow-purple); color: #fff; }
+
+  .pill {
+    display: inline-block;
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    padding: 3px 10px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 8.5pt;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+    margin-right: 6px;
+    margin-bottom: 6px;
+  }
+
+  /* Final page */
+  .signoff {
+    background: var(--ink);
+    color: var(--paper);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .signoff .runner { color: rgba(250,247,242,0.55); }
+  .signoff p { color: var(--paper); }
+  .signoff p.small { color: rgba(250,247,242,0.65); }
+  .signoff h2 { color: var(--paper); }
+  .signoff a { color: var(--paper); border-bottom: 1px solid rgba(250,247,242,0.4); }
+  .signoff .pill { color: rgba(250,247,242,0.85); border-color: rgba(250,247,242,0.3); }
+</style>
+</head>
+<body>
+
+<!-- ─── PAGE 1 — COVER ─── -->
+<section class="page cover">
+  <div class="runner runner--top">
+    <span>Love Happiness Freedom Foundation</span>
+    <span>Built by Divergence</span>
+  </div>
+  <div class="cover__title">
+    <div class="cover__rainbow">
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <p class="eyebrow" style="color: rgba(250,247,242,0.7);">A walkthrough of the new website</p>
+    <h1 class="display display--xl">The website.</h1>
+    <h1 class="display display--xl" style="margin-top: -8px;">How it works,<br/>and why.</h1>
+  </div>
+  <div class="cover__meta">
+    <div>
+      <strong>Document</strong>
+      Walkthrough &middot; v1.0
+    </div>
+    <div>
+      <strong>Live at</strong>
+      lhff-website.vercel.app
+    </div>
+    <div style="text-align: right;">
+      <strong>Date</strong>
+      May 2026
+    </div>
+  </div>
+  <div class="runner runner--bot">
+    <span>01</span>
+    <span>Cover</span>
+  </div>
+</section>
+
+<!-- ─── PAGE 2 — INTRODUCTION ─── -->
+<section class="page">
+  <div class="runner runner--top">
+    <span>The website &middot; A walkthrough</span>
+    <span>Section 01</span>
+  </div>
+
+  <p class="eyebrow">01 / Introduction</p>
+  <h2 class="display display--lg">A foundation<br/>that reads like<br/>a publication.</h2>
+
+  <hr class="rule" />
+
+  <div class="two-col">
+    <div>
+      <p class="lead">The Foundation isn't a typical non-profit. It crosses creative, spiritual, and conservation lines, and the old site tried to fit that into a brochure layout.</p>
+      <p>This rebuild approaches it differently. It treats the Foundation like a body of work, not a service. The site reads more like a magazine: chapters, full-bleed imagery, breathing room, a clear voice running through every page.</p>
+      <p>The original brand stays intact. Cheney's mural opens the home page. The rainbow palette runs through the section dividers. The villa, the studio, the conservation work all get cinematic treatment. Heavy text hides behind accordions so the experience stays light.</p>
+    </div>
+    <div>
+      <p>NAVID lives directly inside the experience now, not on a separate page. He sits in the corner of every page, available to anyone who wants to talk, whether they're considering a retreat or just reading about the work.</p>
+      <p>This document walks through the whole thing: the design choices, the page-by-page logic, NAVID's behaviour, what's running under the hood, and what's queued up next.</p>
+      <div class="data-row" style="grid-template-columns: 1fr 1fr; margin-top: 22px;">
+        <div class="item"><div class="k">Pages</div><div class="v">8</div></div>
+        <div class="item"><div class="k">Live URL</div><div class="v" style="font-size: 13pt;">lhff-website<br/>.vercel.app</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="runner runner--bot">
+    <span>02</span>
+    <span>Introduction</span>
+  </div>
+</section>
+
+<!-- ─── PAGE 3 — CONTENTS ─── -->
+<section class="page">
+  <div class="runner runner--top">
+    <span>The website &middot; A walkthrough</span>
+    <span>Contents</span>
+  </div>
+
+  <p class="eyebrow">Contents</p>
+  <h2 class="display display--lg">What you'll find<br/>inside.</h2>
+
+  <ol class="toc-list" style="margin-top: 32px;">
+    <li><span class="num">01</span><span class="title">The brief</span><span class="pg">04</span></li>
+    <li><span class="num">02</span><span class="title">The design choice and why</span><span class="pg">05</span></li>
+    <li><span class="num">03</span><span class="title">A walk through the home page</span><span class="pg">06</span></li>
+    <li><span class="num">04</span><span class="title">NAVID, the AI companion</span><span class="pg">08</span></li>
+    <li><span class="num">05</span><span class="title">How NAVID actually responds</span><span class="pg">09</span></li>
+    <li><span class="num">06</span><span class="title">Under the hood</span><span class="pg">10</span></li>
+    <li><span class="num">07</span><span class="title">What's next</span><span class="pg">11</span></li>
+  </ol>
+
+  <div class="runner runner--bot">
+    <span>03</span>
+    <span>Contents</span>
+  </div>
+</section>
+
+<!-- ─── PAGE 4 — THE BRIEF ─── -->
+<section class="page">
+  <div class="runner runner--top">
+    <span>01 / The brief</span>
+    <span>Section 01</span>
+  </div>
+
+  <p class="eyebrow">01 / The brief</p>
+  <h2 class="section-title">What we set out to build.</h2>
+
+  <p class="lead">Four things drove this rebuild.</p>
+
+  <hr class="rule" />
+
+  <h3 class="sub">01. A site that feels the way the Foundation feels.</h3>
+  <p>The old site was functional but read like a brochure. The Foundation's work is more textured than that: ceremony, art, conservation, leadership, all running side by side. The new site treats those threads as a publication.</p>
+
+  <h3 class="sub">02. Hold the original brand.</h3>
+  <p>Cheney's mural, the rainbow palette, the editorial weight. None of these were up for negotiation. They define the Foundation visually, so they had to define the site visually.</p>
+
+  <h3 class="sub">03. Move NAVID into the experience.</h3>
+  <p>Hiding him behind a separate page meant most visitors never met him. NAVID is now a floating presence available from any scroll position, and he greets people based on their relationship to the Foundation instead of assuming they're booked.</p>
+
+  <h3 class="sub">04. Light enough for any visitor, layered enough for someone close to the work.</h3>
+  <p>A casual reader, a retreat applicant, an alum, and a partner all need different things from the same site. Accordions, modals, and progressive disclosure let the page be light at first glance and deep on demand.</p>
+
+  <div class="pull" style="margin-top: 28px;">"Every page should feel like it was made by people who care, for people who care."</div>
+
+  <div class="runner runner--bot">
+    <span>04</span>
+    <span>The brief</span>
+  </div>
+</section>
+
+<!-- ─── PAGE 5 — DESIGN CHOICE ─── -->
+<section class="page">
+  <div class="runner runner--top">
+    <span>02 / The design choice</span>
+    <span>Section 02</span>
+  </div>
+
+  <p class="eyebrow">02 / The design choice and why</p>
+  <h2 class="section-title">Magazine, not brochure.</h2>
+
+  <div class="two-col">
+    <div>
+      <h3 class="sub">Editorial layout</h3>
+      <p>Asymmetric sections, full-bleed images, Playfair Display italic for displays, Open Sans for body, JetBrains Mono for labels. The site reads like a publication, not a services page.</p>
+
+      <h3 class="sub">Rainbow as chapter dividers</h3>
+      <p>Each colour signals a movement. Red and orange for love. Yellow and green for happiness. Sky, blue, and purple for freedom. The original brand carries straight through.</p>
+
+      <h3 class="sub">Mural as the hero</h3>
+      <p>The site opens with Cheney's mural full-bleed. The Foundation began with the artist, and the home page reflects that.</p>
+    </div>
+    <div>
+      <h3 class="sub">Accordions for heavy text</h3>
+      <p>The App, the things being built, the roadmap. All hidden by default. Visitors who want depth tap to open. Visitors scrolling get to keep flowing.</p>
+
+      <h3 class="sub">Cinema sections</h3>
+      <p>Environment, the villa, the studio. Each gets a full-width treatment. The work is treated like the artefacts it is.</p>
+
+      <h3 class="sub">Always a next action</h3>
+      <p>Apply, donate, talk to NAVID, see the app. Visitors are never left guessing what they can do next.</p>
+    </div>
+  </div>
+
+  <div class="blocks" style="margin-top: 30px;">
+    <div class="block" style="background: var(--rainbow-red);"><div class="lab">Pillar 01</div><div class="ti">Love</div></div>
+    <div class="block" style="background: var(--rainbow-yellow); color: #1a1a1a;"><div class="lab" style="color: rgba(26,26,26,0.7);">Pillar 02</div><div class="ti">Happiness</div></div>
+    <div class="block" style="background: var(--rainbow-purple);"><div class="lab">Pillar 03</div><div class="ti">Freedom</div></div>
+  </div>
+
+  <div class="runner runner--bot">
+    <span>05</span>
+    <span>The design choice</span>
+  </div>
+</section>
+
+<!-- ─── PAGE 6 — SITEMAP PT 1 ─── -->
+<section class="page">
+  <div class="runner runner--top">
+    <span>03 / A walk through</span>
+    <span>Section 03 &middot; Part 1</span>
+  </div>
+
+  <p class="eyebrow">03 / A walk through the home page</p>
+  <h2 class="section-title">From the mural to the<br/>cinema sections.</h2>
+
+  <p>The home page is one continuous read, broken into chapters by colour and texture. Here's the order, top to bottom.</p>
+
+  <div class="sitemap">
+    <div class="n">01</div>
+    <div class="row">
+      <div class="row__title"><span class="swatch" style="background: var(--rainbow-red);"></span>Hero / mural</div>
+      <div class="row__desc">Cheney's original mural, full-bleed. Centre logo, chapter mark, no copy that fights the artwork.</div>
+    </div>
+    <div class="n">02</div>
+    <div class="row">
+      <div class="row__title"><span class="swatch" style="background: var(--rainbow-orange);"></span>Statement</div>
+      <div class="row__desc">One sentence on what the Foundation is. Set large. Sets the tone.</div>
+    </div>
+    <div class="n">03</div>
+    <div class="row">
+      <div class="row__title"><span class="swatch" style="background: var(--rainbow-yellow);"></span>Heart, doorway, companion, future</div>
+      <div class="row__desc">Four-part framing strip naming the Foundation's role.</div>
+    </div>
+    <div class="n">04</div>
+    <div class="row">
+      <div class="row__title"><span class="swatch" style="background: var(--rainbow-green);"></span>Three pillars</div>
+      <div class="row__desc">Love, Happiness, Freedom. Each pillar gets a colour and a paragraph.</div>
+    </div>
+    <div class="n">05</div>
+    <div class="row">
+      <div class="row__title"><span class="swatch" style="background: var(--rainbow-sky);"></span>Pack-break video</div>
+      <div class="row__desc">The LHFF animation, full-bleed. A breath in the middle of the page.</div>
+    </div>
+    <div class="n">06</div>
+    <div class="row">
+      <div class="row__title"><span class="swatch" style="background: var(--rainbow-blue);"></span>The villa</div>
+      <div class="row__desc">Cape Town retreat home. Hero shot, marquee carousel of interiors.</div>
+    </div>
+    <div class="n">07</div>
+    <div class="row">
+      <div class="row__title"><span class="swatch" style="background: var(--rainbow-purple);"></span>Environment</div>
+      <div class="row__desc">Cinematic full-width chapter on the conservation work.</div>
+    </div>
+    <div class="n">08</div>
+    <div class="row">
+      <div class="row__title"><span class="swatch" style="background: var(--rainbow-red);"></span>Fashion feature</div>
+      <div class="row__desc">Single editorial image. The creative pillar.</div>
+    </div>
+    <div class="n">09</div>
+    <div class="row">
+      <div class="row__title"><span class="swatch" style="background: var(--rainbow-orange);"></span>322 &amp; Rainbow</div>
+      <div class="row__desc">Cheney's archive pieces. History on the page.</div>
+    </div>
+    <div class="n">10</div>
+    <div class="row">
+      <div class="row__title"><span class="swatch" style="background: var(--rainbow-yellow);"></span>Programs</div>
+      <div class="row__desc">Each program gets a magazine row: image, title, paragraph, link.</div>
+    </div>
+  </div>
+
+  <div class="runner runner--bot">
+    <span>06</span>
+    <span>A walk through, part 1</span>
+  </div>
+</section>
+
+<!-- ─── PAGE 7 — SITEMAP PT 2 ─── -->
+<section class="page">
+  <div class="runner runner--top">
+    <span>03 / A walk through</span>
+    <span>Section 03 &middot; Part 2</span>
+  </div>
+
+  <p class="eyebrow">03 / Continued</p>
+  <h2 class="section-title">From the app to the footer.</h2>
+
+  <div class="sitemap">
+    <div class="n">11</div>
+    <div class="row">
+      <div class="row__title"><span class="swatch" style="background: var(--rainbow-green);"></span>The App</div>
+      <div class="row__desc">Phone hero, then a row of five screens, then a small NAVID callout linking to the chat.</div>
+    </div>
+    <div class="n">12</div>
+    <div class="row">
+      <div class="row__title"><span class="swatch" style="background: var(--rainbow-sky);"></span>AI callout banner</div>
+      <div class="row__desc">A short bridge from the analogue work into the technology layer.</div>
+    </div>
+    <div class="n">13</div>
+    <div class="row">
+      <div class="row__title"><span class="swatch" style="background: var(--rainbow-blue);"></span>What we're building</div>
+      <div class="row__desc">Accordion. NAVID, EduAI, the venues, Studio One, Divergence. Six items, all closed by default.</div>
+    </div>
+    <div class="n">14</div>
+    <div class="row">
+      <div class="row__title"><span class="swatch" style="background: var(--rainbow-purple);"></span>Roadmap</div>
+      <div class="row__desc">A short paragraph on direction. Where the work is heading next.</div>
+    </div>
+    <div class="n">15</div>
+    <div class="row">
+      <div class="row__title"><span class="swatch" style="background: var(--rainbow-red);"></span>Divergence partner section</div>
+      <div class="row__desc">Credit and partnership context. Solo layout, framed as a creative collaboration.</div>
+    </div>
+    <div class="n">16</div>
+    <div class="row">
+      <div class="row__title"><span class="swatch" style="background: var(--rainbow-orange);"></span>NAVID interlude</div>
+      <div class="row__desc">Dark band with a chat mock. Sets the tone before the real chat.</div>
+    </div>
+    <div class="n">17</div>
+    <div class="row">
+      <div class="row__title"><span class="swatch" style="background: var(--rainbow-yellow);"></span>Cheney voice block</div>
+      <div class="row__desc">Direct words from the artist. Pulled out so they hit.</div>
+    </div>
+    <div class="n">18</div>
+    <div class="row">
+      <div class="row__title"><span class="swatch" style="background: var(--rainbow-green);"></span>Research / language</div>
+      <div class="row__desc">The phrases the Foundation keeps coming back to. A vocabulary, set in display type.</div>
+    </div>
+    <div class="n">19</div>
+    <div class="row">
+      <div class="row__title"><span class="swatch" style="background: var(--rainbow-sky);"></span>CTA tiles</div>
+      <div class="row__desc">Four next-actions: apply for a retreat, donate, talk to NAVID, get in touch.</div>
+    </div>
+    <div class="n">20</div>
+    <div class="row">
+      <div class="row__title"><span class="swatch" style="background: var(--rainbow-blue);"></span>Footer</div>
+      <div class="row__desc">Site map, social, contact, fine print.</div>
+    </div>
+  </div>
+
+  <p class="small" style="margin-top: 18px;">The other pages, mission, programs, research, impact, get involved, contact, and the standalone NAVID page, follow the same design system. Same nav, same typography, same rainbow logic.</p>
+
+  <div class="runner runner--bot">
+    <span>07</span>
+    <span>A walk through, part 2</span>
+  </div>
+</section>
+
+<!-- ─── PAGE 8 — NAVID INTRO ─── -->
+<section class="page">
+  <div class="runner runner--top">
+    <span>04 / NAVID</span>
+    <span>Section 04</span>
+  </div>
+
+  <p class="eyebrow">04 / NAVID, the AI companion</p>
+  <h2 class="display display--md" style="margin-bottom: 16px;">A guide that<br/><em>remembers</em> you.</h2>
+
+  <p class="lead">NAVID sits in the bottom-right of every page. He's a chat companion built into the Foundation's voice.</p>
+
+  <hr class="rule" />
+
+  <div class="two-col">
+    <div>
+      <h3 class="sub">What he does</h3>
+      <ul class="tight">
+        <li>Greets visitors based on their relationship to the Foundation (curious, considering a retreat, booked, alumni, other).</li>
+        <li>Asks for a first name and a one-line context, so the conversation has a thread.</li>
+        <li>Holds the Foundation's tone: warm, grounded, two to four sentences, ends with a soft question.</li>
+        <li>Recognises common life patterns. Anxiety, sadness, anger, grief, relationships, family, work overwhelm, imposter feelings, big decisions, burnout, stuck.</li>
+        <li>Adjusts retreat-specific topics (schedule, ceremony, integration) based on whether the person is actually attending.</li>
+        <li>Persists state in the browser so the next visit picks up where the last left off.</li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="sub">What he doesn't do</h3>
+      <ul class="tight">
+        <li>Doesn't pretend to be a therapist.</li>
+        <li>Doesn't push the retreat. The retreat shows up only when it's relevant to what someone said.</li>
+        <li>Doesn't store anything off the device. State is local until the real backend is wired.</li>
+      </ul>
+
+      <h3 class="sub">Why it matters</h3>
+      <p class="small">A chat companion that assumes everyone is on the retreat path is useless to the visitors who aren't. NAVID was built to serve the whole audience: a casual reader, an applicant, an alum looking back. The voice stays the same. The context shifts.</p>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top: 20px;">
+    <span class="label">Status modes</span>
+    <span class="pill">Curious</span>
+    <span class="pill">Considering</span>
+    <span class="pill">Booked</span>
+    <span class="pill">Alumni</span>
+    <span class="pill">Other</span>
+    <p class="small" style="margin-top: 10px; margin-bottom: 0;">NAVID's first message changes based on what the visitor selects in the intake form. A curious visitor never gets retreat-specific language unless they ask for it.</p>
+  </div>
+
+  <div class="runner runner--bot">
+    <span>08</span>
+    <span>NAVID</span>
+  </div>
+</section>
+
+<!-- ─── PAGE 9 — NAVID RESPONSES ─── -->
+<section class="page">
+  <div class="runner runner--top">
+    <span>05 / How NAVID responds</span>
+    <span>Section 05</span>
+  </div>
+
+  <p class="eyebrow">05 / How NAVID actually responds</p>
+  <h2 class="section-title">Calibrated, not generic.</h2>
+
+  <p>NAVID matches the visitor's input against a set of patterns, then returns a response shaped by the Foundation's voice. The patterns are ordered specific-to-general, so a sentence like <em>"my partner just left me, I feel lost"</em> hits the relationships pattern, not the generic stuck/lost one.</p>
+
+  <h3 class="sub">Sample exchange (curious visitor)</h3>
+
+  <div class="chat">
+    <div class="chat__head">
+      <div class="chat__avatar">N</div>
+      <div>
+        <div class="chat__name">NAVID</div>
+        <div class="chat__status">Online &middot; Replies instantly</div>
+      </div>
+    </div>
+    <div class="msg">
+      <div class="msg__bub">Hi Sam, I'm Navid. I sit alongside the Foundation as a kind of companion. Ask me anything, or just say what's on your mind today.</div>
+    </div>
+    <div class="msg msg--user">
+      <div class="msg__bub">My partner just left me. I feel lost.</div>
+    </div>
+    <div class="msg">
+      <div class="msg__bub">Sam, I'm sorry. Relationships are where most of our growth shows up, and where most of our wounds do too. What's the part of it that's loudest for you right now?</div>
+    </div>
+    <div class="msg msg--user">
+      <div class="msg__bub">I think I have imposter syndrome at work too.</div>
+    </div>
+    <div class="msg">
+      <div class="msg__bub">Imposter feelings tend to peak when you're growing into something bigger than your old story of yourself. The story is the outdated thing, not you. What's the new story trying to form?</div>
+    </div>
+  </div>
+
+  <p class="small">Twenty-plus pattern matchers cover the most common visitor questions. Anything that doesn't match goes to a default response that opens the conversation up rather than closing it down.</p>
+
+  <div class="runner runner--bot">
+    <span>09</span>
+    <span>How NAVID responds</span>
+  </div>
+</section>
+
+<!-- ─── PAGE 10 — UNDER THE HOOD ─── -->
+<section class="page">
+  <div class="runner runner--top">
+    <span>06 / Under the hood</span>
+    <span>Section 06</span>
+  </div>
+
+  <p class="eyebrow">06 / Under the hood</p>
+  <h2 class="section-title">How the site is built.</h2>
+
+  <div class="two-col">
+    <div>
+      <h3 class="sub">Stack</h3>
+      <p>Static HTML, CSS, and JavaScript. No framework, no build step. Loads instantly, runs anywhere.</p>
+
+      <h3 class="sub">Hosting</h3>
+      <p>Vercel. The GitHub repo is connected, so any commit to <code>main</code> goes live in seconds. Zero deploy ceremony.</p>
+
+      <h3 class="sub">Design system</h3>
+      <p>Custom, built for this site. Reusable components: chapter heading, marquee carousel, cinema feature, accordion, color block tile, phone mock. Editorial typography throughout.</p>
+
+      <h3 class="sub">NAVID, today</h3>
+      <p>A rule-based responder running fully in the browser. Twenty-plus patterns. No backend needed for the current experience to work.</p>
+    </div>
+    <div>
+      <h3 class="sub">NAVID, when the API lands</h3>
+      <p>The front-end already sends visitor name, intake answers, and full message history to a single endpoint. When the real backend is wired, it slots in without any front-end changes.</p>
+      <p style="margin-top: 8px;"><code>POST /api/navid</code><br/><code>{ user, history, message }</code><br/>→ <code>{ reply }</code></p>
+
+      <h3 class="sub">Application form</h3>
+      <p>Stores entries in browser local storage today. A quick wire to email or a database when the Foundation is ready.</p>
+
+      <h3 class="sub">Mobile</h3>
+      <p>Responsive layout. Editorial sections collapse to single column on phones. The NAVID chat works the same way across devices.</p>
+
+      <h3 class="sub">Performance</h3>
+      <p>Asset folder cached for a year. Page weight is light because there's no framework runtime. Cold loads feel instant.</p>
+    </div>
+  </div>
+
+  <div class="data-row" style="margin-top: 30px;">
+    <div class="item"><div class="k">Source</div><div class="v" style="font-size: 13pt;">github.com/<br/>wrigleywesley-blip/<br/>lhff-website</div></div>
+    <div class="item"><div class="k">Live</div><div class="v" style="font-size: 13pt;">lhff-website<br/>.vercel.app</div></div>
+    <div class="item"><div class="k">Stack</div><div class="v" style="font-size: 13pt;">Static<br/>HTML / CSS / JS</div></div>
+  </div>
+
+  <div class="runner runner--bot">
+    <span>10</span>
+    <span>Under the hood</span>
+  </div>
+</section>
+
+<!-- ─── PAGE 11 — WHAT'S NEXT ─── -->
+<section class="page">
+  <div class="runner runner--top">
+    <span>07 / What's next</span>
+    <span>Section 07</span>
+  </div>
+
+  <p class="eyebrow">07 / What's next</p>
+  <h2 class="section-title">A short roadmap.</h2>
+
+  <p>The site is live and shareable today. Here's what's queued, in priority order.</p>
+
+  <div class="card">
+    <span class="label">Priority 01 &middot; Backend</span>
+    <h3>Wire the real NAVID API.</h3>
+    <p style="margin-bottom: 0;">A Vercel edge function calling the Anthropic API. The front-end is already shaped for it. Estimated half a day. Replaces the rule-based responder with live AI in the same voice.</p>
+  </div>
+
+  <div class="card">
+    <span class="label">Priority 02 &middot; Forms</span>
+    <h3>Connect the application form.</h3>
+    <p style="margin-bottom: 0;">Today the retreat application form stores entries in the browser. A small wire-up sends them to the Foundation's email or a Notion database, whichever fits the workflow.</p>
+  </div>
+
+  <div class="card">
+    <span class="label">Priority 03 &middot; Domain</span>
+    <h3>Custom domain.</h3>
+    <p style="margin-bottom: 0;">Point the Foundation's domain at Vercel. Five minutes of DNS work. The Vercel URL keeps working as a fallback.</p>
+  </div>
+
+  <div class="card">
+    <span class="label">Priority 04 &middot; Mobile polish</span>
+    <h3>Responsive walkthrough.</h3>
+    <p style="margin-bottom: 0;">Walk through every section on a phone. Adjust spacing, image crops, and typography where the editorial layout doesn't translate cleanly.</p>
+  </div>
+
+  <div class="card">
+    <span class="label">Priority 05 &middot; Social</span>
+    <h3>Social media carousels.</h3>
+    <p style="margin-bottom: 0;">Built in the same editorial system. Designed for Instagram and LinkedIn. Easily exported as image sets.</p>
+  </div>
+
+  <p class="small" style="margin-top: 22px;">Other ideas on the wishlist: a private alumni area where past attendees revisit their integration journal, a press / archive page, and a foundation events calendar.</p>
+
+  <div class="runner runner--bot">
+    <span>11</span>
+    <span>What's next</span>
+  </div>
+</section>
+
+<!-- ─── PAGE 12 — SIGN-OFF ─── -->
+<section class="page signoff">
+  <div class="runner runner--top">
+    <span>Love Happiness Freedom Foundation</span>
+    <span>Built by Divergence</span>
+  </div>
+
+  <div style="margin-top: auto;">
+    <div class="cover__rainbow">
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <h2 class="display display--lg">It's live.<br/><em>Send the link.</em></h2>
+    <p class="lead" style="margin-top: 24px; max-width: 70%;">The site is ready to share. NAVID is functional. The roadmap is clear. Anything you want changed, the next deploy is one commit away.</p>
+
+    <hr class="rule" style="border-top: 1px solid rgba(250,247,242,0.2); margin: 30px 0;" />
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+      <div>
+        <p class="small" style="margin-bottom: 4px;">Live website</p>
+        <p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13pt;">lhff-website.vercel.app</p>
+      </div>
+      <div>
+        <p class="small" style="margin-bottom: 4px;">Source</p>
+        <p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13pt;">github.com / wrigleywesley-blip / lhff-website</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="runner runner--bot">
+    <span>12</span>
+    <span>Sign-off</span>
+  </div>
+</section>
+
+</body>
+</html>
