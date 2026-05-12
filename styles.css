@@ -527,6 +527,65 @@ body {
   }
 }
 
+/* ──────────────────────────────────────────────────────────
+   Mobile nav drawer
+   Drops below the nav bar when hamburger is open. Hidden on desktop.
+────────────────────────────────────────────────────────── */
+.nav__drawer { display: none; }
+
+@media (max-width: 900px) {
+  .nav__drawer {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 68px;
+    left: 0;
+    right: 0;
+    background: var(--bone, #faf7f2);
+    padding: 1rem 1.5rem 1.5rem;
+    z-index: 90;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    gap: 0;
+    animation: navDrawerSlide 0.24s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .nav__drawer[hidden] {
+    display: none;
+  }
+  .nav__drawer-link {
+    display: block;
+    padding: 1rem 0.25rem;
+    font-family: var(--font-nav);
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink, #111);
+    text-decoration: none;
+    text-shadow: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    transition: color 0.2s ease, padding-left 0.2s ease;
+  }
+  .nav__drawer-link:last-child {
+    border-bottom: 0;
+  }
+  .nav__drawer-link:hover,
+  .nav__drawer-link:focus-visible {
+    color: var(--purple, #8654b8);
+    padding-left: 0.5rem;
+  }
+  /* Make hamburger background more solid when drawer is open */
+  .nav.is-open .nav__toggle {
+    background: var(--ink, #111);
+    color: var(--bone, #faf7f2);
+    border-color: var(--ink, #111);
+  }
+}
+@keyframes navDrawerSlide {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 /* ---------- Buttons (pill shaped, vibrant) ---------- */
 .btn {
   display: inline-flex;
@@ -2145,6 +2204,93 @@ body {
   color: rgba(255, 255, 255, 0.5);
   line-height: 1.5;
   margin: 0;
+}
+
+/* ──────────────────────────────────────────────────────────
+   NAVID — Members-only gate
+   Shown to curious / considering / other visitors instead
+   of the chat body. Directs them to apply or contact.
+────────────────────────────────────────────────────────── */
+.navid-chat__gate {
+  padding: 1.5rem 1.5rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+.navid-chat__gate-inner {
+  max-width: 28rem;
+  text-align: left;
+}
+.navid-chat__gate-label {
+  display: inline-block;
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  font-size: 0.6875rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  padding: 0.25rem 0.625rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  margin-bottom: 1.25rem;
+}
+.navid-chat__gate-title {
+  font-family: var(--font-display, "Playfair Display", Georgia, serif);
+  font-weight: 400;
+  font-size: 1.625rem;
+  line-height: 1.15;
+  color: #fff;
+  margin: 0 0 1rem;
+}
+.navid-chat__gate-title em {
+  font-style: italic;
+  color: var(--purple, #8654b8);
+}
+.navid-chat__gate-body {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0 0 1.5rem;
+}
+.navid-chat__gate-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+.navid-chat__gate-actions .btn {
+  font-size: 0.875rem;
+}
+.navid-chat__gate-actions .btn--ghost-dark {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 0.75rem 1.25rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+}
+.navid-chat__gate-actions .btn--ghost-dark:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.7);
+}
+.navid-chat__gate-back {
+  background: none;
+  border: 0;
+  padding: 0.25rem 0;
+  color: rgba(255, 255, 255, 0.5);
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  cursor: pointer;
+  text-align: left;
+  transition: color 0.2s ease;
+}
+.navid-chat__gate-back:hover {
+  color: rgba(255, 255, 255, 0.85);
 }
 
 /* Message bubbles */

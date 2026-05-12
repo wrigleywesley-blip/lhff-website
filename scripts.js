@@ -79,6 +79,93 @@
 
 // NAVID FAB is wired further below in the NAVID Chat Modal block.
 
+// ─── Mobile nav drawer ─────────────────────────────────────
+// Combines left + right nav menus into a single mobile drawer.
+// Toggle opens/closes; clicking any link or pressing Esc closes.
+(() => {
+  const nav = document.querySelector(".nav");
+  const toggle = document.querySelector(".nav__toggle");
+  if (!nav || !toggle) return;
+
+  // Build the drawer with cloned links (so original nav remains for desktop)
+  const drawer = document.createElement("div");
+  drawer.className = "nav__drawer";
+  drawer.hidden = true;
+
+  const close = () => {
+    nav.classList.remove("is-open");
+    drawer.hidden = true;
+    toggle.setAttribute("aria-expanded", "false");
+    toggle.textContent = "☰"; // hamburger
+    toggle.setAttribute("aria-label", "Open menu");
+    document.body.style.overflow = "";
+  };
+  const open = () => {
+    nav.classList.add("is-open");
+    drawer.hidden = false;
+    toggle.setAttribute("aria-expanded", "true");
+    toggle.textContent = "✕"; // close (x)
+    toggle.setAttribute("aria-label", "Close menu");
+    document.body.style.overflow = "hidden";
+  };
+
+  // Clone every .nav__link into the drawer, preserving order
+  nav.querySelectorAll(".nav__menu-left .nav__link, .nav__menu-right .nav__link").forEach(a => {
+    const clone = a.cloneNode(true);
+    clone.classList.add("nav__drawer-link");
+    clone.classList.remove("nav__link");
+    clone.addEventListener("click", () => {
+      // small delay so anchor scroll fires before drawer closes
+      setTimeout(close, 50);
+    });
+    drawer.appendChild(clone);
+  });
+
+  nav.appendChild(drawer);
+
+  toggle.addEventListener("click", () => {
+    nav.classList.contains("is-open") ? close() : open();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && nav.classList.contains("is-open")) close();
+  });
+})();
+
+// ─── Contact form (visitor leaves details, Foundation comes back) ──
+// Stores locally for now (no backend wired). Replaces the placeholder alert.
+(() => {
+  const form = document.getElementById("lhffContactForm");
+  if (!form) return;
+  const thanks = document.getElementById("lhffContactThanks");
+  const STORAGE_KEY = "lhff:contact:submissions";
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    const entry = {
+      name: (data.get("name") || "").toString().trim(),
+      organisation: (data.get("organisation") || "").toString().trim(),
+      email: (data.get("email") || "").toString().trim(),
+      phone: (data.get("phone") || "").toString().trim(),
+      reason: (data.get("reason") || "").toString().trim(),
+      message: (data.get("message") || "").toString().trim(),
+      submittedAt: new Date().toISOString(),
+    };
+    if (!entry.name || !entry.email || !entry.reason || !entry.message) return;
+
+    try {
+      const existing = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+      existing.push(entry);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(existing));
+    } catch (err) { /* localStorage may be unavailable; fail silently */ }
+
+    // Hide all form controls, show thanks
+    form.querySelectorAll("label, button").forEach(el => el.style.display = "none");
+    if (thanks) thanks.hidden = false;
+  });
+})();
+
 // Newsletter
 (() => {
   const form = document.querySelector(".footer__newsletter");
@@ -219,13 +306,22 @@
     root.classList.add("is-open");
     root.setAttribute("aria-hidden", "false");
     document.body.classList.add("is-modal-open");
+    // Re-check gate on every open. A previously-stored non-allowed user
+    // should hit the gate again — they don't get grandfathered in.
     if (user) {
-      showChat();
+      const allowed = user.status === "booked" || user.status === "alumni";
+      if (allowed) {
+        showChat();
+      } else {
+        showGate(user);
+      }
     } else {
       showIntake();
     }
     setTimeout(() => {
-      const t = user ? input : intakeForm.querySelector("input[name='name']");
+      const t = (user && (user.status === "booked" || user.status === "alumni"))
+        ? input
+        : intakeForm.querySelector("input[name='name']");
       t?.focus();
     }, 60);
   };
@@ -351,6 +447,8 @@
   };
 
   // ─── Intake submit ────────────────────────────────────────
+  // GATING: NAVID is only available to booked retreat guests + Foundation members (alumni).
+  // Curious / considering / other → shown a gate panel directing them to apply or contact us.
   intakeForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const data = new FormData(intakeForm);
@@ -364,10 +462,48 @@
       intakeForm.querySelector("input[name='name']").focus();
       return;
     }
+
+    const allowed = u.status === "booked" || u.status === "alumni";
+    if (!allowed) {
+      showGate(u);
+      return;
+    }
+
     user = u;
     saveUser(user);
     showChat();
   });
+
+  // ─── Gate panel for non-members ───────────────────────────
+  function showGate(u) {
+    intake.hidden = true;
+    // Clear any prior content
+    [...body.children].forEach(c => { if (c !== intake) c.remove(); });
+
+    const gate = document.createElement("div");
+    gate.className = "navid-chat__gate";
+    const firstName = (u.name || "").split(" ")[0];
+    const greet = firstName ? `Hi ${firstName}.` : "Hi.";
+    gate.innerHTML = `
+      <div class="navid-chat__gate-inner">
+        <span class="navid-chat__gate-label">Members &amp; retreat guests only</span>
+        <h3 class="navid-chat__gate-title">${greet}<br/>NAVID is part of the <em>retreat experience</em>.</h3>
+        <p class="navid-chat__gate-body">NAVID is currently available to people attending a retreat or active Foundation members. If you'd like to attend a retreat or join the Foundation, the doors below open the right path.</p>
+        <div class="navid-chat__gate-actions">
+          <a class="btn btn--purple" href="get-involved.html#apply">Apply for a retreat</a>
+          <a class="btn btn--ghost-dark" href="contact.html">Send us a message</a>
+        </div>
+        <button type="button" class="navid-chat__gate-back" id="navidGateBack">← Choose a different status</button>
+      </div>
+    `;
+    body.appendChild(gate);
+    const back = gate.querySelector("#navidGateBack");
+    if (back) back.addEventListener("click", () => {
+      gate.remove();
+      intake.hidden = false;
+      intakeForm.querySelector("input[name='name']").focus();
+    });
+  }
 
   // ─── Send message ─────────────────────────────────────────
   const send = async (text) => {
