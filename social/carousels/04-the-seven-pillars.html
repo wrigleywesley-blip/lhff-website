@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>LHFF — The Seven Pillars · Carousel 04</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Open+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --cream: #faf7f2;
+    --bone: #f3ede3;
+    --ink: #1a1a1a;
+    --ink-muted: #4a4a4a;
+    --rule: rgba(26,26,26,0.14);
+    --red: #e84a3f;
+    --orange: #f08a3a;
+    --yellow: #f5c63a;
+    --green: #5fa85a;
+    --sky: #5ab8d9;
+    --blue: #3a72b8;
+    --purple: #8654b8;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #2a2a2a; font-family: "Open Sans", sans-serif; -webkit-font-smoothing: antialiased; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { padding: 48px; }
+  .deck { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; max-width: 3600px; margin: 0 auto; }
+  .panel { width: 1080px; height: 1350px; position: relative; overflow: hidden; background: var(--cream); color: var(--ink); transform-origin: top left; transform: scale(0.45); margin-bottom: -742px; margin-right: -594px; }
+  body.render { padding: 0; background: #fff; }
+  body.render .deck { display: block; max-width: none; gap: 0; }
+  body.render .panel { transform: none; margin: 0; display: block; }
+
+  .chrome-top, .chrome-bot {
+    position: absolute; left: 64px; right: 64px;
+    display: flex; justify-content: space-between;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 16px; letter-spacing: 0.16em; text-transform: uppercase;
+  }
+  .chrome-top { top: 56px; }
+  .chrome-bot { bottom: 56px; }
+  .display { font-family: "Playfair Display", Georgia, serif; font-weight: 400; font-style: italic; line-height: 1.02; letter-spacing: -0.012em; margin: 0; }
+  .eyebrow { font-family: "JetBrains Mono", monospace; font-size: 17px; letter-spacing: 0.18em; text-transform: uppercase; margin: 0 0 32px; }
+  .body { font-family: "Open Sans", sans-serif; font-size: 30px; line-height: 1.5; font-weight: 400; }
+  .rainbow-bar { display: flex; width: 220px; height: 6px; margin-bottom: 36px; border-radius: 1px; overflow: hidden; }
+  .rainbow-bar span { flex: 1; }
+  .rainbow-bar span:nth-child(1) { background: var(--red); }
+  .rainbow-bar span:nth-child(2) { background: var(--orange); }
+  .rainbow-bar span:nth-child(3) { background: var(--yellow); }
+  .rainbow-bar span:nth-child(4) { background: var(--green); }
+  .rainbow-bar span:nth-child(5) { background: var(--sky); }
+  .rainbow-bar span:nth-child(6) { background: var(--blue); }
+  .rainbow-bar span:nth-child(7) { background: var(--purple); }
+
+  .pillar-num-bg {
+    font-family: "Playfair Display", serif; font-style: italic;
+    font-size: 540px; line-height: 0.82; opacity: 0.10;
+    position: absolute; right: 0; bottom: -80px; pointer-events: none;
+  }
+
+  /* COVER */
+  .p1 { background: var(--ink); color: var(--cream); padding: 56px 64px; display: flex; flex-direction: column; justify-content: space-between; }
+  .p1 .display { font-size: 140px; }
+  .p1 .display em { color: var(--yellow); }
+
+  /* Each pillar panel — colored bg + pillar num bg + content */
+  .pillar { padding: 56px 64px; display: flex; flex-direction: column; justify-content: space-between; }
+  .pillar > div:not(.chrome-top):not(.chrome-bot):not(.pillar-num-bg) { padding-top: 56px; }
+  .pillar .display { font-size: 132px; margin-bottom: 24px; }
+  .pillar .body { font-size: 32px; max-width: 820px; }
+
+  /* P2 — PURPOSE (RED) */
+  .p2 { background: var(--red); color: #fff; }
+  .p2 .chrome-top, .p2 .chrome-bot { color: rgba(255,255,255,0.85); }
+  .p2 .pillar-num-bg { color: #fff; opacity: 0.14; }
+
+  /* P3 — WELLNESS (ORANGE) */
+  .p3 { background: var(--orange); color: #fff; }
+  .p3 .chrome-top, .p3 .chrome-bot { color: rgba(255,255,255,0.85); }
+  .p3 .pillar-num-bg { color: #fff; opacity: 0.14; }
+
+  /* P4 — COMMUNICATION (YELLOW) */
+  .p4 { background: var(--yellow); color: var(--ink); }
+  .p4 .chrome-top, .p4 .chrome-bot { color: rgba(26,26,26,0.7); }
+  .p4 .pillar-num-bg { color: var(--ink); opacity: 0.10; }
+
+  /* P5 — MEDITATION (GREEN) */
+  .p5 { background: var(--green); color: #fff; }
+  .p5 .chrome-top, .p5 .chrome-bot { color: rgba(255,255,255,0.85); }
+  .p5 .pillar-num-bg { color: #fff; opacity: 0.14; }
+
+  /* P6 — DISCIPLINE (SKY) */
+  .p6 { background: var(--sky); color: var(--ink); }
+  .p6 .chrome-top, .p6 .chrome-bot { color: rgba(26,26,26,0.7); }
+  .p6 .pillar-num-bg { color: var(--ink); opacity: 0.10; }
+
+  /* P7 — FAITH (BLUE) */
+  .p7 { background: var(--blue); color: #fff; }
+  .p7 .chrome-top, .p7 .chrome-bot { color: rgba(255,255,255,0.85); }
+  .p7 .pillar-num-bg { color: #fff; opacity: 0.14; }
+
+  /* P8 — REDEMPTION (PURPLE) */
+  .p8 { background: var(--purple); color: #fff; }
+  .p8 .chrome-top, .p8 .chrome-bot { color: rgba(255,255,255,0.85); }
+  .p8 .pillar-num-bg { color: #fff; opacity: 0.14; }
+
+  /* P9 — END PLATE */
+  .p9 { background: var(--ink); color: var(--cream); padding: 56px 64px; display: flex; flex-direction: column; justify-content: space-between; }
+  .p9 .display { font-size: 108px; }
+  .p9 .display em { color: var(--orange); }
+  .p9 .cta-pill { display: inline-block; padding: 22px 36px; border: 2px solid var(--cream); border-radius: 999px; font-family: "JetBrains Mono", monospace; font-size: 22px; letter-spacing: 0.12em; text-transform: uppercase; margin-top: 28px; }
+  .p9 .meta { border-top: 1px solid rgba(255,255,255,0.2); padding-top: 24px; display: flex; justify-content: space-between; align-items: baseline; font-family: "JetBrains Mono", monospace; font-size: 16px; letter-spacing: 0.12em; opacity: 0.75; }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- COVER -->
+  <section class="panel p1">
+    <div class="chrome-top" style="color:rgba(250,247,242,0.7);"><span>The curriculum</span><span>01 / 09</span></div>
+    <div>
+      <div class="rainbow-bar"></div>
+      <p class="eyebrow" style="color:var(--cream); opacity:0.7;">The framework holding the work</p>
+      <h1 class="display">The seven<br/><em>pillars</em>.</h1>
+    </div>
+    <div class="chrome-bot" style="color:rgba(250,247,242,0.7);"><span>Taught in every retreat</span><span>lhffoundation.org</span></div>
+  </section>
+
+  <!-- PURPOSE -->
+  <section class="panel pillar p2">
+    <div class="chrome-top"><span>Pillar 01</span><span>02 / 09</span></div>
+    <div>
+      <p class="eyebrow" style="color:rgba(255,255,255,0.85);">The first pillar</p>
+      <h2 class="display">Purpose.</h2>
+      <p class="body">Knowing why you're here. Personal, professional, spiritual. Most people skip the question. The work starts when you stop avoiding it.</p>
+    </div>
+    <span class="pillar-num-bg">01</span>
+    <div class="chrome-bot"><span>The Foundation</span><span>lhffoundation.org</span></div>
+  </section>
+
+  <!-- WELLNESS -->
+  <section class="panel pillar p3">
+    <div class="chrome-top"><span>Pillar 02</span><span>03 / 09</span></div>
+    <div>
+      <p class="eyebrow" style="color:rgba(255,255,255,0.85);">The second pillar</p>
+      <h2 class="display">Wellness.</h2>
+      <p class="body">Sleep, breath, food, movement. The body is the room everything else happens in. Take care of the room.</p>
+    </div>
+    <span class="pillar-num-bg">02</span>
+    <div class="chrome-bot"><span>The Foundation</span><span>lhffoundation.org</span></div>
+  </section>
+
+  <!-- COMMUNICATION -->
+  <section class="panel pillar p4">
+    <div class="chrome-top"><span>Pillar 03</span><span>04 / 09</span></div>
+    <div>
+      <p class="eyebrow" style="color:rgba(26,26,26,0.7);">The third pillar</p>
+      <h2 class="display">Communication.</h2>
+      <p class="body">Spoken, written, embodied. How you say the thing matters as much as the thing. Most conflict is communication, not content.</p>
+    </div>
+    <span class="pillar-num-bg">03</span>
+    <div class="chrome-bot"><span>The Foundation</span><span>lhffoundation.org</span></div>
+  </section>
+
+  <!-- MEDITATION -->
+  <section class="panel pillar p5">
+    <div class="chrome-top"><span>Pillar 04</span><span>05 / 09</span></div>
+    <div>
+      <p class="eyebrow" style="color:rgba(255,255,255,0.85);">The fourth pillar</p>
+      <h2 class="display">Meditation.</h2>
+      <p class="body">Not the romanticised version. The practical one. Ten quiet minutes a day, every day, until the mind stops running you.</p>
+    </div>
+    <span class="pillar-num-bg">04</span>
+    <div class="chrome-bot"><span>The Foundation</span><span>lhffoundation.org</span></div>
+  </section>
+
+  <!-- DISCIPLINE -->
+  <section class="panel pillar p6">
+    <div class="chrome-top"><span>Pillar 05</span><span>06 / 09</span></div>
+    <div>
+      <p class="eyebrow" style="color:rgba(26,26,26,0.7);">The fifth pillar</p>
+      <h2 class="display">Discipline.</h2>
+      <p class="body">The bridge between knowing and doing. The smallest commitments, kept consistently, change everything. Motivation is a guest. Discipline lives here.</p>
+    </div>
+    <span class="pillar-num-bg">05</span>
+    <div class="chrome-bot"><span>The Foundation</span><span>lhffoundation.org</span></div>
+  </section>
+
+  <!-- FAITH -->
+  <section class="panel pillar p7">
+    <div class="chrome-top"><span>Pillar 06</span><span>07 / 09</span></div>
+    <div>
+      <p class="eyebrow" style="color:rgba(255,255,255,0.85);">The sixth pillar</p>
+      <h2 class="display">Faith.</h2>
+      <p class="body">In something larger than the day's anxieties. Not a religion. A relationship with what you can't see and still trust.</p>
+    </div>
+    <span class="pillar-num-bg">06</span>
+    <div class="chrome-bot"><span>The Foundation</span><span>lhffoundation.org</span></div>
+  </section>
+
+  <!-- REDEMPTION -->
+  <section class="panel pillar p8">
+    <div class="chrome-top"><span>Pillar 07</span><span>08 / 09</span></div>
+    <div>
+      <p class="eyebrow" style="color:rgba(255,255,255,0.85);">The seventh pillar</p>
+      <h2 class="display">Redemption.</h2>
+      <p class="body">Forgive yourself first. Forgive the people who taught you to be hard. The work is letting the past be the past so the future can be different.</p>
+    </div>
+    <span class="pillar-num-bg">07</span>
+    <div class="chrome-bot"><span>The Foundation</span><span>lhffoundation.org</span></div>
+  </section>
+
+  <!-- END PLATE -->
+  <section class="panel p9">
+    <div class="chrome-top" style="color:rgba(250,247,242,0.7);"><span>Live the seven</span><span>09 / 09</span></div>
+    <div>
+      <div class="rainbow-bar"></div>
+      <p class="eyebrow" style="color:var(--cream); opacity:0.7;">The curriculum, in practice</p>
+      <h2 class="display">Taught in every<br/><em>retreat</em>.<br/>Lived after.</h2>
+      <span class="cta-pill">lhffoundation.org / programs</span>
+    </div>
+    <div class="meta"><span>@lovehappinessfreedom</span><span>Love · Happiness · Freedom</span></div>
+  </section>
+
+</div>
+<script>
+  if (new URLSearchParams(location.search).get("render") === "1") {
+    document.body.classList.add("render");
+  }
+</script>
+</body>
+</html>

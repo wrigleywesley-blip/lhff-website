@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>LHFF — What we're building · Carousel 07</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Open+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --cream: #faf7f2;
+    --bone: #f3ede3;
+    --ink: #1a1a1a;
+    --ink-muted: #4a4a4a;
+    --rule: rgba(26,26,26,0.14);
+    --red: #e84a3f;
+    --orange: #f08a3a;
+    --yellow: #f5c63a;
+    --green: #5fa85a;
+    --sky: #5ab8d9;
+    --blue: #3a72b8;
+    --purple: #8654b8;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #2a2a2a; font-family: "Open Sans", sans-serif; -webkit-font-smoothing: antialiased; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { padding: 48px; }
+  .deck { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; max-width: 3600px; margin: 0 auto; }
+  .panel { width: 1080px; height: 1350px; position: relative; overflow: hidden; background: var(--cream); color: var(--ink); transform-origin: top left; transform: scale(0.45); margin-bottom: -742px; margin-right: -594px; }
+  body.render { padding: 0; background: #fff; }
+  body.render .deck { display: block; max-width: none; gap: 0; }
+  body.render .panel { transform: none; margin: 0; display: block; }
+
+  .bg { position: absolute; inset: 0; background-size: cover; background-position: center; z-index: 0; }
+  .scrim { position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.2) 35%, rgba(0,0,0,0.78) 100%); }
+  .content { position: relative; z-index: 2; padding: 56px 64px; display: flex; flex-direction: column; justify-content: space-between; height: 100%; }
+
+  .chrome-top, .chrome-bot { display: flex; justify-content: space-between; font-family: "JetBrains Mono", monospace; font-size: 16px; letter-spacing: 0.16em; text-transform: uppercase; }
+  .display { font-family: "Playfair Display", Georgia, serif; font-weight: 400; font-style: italic; line-height: 1.02; letter-spacing: -0.012em; margin: 0; }
+  .eyebrow { font-family: "JetBrains Mono", monospace; font-size: 17px; letter-spacing: 0.18em; text-transform: uppercase; margin: 0 0 32px; }
+  .body { font-family: "Open Sans", sans-serif; font-size: 28px; line-height: 1.5; font-weight: 400; }
+  .rainbow-bar { display: flex; width: 220px; height: 6px; margin-bottom: 36px; border-radius: 1px; overflow: hidden; }
+  .rainbow-bar span { flex: 1; }
+  .rainbow-bar span:nth-child(1) { background: var(--red); }
+  .rainbow-bar span:nth-child(2) { background: var(--orange); }
+  .rainbow-bar span:nth-child(3) { background: var(--yellow); }
+  .rainbow-bar span:nth-child(4) { background: var(--green); }
+  .rainbow-bar span:nth-child(5) { background: var(--sky); }
+  .rainbow-bar span:nth-child(6) { background: var(--blue); }
+  .rainbow-bar span:nth-child(7) { background: var(--purple); }
+
+  /* Cover */
+  .p1 { background: var(--ink); color: var(--cream); padding: 56px 64px; display: flex; flex-direction: column; justify-content: space-between; }
+  .p1 .display { font-size: 116px; }
+  .p1 .display em { color: var(--yellow); }
+
+  /* Project panels — image bg + label + title + brief */
+  .proj { color: var(--cream); }
+  .proj .chrome-top, .proj .chrome-bot { color: rgba(250,247,242,0.85); }
+  .proj .eyebrow { color: rgba(250,247,242,0.85); }
+  .proj .display { font-size: 96px; margin-bottom: 22px; }
+  .proj .body { color: rgba(250,247,242,0.92); max-width: 820px; }
+
+  .p2 .bg { background-image: url("../../assets/villa-hero.jpg"); }
+  .p2 .display em { color: var(--orange); }
+
+  .p3 .bg { background-image: url("../../assets/school-fountain-night.jpg"); }
+  .p3 .display em { color: var(--yellow); }
+
+  .p4 .bg { background-image: url("../../assets/studio/studio-01.jpg"); }
+  .p4 .display em { color: var(--red); }
+
+  .p5 .bg { background-image: url("../../assets/environment-dolphins.jpg"); }
+  .p5 .display em { color: var(--green); }
+
+  /* NAVID — flat dark panel, not image */
+  .p6 { background: linear-gradient(150deg, #0a0a14 0%, #1f1230 100%); color: var(--cream); padding: 56px 64px; display: flex; flex-direction: column; justify-content: space-between; }
+  .p6 .display { font-size: 96px; }
+  .p6 .display em { color: var(--purple); }
+  .p6 .eyebrow { color: rgba(250,247,242,0.7); }
+  .p6 .body { max-width: 820px; opacity: 0.9; }
+  .p6 .nav-mock {
+    display: flex; align-items: center; gap: 16px;
+    padding: 18px 22px; background: rgba(255,255,255,0.08);
+    border-radius: 14px; max-width: 540px; margin-top: 26px;
+  }
+  .p6 .nav-mock .avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--purple); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-family: "Playfair Display", serif; font-style: italic; font-size: 26px;
+  }
+  .p6 .nav-mock .txt { font-family: "Open Sans", sans-serif; font-size: 20px; line-height: 1.4; opacity: 0.9; }
+
+  /* CTA */
+  .p7 { background: var(--ink); color: var(--cream); padding: 56px 64px; display: flex; flex-direction: column; justify-content: space-between; }
+  .p7 .display { font-size: 108px; }
+  .p7 .display em { color: var(--sky); }
+  .p7 .cta-pill { display: inline-block; padding: 22px 36px; border: 2px solid var(--cream); border-radius: 999px; font-family: "JetBrains Mono", monospace; font-size: 22px; letter-spacing: 0.12em; text-transform: uppercase; margin-top: 28px; }
+  .p7 .meta { border-top: 1px solid rgba(255,255,255,0.2); padding-top: 24px; display: flex; justify-content: space-between; align-items: baseline; font-family: "JetBrains Mono", monospace; font-size: 16px; letter-spacing: 0.12em; opacity: 0.75; }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- COVER -->
+  <section class="panel p1">
+    <div class="chrome-top" style="color:rgba(250,247,242,0.7);"><span>The Foundation</span><span>01 / 07</span></div>
+    <div>
+      <div class="rainbow-bar"></div>
+      <p class="eyebrow" style="color:var(--cream); opacity:0.7;">An ecosystem, not a programme</p>
+      <h1 class="display">What we're<br/><em>building</em>.</h1>
+    </div>
+    <div class="chrome-bot" style="color:rgba(250,247,242,0.7);"><span>Cape Town · Mozambique</span><span>lhffoundation.org</span></div>
+  </section>
+
+  <!-- 01 — THE RETREATS -->
+  <section class="panel proj p2">
+    <div class="bg"></div>
+    <div class="scrim"></div>
+    <div class="content">
+      <div class="chrome-top"><span>01 / 05</span><span>02 / 07</span></div>
+      <div>
+        <p class="eyebrow">Project 01</p>
+        <h2 class="display">The <em>retreats</em>.</h2>
+        <p class="body">Six-day residentials at the Cape Town villa. Women's Empowerment. Corporate. Couples. Practitioner-led. Twelve at a time. The seven pillars in person.</p>
+      </div>
+      <div class="chrome-bot"><span>Cape Town</span><span>lhffoundation.org / retreats</span></div>
+    </div>
+  </section>
+
+  <!-- 02 — THE SCHOOL -->
+  <section class="panel proj p3">
+    <div class="bg"></div>
+    <div class="scrim"></div>
+    <div class="content">
+      <div class="chrome-top"><span>02 / 05</span><span>03 / 07</span></div>
+      <div>
+        <p class="eyebrow">Project 02</p>
+        <h2 class="display">The <em>school</em>.</h2>
+        <p class="body">A campus in Mozambique built around the seven pillars. The fountain, the mural, the wordmark. Children walking through the work every day, before anyone teaches it.</p>
+      </div>
+      <div class="chrome-bot"><span>Mozambique</span><span>lhffoundation.org / school</span></div>
+    </div>
+  </section>
+
+  <!-- 03 — STUDIO ONE -->
+  <section class="panel proj p4">
+    <div class="bg"></div>
+    <div class="scrim"></div>
+    <div class="content">
+      <div class="chrome-top"><span>03 / 05</span><span>04 / 07</span></div>
+      <div>
+        <p class="eyebrow">Project 03</p>
+        <h2 class="display">Studio <em>One</em>.</h2>
+        <p class="body">A creative incubator in Cape Town. Photographers, models, designers, filmmakers. Mentorship, real briefs, six months to build a body of work that travels.</p>
+      </div>
+      <div class="chrome-bot"><span>Cape Town</span><span>lhffoundation.org / studio</span></div>
+    </div>
+  </section>
+
+  <!-- 04 — CONSERVATION -->
+  <section class="panel proj p5">
+    <div class="bg"></div>
+    <div class="scrim"></div>
+    <div class="content">
+      <div class="chrome-top"><span>04 / 05</span><span>05 / 07</span></div>
+      <div>
+        <p class="eyebrow">Project 04</p>
+        <h2 class="display"><em>Conservation</em>.</h2>
+        <p class="body">Love for the earth is love for humanity. Marine work on the Mozambican coast. Reforestation on the school site. Education baked into the curriculum.</p>
+      </div>
+      <div class="chrome-bot"><span>Mozambican coast</span><span>lhffoundation.org / impact</span></div>
+    </div>
+  </section>
+
+  <!-- 05 — NAVID -->
+  <section class="panel p6">
+    <div class="chrome-top" style="color:rgba(250,247,242,0.7);"><span>05 / 05</span><span>06 / 07</span></div>
+    <div>
+      <p class="eyebrow">Project 05</p>
+      <h2 class="display"><em>NAVID</em>.</h2>
+      <p class="body">An AI companion built for retreat guests and Foundation members. Trained in the seven pillars, the tone of the work, the rhythm of a retreat. Present between sessions, not after.</p>
+      <div class="nav-mock">
+        <div class="avatar">N</div>
+        <div class="txt">"How are you arriving today?"</div>
+      </div>
+    </div>
+    <div class="chrome-bot" style="color:rgba(250,247,242,0.7);"><span>Members + retreat only</span><span>lhffoundation.org / navid</span></div>
+  </section>
+
+  <!-- CTA -->
+  <section class="panel p7">
+    <div class="chrome-top" style="color:rgba(250,247,242,0.7);"><span>Build with us</span><span>07 / 07</span></div>
+    <div>
+      <div class="rainbow-bar"></div>
+      <p class="eyebrow" style="color:var(--cream); opacity:0.7;">Five projects. One ecosystem.</p>
+      <h2 class="display">Pick a <em>door</em>.<br/>Walk in.</h2>
+      <span class="cta-pill">lhffoundation.org</span>
+    </div>
+    <div class="meta"><span>@lovehappinessfreedom</span><span>Love · Happiness · Freedom</span></div>
+  </section>
+
+</div>
+<script>
+  if (new URLSearchParams(location.search).get("render") === "1") {
+    document.body.classList.add("render");
+  }
+</script>
+</body>
+</html>

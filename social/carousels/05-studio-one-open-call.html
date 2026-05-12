@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>LHFF — Studio One: Open Call · Carousel 05</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Open+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --cream: #faf7f2;
+    --bone: #f3ede3;
+    --ink: #1a1a1a;
+    --ink-muted: #4a4a4a;
+    --rule: rgba(26,26,26,0.14);
+    --red: #e84a3f;
+    --orange: #f08a3a;
+    --yellow: #f5c63a;
+    --green: #5fa85a;
+    --sky: #5ab8d9;
+    --blue: #3a72b8;
+    --purple: #8654b8;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #2a2a2a; font-family: "Open Sans", sans-serif; -webkit-font-smoothing: antialiased; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { padding: 48px; }
+  .deck { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; max-width: 3600px; margin: 0 auto; }
+  .panel { width: 1080px; height: 1350px; position: relative; overflow: hidden; background: var(--ink); color: var(--cream); transform-origin: top left; transform: scale(0.45); margin-bottom: -742px; margin-right: -594px; }
+  body.render { padding: 0; background: #fff; }
+  body.render .deck { display: block; max-width: none; gap: 0; }
+  body.render .panel { transform: none; margin: 0; display: block; }
+
+  .bg { position: absolute; inset: 0; background-size: cover; background-position: center; z-index: 0; }
+  .scrim { position: absolute; inset: 0; z-index: 1; }
+  .content { position: absolute; inset: 0; z-index: 2; padding: 56px 64px; display: flex; flex-direction: column; justify-content: space-between; }
+
+  .chrome-top, .chrome-bot { display: flex; justify-content: space-between; font-family: "JetBrains Mono", monospace; font-size: 16px; letter-spacing: 0.16em; text-transform: uppercase; }
+  .display { font-family: "Playfair Display", Georgia, serif; font-weight: 400; font-style: italic; line-height: 1.02; letter-spacing: -0.012em; margin: 0; }
+  .eyebrow { font-family: "JetBrains Mono", monospace; font-size: 17px; letter-spacing: 0.18em; text-transform: uppercase; margin: 0 0 32px; }
+  .body { font-family: "Open Sans", sans-serif; font-size: 30px; line-height: 1.5; font-weight: 400; }
+  .rainbow-bar { display: flex; width: 220px; height: 6px; margin-bottom: 36px; border-radius: 1px; overflow: hidden; }
+  .rainbow-bar span { flex: 1; }
+  .rainbow-bar span:nth-child(1) { background: var(--red); }
+  .rainbow-bar span:nth-child(2) { background: var(--orange); }
+  .rainbow-bar span:nth-child(3) { background: var(--yellow); }
+  .rainbow-bar span:nth-child(4) { background: var(--green); }
+  .rainbow-bar span:nth-child(5) { background: var(--sky); }
+  .rainbow-bar span:nth-child(6) { background: var(--blue); }
+  .rainbow-bar span:nth-child(7) { background: var(--purple); }
+
+  /* P1 — COVER — image bg with dramatic studio shot */
+  .p1 .bg { background-image: url("../../assets/studio/studio-01.jpg"); }
+  .p1 .scrim { background: linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.2) 30%, rgba(0,0,0,0.75) 100%); }
+  .p1 .display { font-size: 132px; }
+  .p1 .display em { color: var(--yellow); }
+  .p1 .chrome-top, .p1 .chrome-bot { color: rgba(250,247,242,0.85); }
+
+  /* P2 — WHAT IT IS — clean editorial spread */
+  .p2 { background: var(--cream); color: var(--ink); padding: 56px 64px; display: flex; flex-direction: column; justify-content: space-between; }
+  .p2 .display { font-size: 88px; margin-bottom: 32px; }
+  .p2 .display em { color: var(--red); }
+  .p2 .body { color: var(--ink-muted); max-width: 880px; }
+
+  /* P3 — WHO WE WANT — split image + text */
+  .p3 .bg { background-image: url("../../assets/fashion-3.jpg"); }
+  .p3 .scrim { background: linear-gradient(180deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.35) 40%, rgba(0,0,0,0.8) 100%); }
+  .p3 .display { font-size: 92px; margin-bottom: 24px; }
+  .p3 .display em { color: var(--orange); }
+  .p3 .chrome-top, .p3 .chrome-bot { color: rgba(250,247,242,0.85); }
+  .p3 .roles { font-family: "JetBrains Mono", monospace; font-size: 24px; letter-spacing: 0.1em; text-transform: uppercase; line-height: 2; }
+
+  /* P4 — WHAT WE GIVE — bone with cards */
+  .p4 { background: var(--bone); color: var(--ink); padding: 56px 64px; display: flex; flex-direction: column; justify-content: space-between; }
+  .p4 .display { font-size: 76px; margin-bottom: 32px; }
+  .p4 .display em { color: var(--purple); }
+  .p4 .gives { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .p4 .give-card { background: var(--cream); border: 1px solid var(--rule); padding: 24px; border-radius: 4px; }
+  .p4 .give-card .num { font-family: "JetBrains Mono", monospace; font-size: 14px; letter-spacing: 0.16em; color: var(--ink-muted); margin-bottom: 10px; }
+  .p4 .give-card .label { font-family: "Playfair Display", serif; font-style: italic; font-size: 32px; line-height: 1.1; margin-bottom: 8px; }
+  .p4 .give-card .desc { font-family: "Open Sans", sans-serif; font-size: 18px; color: var(--ink-muted); line-height: 1.5; }
+
+  /* P5 — HOW TO APPLY — numbered steps */
+  .p5 { background: var(--ink); color: var(--cream); padding: 56px 64px; display: flex; flex-direction: column; justify-content: space-between; }
+  .p5 .display { font-size: 84px; margin-bottom: 36px; }
+  .p5 .display em { color: var(--yellow); }
+  .p5 .steps { display: flex; flex-direction: column; gap: 14px; }
+  .p5 .step { display: flex; gap: 22px; padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,0.12); }
+  .p5 .step:last-child { border-bottom: 0; }
+  .p5 .step .num { font-family: "JetBrains Mono", monospace; font-size: 18px; letter-spacing: 0.16em; color: rgba(255,255,255,0.55); min-width: 50px; padding-top: 6px; }
+  .p5 .step .title { font-family: "Playfair Display", serif; font-style: italic; font-size: 36px; line-height: 1.1; margin-bottom: 4px; }
+  .p5 .step .copy { font-family: "Open Sans", sans-serif; font-size: 18px; color: rgba(255,255,255,0.7); line-height: 1.55; }
+
+  /* P6 — WHO YOU'RE FOR (or NOT) — quote-style */
+  .p6 .bg { background-image: url("../../assets/fashion-5.jpg"); }
+  .p6 .scrim { background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.35) 40%, rgba(0,0,0,0.85) 100%); }
+  .p6 .display { font-size: 76px; }
+  .p6 .display em { color: var(--sky); }
+  .p6 .chrome-top, .p6 .chrome-bot { color: rgba(250,247,242,0.85); }
+
+  /* P7 — CTA */
+  .p7 { background: var(--ink); color: var(--cream); padding: 56px 64px; display: flex; flex-direction: column; justify-content: space-between; }
+  .p7 .display { font-size: 124px; }
+  .p7 .display em { color: var(--orange); }
+  .p7 .cta-pill { display: inline-block; padding: 22px 36px; border: 2px solid var(--cream); border-radius: 999px; font-family: "JetBrains Mono", monospace; font-size: 22px; letter-spacing: 0.12em; text-transform: uppercase; margin-top: 28px; }
+  .p7 .meta { border-top: 1px solid rgba(255,255,255,0.2); padding-top: 24px; display: flex; justify-content: space-between; align-items: baseline; font-family: "JetBrains Mono", monospace; font-size: 16px; letter-spacing: 0.12em; opacity: 0.75; }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- COVER -->
+  <section class="panel p1">
+    <div class="bg"></div>
+    <div class="scrim"></div>
+    <div class="content">
+      <div class="chrome-top"><span>Studio One · Cape Town</span><span>01 / 07</span></div>
+      <div>
+        <div class="rainbow-bar"></div>
+        <p class="eyebrow" style="color:rgba(250,247,242,0.85);">Open call · 2026 intake</p>
+        <h1 class="display">Studio<br/><em>One</em>.</h1>
+      </div>
+      <div class="chrome-bot"><span>For the next generation of South African creatives</span><span>lhffoundation.org / studio</span></div>
+    </div>
+  </section>
+
+  <!-- WHAT IT IS -->
+  <section class="panel p2">
+    <div class="chrome-top" style="color:var(--ink-muted);"><span>What it is</span><span>02 / 07</span></div>
+    <div>
+      <p class="eyebrow" style="color:var(--ink-muted);">The studio</p>
+      <h2 class="display">A creative<br/><em>incubator</em><br/>in Cape Town.</h2>
+      <p class="body">Studio One is the Foundation's house for young South African creatives. A working studio, mentorship from senior practitioners, briefs from real clients, and the room to build a body of work that travels.</p>
+    </div>
+    <div class="chrome-bot" style="color:var(--ink-muted);"><span>Founded by Cheney</span><span>lhffoundation.org</span></div>
+  </section>
+
+  <!-- WHO -->
+  <section class="panel p3">
+    <div class="bg"></div>
+    <div class="scrim"></div>
+    <div class="content">
+      <div class="chrome-top"><span>Who it's for</span><span>03 / 07</span></div>
+      <div>
+        <p class="eyebrow" style="color:rgba(250,247,242,0.85);">We're calling for</p>
+        <h2 class="display">Photographers.<br/>Models.<br/>Designers.<br/><em>Filmmakers</em>.</h2>
+        <p class="roles" style="margin-top:36px; opacity:0.95;">
+          Stylists · Art directors · Writers<br/>
+          Producers · Sound designers
+        </p>
+      </div>
+      <div class="chrome-bot"><span>Ages 18–28 · South African based</span><span>lhffoundation.org</span></div>
+    </div>
+  </section>
+
+  <!-- WHAT YOU GET -->
+  <section class="panel p4">
+    <div class="chrome-top" style="color:var(--ink-muted);"><span>What you get</span><span>04 / 07</span></div>
+    <div>
+      <p class="eyebrow" style="color:var(--ink-muted);">A six-month residency</p>
+      <h2 class="display">Space.<br/>Mentors. <em>Work</em>.</h2>
+      <div class="gives">
+        <div class="give-card">
+          <div class="num">01</div>
+          <div class="label">Studio access</div>
+          <div class="desc">A working space in Cape Town. Set, lighting, edit suite, equipment.</div>
+        </div>
+        <div class="give-card">
+          <div class="num">02</div>
+          <div class="label">Senior mentorship</div>
+          <div class="desc">Practitioners reviewing work weekly. Direct, honest feedback.</div>
+        </div>
+        <div class="give-card">
+          <div class="num">03</div>
+          <div class="label">Real client briefs</div>
+          <div class="desc">Foundation partners commission paid work. Your byline, your reel.</div>
+        </div>
+        <div class="give-card">
+          <div class="num">04</div>
+          <div class="label">A portfolio that ships</div>
+          <div class="desc">A final showcase at the studio. Press, agencies, doors that stay open.</div>
+        </div>
+      </div>
+    </div>
+    <div class="chrome-bot" style="color:var(--ink-muted);"><span>6 months · funded scholarship</span><span>lhffoundation.org</span></div>
+  </section>
+
+  <!-- HOW TO APPLY -->
+  <section class="panel p5">
+    <div class="chrome-top" style="color:rgba(250,247,242,0.7);"><span>How to apply</span><span>05 / 07</span></div>
+    <div>
+      <p class="eyebrow" style="color:rgba(250,247,242,0.7);">Three steps. No agency required.</p>
+      <h2 class="display">Apply<br/>direct.</h2>
+      <div class="steps">
+        <div class="step">
+          <span class="num">01</span>
+          <div>
+            <div class="title">Send a portfolio.</div>
+            <div class="copy">Three to ten pieces. Whatever shape your work takes. PDF, link, reel.</div>
+          </div>
+        </div>
+        <div class="step">
+          <span class="num">02</span>
+          <div>
+            <div class="title">Tell us why.</div>
+            <div class="copy">A short letter. One page. Why this studio, why now, what you'd make here.</div>
+          </div>
+        </div>
+        <div class="step">
+          <span class="num">03</span>
+          <div>
+            <div class="title">Interview in person.</div>
+            <div class="copy">A 30-minute conversation at the studio. Shortlisted candidates only.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chrome-bot" style="color:rgba(250,247,242,0.7);"><span>Applications close 30 June 2026</span><span>lhffoundation.org / apply</span></div>
+  </section>
+
+  <!-- WHO YOU AREN'T -->
+  <section class="panel p6">
+    <div class="bg"></div>
+    <div class="scrim"></div>
+    <div class="content">
+      <div class="chrome-top"><span>Honest note</span><span>06 / 07</span></div>
+      <div>
+        <p class="eyebrow" style="color:rgba(250,247,242,0.85);">A few honest words</p>
+        <h2 class="display">"This isn't<br/>a school.<br/>It's a <em>studio</em>.<br/>You learn<br/>by making."</h2>
+      </div>
+      <div class="chrome-bot"><span>Cheney, founder</span><span>lhffoundation.org</span></div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="panel p7">
+    <div class="chrome-top" style="color:rgba(250,247,242,0.7);"><span>Apply</span><span>07 / 07</span></div>
+    <div>
+      <div class="rainbow-bar"></div>
+      <p class="eyebrow" style="color:var(--cream); opacity:0.7;">2026 intake · 12 places</p>
+      <h2 class="display">Send your<br/><em>work</em>.</h2>
+      <span class="cta-pill">lhffoundation.org / studio</span>
+    </div>
+    <div class="meta"><span>@lovehappinessfreedom</span><span>Studio One · Cape Town</span></div>
+  </section>
+
+</div>
+<script>
+  if (new URLSearchParams(location.search).get("render") === "1") {
+    document.body.classList.add("render");
+  }
+</script>
+</body>
+</html>

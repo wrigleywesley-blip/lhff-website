@@ -14,7 +14,11 @@
     --ink-soft: #555;
     --rule: rgba(26,26,26,0.14);
     --rainbow-red: #e84a3f;
+    --rainbow-orange: #f08a3a;
     --rainbow-yellow: #f5c63a;
+    --rainbow-green: #5fa85a;
+    --rainbow-sky: #5ab8d9;
+    --rainbow-blue: #3a72b8;
     --rainbow-purple: #8654b8;
   }
   * { box-sizing: border-box; }
@@ -23,8 +27,8 @@
   header.cover {
     background: var(--ink);
     color: var(--paper);
-    padding: 56px 32px;
-    margin: -48px -32px 64px;
+    padding: 64px 32px;
+    margin: -48px -32px 0;
   }
   header.cover .inner { max-width: 1280px; margin: 0 auto; }
   .eyebrow {
@@ -64,15 +68,48 @@
   .rainbow span:nth-child(6) { background: #3a72b8; }
   .rainbow span:nth-child(7) { background: #8654b8; }
 
+  /* Quick-jump nav */
+  nav.toc {
+    background: rgba(26,26,26,0.94);
+    backdrop-filter: blur(6px);
+    color: var(--paper);
+    padding: 14px 0;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    margin: 0 -32px;
+  }
+  nav.toc .inner {
+    max-width: 1280px; margin: 0 auto; padding: 0 32px;
+    display: flex; gap: 6px; flex-wrap: wrap; align-items: center;
+  }
+  nav.toc a {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(250,247,242,0.7);
+    padding: 6px 10px;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: all 0.18s ease;
+    white-space: nowrap;
+  }
+  nav.toc a:hover { background: rgba(255,255,255,0.1); color: var(--paper); }
+  nav.toc a.is-videos { color: var(--rainbow-yellow); }
+
   section.carousel {
     margin-bottom: 80px;
-    padding-bottom: 48px;
+    padding: 48px 0;
     border-bottom: 1px solid var(--rule);
+    scroll-margin-top: 70px;
   }
+  section.carousel:first-of-type { padding-top: 40px; }
   section.carousel:last-of-type { border-bottom: 0; }
   .section-head {
     display: flex; align-items: baseline; justify-content: space-between;
-    margin-bottom: 32px;
+    margin-bottom: 28px;
     gap: 24px;
     flex-wrap: wrap;
   }
@@ -101,7 +138,7 @@
   .panels {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 18px;
+    gap: 16px;
   }
   .panel {
     width: 100%;
@@ -155,32 +192,23 @@
     border-top: 1px solid var(--rule);
     display: flex; justify-content: space-between;
   }
-  .pending {
-    border: 1px dashed var(--rule);
-    border-radius: 4px;
-    padding: 28px;
-    color: var(--ink-soft);
-    font-size: 0.9375rem;
-    aspect-ratio: 9 / 16;
-    display: flex; align-items: center; justify-content: center; text-align: center;
-    background: #f4ede1;
-  }
-  .download-row {
-    display: flex; gap: 12px; flex-wrap: wrap; margin-top: 12px;
-  }
-  .download-row a {
+  .badge {
+    display: inline-block;
     font-family: "JetBrains Mono", monospace;
-    font-size: 0.6875rem;
-    letter-spacing: 0.12em;
+    font-size: 0.625rem;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--ink);
-    border: 1px solid var(--rule);
+    padding: 4px 9px;
     border-radius: 999px;
-    padding: 8px 14px;
-    text-decoration: none;
-    transition: background 0.18s ease;
+    margin-right: 8px;
+    vertical-align: middle;
+    border: 1px solid var(--rule);
+    color: var(--ink-soft);
   }
-  .download-row a:hover { background: var(--ink); color: var(--paper); }
+  .badge--educational { color: var(--rainbow-blue); border-color: rgba(58,114,184,0.4); background: rgba(58,114,184,0.06); }
+  .badge--creative { color: var(--rainbow-red); border-color: rgba(232,74,63,0.4); background: rgba(232,74,63,0.06); }
+  .badge--brand { color: var(--rainbow-purple); border-color: rgba(134,84,184,0.4); background: rgba(134,84,184,0.06); }
+  .badge--retreat { color: var(--rainbow-orange); border-color: rgba(240,138,58,0.4); background: rgba(240,138,58,0.06); }
   footer {
     margin-top: 80px;
     padding-top: 32px;
@@ -199,24 +227,37 @@
 <header class="cover">
   <div class="inner">
     <div class="rainbow"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
-    <p class="eyebrow">Social drop 01 · Love Happiness Freedom Foundation</p>
-    <h1>Three carousels.<br/>Three short <em>videos</em>.</h1>
-    <p>Built in the editorial system. Designed for Instagram first, all 9:16 / 4:5 ready. Tap into each carousel to view at full size. Right-click images to download.</p>
+    <p class="eyebrow">Social drop · Love Happiness Freedom Foundation</p>
+    <h1>Seven carousels.<br/>Three short <em>videos</em>.</h1>
+    <p>Built in the editorial system. Instagram-first (1080×1350 portrait), all 9:16 video Reels-ready. Right-click any panel to save as PNG. Use the quick-jump bar below to skim through.</p>
   </div>
 </header>
+
+<nav class="toc">
+  <div class="inner">
+    <a href="#c01">01 · Empower</a>
+    <a href="#c02">02 · Three Pillars</a>
+    <a href="#c03">03 · Inside</a>
+    <a href="#c04">04 · Seven Pillars</a>
+    <a href="#c05">05 · Studio One</a>
+    <a href="#c06">06 · A Retreat Day</a>
+    <a href="#c07">07 · What We're Building</a>
+    <a href="#videos" class="is-videos">▶ Videos</a>
+  </div>
+</nav>
 
 <div class="wrap">
 
   <!-- CAROUSEL 01 -->
-  <section class="carousel">
+  <section class="carousel" id="c01">
     <div class="section-head">
       <div>
-        <p class="eyebrow" style="color: var(--ink-soft);">Carousel 01 · 6 panels · 1080×1350</p>
+        <p class="eyebrow" style="color: var(--ink-soft);"><span class="badge badge--retreat">Retreat</span> Carousel 01 · 6 panels · 1080×1350</p>
         <h2>Empower your true <em>inner</em> self.</h2>
       </div>
       <span class="section-meta">Women's Empowerment retreat</span>
     </div>
-    <p class="lede">The freshest of the three. Built around Cheney's note on the retreat. Six panels: cover, who it's for, where, the seven pillars, what shifts, apply.</p>
+    <p class="lede">Built around Cheney's note. Six panels: cover, who it's for, where, the seven pillars, what shifts, apply.</p>
     <div class="panels">
       <div class="panel"><img src="exports/01-empower-your-true-inner-self-panel-01.png" alt="Panel 1"><span class="panel-num">01</span></div>
       <div class="panel"><img src="exports/01-empower-your-true-inner-self-panel-02.png" alt="Panel 2"><span class="panel-num">02</span></div>
@@ -228,15 +269,15 @@
   </section>
 
   <!-- CAROUSEL 02 -->
-  <section class="carousel">
+  <section class="carousel" id="c02">
     <div class="section-head">
       <div>
-        <p class="eyebrow" style="color: var(--ink-soft);">Carousel 02 · 6 panels · 1080×1350</p>
+        <p class="eyebrow" style="color: var(--ink-soft);"><span class="badge badge--brand">Brand</span> Carousel 02 · 6 panels · 1080×1350</p>
         <h2>Three <em>pillars</em>.</h2>
       </div>
       <span class="section-meta">Love. Happiness. Freedom.</span>
     </div>
-    <p class="lede">The brand DNA in one carousel. Each pillar gets its own full-colour panel. Reads like a short editorial spread.</p>
+    <p class="lede">The brand DNA in one carousel. Each pillar gets its own full-colour panel. Short, declarative, vibrant.</p>
     <div class="panels">
       <div class="panel"><img src="exports/02-three-pillars-panel-01.png" alt="Panel 1"><span class="panel-num">01</span></div>
       <div class="panel"><img src="exports/02-three-pillars-panel-02.png" alt="Panel 2"><span class="panel-num">02</span></div>
@@ -248,10 +289,10 @@
   </section>
 
   <!-- CAROUSEL 03 -->
-  <section class="carousel">
+  <section class="carousel" id="c03">
     <div class="section-head">
       <div>
-        <p class="eyebrow" style="color: var(--ink-soft);">Carousel 03 · 6 panels · 1080×1350</p>
+        <p class="eyebrow" style="color: var(--ink-soft);"><span class="badge badge--brand">Brand</span> Carousel 03 · 6 panels · 1080×1350</p>
         <h2>Inside the <em>work</em>.</h2>
       </div>
       <span class="section-meta">A visual diary</span>
@@ -267,8 +308,95 @@
     </div>
   </section>
 
+  <!-- CAROUSEL 04 -->
+  <section class="carousel" id="c04">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow" style="color: var(--ink-soft);"><span class="badge badge--educational">Educational</span> Carousel 04 · 9 panels · 1080×1350</p>
+        <h2>The seven <em>pillars</em>.</h2>
+      </div>
+      <span class="section-meta">The curriculum, deep dive</span>
+    </div>
+    <p class="lede">Each pillar gets its own full-colour panel: Purpose, Wellness, Communication, Meditation, Discipline, Faith, Redemption. Cover and CTA bookending.</p>
+    <div class="panels">
+      <div class="panel"><img src="exports/04-the-seven-pillars-panel-01.png" alt="Panel 1"><span class="panel-num">01</span></div>
+      <div class="panel"><img src="exports/04-the-seven-pillars-panel-02.png" alt="Panel 2"><span class="panel-num">02</span></div>
+      <div class="panel"><img src="exports/04-the-seven-pillars-panel-03.png" alt="Panel 3"><span class="panel-num">03</span></div>
+      <div class="panel"><img src="exports/04-the-seven-pillars-panel-04.png" alt="Panel 4"><span class="panel-num">04</span></div>
+      <div class="panel"><img src="exports/04-the-seven-pillars-panel-05.png" alt="Panel 5"><span class="panel-num">05</span></div>
+      <div class="panel"><img src="exports/04-the-seven-pillars-panel-06.png" alt="Panel 6"><span class="panel-num">06</span></div>
+      <div class="panel"><img src="exports/04-the-seven-pillars-panel-07.png" alt="Panel 7"><span class="panel-num">07</span></div>
+      <div class="panel"><img src="exports/04-the-seven-pillars-panel-08.png" alt="Panel 8"><span class="panel-num">08</span></div>
+      <div class="panel"><img src="exports/04-the-seven-pillars-panel-09.png" alt="Panel 9"><span class="panel-num">09</span></div>
+    </div>
+  </section>
+
+  <!-- CAROUSEL 05 -->
+  <section class="carousel" id="c05">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow" style="color: var(--ink-soft);"><span class="badge badge--creative">Creative</span> Carousel 05 · 7 panels · 1080×1350</p>
+        <h2>Studio One · open <em>call</em>.</h2>
+      </div>
+      <span class="section-meta">For photographers, models, designers, filmmakers</span>
+    </div>
+    <p class="lede">The application carousel. Who it's for, what they get (studio, mentors, real client work, portfolio), how to apply in 3 steps, deadlines, CTA.</p>
+    <div class="panels">
+      <div class="panel"><img src="exports/05-studio-one-open-call-panel-01.png" alt="Panel 1"><span class="panel-num">01</span></div>
+      <div class="panel"><img src="exports/05-studio-one-open-call-panel-02.png" alt="Panel 2"><span class="panel-num">02</span></div>
+      <div class="panel"><img src="exports/05-studio-one-open-call-panel-03.png" alt="Panel 3"><span class="panel-num">03</span></div>
+      <div class="panel"><img src="exports/05-studio-one-open-call-panel-04.png" alt="Panel 4"><span class="panel-num">04</span></div>
+      <div class="panel"><img src="exports/05-studio-one-open-call-panel-05.png" alt="Panel 5"><span class="panel-num">05</span></div>
+      <div class="panel"><img src="exports/05-studio-one-open-call-panel-06.png" alt="Panel 6"><span class="panel-num">06</span></div>
+      <div class="panel"><img src="exports/05-studio-one-open-call-panel-07.png" alt="Panel 7"><span class="panel-num">07</span></div>
+    </div>
+  </section>
+
+  <!-- CAROUSEL 06 -->
+  <section class="carousel" id="c06">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow" style="color: var(--ink-soft);"><span class="badge badge--educational">Educational</span><span class="badge badge--retreat">Retreat</span> Carousel 06 · 8 panels · 1080×1350</p>
+        <h2>A retreat <em>day</em>.</h2>
+      </div>
+      <span class="section-meta">Hour by hour</span>
+    </div>
+    <p class="lede">06:30 stillness · 08:00 yoga · 10:00 teaching · 13:00 long-table lunch · 15:00 walk · 19:00 fire circle. Each hour gets a full panel.</p>
+    <div class="panels">
+      <div class="panel"><img src="exports/06-a-retreat-day-panel-01.png" alt="Panel 1"><span class="panel-num">01</span></div>
+      <div class="panel"><img src="exports/06-a-retreat-day-panel-02.png" alt="Panel 2"><span class="panel-num">02</span></div>
+      <div class="panel"><img src="exports/06-a-retreat-day-panel-03.png" alt="Panel 3"><span class="panel-num">03</span></div>
+      <div class="panel"><img src="exports/06-a-retreat-day-panel-04.png" alt="Panel 4"><span class="panel-num">04</span></div>
+      <div class="panel"><img src="exports/06-a-retreat-day-panel-05.png" alt="Panel 5"><span class="panel-num">05</span></div>
+      <div class="panel"><img src="exports/06-a-retreat-day-panel-06.png" alt="Panel 6"><span class="panel-num">06</span></div>
+      <div class="panel"><img src="exports/06-a-retreat-day-panel-07.png" alt="Panel 7"><span class="panel-num">07</span></div>
+      <div class="panel"><img src="exports/06-a-retreat-day-panel-08.png" alt="Panel 8"><span class="panel-num">08</span></div>
+    </div>
+  </section>
+
+  <!-- CAROUSEL 07 -->
+  <section class="carousel" id="c07">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow" style="color: var(--ink-soft);"><span class="badge badge--brand">Brand</span> Carousel 07 · 7 panels · 1080×1350</p>
+        <h2>What we're <em>building</em>.</h2>
+      </div>
+      <span class="section-meta">Five projects, one ecosystem</span>
+    </div>
+    <p class="lede">The Foundation's whole map: Retreats, the School in Mozambique, Studio One, Conservation, NAVID. One panel per project plus cover + CTA.</p>
+    <div class="panels">
+      <div class="panel"><img src="exports/07-what-we-are-building-panel-01.png" alt="Panel 1"><span class="panel-num">01</span></div>
+      <div class="panel"><img src="exports/07-what-we-are-building-panel-02.png" alt="Panel 2"><span class="panel-num">02</span></div>
+      <div class="panel"><img src="exports/07-what-we-are-building-panel-03.png" alt="Panel 3"><span class="panel-num">03</span></div>
+      <div class="panel"><img src="exports/07-what-we-are-building-panel-04.png" alt="Panel 4"><span class="panel-num">04</span></div>
+      <div class="panel"><img src="exports/07-what-we-are-building-panel-05.png" alt="Panel 5"><span class="panel-num">05</span></div>
+      <div class="panel"><img src="exports/07-what-we-are-building-panel-06.png" alt="Panel 6"><span class="panel-num">06</span></div>
+      <div class="panel"><img src="exports/07-what-we-are-building-panel-07.png" alt="Panel 7"><span class="panel-num">07</span></div>
+    </div>
+  </section>
+
   <!-- VIDEOS -->
-  <section class="carousel">
+  <section class="carousel" id="videos">
     <div class="section-head">
       <div>
         <p class="eyebrow" style="color: var(--ink-soft);">Videos · 9:16 vertical · Reels-ready</p>
@@ -276,7 +404,7 @@
       </div>
       <span class="section-meta">5–10s each</span>
     </div>
-    <p class="lede">Generative motion shaped from the Foundation's own stills. Drop them in IG Reels, TikTok, or as web hero loops.</p>
+    <p class="lede">Generative motion shaped from the Foundation's own stills. Drop in IG Reels, TikTok, or as a web hero loop.</p>
     <div class="video-row">
       <div class="video-card">
         <video src="videos/02-villa-push-5s.mp4" controls muted loop playsinline></video>
@@ -296,8 +424,12 @@
 </div>
 
 <footer>
-  <span>Love · Happiness · Freedom Foundation</span>
-  <span>Built by Divergence · Social drop 01</span>
+  <div style="padding: 0 32px;">
+    <span>Love · Happiness · Freedom Foundation</span>
+  </div>
+  <div style="padding: 0 32px;">
+    <span>Built by Divergence · Social drop 01 · 7 carousels · 49 panels · 3 videos</span>
+  </div>
 </footer>
 </body>
 </html>
