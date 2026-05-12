@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>LHFF — Social drop 01 · Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Open+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --paper: #faf7f2;
+    --ink: #1a1a1a;
+    --ink-soft: #555;
+    --rule: rgba(26,26,26,0.14);
+    --rainbow-red: #e84a3f;
+    --rainbow-yellow: #f5c63a;
+    --rainbow-purple: #8654b8;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--paper); color: var(--ink); font-family: "Open Sans", sans-serif; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 48px 32px 96px; }
+  header.cover {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 56px 32px;
+    margin: -48px -32px 64px;
+  }
+  header.cover .inner { max-width: 1280px; margin: 0 auto; }
+  .eyebrow {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(250,247,242,0.65);
+    margin: 0 0 16px;
+  }
+  h1 {
+    font-family: "Playfair Display", Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    line-height: 0.98;
+    letter-spacing: -0.01em;
+    margin: 0 0 24px;
+  }
+  h1 em { color: var(--rainbow-yellow); }
+  header.cover p {
+    font-size: 1.0625rem;
+    max-width: 38rem;
+    color: rgba(250,247,242,0.85);
+    margin: 0;
+  }
+  .rainbow {
+    display: flex; width: 220px; height: 6px;
+    margin-bottom: 28px; border-radius: 1px; overflow: hidden;
+  }
+  .rainbow span { flex: 1; }
+  .rainbow span:nth-child(1) { background: #e84a3f; }
+  .rainbow span:nth-child(2) { background: #f08a3a; }
+  .rainbow span:nth-child(3) { background: #f5c63a; }
+  .rainbow span:nth-child(4) { background: #5fa85a; }
+  .rainbow span:nth-child(5) { background: #5ab8d9; }
+  .rainbow span:nth-child(6) { background: #3a72b8; }
+  .rainbow span:nth-child(7) { background: #8654b8; }
+
+  section.carousel {
+    margin-bottom: 80px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid var(--rule);
+  }
+  section.carousel:last-of-type { border-bottom: 0; }
+  .section-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    margin-bottom: 32px;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  h2 {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.05;
+    margin: 0;
+  }
+  h2 em { color: var(--rainbow-red); }
+  .section-meta {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .lede {
+    max-width: 42rem;
+    font-size: 1.0625rem;
+    color: var(--ink-soft);
+    margin: 0 0 28px;
+  }
+  .panels {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+  }
+  .panel {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    background: #eee;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid var(--rule);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+    position: relative;
+  }
+  .panel img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
+  .panel-num {
+    position: absolute;
+    bottom: 8px; left: 8px;
+    background: rgba(0,0,0,0.75);
+    color: white;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.625rem;
+    letter-spacing: 0.12em;
+    padding: 3px 7px;
+    border-radius: 2px;
+  }
+  .video-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 22px;
+    margin-top: 18px;
+  }
+  .video-card {
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    overflow: hidden;
+    background: #000;
+  }
+  .video-card video {
+    width: 100%; height: auto; display: block;
+    aspect-ratio: 9 / 16;
+    object-fit: cover;
+  }
+  .video-card .label {
+    background: var(--paper);
+    padding: 12px 14px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    border-top: 1px solid var(--rule);
+    display: flex; justify-content: space-between;
+  }
+  .pending {
+    border: 1px dashed var(--rule);
+    border-radius: 4px;
+    padding: 28px;
+    color: var(--ink-soft);
+    font-size: 0.9375rem;
+    aspect-ratio: 9 / 16;
+    display: flex; align-items: center; justify-content: center; text-align: center;
+    background: #f4ede1;
+  }
+  .download-row {
+    display: flex; gap: 12px; flex-wrap: wrap; margin-top: 12px;
+  }
+  .download-row a {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink);
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    padding: 8px 14px;
+    text-decoration: none;
+    transition: background 0.18s ease;
+  }
+  .download-row a:hover { background: var(--ink); color: var(--paper); }
+  footer {
+    margin-top: 80px;
+    padding-top: 32px;
+    border-top: 1px solid var(--rule);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    display: flex; justify-content: space-between; align-items: baseline;
+    flex-wrap: wrap; gap: 12px;
+  }
+</style>
+</head>
+<body>
+<header class="cover">
+  <div class="inner">
+    <div class="rainbow"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    <p class="eyebrow">Social drop 01 · Love Happiness Freedom Foundation</p>
+    <h1>Three carousels.<br/>Three short <em>videos</em>.</h1>
+    <p>Built in the editorial system. Designed for Instagram first, all 9:16 / 4:5 ready. Tap into each carousel to view at full size. Right-click images to download.</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- CAROUSEL 01 -->
+  <section class="carousel">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow" style="color: var(--ink-soft);">Carousel 01 · 6 panels · 1080×1350</p>
+        <h2>Empower your true <em>inner</em> self.</h2>
+      </div>
+      <span class="section-meta">Women's Empowerment retreat</span>
+    </div>
+    <p class="lede">The freshest of the three. Built around Cheney's note on the retreat. Six panels: cover, who it's for, where, the seven pillars, what shifts, apply.</p>
+    <div class="panels">
+      <div class="panel"><img src="exports/01-empower-your-true-inner-self-panel-01.png" alt="Panel 1"><span class="panel-num">01</span></div>
+      <div class="panel"><img src="exports/01-empower-your-true-inner-self-panel-02.png" alt="Panel 2"><span class="panel-num">02</span></div>
+      <div class="panel"><img src="exports/01-empower-your-true-inner-self-panel-03.png" alt="Panel 3"><span class="panel-num">03</span></div>
+      <div class="panel"><img src="exports/01-empower-your-true-inner-self-panel-04.png" alt="Panel 4"><span class="panel-num">04</span></div>
+      <div class="panel"><img src="exports/01-empower-your-true-inner-self-panel-05.png" alt="Panel 5"><span class="panel-num">05</span></div>
+      <div class="panel"><img src="exports/01-empower-your-true-inner-self-panel-06.png" alt="Panel 6"><span class="panel-num">06</span></div>
+    </div>
+  </section>
+
+  <!-- CAROUSEL 02 -->
+  <section class="carousel">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow" style="color: var(--ink-soft);">Carousel 02 · 6 panels · 1080×1350</p>
+        <h2>Three <em>pillars</em>.</h2>
+      </div>
+      <span class="section-meta">Love. Happiness. Freedom.</span>
+    </div>
+    <p class="lede">The brand DNA in one carousel. Each pillar gets its own full-colour panel. Reads like a short editorial spread.</p>
+    <div class="panels">
+      <div class="panel"><img src="exports/02-three-pillars-panel-01.png" alt="Panel 1"><span class="panel-num">01</span></div>
+      <div class="panel"><img src="exports/02-three-pillars-panel-02.png" alt="Panel 2"><span class="panel-num">02</span></div>
+      <div class="panel"><img src="exports/02-three-pillars-panel-03.png" alt="Panel 3"><span class="panel-num">03</span></div>
+      <div class="panel"><img src="exports/02-three-pillars-panel-04.png" alt="Panel 4"><span class="panel-num">04</span></div>
+      <div class="panel"><img src="exports/02-three-pillars-panel-05.png" alt="Panel 5"><span class="panel-num">05</span></div>
+      <div class="panel"><img src="exports/02-three-pillars-panel-06.png" alt="Panel 6"><span class="panel-num">06</span></div>
+    </div>
+  </section>
+
+  <!-- CAROUSEL 03 -->
+  <section class="carousel">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow" style="color: var(--ink-soft);">Carousel 03 · 6 panels · 1080×1350</p>
+        <h2>Inside the <em>work</em>.</h2>
+      </div>
+      <span class="section-meta">A visual diary</span>
+    </div>
+    <p class="lede">Image-led carousel. The villa, the school by day and night, the studio, the mural. The Foundation anchored in place.</p>
+    <div class="panels">
+      <div class="panel"><img src="exports/03-inside-the-work-panel-01.png" alt="Panel 1"><span class="panel-num">01</span></div>
+      <div class="panel"><img src="exports/03-inside-the-work-panel-02.png" alt="Panel 2"><span class="panel-num">02</span></div>
+      <div class="panel"><img src="exports/03-inside-the-work-panel-03.png" alt="Panel 3"><span class="panel-num">03</span></div>
+      <div class="panel"><img src="exports/03-inside-the-work-panel-04.png" alt="Panel 4"><span class="panel-num">04</span></div>
+      <div class="panel"><img src="exports/03-inside-the-work-panel-05.png" alt="Panel 5"><span class="panel-num">05</span></div>
+      <div class="panel"><img src="exports/03-inside-the-work-panel-06.png" alt="Panel 6"><span class="panel-num">06</span></div>
+    </div>
+  </section>
+
+  <!-- VIDEOS -->
+  <section class="carousel">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow" style="color: var(--ink-soft);">Videos · 9:16 vertical · Reels-ready</p>
+        <h2>Three <em>shorts</em>.</h2>
+      </div>
+      <span class="section-meta">5–10s each</span>
+    </div>
+    <p class="lede">Generative motion shaped from the Foundation's own stills. Drop them in IG Reels, TikTok, or as web hero loops.</p>
+    <div class="video-row">
+      <div class="video-card">
+        <video src="videos/02-villa-push-5s.mp4" controls muted loop playsinline></video>
+        <div class="label"><span>01 · Villa push</span><span>5s · 9:16</span></div>
+      </div>
+      <div class="video-card">
+        <video src="videos/01-mural-reveal-5s.mp4" controls muted loop playsinline></video>
+        <div class="label"><span>02 · Mural reveal</span><span>5s · 9:16</span></div>
+      </div>
+      <div class="video-card">
+        <div class="pending">School fountain · day → night transition<br/>Still rendering — drops in when ready.</div>
+        <div class="label"><span>03 · School fountain</span><span>10s · 9:16</span></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <span>Love · Happiness · Freedom Foundation</span>
+  <span>Built by Divergence · Social drop 01</span>
+</footer>
+</body>
+</html>

@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>LHFF — Empower your true inner self · Carousel 01</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Open+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --cream: #faf7f2;
+    --bone: #f3ede3;
+    --ink: #1a1a1a;
+    --ink-muted: #4a4a4a;
+    --rule: rgba(26,26,26,0.14);
+    --red: #e84a3f;
+    --orange: #f08a3a;
+    --yellow: #f5c63a;
+    --green: #5fa85a;
+    --sky: #5ab8d9;
+    --blue: #3a72b8;
+    --purple: #8654b8;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: #2a2a2a;
+    font-family: "Open Sans", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  body { padding: 48px; }
+  .deck {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    max-width: 3600px;
+    margin: 0 auto;
+  }
+  .panel {
+    width: 1080px;
+    height: 1350px;
+    position: relative;
+    overflow: hidden;
+    background: var(--cream);
+    color: var(--ink);
+    transform-origin: top left;
+    transform: scale(0.45);
+    margin-bottom: -742px;
+    margin-right: -594px;
+  }
+  /* Render mode: full size stacked vertically — used by Chrome headless for PNG export */
+  body.render { padding: 0; background: #fff; }
+  body.render .deck { display: block; max-width: none; gap: 0; }
+  body.render .panel {
+    transform: none;
+    margin: 0;
+    display: block;
+  }
+  /* full-bleed (image) variants */
+  .panel--dark { background: #111; color: var(--cream); }
+  .panel--red { background: var(--red); color: #fff; }
+  .panel--yellow { background: var(--yellow); color: var(--ink); }
+  .panel--purple { background: var(--purple); color: #fff; }
+
+  /* shared chrome */
+  .chrome-top, .chrome-bot {
+    position: absolute;
+    left: 64px; right: 64px;
+    display: flex; justify-content: space-between;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 16px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+  .chrome-top { top: 56px; }
+  .chrome-bot { bottom: 56px; }
+  .rainbow-bar {
+    display: flex;
+    width: 220px;
+    height: 6px;
+    margin-bottom: 32px;
+    border-radius: 1px;
+    overflow: hidden;
+  }
+  .rainbow-bar span { flex: 1; }
+  .rainbow-bar span:nth-child(1) { background: var(--red); }
+  .rainbow-bar span:nth-child(2) { background: var(--orange); }
+  .rainbow-bar span:nth-child(3) { background: var(--yellow); }
+  .rainbow-bar span:nth-child(4) { background: var(--green); }
+  .rainbow-bar span:nth-child(5) { background: var(--sky); }
+  .rainbow-bar span:nth-child(6) { background: var(--blue); }
+  .rainbow-bar span:nth-child(7) { background: var(--purple); }
+
+  .display {
+    font-family: "Playfair Display", Georgia, serif;
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.02;
+    letter-spacing: -0.012em;
+    margin: 0;
+  }
+  .eyebrow {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 17px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin: 0 0 32px;
+    opacity: 0.7;
+  }
+  .body {
+    font-family: "Open Sans", sans-serif;
+    font-size: 28px;
+    line-height: 1.45;
+    font-weight: 400;
+  }
+  .stamp {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 14px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    opacity: 0.55;
+  }
+
+  /* PANEL 1 — COVER */
+  .p1 { padding: 56px 64px; display: flex; flex-direction: column; justify-content: space-between; background: var(--ink); color: var(--cream); }
+  .p1 .display { font-size: 128px; }
+  .p1 .eyebrow { color: var(--cream); opacity: 0.7; }
+
+  /* PANEL 2 — WHO */
+  .p2 { padding: 56px 64px; display: flex; flex-direction: column; justify-content: space-between; }
+  .p2 .display { font-size: 88px; margin-bottom: 32px; }
+  .p2 .facts {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+    border-top: 1px solid var(--rule);
+    padding-top: 28px;
+  }
+  .p2 .fact .label { font-family: "JetBrains Mono", monospace; font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 6px; }
+  .p2 .fact .value { font-family: "Playfair Display", serif; font-style: italic; font-size: 44px; line-height: 1.1; }
+
+  /* PANEL 3 — WHERE */
+  .p3 {
+    background: linear-gradient(180deg, #0f1c24 0%, #1c2c34 100%);
+    color: var(--cream);
+    padding: 56px 64px;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .p3 .display { font-size: 96px; }
+  .p3 .eyebrow { color: var(--cream); opacity: 0.75; }
+  .p3 .stamp { color: var(--cream); }
+
+  /* PANEL 4 — SEVEN PILLARS */
+  .p4 { padding: 56px 64px; display: flex; flex-direction: column; justify-content: space-between; background: var(--bone); }
+  .p4 .display { font-size: 60px; margin-bottom: 36px; }
+  .p4 .pillars {
+    display: flex; flex-direction: column; gap: 14px;
+    margin-bottom: 32px;
+  }
+  .p4 .pillar {
+    display: flex; align-items: center; gap: 18px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .p4 .pillar:last-child { border-bottom: 0; }
+  .p4 .pillar .num { font-family: "JetBrains Mono", monospace; font-size: 18px; letter-spacing: 0.16em; color: var(--ink-muted); min-width: 40px; }
+  .p4 .pillar .word { font-family: "Playfair Display", serif; font-style: italic; font-size: 42px; line-height: 1; }
+  .p4 .pillar .dot { width: 14px; height: 14px; border-radius: 50%; }
+
+  /* PANEL 5 — WHAT SHIFTS (PULL QUOTE) */
+  .p5 { padding: 64px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; background: #fff; }
+  .p5 .display { font-size: 80px; max-width: 920px; }
+  .p5 .display em { font-style: italic; color: var(--red); }
+  .p5 .stamp { margin-top: 40px; }
+
+  /* PANEL 6 — APPLY */
+  .p6 {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 56px 64px;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .p6 .display { font-size: 108px; }
+  .p6 .display em { color: var(--yellow); }
+  .p6 .cta-pill {
+    display: inline-block;
+    padding: 22px 36px;
+    border: 2px solid var(--cream);
+    border-radius: 999px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 22px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-top: 24px;
+  }
+  .p6 .meta {
+    border-top: 1px solid rgba(255,255,255,0.2);
+    padding-top: 24px;
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-family: "JetBrains Mono", monospace; font-size: 16px;
+    letter-spacing: 0.12em;
+    opacity: 0.75;
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- PANEL 1 — COVER -->
+  <section class="panel p1">
+    <div class="chrome-top" style="opacity: 0.7;"><span>Love Happiness Freedom</span><span>01 / 06</span></div>
+    <div>
+      <div class="rainbow-bar"></div>
+      <p class="eyebrow">Women's Empowerment · Cape Town</p>
+      <h1 class="display">Empower<br/>your true<br/><em style="color: var(--yellow); font-style: italic;">inner</em> self.</h1>
+    </div>
+    <div class="chrome-bot"><span>Six days. Twelve women.</span><span>lhffoundation.org</span></div>
+  </section>
+
+  <!-- PANEL 2 — WHO -->
+  <section class="panel p2">
+    <div class="chrome-top"><span>The work</span><span>02 / 06</span></div>
+    <div>
+      <p class="eyebrow">Who it's for</p>
+      <h2 class="display">Twelve women.<br/>One villa.<br/>One week to <em style="color: var(--red);">meet yourself</em>.</h2>
+    </div>
+    <div class="facts">
+      <div class="fact"><div class="label">Format</div><div class="value">6 days, residential</div></div>
+      <div class="fact"><div class="label">Cohort</div><div class="value">12 women, ages 18-29</div></div>
+      <div class="fact"><div class="label">Cadence</div><div class="value">Quarterly</div></div>
+      <div class="fact"><div class="label">Cost</div><div class="value">Scholarship + sliding scale</div></div>
+    </div>
+  </section>
+
+  <!-- PANEL 3 — WHERE -->
+  <section class="panel p3">
+    <div class="chrome-top" style="opacity:0.7;"><span>The setting</span><span>03 / 06</span></div>
+    <div>
+      <p class="eyebrow">The villa</p>
+      <h2 class="display">A private home<br/>under the<br/><em style="color: var(--orange); font-style: italic;">Twelve Apostles</em>.</h2>
+      <p class="body" style="max-width: 780px; margin-top: 32px; opacity: 0.85;">Cape Town. The Atlantic on one side, mountains on the other. A villa briefed for one purpose: hold the space while you do the work.</p>
+    </div>
+    <div class="chrome-bot"><span class="stamp">Camps Bay · Western Cape</span><span class="stamp">lhffoundation.org</span></div>
+  </section>
+
+  <!-- PANEL 4 — SEVEN PILLARS -->
+  <section class="panel p4">
+    <div class="chrome-top"><span>The curriculum</span><span>04 / 06</span></div>
+    <div>
+      <p class="eyebrow">Seven pillars</p>
+      <h2 class="display">The frame<br/>holding the<br/>week together.</h2>
+      <div class="pillars">
+        <div class="pillar"><span class="num">01</span><span class="dot" style="background: var(--red);"></span><span class="word">Purpose</span></div>
+        <div class="pillar"><span class="num">02</span><span class="dot" style="background: var(--orange);"></span><span class="word">Wellness</span></div>
+        <div class="pillar"><span class="num">03</span><span class="dot" style="background: var(--yellow);"></span><span class="word">Communication</span></div>
+        <div class="pillar"><span class="num">04</span><span class="dot" style="background: var(--green);"></span><span class="word">Meditation</span></div>
+        <div class="pillar"><span class="num">05</span><span class="dot" style="background: var(--sky);"></span><span class="word">Discipline</span></div>
+        <div class="pillar"><span class="num">06</span><span class="dot" style="background: var(--blue);"></span><span class="word">Faith</span></div>
+        <div class="pillar"><span class="num">07</span><span class="dot" style="background: var(--purple);"></span><span class="word">Redemption</span></div>
+      </div>
+    </div>
+    <div class="chrome-bot"><span>Practitioner-led</span><span>lhffoundation.org</span></div>
+  </section>
+
+  <!-- PANEL 5 — WHAT SHIFTS -->
+  <section class="panel p5">
+    <div class="chrome-top"><span>What shifts</span><span>05 / 06</span></div>
+    <h2 class="display">"You arrive carrying.<br/>You leave <em>clearer</em>.<br/>The self that was waiting<br/>comes through."</h2>
+    <p class="stamp">Past cohort, 2025</p>
+  </section>
+
+  <!-- PANEL 6 — APPLY -->
+  <section class="panel p6">
+    <div class="chrome-top" style="opacity:0.7;"><span>Apply</span><span>06 / 06</span></div>
+    <div>
+      <div class="rainbow-bar"></div>
+      <p class="eyebrow" style="color: var(--cream); opacity: 0.7;">Next cohort, autumn 2026</p>
+      <h2 class="display">If this is<br/>your week,<br/><em>apply</em>.</h2>
+      <span class="cta-pill">lhffoundation.org / apply</span>
+    </div>
+    <div class="meta"><span>@lovehappinessfreedom</span><span>Love · Happiness · Freedom</span></div>
+  </section>
+
+</div>
+<script>
+  // Toggle render mode via ?render=1 — used by Chrome headless to export full-size panels
+  if (new URLSearchParams(location.search).get("render") === "1") {
+    document.body.classList.add("render");
+  }
+</script>
+</body>
+</html>
