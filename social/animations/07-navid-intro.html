@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>NAVID intro · 10s</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Open+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="_shared.css" />
+<style>
+  /* 0.0-3.0s: Hook in/out */
+  /* 3.4-8.0s: Chat sequence */
+  /* 8.2-10.0s: CTA */
+
+  .msg-1 { animation: msgIn 600ms cubic-bezier(0.22,1,0.36,1) 3800ms forwards; }
+  .msg-2 { animation: msgIn 600ms cubic-bezier(0.22,1,0.36,1) 4600ms forwards; }
+  .msg-3 { animation: msgIn 600ms cubic-bezier(0.22,1,0.36,1) 5800ms forwards; }
+  .msg-4 { animation: msgIn 600ms cubic-bezier(0.22,1,0.36,1) 6800ms forwards; }
+  @keyframes msgIn {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .chat-exit {
+    animation: chatOut 600ms ease-in 7900ms forwards;
+  }
+  @keyframes chatOut {
+    to { opacity: 0; transform: translateY(-20px); }
+  }
+
+  .cta { animation: ctaIn 800ms cubic-bezier(0.22,1,0.36,1) 8400ms forwards; }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="chrome chrome--top">
+    <span>NAVID</span>
+    <span>The Foundation</span>
+  </div>
+  <div class="rainbow-bar"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+
+  <!-- HOOK -->
+  <h1 class="hook hook--exit">A guide that<br/><em>listens</em><br/>differently.</h1>
+
+  <!-- CHAT -->
+  <div class="chat chat-exit">
+    <div class="chat-header">
+      <div class="chat-avatar">N</div>
+      <div>
+        <div class="chat-name">NAVID</div>
+        <div class="chat-status">Online · Replies instantly</div>
+      </div>
+    </div>
+
+    <div class="msg msg-1"><div class="bub">Hi. I'm NAVID. How are you arriving today?</div></div>
+    <div class="msg msg-2 msg--user"><div class="bub">Anxious about the week ahead.</div></div>
+    <div class="msg msg-3"><div class="bub">Anxiety often shows up loudest when something matters. What part of it feels heaviest?</div></div>
+    <div class="msg msg-4 msg--user"><div class="bub">I don't know where to start.</div></div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta">
+    <div class="cta__eyebrow">Members + retreat guests only</div>
+    <h2 class="cta__title">Meet <em>NAVID</em>.<br/>Visit the website.</h2>
+    <div class="cta__pill">lhffoundation.org</div>
+  </div>
+
+  <div class="chrome chrome--bot">
+    <span>@lovehappinessfreedom</span>
+    <span>lhffoundation.org</span>
+  </div>
+</div>
+</body>
+</html>

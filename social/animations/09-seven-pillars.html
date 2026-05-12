@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Seven Pillars · 10s</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Open+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="_shared.css" />
+<style>
+  .stage { background: var(--cream); }
+  .chrome { color: var(--ink-soft); }
+  .hook { color: var(--ink); font-size: 108px; }
+  .hook em { color: var(--red); }
+  .cta__title { color: var(--ink); }
+  .cta__title em { color: var(--purple); }
+  .cta__eyebrow { color: var(--ink-soft); }
+  .cta__pill { color: var(--ink); border-color: var(--ink); }
+
+  /* 7 pillar cards swap in rapid sequence between 2.4s and 8.0s */
+  .pillar-card {
+    position: absolute;
+    left: 64px; right: 64px;
+    top: 350px;
+    opacity: 0;
+  }
+  .pillar-num {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 22px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 24px;
+  }
+  .pillar-word {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--ink);
+    font-size: 240px;
+    line-height: 0.95;
+    letter-spacing: -0.015em;
+    margin-bottom: 28px;
+  }
+  .pillar-desc {
+    font-family: "Open Sans", sans-serif;
+    font-size: 38px;
+    line-height: 1.4;
+    color: var(--ink-soft);
+    max-width: 880px;
+  }
+  .pillar-dot {
+    display: inline-block;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    vertical-align: middle;
+    margin-right: 18px;
+  }
+
+  /* Each pillar visible ~0.8s */
+  @keyframes pillarShow {
+    0% { opacity: 0; transform: translateX(40px); }
+    20% { opacity: 1; transform: translateX(0); }
+    80% { opacity: 1; transform: translateX(0); }
+    100% { opacity: 0; transform: translateX(-40px); }
+  }
+  .pl-1 { animation: pillarShow 900ms ease 2400ms forwards; }
+  .pl-2 { animation: pillarShow 900ms ease 3200ms forwards; }
+  .pl-3 { animation: pillarShow 900ms ease 4000ms forwards; }
+  .pl-4 { animation: pillarShow 900ms ease 4800ms forwards; }
+  .pl-5 { animation: pillarShow 900ms ease 5600ms forwards; }
+  .pl-6 { animation: pillarShow 900ms ease 6400ms forwards; }
+  .pl-7 { animation: pillarShow 900ms ease 7200ms forwards; }
+
+  .cta { animation: ctaIn 800ms cubic-bezier(0.22,1,0.36,1) 8400ms forwards; }
+  .hook--exit { animation: hookOut 600ms cubic-bezier(0.55,0,0.5,1) 2100ms forwards; }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="chrome chrome--top">
+    <span>The curriculum</span>
+    <span>The Foundation</span>
+  </div>
+  <div class="rainbow-bar"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+
+  <h1 class="hook hook--exit">What if a<br/>curriculum could<br/><em>rebuild a person</em>?</h1>
+
+  <!-- 7 pillars -->
+  <div class="pillar-card pl-1">
+    <div class="pillar-num"><span class="pillar-dot" style="background:#e84a3f;"></span>Pillar 01</div>
+    <div class="pillar-word">Purpose.</div>
+    <div class="pillar-desc">Knowing why you're here.</div>
+  </div>
+  <div class="pillar-card pl-2">
+    <div class="pillar-num"><span class="pillar-dot" style="background:#f08a3a;"></span>Pillar 02</div>
+    <div class="pillar-word">Wellness.</div>
+    <div class="pillar-desc">Sleep, breath, food, movement.</div>
+  </div>
+  <div class="pillar-card pl-3">
+    <div class="pillar-num"><span class="pillar-dot" style="background:#f5c63a;"></span>Pillar 03</div>
+    <div class="pillar-word">Communication.</div>
+    <div class="pillar-desc">How you say the thing matters.</div>
+  </div>
+  <div class="pillar-card pl-4">
+    <div class="pillar-num"><span class="pillar-dot" style="background:#5fa85a;"></span>Pillar 04</div>
+    <div class="pillar-word">Meditation.</div>
+    <div class="pillar-desc">Ten quiet minutes a day.</div>
+  </div>
+  <div class="pillar-card pl-5">
+    <div class="pillar-num"><span class="pillar-dot" style="background:#5ab8d9;"></span>Pillar 05</div>
+    <div class="pillar-word">Discipline.</div>
+    <div class="pillar-desc">The bridge between knowing and doing.</div>
+  </div>
+  <div class="pillar-card pl-6">
+    <div class="pillar-num"><span class="pillar-dot" style="background:#3a72b8;"></span>Pillar 06</div>
+    <div class="pillar-word">Faith.</div>
+    <div class="pillar-desc">Trust in something larger.</div>
+  </div>
+  <div class="pillar-card pl-7">
+    <div class="pillar-num"><span class="pillar-dot" style="background:#8654b8;"></span>Pillar 07</div>
+    <div class="pillar-word">Redemption.</div>
+    <div class="pillar-desc">Forgive yourself first.</div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta">
+    <div class="cta__eyebrow">Lived in every retreat</div>
+    <h2 class="cta__title">The seven <em>pillars</em>.<br/>Visit the website.</h2>
+    <div class="cta__pill">lhffoundation.org</div>
+  </div>
+
+  <div class="chrome chrome--bot">
+    <span>@lovehappinessfreedom</span>
+    <span>Love · Happiness · Freedom</span>
+  </div>
+</div>
+</body>
+</html>

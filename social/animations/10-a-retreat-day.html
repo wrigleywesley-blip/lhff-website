@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>A retreat day · 10s</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Open+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="_shared.css" />
+<style>
+  .stage { background: linear-gradient(165deg, #0c1218 0%, #2a3a4a 100%); }
+  .hook em { color: var(--orange); }
+
+  /* 6 time-stamp cards swap through 2.4s → 8.4s */
+  .time-card {
+    position: absolute;
+    left: 64px; right: 64px;
+    top: 360px;
+    opacity: 0;
+  }
+  .time-label {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 22px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(250,247,242,0.55);
+    margin-bottom: 18px;
+  }
+  .time-clock {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--cream);
+    font-size: 180px;
+    line-height: 0.95;
+    margin-bottom: 28px;
+    letter-spacing: -0.012em;
+  }
+  .time-clock em { color: var(--yellow); }
+  .time-title {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    color: var(--cream);
+    font-size: 80px;
+    line-height: 1.1;
+    margin-bottom: 24px;
+  }
+  .time-desc {
+    font-family: "Open Sans", sans-serif;
+    font-size: 32px;
+    line-height: 1.4;
+    color: rgba(250,247,242,0.8);
+    max-width: 880px;
+  }
+
+  @keyframes timeShow {
+    0% { opacity: 0; transform: translateY(40px); }
+    18% { opacity: 1; transform: translateY(0); }
+    82% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-30px); }
+  }
+  .t1 { animation: timeShow 1100ms ease 2400ms forwards; }
+  .t2 { animation: timeShow 1100ms ease 3400ms forwards; }
+  .t3 { animation: timeShow 1100ms ease 4400ms forwards; }
+  .t4 { animation: timeShow 1100ms ease 5400ms forwards; }
+  .t5 { animation: timeShow 1100ms ease 6400ms forwards; }
+  .t6 { animation: timeShow 1100ms ease 7400ms forwards; }
+
+  .cta { animation: ctaIn 800ms cubic-bezier(0.22,1,0.36,1) 8400ms forwards; }
+  .hook--exit { animation: hookOut 600ms cubic-bezier(0.55,0,0.5,1) 2100ms forwards; }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="chrome chrome--top">
+    <span>The retreat</span>
+    <span>The Foundation</span>
+  </div>
+  <div class="rainbow-bar"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+
+  <h1 class="hook hook--exit">What if six<br/>days could change<br/><em>the rest</em>?</h1>
+
+  <!-- 06:30 -->
+  <div class="time-card t1">
+    <div class="time-label">First light</div>
+    <div class="time-clock"><em>06:30</em></div>
+    <div class="time-title">Sit before the day arrives.</div>
+    <div class="time-desc">Twenty minutes of stillness. No phones.</div>
+  </div>
+  <!-- 08:00 -->
+  <div class="time-card t2">
+    <div class="time-label">Movement</div>
+    <div class="time-clock"><em>08:00</em></div>
+    <div class="time-title">Yoga at One Flow.</div>
+    <div class="time-desc">Bodywork before the mind shows up.</div>
+  </div>
+  <!-- 10:00 -->
+  <div class="time-card t3">
+    <div class="time-label">Teaching</div>
+    <div class="time-clock"><em>10:00</em></div>
+    <div class="time-title">A pillar in depth.</div>
+    <div class="time-desc">Group work. Real conversations. No theatre.</div>
+  </div>
+  <!-- 13:00 -->
+  <div class="time-card t4">
+    <div class="time-label">Together</div>
+    <div class="time-clock"><em>13:00</em></div>
+    <div class="time-title">Long table lunch.</div>
+    <div class="time-desc">Food cooked at the villa. Community forms here.</div>
+  </div>
+  <!-- 15:00 -->
+  <div class="time-card t5">
+    <div class="time-label">Integrate</div>
+    <div class="time-clock"><em>15:00</em></div>
+    <div class="time-title">A long walk.</div>
+    <div class="time-desc">Mostly in silence. The morning settles.</div>
+  </div>
+  <!-- 19:00 -->
+  <div class="time-card t6">
+    <div class="time-label">Deeper</div>
+    <div class="time-clock"><em>19:00</em></div>
+    <div class="time-title">Fire circle.</div>
+    <div class="time-desc">The centre of the week. Held space.</div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta">
+    <div class="cta__eyebrow">Six days, twelve guests, one villa</div>
+    <h2 class="cta__title">Apply for the <em>next</em>.<br/>Visit the website.</h2>
+    <div class="cta__pill">lhffoundation.org / retreats</div>
+  </div>
+
+  <div class="chrome chrome--bot">
+    <span>@lovehappinessfreedom</span>
+    <span>Cape Town</span>
+  </div>
+</div>
+</body>
+</html>
