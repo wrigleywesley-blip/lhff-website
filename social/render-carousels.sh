@@ -17,6 +17,9 @@ declare -a CAROUSELS=(
   "05-studio-one-open-call:7"
   "06-a-retreat-day:8"
   "07-what-we-are-building:7"
+  "08-the-foundation-app:9"
+  "09-navid-in-depth:8"
+  "10-studio-one-how-we-find-you:8"
 )
 
 mkdir -p exports

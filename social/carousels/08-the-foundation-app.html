@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>LHFF — The Foundation App · Carousel 08</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Open+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --cream: #faf7f2;
+    --bone: #f3ede3;
+    --ink: #1a1a1a;
+    --ink-muted: #4a4a4a;
+    --rule: rgba(26,26,26,0.14);
+    --red: #e84a3f;
+    --orange: #f08a3a;
+    --yellow: #f5c63a;
+    --green: #5fa85a;
+    --sky: #5ab8d9;
+    --blue: #3a72b8;
+    --purple: #8654b8;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #2a2a2a; font-family: "Open Sans", sans-serif; -webkit-font-smoothing: antialiased; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { padding: 48px; }
+  .deck { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; max-width: 3600px; margin: 0 auto; }
+  .panel { width: 1080px; height: 1350px; position: relative; overflow: hidden; background: var(--cream); color: var(--ink); transform-origin: top left; transform: scale(0.45); margin-bottom: -742px; margin-right: -594px; }
+  body.render { padding: 0; background: #fff; }
+  body.render .deck { display: block; max-width: none; gap: 0; }
+  body.render .panel { transform: none; margin: 0; display: block; }
+
+  .chrome-top, .chrome-bot {
+    position: absolute; left: 64px; right: 64px;
+    display: flex; justify-content: space-between;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 16px; letter-spacing: 0.16em; text-transform: uppercase;
+  }
+  .chrome-top { top: 56px; }
+  .chrome-bot { bottom: 56px; }
+
+  .display { font-family: "Playfair Display", Georgia, serif; font-weight: 400; font-style: italic; line-height: 1.02; letter-spacing: -0.012em; margin: 0; }
+  .eyebrow { font-family: "JetBrains Mono", monospace; font-size: 17px; letter-spacing: 0.18em; text-transform: uppercase; margin: 0 0 32px; }
+  .body { font-family: "Open Sans", sans-serif; font-size: 28px; line-height: 1.5; font-weight: 400; }
+  .rainbow-bar { display: flex; width: 220px; height: 6px; margin-bottom: 36px; border-radius: 1px; overflow: hidden; }
+  .rainbow-bar span { flex: 1; }
+  .rainbow-bar span:nth-child(1) { background: var(--red); }
+  .rainbow-bar span:nth-child(2) { background: var(--orange); }
+  .rainbow-bar span:nth-child(3) { background: var(--yellow); }
+  .rainbow-bar span:nth-child(4) { background: var(--green); }
+  .rainbow-bar span:nth-child(5) { background: var(--sky); }
+  .rainbow-bar span:nth-child(6) { background: var(--blue); }
+  .rainbow-bar span:nth-child(7) { background: var(--purple); }
+
+  /* PANEL 1 — COVER */
+  .p1 { background: linear-gradient(160deg, #0c1218 0%, #1d2a3a 100%); color: var(--cream); padding: 56px 64px; display: flex; flex-direction: column; justify-content: space-between; }
+  .p1 .display { font-size: 124px; }
+  .p1 .display em { color: var(--sky); }
+
+  /* PANEL 2 — WHAT IT IS — phone hero */
+  .p2 { background: var(--cream); padding: 56px 64px; display: flex; flex-direction: column; }
+  .p2 .display { font-size: 80px; margin-bottom: 24px; max-width: 880px; }
+  .p2 .display em { color: var(--purple); }
+  .p2 .body { color: var(--ink-muted); max-width: 880px; margin-bottom: 36px; }
+  .p2 .phone-row {
+    display: flex; gap: 18px; justify-content: center; align-items: flex-end;
+    margin-top: 24px;
+  }
+  .p2 .phone-row img {
+    width: 240px; height: auto; aspect-ratio: 9/19;
+    object-fit: cover; border-radius: 28px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+    border: 1px solid rgba(0,0,0,0.08);
+  }
+  .p2 .phone-row img:nth-child(2) { transform: translateY(-30px); }
+
+  /* PANEL 3 — FEATURE 01 (HOME / DASHBOARD) */
+  .feat { padding: 56px 64px; display: flex; flex-direction: column; justify-content: space-between; }
+  .feat .display { font-size: 72px; margin-bottom: 20px; }
+  .feat .body { max-width: 580px; font-size: 26px; }
+  .feat .phone {
+    width: 380px; aspect-ratio: 9/19;
+    object-fit: cover; border-radius: 32px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+    border: 2px solid rgba(0,0,0,0.08);
+    position: absolute; right: 60px; top: 50%;
+    transform: translateY(-50%);
+  }
+  .feat .copy-block { max-width: 540px; }
+
+  /* P3 — HOME */
+  .p3 { background: var(--bone); color: var(--ink); }
+  .p3 .display em { color: var(--red); }
+
+  /* P4 — COURSES */
+  .p4 { background: linear-gradient(160deg, #f8e8c9 0%, #f3d8a5 100%); color: var(--ink); }
+  .p4 .display em { color: var(--orange); }
+
+  /* P5 — JOURNAL */
+  .p5 { background: linear-gradient(160deg, #e8e8f5 0%, #d8d8ee 100%); color: var(--ink); }
+  .p5 .display em { color: var(--purple); }
+
+  /* P6 — CALENDAR / PRACTICE */
+  .p6 { background: linear-gradient(160deg, #e0eee2 0%, #c8e4ce 100%); color: var(--ink); }
+  .p6 .display em { color: var(--green); }
+
+  /* P7 — NAVID INTEGRATION */
+  .p7 { background: linear-gradient(160deg, #1a1024 0%, #2c1438 100%); color: var(--cream); }
+  .p7 .display em { color: var(--purple); }
+  .p7 .body { color: rgba(250,247,242,0.85); }
+
+  /* PANEL 8 — TECH STACK (BLOCK GRID) */
+  .p8 { background: var(--ink); color: var(--cream); padding: 56px 64px; display: flex; flex-direction: column; justify-content: space-between; }
+  .p8 .display { font-size: 76px; margin-bottom: 24px; }
+  .p8 .display em { color: var(--yellow); }
+  .p8 .tech-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  }
+  .p8 .tech-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.12);
+    padding: 24px;
+    border-radius: 6px;
+  }
+  .p8 .tech-card .label {
+    font-family: "JetBrains Mono", monospace; font-size: 12px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: rgba(250,247,242,0.55); margin-bottom: 10px;
+  }
+  .p8 .tech-card .name {
+    font-family: "Playfair Display", serif; font-style: italic;
+    font-size: 30px; line-height: 1.1; margin-bottom: 6px;
+  }
+  .p8 .tech-card .desc {
+    font-family: "Open Sans", sans-serif; font-size: 16px;
+    color: rgba(250,247,242,0.7); line-height: 1.5;
+  }
+
+  /* PANEL 9 — CTA */
+  .p9 { background: var(--ink); color: var(--cream); padding: 56px 64px; display: flex; flex-direction: column; justify-content: space-between; }
+  .p9 .display { font-size: 116px; }
+  .p9 .display em { color: var(--sky); }
+  .p9 .cta-pill { display: inline-block; padding: 22px 36px; border: 2px solid var(--cream); border-radius: 999px; font-family: "JetBrains Mono", monospace; font-size: 22px; letter-spacing: 0.12em; text-transform: uppercase; margin-top: 28px; }
+  .p9 .meta { border-top: 1px solid rgba(255,255,255,0.2); padding-top: 24px; display: flex; justify-content: space-between; align-items: baseline; font-family: "JetBrains Mono", monospace; font-size: 16px; letter-spacing: 0.12em; opacity: 0.75; }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- COVER -->
+  <section class="panel p1">
+    <div class="chrome-top" style="color:rgba(250,247,242,0.7);"><span>The Foundation app</span><span>01 / 09</span></div>
+    <div>
+      <div class="rainbow-bar"></div>
+      <p class="eyebrow" style="color:var(--cream); opacity:0.7;">Companion technology</p>
+      <h1 class="display">The Foundation<br/><em>app</em>.</h1>
+    </div>
+    <div class="chrome-bot" style="color:rgba(250,247,242,0.7);"><span>Built by Divergence · for members + retreat guests</span><span>lhffoundation.org</span></div>
+  </section>
+
+  <!-- WHAT IT IS -->
+  <section class="panel p2">
+    <div class="chrome-top" style="color:var(--ink-muted);"><span>What it is</span><span>02 / 09</span></div>
+    <div>
+      <p class="eyebrow" style="color:var(--ink-muted);">A pocket-sized retreat</p>
+      <h2 class="display">The work<br/>doesn't end<br/>when the <em>retreat</em><br/>does.</h2>
+      <p class="body">The app holds the seven pillars in your pocket. Courses you can return to. A journal. A practice tracker. The community. NAVID, available between sessions.</p>
+    </div>
+    <div class="phone-row">
+      <img src="../../assets/app-home.png" alt="App home screen">
+      <img src="../../assets/app-course.png" alt="App courses screen">
+      <img src="../../assets/app-journal.png" alt="App journal screen">
+    </div>
+  </section>
+
+  <!-- HOME -->
+  <section class="panel feat p3">
+    <div class="chrome-top" style="color:var(--ink-muted);"><span>Feature 01</span><span>03 / 09</span></div>
+    <div class="copy-block">
+      <p class="eyebrow" style="color:var(--ink-muted);">The home screen</p>
+      <h2 class="display">A daily <em>dashboard</em>.</h2>
+      <p class="body">What's next, what's been left undone, what's been done well. A clean look at the day's work without the noise of a normal app.</p>
+    </div>
+    <img class="phone" src="../../assets/app-home.png" alt="App home screen">
+    <div class="chrome-bot" style="color:var(--ink-muted);"><span>Quiet, focused, daily</span><span>lhffoundation.org / app</span></div>
+  </section>
+
+  <!-- COURSES -->
+  <section class="panel feat p4">
+    <div class="chrome-top" style="color:var(--ink-muted);"><span>Feature 02</span><span>04 / 09</span></div>
+    <div class="copy-block">
+      <p class="eyebrow" style="color:var(--ink-muted);">The courses</p>
+      <h2 class="display">The pillars,<br/>on <em>repeat</em>.</h2>
+      <p class="body">Audio lessons, written practices, short videos. Each pillar broken into weeks. Built so you can do it on a flight, on a walk, at the kitchen table.</p>
+    </div>
+    <img class="phone" src="../../assets/app-course.png" alt="App courses screen">
+    <div class="chrome-bot" style="color:var(--ink-muted);"><span>Foundation curriculum</span><span>lhffoundation.org / app</span></div>
+  </section>
+
+  <!-- JOURNAL -->
+  <section class="panel feat p5">
+    <div class="chrome-top" style="color:var(--ink-muted);"><span>Feature 03</span><span>05 / 09</span></div>
+    <div class="copy-block">
+      <p class="eyebrow" style="color:var(--ink-muted);">The journal</p>
+      <h2 class="display">Write what's <em>true</em>.</h2>
+      <p class="body">A private journal nobody sees. Daily prompts, weekly reflections. Searchable later. The kind of record you wish you'd kept ten years ago.</p>
+    </div>
+    <img class="phone" src="../../assets/app-journal.png" alt="App journal screen">
+    <div class="chrome-bot" style="color:var(--ink-muted);"><span>Encrypted on device</span><span>lhffoundation.org / app</span></div>
+  </section>
+
+  <!-- CALENDAR / PRACTICE -->
+  <section class="panel feat p6">
+    <div class="chrome-top" style="color:var(--ink-muted);"><span>Feature 04</span><span>06 / 09</span></div>
+    <div class="copy-block">
+      <p class="eyebrow" style="color:var(--ink-muted);">The practice tracker</p>
+      <h2 class="display">A streak that<br/>actually <em>matters</em>.</h2>
+      <p class="body">Meditation, breathwork, movement, journaling. Quietly tracked. Not gamified. The point isn't the streak. The point is what the streak builds in you.</p>
+    </div>
+    <img class="phone" src="../../assets/app-practice.png" alt="App practice screen">
+    <div class="chrome-bot" style="color:var(--ink-muted);"><span>Daily, quietly</span><span>lhffoundation.org / app</span></div>
+  </section>
+
+  <!-- NAVID INTEGRATION -->
+  <section class="panel feat p7">
+    <div class="chrome-top" style="color:rgba(250,247,242,0.7);"><span>Feature 05</span><span>07 / 09</span></div>
+    <div class="copy-block">
+      <p class="eyebrow" style="color:rgba(250,247,242,0.7);">NAVID, inside</p>
+      <h2 class="display"><em>NAVID</em> lives here.</h2>
+      <p class="body">Tap the corner. Ask anything. NAVID is trained on the Foundation's voice, the curriculum, the seven pillars. Available between sessions, not after.</p>
+    </div>
+    <img class="phone" src="../../assets/app-welcome.png" alt="App NAVID screen">
+    <div class="chrome-bot" style="color:rgba(250,247,242,0.7);"><span>AI companion · always present</span><span>lhffoundation.org / navid</span></div>
+  </section>
+
+  <!-- TECH STACK -->
+  <section class="panel p8">
+    <div class="chrome-top" style="color:rgba(250,247,242,0.7);"><span>The technology</span><span>08 / 09</span></div>
+    <div>
+      <p class="eyebrow" style="color:rgba(250,247,242,0.7);">Built end-to-end by Divergence</p>
+      <h2 class="display">Built for <em>care</em>,<br/>not engagement.</h2>
+      <div class="tech-grid">
+        <div class="tech-card">
+          <div class="label">01 · Native iOS + Android</div>
+          <div class="name">React Native + Expo</div>
+          <div class="desc">One codebase, two platforms. Fast iteration on Cheney's feedback.</div>
+        </div>
+        <div class="tech-card">
+          <div class="label">02 · Encrypted journal</div>
+          <div class="name">On-device storage</div>
+          <div class="desc">Journal entries never leave the phone. Member privacy first.</div>
+        </div>
+        <div class="tech-card">
+          <div class="label">03 · AI companion</div>
+          <div class="name">NAVID, our own stack</div>
+          <div class="desc">Trained on the Foundation's voice. Members + retreat only.</div>
+        </div>
+        <div class="tech-card">
+          <div class="label">04 · Foundation cloud</div>
+          <div class="name">Member ecosystem</div>
+          <div class="desc">Courses, practice, community. Single account across every project.</div>
+        </div>
+      </div>
+    </div>
+    <div class="chrome-bot" style="color:rgba(250,247,242,0.7);"><span>Engineered in Cape Town</span><span>divergence agency</span></div>
+  </section>
+
+  <!-- CTA -->
+  <section class="panel p9">
+    <div class="chrome-top" style="color:rgba(250,247,242,0.7);"><span>Get it</span><span>09 / 09</span></div>
+    <div>
+      <div class="rainbow-bar"></div>
+      <p class="eyebrow" style="color:var(--cream); opacity:0.7;">Available to members + retreat guests</p>
+      <h2 class="display">Carry the work<br/>with <em>you</em>.</h2>
+      <span class="cta-pill">lhffoundation.org / app</span>
+    </div>
+    <div class="meta"><span>@lovehappinessfreedom</span><span>The Foundation app · iOS + Android</span></div>
+  </section>
+
+</div>
+<script>
+  if (new URLSearchParams(location.search).get("render") === "1") {
+    document.body.classList.add("render");
+  }
+</script>
+</body>
+</html>

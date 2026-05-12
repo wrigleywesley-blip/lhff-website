@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>LHFF — Studio One: How we find you · Carousel 10</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Open+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --cream: #faf7f2;
+    --bone: #f3ede3;
+    --ink: #1a1a1a;
+    --ink-muted: #4a4a4a;
+    --rule: rgba(26,26,26,0.14);
+    --red: #e84a3f;
+    --orange: #f08a3a;
+    --yellow: #f5c63a;
+    --green: #5fa85a;
+    --sky: #5ab8d9;
+    --blue: #3a72b8;
+    --purple: #8654b8;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #2a2a2a; font-family: "Open Sans", sans-serif; -webkit-font-smoothing: antialiased; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { padding: 48px; }
+  .deck { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; max-width: 3600px; margin: 0 auto; }
+  .panel { width: 1080px; height: 1350px; position: relative; overflow: hidden; background: var(--cream); color: var(--ink); transform-origin: top left; transform: scale(0.45); margin-bottom: -742px; margin-right: -594px; }
+  body.render { padding: 0; background: #fff; }
+  body.render .deck { display: block; max-width: none; gap: 0; }
+  body.render .panel { transform: none; margin: 0; display: block; }
+
+  .bg { position: absolute; inset: 0; background-size: cover; background-position: center; z-index: 0; }
+  .scrim { position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 35%, rgba(0,0,0,0.82) 100%); }
+  .content { position: relative; z-index: 2; padding: 56px 64px; display: flex; flex-direction: column; justify-content: space-between; height: 100%; }
+
+  .chrome-top, .chrome-bot { display: flex; justify-content: space-between; font-family: "JetBrains Mono", monospace; font-size: 16px; letter-spacing: 0.16em; text-transform: uppercase; }
+  .display { font-family: "Playfair Display", Georgia, serif; font-weight: 400; font-style: italic; line-height: 1.02; letter-spacing: -0.012em; margin: 0; }
+  .eyebrow { font-family: "JetBrains Mono", monospace; font-size: 17px; letter-spacing: 0.18em; text-transform: uppercase; margin: 0 0 32px; }
+  .body { font-family: "Open Sans", sans-serif; font-size: 28px; line-height: 1.5; font-weight: 400; }
+  .rainbow-bar { display: flex; width: 220px; height: 6px; margin-bottom: 36px; border-radius: 1px; overflow: hidden; }
+  .rainbow-bar span { flex: 1; }
+  .rainbow-bar span:nth-child(1) { background: var(--red); }
+  .rainbow-bar span:nth-child(2) { background: var(--orange); }
+  .rainbow-bar span:nth-child(3) { background: var(--yellow); }
+  .rainbow-bar span:nth-child(4) { background: var(--green); }
+  .rainbow-bar span:nth-child(5) { background: var(--sky); }
+  .rainbow-bar span:nth-child(6) { background: var(--blue); }
+  .rainbow-bar span:nth-child(7) { background: var(--purple); }
+
+  /* P1 — COVER (image bg) */
+  .p1 .bg { background-image: url("../../assets/studio/studio-04.jpg"); }
+  .p1 .display { font-size: 124px; color: var(--cream); }
+  .p1 .display em { color: var(--yellow); }
+  .p1 .chrome-top, .p1 .chrome-bot, .p1 .eyebrow { color: rgba(250,247,242,0.85); }
+
+  /* P2 — THE STORY */
+  .p2 { background: var(--cream); color: var(--ink); padding: 56px 64px; display: flex; flex-direction: column; justify-content: space-between; }
+  .p2 .display { font-size: 72px; margin-bottom: 22px; max-width: 920px; }
+  .p2 .display em { color: var(--red); }
+  .p2 .body { color: var(--ink-muted); max-width: 880px; }
+
+  /* P3 — STEP 01 — WALK IN (image with overlay) */
+  .step { color: var(--cream); }
+  .step .chrome-top, .step .chrome-bot, .step .eyebrow { color: rgba(250,247,242,0.85); }
+  .step .display { font-size: 88px; margin-bottom: 20px; }
+  .step .body { color: rgba(250,247,242,0.92); max-width: 820px; }
+  .step .step-num {
+    font-family: "Playfair Display", serif; font-style: italic;
+    font-size: 420px; line-height: 0.82; color: rgba(255,255,255,0.10);
+    position: absolute; right: 24px; bottom: -84px;
+    pointer-events: none; z-index: 1;
+  }
+  .p3 .bg { background-image: url("../../assets/studio/studio-07.jpg"); }
+  .p3 .display em { color: var(--orange); }
+
+  .p4 .bg { background-image: url("../../assets/studio/studio-10.jpg"); }
+  .p4 .display em { color: var(--yellow); }
+
+  .p5 .bg { background-image: url("../../assets/studio/studio-13.jpg"); }
+  .p5 .display em { color: var(--green); }
+
+  .p6 .bg { background-image: url("../../assets/studio/studio-02.jpg"); }
+  .p6 .display em { color: var(--sky); }
+
+  /* P7 — WHAT YOU PAY (BIG TEXT) */
+  .p7 { background: var(--ink); color: var(--cream); padding: 56px 64px; display: flex; flex-direction: column; justify-content: space-between; }
+  .p7 .display { font-size: 164px; }
+  .p7 .display em { color: var(--yellow); }
+  .p7 .body { color: rgba(250,247,242,0.85); max-width: 820px; margin-top: 18px; }
+  .p7 .chrome-top, .p7 .chrome-bot, .p7 .eyebrow { color: rgba(250,247,242,0.7); }
+
+  /* P8 — CTA */
+  .p8 { background: var(--ink); color: var(--cream); padding: 56px 64px; display: flex; flex-direction: column; justify-content: space-between; }
+  .p8 .display { font-size: 116px; }
+  .p8 .display em { color: var(--orange); }
+  .p8 .cta-pill { display: inline-block; padding: 22px 36px; border: 2px solid var(--cream); border-radius: 999px; font-family: "JetBrains Mono", monospace; font-size: 22px; letter-spacing: 0.12em; text-transform: uppercase; margin-top: 28px; }
+  .p8 .meta { border-top: 1px solid rgba(255,255,255,0.2); padding-top: 24px; display: flex; justify-content: space-between; align-items: baseline; font-family: "JetBrains Mono", monospace; font-size: 16px; letter-spacing: 0.12em; opacity: 0.75; }
+  .p8 .chrome-top, .p8 .chrome-bot, .p8 .eyebrow { color: rgba(250,247,242,0.7); }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- COVER -->
+  <section class="panel p1">
+    <div class="bg"></div>
+    <div class="scrim"></div>
+    <div class="content">
+      <div class="chrome-top"><span>Studio One · The home base</span><span>01 / 08</span></div>
+      <div>
+        <div class="rainbow-bar"></div>
+        <p class="eyebrow">How we find young creatives</p>
+        <h1 class="display">Studio <em>One</em>.<br/>Come in.</h1>
+      </div>
+      <div class="chrome-bot"><span>Cape Town · Open all year</span><span>lhffoundation.org / studio</span></div>
+    </div>
+  </section>
+
+  <!-- THE STORY -->
+  <section class="panel p2">
+    <div class="chrome-top" style="color:var(--ink-muted);"><span>The premise</span><span>02 / 08</span></div>
+    <div>
+      <p class="eyebrow" style="color:var(--ink-muted);">No gatekeeping. No fees. No agencies.</p>
+      <h2 class="display">We're not looking<br/>for the <em>polished</em>.<br/>We're looking<br/>for the <em>real</em>.</h2>
+      <p class="body">Studio One is built for young creatives the industry hasn't found yet. Photographers, models, designers, filmmakers, writers. If you have the eye, the voice, the instinct, you don't need a degree, a manager, or a folio. You just need to come in.</p>
+    </div>
+    <div class="chrome-bot" style="color:var(--ink-muted);"><span>Founded by Cheney</span><span>Cape Town</span></div>
+  </section>
+
+  <!-- STEP 01 — WALK IN -->
+  <section class="panel step p3">
+    <div class="bg"></div>
+    <div class="scrim"></div>
+    <div class="content">
+      <div class="chrome-top"><span>How to start</span><span>03 / 08</span></div>
+      <div>
+        <p class="eyebrow">Step 01</p>
+        <h2 class="display">Walk in.</h2>
+        <p class="body">Or send work. Or get pointed to us by someone who's been. We don't have a casting call. The door is the application. Show us what you make. Tell us why this matters.</p>
+      </div>
+      <span class="step-num">01</span>
+      <div class="chrome-bot"><span>Open all year</span><span>lhffoundation.org / studio</span></div>
+    </div>
+  </section>
+
+  <!-- STEP 02 — THE ASSESSMENT -->
+  <section class="panel step p4">
+    <div class="bg"></div>
+    <div class="scrim"></div>
+    <div class="content">
+      <div class="chrome-top"><span>What happens next</span><span>04 / 08</span></div>
+      <div>
+        <p class="eyebrow">Step 02</p>
+        <h2 class="display">A real <em>conversation</em>.</h2>
+        <p class="body">Thirty minutes at the studio. Not a panel. Not a test. Just an honest exchange. We look at the work, we ask why, we see how you talk about it. Most of the call is about who you are.</p>
+      </div>
+      <span class="step-num">02</span>
+      <div class="chrome-bot"><span>30-minute interview</span><span>The studio · Cape Town</span></div>
+    </div>
+  </section>
+
+  <!-- STEP 03 — THE SPACE IS YOURS -->
+  <section class="panel step p5">
+    <div class="bg"></div>
+    <div class="scrim"></div>
+    <div class="content">
+      <div class="chrome-top"><span>What you get</span><span>05 / 08</span></div>
+      <div>
+        <p class="eyebrow">Step 03</p>
+        <h2 class="display">The space<br/>is <em>yours</em>.</h2>
+        <p class="body">Studio, lighting, sets, edit bay, equipment. Free. No usage fees, no rentals, no quiet asks for favours. The space exists so you can make. Book it, use it, make work, hand it back to the next person.</p>
+      </div>
+      <span class="step-num">03</span>
+      <div class="chrome-bot"><span>Free use · all equipment</span><span>Cape Town</span></div>
+    </div>
+  </section>
+
+  <!-- STEP 04 — HOME BASE -->
+  <section class="panel step p6">
+    <div class="bg"></div>
+    <div class="scrim"></div>
+    <div class="content">
+      <div class="chrome-top"><span>What it becomes</span><span>06 / 08</span></div>
+      <div>
+        <p class="eyebrow">Step 04</p>
+        <h2 class="display">A <em>home base</em><br/>to come back to.</h2>
+        <p class="body">Senior practitioners reviewing your work. Real client briefs from Foundation partners. A circle of other creatives building alongside you. The studio is the place. The work is what comes from being in it.</p>
+      </div>
+      <span class="step-num">04</span>
+      <div class="chrome-bot"><span>Mentorship · community · paid work</span><span>lhffoundation.org / studio</span></div>
+    </div>
+  </section>
+
+  <!-- WHAT YOU PAY -->
+  <section class="panel p7">
+    <div class="chrome-top"><span>The cost</span><span>07 / 08</span></div>
+    <div>
+      <div class="rainbow-bar"></div>
+      <p class="eyebrow">What it costs to come in</p>
+      <h2 class="display">Nothing.<br/><em>Zero</em>.</h2>
+      <p class="body">No tuition. No rental fees. No equipment hire. The Foundation funds the studio because young creatives shouldn't have to pay to learn how to make work. You bring your time. We bring the rest.</p>
+    </div>
+    <div class="chrome-bot"><span>Funded by the Foundation</span><span>lhffoundation.org</span></div>
+  </section>
+
+  <!-- CTA -->
+  <section class="panel p8">
+    <div class="chrome-top"><span>How to start</span><span>08 / 08</span></div>
+    <div>
+      <div class="rainbow-bar"></div>
+      <p class="eyebrow">Send the work. Have the conversation. Come in.</p>
+      <h2 class="display">Walk<br/>through<br/>the <em>door</em>.</h2>
+      <span class="cta-pill">lhffoundation.org / studio</span>
+    </div>
+    <div class="meta"><span>@lovehappinessfreedom</span><span>Studio One · Cape Town</span></div>
+  </section>
+
+</div>
+<script>
+  if (new URLSearchParams(location.search).get("render") === "1") {
+    document.body.classList.add("render");
+  }
+</script>
+</body>
+</html>

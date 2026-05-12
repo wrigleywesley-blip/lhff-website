@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>LHFF — NAVID in depth · Carousel 09</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Open+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --cream: #faf7f2;
+    --bone: #f3ede3;
+    --ink: #1a1a1a;
+    --ink-muted: #4a4a4a;
+    --rule: rgba(26,26,26,0.14);
+    --red: #e84a3f;
+    --orange: #f08a3a;
+    --yellow: #f5c63a;
+    --green: #5fa85a;
+    --sky: #5ab8d9;
+    --blue: #3a72b8;
+    --purple: #8654b8;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #2a2a2a; font-family: "Open Sans", sans-serif; -webkit-font-smoothing: antialiased; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { padding: 48px; }
+  .deck { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; max-width: 3600px; margin: 0 auto; }
+  .panel { width: 1080px; height: 1350px; position: relative; overflow: hidden; background: linear-gradient(160deg, #0c0e16 0%, #1a1228 100%); color: var(--cream); transform-origin: top left; transform: scale(0.45); margin-bottom: -742px; margin-right: -594px; padding: 56px 64px; display: flex; flex-direction: column; justify-content: space-between; }
+  body.render { padding: 0; background: #fff; }
+  body.render .deck { display: block; max-width: none; gap: 0; }
+  body.render .panel { transform: none; margin: 0; display: block; }
+
+  .chrome-top, .chrome-bot { display: flex; justify-content: space-between; font-family: "JetBrains Mono", monospace; font-size: 16px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(250,247,242,0.7); }
+  .display { font-family: "Playfair Display", Georgia, serif; font-weight: 400; font-style: italic; line-height: 1.02; letter-spacing: -0.012em; margin: 0; }
+  .eyebrow { font-family: "JetBrains Mono", monospace; font-size: 17px; letter-spacing: 0.18em; text-transform: uppercase; margin: 0 0 32px; color: rgba(250,247,242,0.7); }
+  .body { font-family: "Open Sans", sans-serif; font-size: 28px; line-height: 1.5; font-weight: 400; color: rgba(250,247,242,0.92); max-width: 820px; }
+  .rainbow-bar { display: flex; width: 220px; height: 6px; margin-bottom: 36px; border-radius: 1px; overflow: hidden; }
+  .rainbow-bar span { flex: 1; }
+  .rainbow-bar span:nth-child(1) { background: var(--red); }
+  .rainbow-bar span:nth-child(2) { background: var(--orange); }
+  .rainbow-bar span:nth-child(3) { background: var(--yellow); }
+  .rainbow-bar span:nth-child(4) { background: var(--green); }
+  .rainbow-bar span:nth-child(5) { background: var(--sky); }
+  .rainbow-bar span:nth-child(6) { background: var(--blue); }
+  .rainbow-bar span:nth-child(7) { background: var(--purple); }
+
+  /* COVER */
+  .p1 .display { font-size: 168px; }
+  .p1 .display em { color: var(--purple); }
+
+  /* P2 — WHAT HE IS */
+  .p2 .display { font-size: 72px; max-width: 920px; margin-bottom: 24px; }
+  .p2 .display em { color: var(--sky); }
+
+  /* P3 — CHAT MOCK (HOW HE TALKS) */
+  .p3 { background: linear-gradient(160deg, #14101c 0%, #221638 100%); }
+  .p3 .display { font-size: 64px; margin-bottom: 32px; }
+  .p3 .display em { color: var(--purple); }
+  .p3 .chat {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 24px;
+    max-width: 720px;
+  }
+  .p3 .chat-head {
+    display: flex; align-items: center; gap: 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding-bottom: 16px; margin-bottom: 18px;
+  }
+  .p3 .avatar {
+    width: 48px; height: 48px; border-radius: 50%;
+    background: var(--purple); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-family: "Playfair Display", serif; font-style: italic; font-size: 28px;
+  }
+  .p3 .chat-name { font-weight: 600; font-size: 22px; }
+  .p3 .chat-status { font-family: "JetBrains Mono", monospace; font-size: 13px; letter-spacing: 0.12em; color: rgba(250,247,242,0.5); text-transform: uppercase; }
+  .p3 .msg { display: flex; margin-bottom: 14px; }
+  .p3 .msg-bub {
+    background: rgba(255,255,255,0.07);
+    padding: 14px 18px;
+    border-radius: 14px;
+    font-size: 20px;
+    line-height: 1.5;
+    max-width: 90%;
+  }
+  .p3 .msg-user { justify-content: flex-end; }
+  .p3 .msg-user .msg-bub { background: var(--purple); color: #fff; }
+
+  /* P4 — WHAT HE DOES (LIST) */
+  .p4 { background: linear-gradient(160deg, #0a0c14 0%, #1a1a2e 100%); }
+  .p4 .display { font-size: 64px; margin-bottom: 28px; }
+  .p4 .display em { color: var(--yellow); }
+  .p4 .does-list {
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .p4 .does-item {
+    display: flex; gap: 18px;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .p4 .does-item:last-child { border-bottom: 0; }
+  .p4 .does-icon {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    color: rgba(250,247,242,0.7);
+    display: flex; align-items: center; justify-content: center;
+    font-family: "JetBrains Mono", monospace; font-size: 14px;
+    flex-shrink: 0;
+  }
+  .p4 .does-text {
+    font-family: "Open Sans", sans-serif; font-size: 22px;
+    color: rgba(250,247,242,0.92); line-height: 1.5;
+  }
+  .p4 .does-text strong {
+    font-family: "Playfair Display", serif; font-style: italic;
+    font-weight: 400; font-size: 26px; color: #fff;
+    display: block; margin-bottom: 4px;
+  }
+
+  /* P5 — WHO HE'S FOR (GATE LOGIC) */
+  .p5 .display { font-size: 68px; margin-bottom: 28px; }
+  .p5 .display em { color: var(--orange); }
+  .p5 .audience {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  }
+  .p5 .aud-card {
+    padding: 22px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .p5 .aud-card.is-yes { background: rgba(95,168,90,0.12); border-color: rgba(95,168,90,0.35); }
+  .p5 .aud-card.is-no  { background: rgba(232,74,63,0.08); border-color: rgba(232,74,63,0.25); }
+  .p5 .aud-card .label {
+    font-family: "JetBrains Mono", monospace; font-size: 12px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .p5 .aud-card.is-yes .label { color: var(--green); }
+  .p5 .aud-card.is-no .label { color: var(--red); }
+  .p5 .aud-card .name {
+    font-family: "Playfair Display", serif; font-style: italic;
+    font-size: 26px; margin-bottom: 6px;
+  }
+  .p5 .aud-card .desc {
+    font-family: "Open Sans", sans-serif; font-size: 17px;
+    color: rgba(250,247,242,0.75); line-height: 1.5;
+  }
+
+  /* P6 — HOW HE WAS BUILT */
+  .p6 { background: linear-gradient(160deg, #08101a 0%, #142640 100%); }
+  .p6 .display { font-size: 68px; max-width: 880px; margin-bottom: 22px; }
+  .p6 .display em { color: var(--sky); }
+  .p6 .body { font-size: 24px; }
+  .p6 .tech-row {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+    margin-top: 32px;
+  }
+  .p6 .tech {
+    padding: 16px 18px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 6px;
+  }
+  .p6 .tech .num { font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: 0.18em; color: var(--sky); margin-bottom: 6px; }
+  .p6 .tech .name { font-family: "Playfair Display", serif; font-style: italic; font-size: 21px; line-height: 1.15; }
+
+  /* P7 — WHAT HE WON'T DO */
+  .p7 .display { font-size: 80px; max-width: 920px; margin-bottom: 24px; }
+  .p7 .display em { color: var(--red); }
+
+  /* P8 — END / CTA */
+  .p8 .display { font-size: 116px; }
+  .p8 .display em { color: var(--purple); }
+  .p8 .cta-pill {
+    display: inline-block; padding: 22px 36px;
+    border: 2px solid var(--cream); border-radius: 999px;
+    font-family: "JetBrains Mono", monospace; font-size: 22px;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    margin-top: 28px;
+  }
+  .p8 .meta {
+    border-top: 1px solid rgba(255,255,255,0.2);
+    padding-top: 24px;
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-family: "JetBrains Mono", monospace; font-size: 16px;
+    letter-spacing: 0.12em; opacity: 0.75;
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- COVER -->
+  <section class="panel p1">
+    <div class="chrome-top"><span>The companion</span><span>01 / 08</span></div>
+    <div>
+      <div class="rainbow-bar"></div>
+      <p class="eyebrow">An AI built for the Foundation</p>
+      <h1 class="display">Meet <em>NAVID</em>.</h1>
+    </div>
+    <div class="chrome-bot"><span>Members + retreat guests only</span><span>lhffoundation.org / navid</span></div>
+  </section>
+
+  <!-- WHAT HE IS -->
+  <section class="panel p2">
+    <div class="chrome-top"><span>What he is</span><span>02 / 08</span></div>
+    <div>
+      <p class="eyebrow">Not a chatbot</p>
+      <h2 class="display">A guide that<br/><em>remembers</em> you<br/>between sessions.</h2>
+      <p class="body">NAVID is an AI companion built for retreat guests and Foundation members. Trained on the seven pillars, the tone of the work, and the rhythm of a retreat. He holds the space between sessions.</p>
+    </div>
+    <div class="chrome-bot"><span>Built by Divergence · for LHFF</span><span>lhffoundation.org</span></div>
+  </section>
+
+  <!-- HOW HE TALKS -->
+  <section class="panel p3">
+    <div class="chrome-top"><span>How he talks</span><span>03 / 08</span></div>
+    <div>
+      <p class="eyebrow">A conversation</p>
+      <h2 class="display">Warm. <em>Grounded</em>.<br/>Two sentences.<br/>A soft question.</h2>
+      <div class="chat">
+        <div class="chat-head">
+          <div class="avatar">N</div>
+          <div>
+            <div class="chat-name">NAVID</div>
+            <div class="chat-status">Online · Replies instantly</div>
+          </div>
+        </div>
+        <div class="msg msg-user">
+          <div class="msg-bub">I'm anxious about the week ahead.</div>
+        </div>
+        <div class="msg">
+          <div class="msg-bub">Anxiety often shows up loudest when something matters. What part of it feels heaviest right now?</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT HE DOES -->
+  <section class="panel p4">
+    <div class="chrome-top"><span>What he does</span><span>04 / 08</span></div>
+    <div>
+      <p class="eyebrow">His job</p>
+      <h2 class="display"><em>Five</em> things, well.</h2>
+      <div class="does-list">
+        <div class="does-item">
+          <span class="does-icon">01</span>
+          <div class="does-text"><strong>Holds the curriculum.</strong>Knows the seven pillars cold. Brings them back when they're relevant.</div>
+        </div>
+        <div class="does-item">
+          <span class="does-icon">02</span>
+          <div class="does-text"><strong>Recognises patterns.</strong>Anxiety, grief, relationships, work, decisions. Each pattern gets a calibrated response.</div>
+        </div>
+        <div class="does-item">
+          <span class="does-icon">03</span>
+          <div class="does-text"><strong>Reads where you are.</strong>Curious. Considering. Booked. Alumni. Each visitor met differently.</div>
+        </div>
+        <div class="does-item">
+          <span class="does-icon">04</span>
+          <div class="does-text"><strong>Remembers between visits.</strong>What you said last time is still here next time. No starting over.</div>
+        </div>
+        <div class="does-item">
+          <span class="does-icon">05</span>
+          <div class="does-text"><strong>Holds the voice.</strong>Two to four sentences. Ends with a soft question. Sounds like the Foundation.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO HE'S FOR -->
+  <section class="panel p5">
+    <div class="chrome-top"><span>Who he's for</span><span>05 / 08</span></div>
+    <div>
+      <p class="eyebrow">The gate</p>
+      <h2 class="display">Not for <em>everyone</em>.<br/>By design.</h2>
+      <div class="audience">
+        <div class="aud-card is-yes">
+          <div class="label">Yes ✓</div>
+          <div class="name">Retreat guests</div>
+          <div class="desc">Anyone booked for a retreat. From before the week through integration.</div>
+        </div>
+        <div class="aud-card is-yes">
+          <div class="label">Yes ✓</div>
+          <div class="name">Foundation members</div>
+          <div class="desc">Active Foundation members and past retreat alumni.</div>
+        </div>
+        <div class="aud-card is-no">
+          <div class="label">Not yet</div>
+          <div class="name">Curious visitors</div>
+          <div class="desc">Pointed to a retreat application or the contact form instead.</div>
+        </div>
+        <div class="aud-card is-no">
+          <div class="label">Not yet</div>
+          <div class="name">General public</div>
+          <div class="desc">NAVID is a held space, not a public chatbot. We're keeping it that way.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW HE WAS BUILT -->
+  <section class="panel p6">
+    <div class="chrome-top"><span>The technology</span><span>06 / 08</span></div>
+    <div>
+      <p class="eyebrow">Built by Divergence</p>
+      <h2 class="display">Care-shaped <em>AI</em>.</h2>
+      <p class="body">NAVID isn't off-the-shelf. He was trained on the Foundation's own curriculum, transcripts, and tone. The voice of the work, the rhythm of a retreat, the questions Cheney would actually ask.</p>
+      <div class="tech-row">
+        <div class="tech"><div class="num">01</div><div class="name">Foundation curriculum corpus</div></div>
+        <div class="tech"><div class="num">02</div><div class="name">Retreat conversation patterns</div></div>
+        <div class="tech"><div class="num">03</div><div class="name">Status-aware response engine</div></div>
+      </div>
+    </div>
+    <div class="chrome-bot"><span>Engineered in Cape Town</span><span>divergence agency</span></div>
+  </section>
+
+  <!-- WHAT HE WON'T DO -->
+  <section class="panel p7">
+    <div class="chrome-top"><span>What he won't do</span><span>07 / 08</span></div>
+    <div>
+      <p class="eyebrow">The boundary</p>
+      <h2 class="display">He won't <em>replace</em><br/>a therapist.<br/>He won't sell<br/>the <em>retreat</em>.</h2>
+      <p class="body">If something is bigger than a chat, NAVID points to the right person. He's a companion, not a clinician. He doesn't push retreats. He shows up when you do, and steps back when you don't.</p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="panel p8">
+    <div class="chrome-top"><span>Meet him</span><span>08 / 08</span></div>
+    <div>
+      <div class="rainbow-bar"></div>
+      <p class="eyebrow">A retreat with a companion</p>
+      <h2 class="display">Apply.<br/>Meet<br/><em>NAVID</em>.</h2>
+      <span class="cta-pill">lhffoundation.org / retreats</span>
+    </div>
+    <div class="meta"><span>@lovehappinessfreedom</span><span>NAVID · An AI companion for the work</span></div>
+  </section>
+
+</div>
+<script>
+  if (new URLSearchParams(location.search).get("render") === "1") {
+    document.body.classList.add("render");
+  }
+</script>
+</body>
+</html>
