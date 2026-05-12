@@ -1055,33 +1055,32 @@
     </header>
 
     <div class="navid-chat__body" id="navidChatBody">
-      <!-- Intake form (shown first time) -->
+      <!-- Intake form — members + retreat guests only -->
       <div class="navid-chat__intake" id="navidIntake">
         <div>
+          <span class="navid-chat__intake-lock">🔒 Members &amp; retreat guests only</span>
           <h4 class="navid-chat__intake-greeting">Hi. I'm <em>Navid</em>.</h4>
-          <p class="navid-chat__intake-sub">Your companion through this journey. Before we start, tell me a little about you so I can hold the conversation properly.</p>
+          <p class="navid-chat__intake-sub">I'm reserved for active retreat guests and Foundation alumni. Enter the access code you received from us to begin.</p>
         </div>
         <form class="navid-chat__intake-form" id="navidIntakeForm" novalidate>
           <div class="navid-chat__intake-field">
             <label for="navidName">Your name</label>
-            <input type="text" id="navidName" name="name" placeholder="What should I call you?" required />
+            <input type="text" id="navidName" name="name" placeholder="Full name" required autocomplete="name" />
           </div>
           <div class="navid-chat__intake-field">
-            <label for="navidRole">What you do</label>
-            <input type="text" id="navidRole" name="role" placeholder="e.g. founder, executive, creator" />
+            <label for="navidEmail">Email address</label>
+            <input type="email" id="navidEmail" name="email" placeholder="The email we sent your code to" required autocomplete="email" />
           </div>
           <div class="navid-chat__intake-field">
-            <label for="navidStatus">Why you're here</label>
-            <select id="navidStatus" name="status">
-              <option value="curious">Just curious about the Foundation</option>
-              <option value="considering">Thinking about a retreat</option>
-              <option value="booked">I'm joining a retreat</option>
-              <option value="alumni">I'm a retreat alumni</option>
-              <option value="other">Something else</option>
-            </select>
+            <label for="navidCode">Access code</label>
+            <input type="text" id="navidCode" name="code" placeholder="6-character code (e.g. LHFF-2026)" required autocomplete="off" autocapitalize="characters" spellcheck="false" />
           </div>
-          <button type="submit" class="navid-chat__intake-submit">Begin</button>
-          <p class="navid-chat__intake-foot">I remember our conversations. You can clear them any time.</p>
+          <p class="navid-chat__intake-error" id="navidIntakeError" hidden>That code doesn't match what we have on file. Check the email we sent you, or apply for a retreat below.</p>
+          <button type="submit" class="navid-chat__intake-submit">Unlock NAVID</button>
+          <div class="navid-chat__intake-help">
+            <a href="get-involved.html#apply">Don't have a code? Apply for a retreat →</a>
+          </div>
+          <p class="navid-chat__intake-foot">Your conversations are private and stay on this device. You can clear them any time.</p>
         </form>
       </div>
 

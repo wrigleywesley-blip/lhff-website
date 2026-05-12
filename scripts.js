@@ -306,20 +306,15 @@
     root.classList.add("is-open");
     root.setAttribute("aria-hidden", "false");
     document.body.classList.add("is-modal-open");
-    // Re-check gate on every open. A previously-stored non-allowed user
-    // should hit the gate again — they don't get grandfathered in.
-    if (user) {
-      const allowed = user.status === "booked" || user.status === "alumni";
-      if (allowed) {
-        showChat();
-      } else {
-        showGate(user);
-      }
+    // Re-check gate on every open. Only verified users (passed code check)
+    // get straight to chat. Anyone else hits intake form.
+    if (user && user.verified === true) {
+      showChat();
     } else {
       showIntake();
     }
     setTimeout(() => {
-      const t = (user && (user.status === "booked" || user.status === "alumni"))
+      const t = (user && user.verified === true)
         ? input
         : intakeForm.querySelector("input[name='name']");
       t?.focus();
@@ -446,29 +441,76 @@
     document.getElementById("navidTyping")?.remove();
   };
 
+  // ─── NAVID access codes — the allowlist ───────────────────
+  // Each code is issued by the Foundation to confirmed retreat guests + alumni.
+  // To add a code: drop it into the array below (uppercase, no spaces).
+  // To revoke: delete it.
+  // Future: move this to a server-side check at /api/navid-verify.
+  const NAVID_CODES = [
+    "LHFF-2026",     // Example: 2026 retreat cohort master code
+    "ALUMNI-CAPE-01", // Example: Cape Town alumni
+    "RETREAT-SPRING-26",
+    "RETREAT-WINTER-26",
+    "FOUNDATION-MEMBER",
+  ];
+  const normalizeCode = (c) => (c || "").toString().trim().toUpperCase().replace(/\s+/g, "");
+
   // ─── Intake submit ────────────────────────────────────────
-  // GATING: NAVID is only available to booked retreat guests + Foundation members (alumni).
-  // Curious / considering / other → shown a gate panel directing them to apply or contact us.
+  // STRICT GATING: NAVID requires name + email + valid access code.
+  // No code → show gate panel with retreat application CTA.
   intakeForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const data = new FormData(intakeForm);
-    const u = {
-      name: (data.get("name") || "").toString().trim(),
-      role: (data.get("role") || "").toString().trim(),
-      status: (data.get("status") || "curious").toString(),
-      createdAt: Date.now(),
-    };
-    if (!u.name) {
+    const errorEl = document.getElementById("navidIntakeError");
+    const name = (data.get("name") || "").toString().trim();
+    const email = (data.get("email") || "").toString().trim();
+    const code = normalizeCode(data.get("code"));
+
+    // Hide any prior error
+    if (errorEl) errorEl.hidden = true;
+
+    // Field-level validation
+    if (!name) {
       intakeForm.querySelector("input[name='name']").focus();
       return;
     }
-
-    const allowed = u.status === "booked" || u.status === "alumni";
-    if (!allowed) {
-      showGate(u);
+    if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
+      intakeForm.querySelector("input[name='email']").focus();
+      return;
+    }
+    if (!code) {
+      intakeForm.querySelector("input[name='code']").focus();
       return;
     }
 
+    // Validate against allowlist
+    const validCodes = NAVID_CODES.map(normalizeCode);
+    const codeValid = validCodes.includes(code);
+
+    if (!codeValid) {
+      if (errorEl) {
+        errorEl.hidden = false;
+        errorEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }
+      // Subtle shake on code field for feedback
+      const codeInput = intakeForm.querySelector("input[name='code']");
+      codeInput.classList.add("is-invalid");
+      setTimeout(() => codeInput.classList.remove("is-invalid"), 600);
+      codeInput.focus();
+      codeInput.select();
+      return;
+    }
+
+    // Access granted. Status defaults to "alumni" so the chat treats them as a member.
+    const u = {
+      name,
+      email,
+      code,
+      role: "",
+      status: "alumni",
+      createdAt: Date.now(),
+      verified: true,
+    };
     user = u;
     saveUser(user);
     showChat();

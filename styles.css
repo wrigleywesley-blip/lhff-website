@@ -2293,6 +2293,66 @@ body {
   margin: 0;
 }
 
+/* ── NAVID intake — strict access lock ── */
+.navid-chat__intake-lock {
+  display: inline-block;
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  font-size: 0.6875rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.65);
+  padding: 0.3rem 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  margin-bottom: 0.875rem;
+  background: rgba(134, 84, 184, 0.12);
+}
+.navid-chat__intake-error {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: #ff9b8a;
+  background: rgba(232, 74, 63, 0.1);
+  border: 1px solid rgba(232, 74, 63, 0.3);
+  border-radius: 6px;
+  padding: 0.75rem 0.875rem;
+  margin: 0.25rem 0 0.5rem;
+}
+.navid-chat__intake-error[hidden] { display: none !important; }
+.navid-chat__intake-help {
+  margin-top: 0.5rem;
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+}
+.navid-chat__intake-help a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.3);
+  text-underline-offset: 3px;
+  transition: color 0.18s ease;
+}
+.navid-chat__intake-help a:hover {
+  color: var(--purple, #8654b8);
+  text-decoration-color: var(--purple, #8654b8);
+}
+.navid-chat__intake-field input.is-invalid {
+  border-color: rgba(232, 74, 63, 0.7) !important;
+  background: rgba(232, 74, 63, 0.08) !important;
+  animation: navidShake 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+@keyframes navidShake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+.navid-chat__intake-field input[name="code"] {
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 /* ──────────────────────────────────────────────────────────
    NAVID — Members-only gate
    Shown to curious / considering / other visitors instead
