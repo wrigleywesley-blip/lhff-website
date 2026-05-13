@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>LHFF — A day at Studio One · Carousel 11</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Open+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --cream: #faf7f2;
+    --ink: #1a1a1a;
+    --red: #e84a3f;
+    --orange: #f08a3a;
+    --yellow: #f5c63a;
+    --green: #5fa85a;
+    --sky: #5ab8d9;
+    --blue: #3a72b8;
+    --purple: #8654b8;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #2a2a2a; font-family: "Open Sans", sans-serif; -webkit-font-smoothing: antialiased; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { padding: 48px; }
+  .deck { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; max-width: 3600px; margin: 0 auto; }
+  .panel { width: 1080px; height: 1350px; position: relative; overflow: hidden; background: var(--ink); color: var(--cream); transform-origin: top left; transform: scale(0.45); margin-bottom: -742px; margin-right: -594px; }
+  body.render { padding: 0; background: #fff; }
+  body.render .deck { display: block; max-width: none; gap: 0; }
+  body.render .panel { transform: none; margin: 0; display: block; }
+
+  .bg { position: absolute; inset: 0; background-size: cover; background-position: center; z-index: 0; }
+  .scrim { position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.18) 35%, rgba(0,0,0,0.78) 100%); }
+  .content { position: absolute; inset: 0; z-index: 2; padding: 56px 64px; display: flex; flex-direction: column; justify-content: space-between; color: var(--cream); }
+
+  .chrome-top, .chrome-bot { display: flex; justify-content: space-between; font-family: "JetBrains Mono", monospace; font-size: 16px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(250,247,242,0.85); }
+  .display { font-family: "Playfair Display", Georgia, serif; font-weight: 400; font-style: italic; line-height: 1.02; letter-spacing: -0.012em; margin: 0; }
+  .eyebrow { font-family: "JetBrains Mono", monospace; font-size: 17px; letter-spacing: 0.18em; text-transform: uppercase; margin: 0 0 32px; color: rgba(250,247,242,0.85); }
+  .rainbow-bar { display: flex; width: 220px; height: 6px; margin-bottom: 36px; border-radius: 1px; overflow: hidden; }
+  .rainbow-bar span { flex: 1; }
+  .rainbow-bar span:nth-child(1) { background: var(--red); }
+  .rainbow-bar span:nth-child(2) { background: var(--orange); }
+  .rainbow-bar span:nth-child(3) { background: var(--yellow); }
+  .rainbow-bar span:nth-child(4) { background: var(--green); }
+  .rainbow-bar span:nth-child(5) { background: var(--sky); }
+  .rainbow-bar span:nth-child(6) { background: var(--blue); }
+  .rainbow-bar span:nth-child(7) { background: var(--purple); }
+  .clock { font-family: "Playfair Display", serif; font-style: italic; font-size: 56px; line-height: 1; margin-bottom: 14px; }
+  .clock em { color: var(--yellow); font-style: italic; }
+  .ti { font-family: "Playfair Display", serif; font-style: italic; font-size: 92px; line-height: 1.0; margin-bottom: 22px; }
+  .ti em { font-style: italic; }
+  .body { font-family: "Open Sans", sans-serif; font-size: 28px; line-height: 1.5; max-width: 840px; color: rgba(250,247,242,0.92); }
+
+  /* Per-panel images */
+  .p1 .bg { background-image: url("../../assets/studio/studio-04.jpg"); }
+  .p2 .bg { background-image: url("../../assets/studio/studio-08.jpg"); }
+  .p3 .bg { background-image: url("../../assets/studio/studio-02.jpg"); }
+  .p4 .bg { background-image: url("../../assets/studio/studio-11.jpg"); }
+  .p5 .bg { background-image: url("../../assets/studio/studio-07.jpg"); }
+  .p6 .bg { background-image: url("../../assets/studio/studio-13.jpg"); }
+  .p7 .bg { background-image: url("../../assets/studio/studio-15.jpg"); }
+
+  /* P8 — CTA */
+  .p8 { background: var(--ink); }
+  .p8 .content { background: var(--ink); }
+  .p8 .display { font-size: 116px; color: var(--cream); }
+  .p8 .display em { color: var(--yellow); }
+  .p8 .cta-pill { display: inline-block; padding: 22px 36px; border: 2px solid var(--cream); border-radius: 999px; font-family: "JetBrains Mono", monospace; font-size: 22px; letter-spacing: 0.12em; text-transform: uppercase; margin-top: 28px; }
+  .p8 .meta { border-top: 1px solid rgba(255,255,255,0.2); padding-top: 24px; display: flex; justify-content: space-between; align-items: baseline; font-family: "JetBrains Mono", monospace; font-size: 16px; letter-spacing: 0.12em; opacity: 0.75; }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- COVER -->
+  <section class="panel p1">
+    <div class="bg"></div>
+    <div class="scrim"></div>
+    <div class="content">
+      <div class="chrome-top"><span>Studio One · Cape Town</span><span>01 / 08</span></div>
+      <div>
+        <div class="rainbow-bar"></div>
+        <p class="eyebrow">A day inside the studio</p>
+        <h1 class="display" style="font-size: 124px;">A day at<br/>Studio <em style="color: var(--yellow);">One</em>.</h1>
+      </div>
+      <div class="chrome-bot"><span>The home base for young creatives</span><span>lhffoundation.org / studio</span></div>
+    </div>
+  </section>
+
+  <!-- 09:00 -->
+  <section class="panel p2">
+    <div class="bg"></div>
+    <div class="scrim"></div>
+    <div class="content">
+      <div class="chrome-top"><span>Doors open</span><span>02 / 08</span></div>
+      <div>
+        <p class="eyebrow">09:00</p>
+        <div class="clock"><em>09:00</em></div>
+        <h2 class="ti">Doors <em style="color: var(--orange);">open</em>.</h2>
+        <p class="body">Tea on, set up your station, look at the wall. Yesterday's work is still up. Today's is whatever you bring.</p>
+      </div>
+      <div class="chrome-bot"><span>The space</span><span>lhffoundation.org / studio</span></div>
+    </div>
+  </section>
+
+  <!-- 10:30 -->
+  <section class="panel p3">
+    <div class="bg"></div>
+    <div class="scrim"></div>
+    <div class="content">
+      <div class="chrome-top"><span>Work begins</span><span>03 / 08</span></div>
+      <div>
+        <p class="eyebrow">10:30</p>
+        <div class="clock"><em>10:30</em></div>
+        <h2 class="ti">A <em style="color: var(--yellow);">brief</em>.</h2>
+        <p class="body">A client need lands on your desk. A Foundation partner, a real campaign, a real deadline. You take it. Or you pass.</p>
+      </div>
+      <div class="chrome-bot"><span>Real client work</span><span>lhffoundation.org / studio</span></div>
+    </div>
+  </section>
+
+  <!-- 13:00 -->
+  <section class="panel p4">
+    <div class="bg"></div>
+    <div class="scrim"></div>
+    <div class="content">
+      <div class="chrome-top"><span>The set</span><span>04 / 08</span></div>
+      <div>
+        <p class="eyebrow">13:00</p>
+        <div class="clock"><em>13:00</em></div>
+        <h2 class="ti">On <em style="color: var(--red);">set</em>.</h2>
+        <p class="body">Shoot day. The studio is yours. Lighting, backdrops, the works. No rental fees, no time on the meter.</p>
+      </div>
+      <div class="chrome-bot"><span>The kit, the room, the time</span><span>lhffoundation.org / studio</span></div>
+    </div>
+  </section>
+
+  <!-- 15:00 -->
+  <section class="panel p5">
+    <div class="bg"></div>
+    <div class="scrim"></div>
+    <div class="content">
+      <div class="chrome-top"><span>Mentor session</span><span>05 / 08</span></div>
+      <div>
+        <p class="eyebrow">15:00</p>
+        <div class="clock"><em>15:00</em></div>
+        <h2 class="ti">A real <em style="color: var(--sky);">review</em>.</h2>
+        <p class="body">Senior practitioner walks in, looks at the work, tells you the truth. Forty-five minutes, no hedging. Then back to it.</p>
+      </div>
+      <div class="chrome-bot"><span>Senior mentorship · weekly</span><span>lhffoundation.org / studio</span></div>
+    </div>
+  </section>
+
+  <!-- 17:30 -->
+  <section class="panel p6">
+    <div class="bg"></div>
+    <div class="scrim"></div>
+    <div class="content">
+      <div class="chrome-top"><span>Edit bay</span><span>06 / 08</span></div>
+      <div>
+        <p class="eyebrow">17:30</p>
+        <div class="clock"><em>17:30</em></div>
+        <h2 class="ti">Pull <em style="color: var(--green);">selects</em>.</h2>
+        <p class="body">Post your favourites to the studio wall. Other people will see. Other people will comment. You'll learn faster.</p>
+      </div>
+      <div class="chrome-bot"><span>The wall · the community</span><span>lhffoundation.org / studio</span></div>
+    </div>
+  </section>
+
+  <!-- 20:00 -->
+  <section class="panel p7">
+    <div class="bg"></div>
+    <div class="scrim"></div>
+    <div class="content">
+      <div class="chrome-top"><span>End of day</span><span>07 / 08</span></div>
+      <div>
+        <p class="eyebrow">20:00</p>
+        <div class="clock"><em>20:00</em></div>
+        <h2 class="ti">Lock <em style="color: var(--purple);">up</em>.</h2>
+        <p class="body">Yours tomorrow. Yours the day after. The space stays open. The work compounds.</p>
+      </div>
+      <div class="chrome-bot"><span>Six-month residency · Cape Town</span><span>lhffoundation.org / studio</span></div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="panel p8">
+    <div class="content">
+      <div class="chrome-top" style="color:rgba(250,247,242,0.7);"><span>Apply</span><span>08 / 08</span></div>
+      <div>
+        <div class="rainbow-bar"></div>
+        <p class="eyebrow" style="color: rgba(250,247,242,0.7);">Doors open for the 2026 intake</p>
+        <h2 class="display">Send your<br/><em>work</em>.<br/>Come in.</h2>
+        <span class="cta-pill">lhffoundation.org / studio</span>
+      </div>
+      <div class="meta"><span>@lovehappinessfreedom</span><span>Studio One · Cape Town</span></div>
+    </div>
+  </section>
+
+</div>
+<script>
+  if (new URLSearchParams(location.search).get("render") === "1") {
+    document.body.classList.add("render");
+  }
+</script>
+</body>
+</html>
