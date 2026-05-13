@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# Render all LHFF carousels to PNG panels at 1080×1350.
-# Slug → panel count map; Chrome headless captures the full strip,
-# PIL slices it into individual panels.
+# Render LHFF carousels to PNG panels at 1080×1350.
+# Output: exports/carousel-NN/panel-01.png ... panel-NN.png
+# Each carousel has its own folder for easy download/handoff.
 
 set -e
 cd "$(dirname "$0")"
@@ -20,18 +20,36 @@ declare -a CAROUSELS=(
   "08-the-foundation-app:9"
   "09-navid-in-depth:8"
   "10-studio-one-how-we-find-you:8"
+  "11-a-day-at-studio-one:8"
+  "12-why-studio-one-exists:8"
 )
+
+# Usage: render-carousels.sh [slug1 slug2 ...]
+# With no args: render all. With args: render only those slugs.
+TARGETS=("$@")
 
 mkdir -p exports
 
 for entry in "${CAROUSELS[@]}"; do
   slug="${entry%%:*}"
   count="${entry##*:}"
-  height=$((count * 1350))
-  echo "→ Rendering $slug ($count panels, ${height}px tall)"
+  num="${slug%%-*}"
 
-  HTML="$(pwd)/carousels/${slug}.html?render=1"
-  STRIP="exports/${slug}-strip.png"
+  # If specific targets given, skip anything not requested
+  if [ ${#TARGETS[@]} -gt 0 ]; then
+    matched=false
+    for t in "${TARGETS[@]}"; do
+      [[ "$slug" == "$t"* || "$num" == "$t" ]] && matched=true
+    done
+    $matched || continue
+  fi
+
+  height=$((count * 1350))
+  folder="exports/carousel-${num}"
+  mkdir -p "$folder"
+  strip="$folder/_strip.png"
+
+  echo "→ $slug ($count panels, ${height}px) → $folder/"
 
   "$CHROME" \
     --headless \
@@ -39,32 +57,27 @@ for entry in "${CAROUSELS[@]}"; do
     --hide-scrollbars \
     --window-size=1080,${height} \
     --default-background-color=00000000 \
-    --screenshot="$STRIP" \
-    "file://$HTML" 2>/dev/null
+    --screenshot="$strip" \
+    "file://$(pwd)/carousels/${slug}.html?render=1" 2>/dev/null
 
-  if [ ! -f "$STRIP" ]; then
-    echo "  ✗ strip not produced"
+  if [ ! -f "$strip" ]; then
+    echo "  ✗ strip not produced for $slug"
     continue
   fi
 
-  python3 - "$slug" "$count" <<'PY'
+  python3 - "$folder" "$count" <<'PY'
 import sys
 from PIL import Image
-slug = sys.argv[1]
-count = int(sys.argv[2])
-strip = Image.open(f"exports/{slug}-strip.png")
-W, H = strip.size
-PANEL_H = 1350
+folder, count = sys.argv[1], int(sys.argv[2])
+strip = Image.open(f"{folder}/_strip.png")
 for i in range(count):
-    box = (0, i * PANEL_H, W, (i + 1) * PANEL_H)
-    strip.crop(box).save(f"exports/{slug}-panel-{i+1:02d}.png", optimize=True)
-    print(f"  ✓ panel {i+1}")
+    box = (0, i * 1350, 1080, (i + 1) * 1350)
+    strip.crop(box).save(f"{folder}/panel-{i+1:02d}.png", optimize=True)
+    print(f"  ✓ panel-{i+1:02d}.png")
 PY
+  rm -f "$strip"
 done
 
-# Clean up strips
-rm -f exports/*-strip.png
-
 echo ""
-echo "Done. Total panels:"
-ls exports/*.png | wc -l
+echo "Total panels:"
+find exports -name "panel-*.png" | wc -l
