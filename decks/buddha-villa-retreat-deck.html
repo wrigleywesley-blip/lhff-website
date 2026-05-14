@@ -1,0 +1,887 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>The Buddha Villa Retreat · A Guided Plant Medicine Journey · LHFF</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Open+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  /* 16:9 deck — each .slide is 1280×720 */
+  @page { size: 13.333in 7.5in; margin: 0; }
+
+  :root {
+    --paper: #faf7f2;
+    --bone: #f3ede3;
+    --ink: #1a1a1a;
+    --ink-2: #242424;
+    --ink-soft: #5a5a5a;
+    --ink-muted: rgba(26,26,26,0.62);
+    --rule: rgba(26,26,26,0.14);
+    --rule-light: rgba(255,255,255,0.14);
+    --red: #e84a3f;
+    --orange: #f08a3a;
+    --yellow: #f5c63a;
+    --green: #5fa85a;
+    --sky: #5ab8d9;
+    --blue: #3a72b8;
+    --purple: #8654b8;
+    --accent: #8654b8;       /* plant medicine = purple lead accent */
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: #2a2a2a;
+    font-family: "Open Sans", -apple-system, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  body { display: flex; flex-direction: column; align-items: center; padding: 40px 0; gap: 40px; }
+
+  .slide {
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    overflow: hidden;
+    background: var(--paper);
+    color: var(--ink);
+    page-break-after: always;
+    break-after: page;
+    flex-shrink: 0;
+  }
+  .slide:last-child { page-break-after: auto; break-after: auto; }
+
+  /* Print: each .slide is exactly one page, no body chrome */
+  @media print {
+    html, body { background: #fff; }
+    body { display: block; padding: 0; gap: 0; }
+    .slide { margin: 0; }
+  }
+
+  /* ── chrome (deck running header/footer) ── */
+  .chrome {
+    position: absolute;
+    left: 64px; right: 64px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    z-index: 5;
+  }
+  .chrome--top { top: 44px; }
+  .chrome--bot { bottom: 44px; }
+  .slide--dark .chrome { color: rgba(250,247,242,0.5); }
+  .slide--img .chrome { color: rgba(250,247,242,0.7); }
+
+  /* ── type primitives ── */
+  .eyebrow {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+  .display {
+    font-family: "Playfair Display", Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.0;
+    letter-spacing: -0.014em;
+    color: var(--ink);
+  }
+  .display em { font-style: italic; color: var(--accent); }
+  .d-xxl { font-size: 96px; }
+  .d-xl  { font-size: 76px; }
+  .d-lg  { font-size: 56px; }
+  .d-md  { font-size: 40px; }
+  .d-sm  { font-size: 30px; }
+  .body {
+    font-family: "Open Sans", sans-serif;
+    font-size: 17px;
+    line-height: 1.62;
+    color: var(--ink-muted);
+  }
+  .body--lg { font-size: 21px; line-height: 1.5; color: var(--ink); }
+  .body--sm { font-size: 14px; line-height: 1.55; }
+  strong { font-weight: 600; color: var(--ink); }
+
+  /* ── content layout ── */
+  .pad {
+    position: absolute;
+    inset: 0;
+    padding: 104px 64px 84px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* big section number, Acreage-style */
+  .big-num {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-size: 200px;
+    line-height: 0.8;
+    color: var(--accent);
+  }
+
+  /* rainbow bar */
+  .rainbow {
+    display: flex;
+    width: 200px;
+    height: 5px;
+    border-radius: 1px;
+    overflow: hidden;
+  }
+  .rainbow span { flex: 1; }
+  .rainbow span:nth-child(1) { background: var(--red); }
+  .rainbow span:nth-child(2) { background: var(--orange); }
+  .rainbow span:nth-child(3) { background: var(--yellow); }
+  .rainbow span:nth-child(4) { background: var(--green); }
+  .rainbow span:nth-child(5) { background: var(--sky); }
+  .rainbow span:nth-child(6) { background: var(--blue); }
+  .rainbow span:nth-child(7) { background: var(--purple); }
+
+  /* note callout — Acreage personality element */
+  .note {
+    border-left: 3px solid var(--accent);
+    padding: 4px 0 4px 18px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12.5px;
+    line-height: 1.6;
+    letter-spacing: 0.01em;
+    color: var(--ink-soft);
+  }
+  .note strong { color: var(--accent); font-weight: 500; }
+  .slide--dark .note { color: rgba(250,247,242,0.7); }
+  .slide--dark .note strong { color: var(--accent); }
+
+  /* ── dark slide ── */
+  .slide--dark { background: var(--ink); color: var(--paper); }
+  .slide--dark .display { color: var(--paper); }
+  .slide--dark .body { color: rgba(250,247,242,0.72); }
+  .slide--dark .body--lg { color: var(--paper); }
+  .slide--dark strong { color: var(--paper); }
+
+  /* ── purple slide ── */
+  .slide--purple { background: linear-gradient(155deg, #1a0f28 0%, #3a2152 100%); color: var(--paper); }
+  .slide--purple .display { color: var(--paper); }
+  .slide--purple .display em { color: var(--yellow); }
+  .slide--purple .body { color: rgba(250,247,242,0.78); }
+  .slide--purple .eyebrow { color: rgba(250,247,242,0.7); }
+  .slide--purple .chrome { color: rgba(250,247,242,0.5); }
+  .slide--purple strong { color: var(--paper); }
+
+  /* ── image slide ── */
+  .slide--img { color: var(--paper); }
+  .slide--img .bg {
+    position: absolute; inset: 0;
+    background-size: cover; background-position: center;
+    z-index: 0;
+  }
+  .slide--img .scrim {
+    position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(120deg, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.45) 55%, rgba(0,0,0,0.25) 100%);
+  }
+  .slide--img .pad { z-index: 2; }
+  .slide--img .display { color: var(--paper); }
+  .slide--img .display em { color: var(--yellow); }
+  .slide--img .body { color: rgba(250,247,242,0.85); }
+  .slide--img .eyebrow { color: rgba(250,247,242,0.85); }
+
+  /* ── grid helpers ── */
+  .row { display: flex; gap: 28px; }
+  .col { display: flex; flex-direction: column; }
+  .grow { flex: 1; }
+  .spread { justify-content: space-between; }
+  .mt-auto { margin-top: auto; }
+
+  /* day cards */
+  .day-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 12px;
+    margin-top: 28px;
+  }
+  .day-card {
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 16px 14px;
+    background: var(--bone);
+    display: flex;
+    flex-direction: column;
+    min-height: 232px;
+  }
+  .day-card .d-day {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 8px;
+  }
+  .day-card .d-title {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-size: 21px;
+    line-height: 1.05;
+    margin-bottom: 8px;
+  }
+  .day-card .d-desc {
+    font-size: 12px;
+    line-height: 1.45;
+    color: var(--ink-muted);
+  }
+  .day-card .d-tag {
+    margin-top: auto;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding-top: 10px;
+  }
+  .day-card.is-ceremony { background: #efe6f4; border-color: rgba(134,84,184,0.35); }
+  .day-card.is-ceremony .d-tag { color: var(--purple); }
+  .day-card .d-tag--plain { color: var(--ink-soft); }
+
+  /* timeline rows */
+  .timeline { margin-top: 20px; }
+  .tl-row {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 24px;
+    padding: 13px 0;
+    border-top: 1px solid var(--rule);
+  }
+  .tl-row:last-child { border-bottom: 1px solid var(--rule); }
+  .tl-time {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-size: 26px;
+    color: var(--ink);
+  }
+  .tl-body strong { font-size: 15px; }
+  .tl-body p { font-size: 13px; line-height: 1.5; color: var(--ink-muted); margin-top: 2px; }
+  .slide--dark .tl-row { border-color: var(--rule-light); }
+  .slide--dark .tl-time { color: var(--paper); }
+  .slide--dark .tl-body p { color: rgba(250,247,242,0.7); }
+
+  /* numbered list */
+  .num-list { margin-top: 20px; }
+  .nl-row {
+    display: grid;
+    grid-template-columns: 46px 1fr;
+    gap: 20px;
+    padding: 14px 0;
+    border-top: 1px solid var(--rule);
+  }
+  .nl-row:last-child { border-bottom: 1px solid var(--rule); }
+  .nl-n {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    color: var(--accent);
+    padding-top: 3px;
+    letter-spacing: 0.08em;
+  }
+  .nl-row .nl-title {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.1;
+    margin-bottom: 3px;
+  }
+  .nl-row .nl-desc { font-size: 13.5px; line-height: 1.5; color: var(--ink-muted); }
+  .slide--dark .nl-row { border-color: var(--rule-light); }
+  .slide--dark .nl-row .nl-desc { color: rgba(250,247,242,0.7); }
+  .slide--purple .nl-row { border-color: var(--rule-light); }
+  .slide--purple .nl-row .nl-desc { color: rgba(250,247,242,0.75); }
+  .slide--purple .nl-n { color: var(--yellow); }
+
+  /* pillar dots */
+  .swatch {
+    display: inline-block;
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+
+  /* stat tiles */
+  .stat-tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 26px; }
+  .stat-tile {
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 20px 18px;
+    background: var(--bone);
+  }
+  .stat-tile .k {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 8px;
+  }
+  .stat-tile .v {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-size: 30px;
+    line-height: 1.05;
+    color: var(--ink);
+  }
+  .slide--dark .stat-tile { background: var(--ink-2); border-color: var(--rule-light); }
+  .slide--dark .stat-tile .v { color: var(--paper); }
+
+  /* two-up cards */
+  .card {
+    border: 1px solid var(--rule);
+    border-radius: 5px;
+    padding: 26px 28px;
+    background: var(--bone);
+    flex: 1;
+  }
+  .card .c-label {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .card .c-title {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-size: 28px;
+    line-height: 1.06;
+    margin-bottom: 10px;
+  }
+  .card .c-body { font-size: 13.5px; line-height: 1.55; color: var(--ink-muted); }
+  .card ul { padding-left: 16px; margin-top: 8px; }
+  .card li { font-size: 13px; line-height: 1.5; color: var(--ink-muted); margin-bottom: 4px; }
+
+  /* pull quote */
+  .pull {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-size: 44px;
+    line-height: 1.16;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .slide--dark .pull, .slide--purple .pull { color: var(--paper); }
+  .pull em { color: var(--accent); }
+  .slide--purple .pull em { color: var(--yellow); }
+
+  /* cta pill */
+  .pill {
+    display: inline-block;
+    padding: 16px 28px;
+    border: 1.5px solid currentColor;
+    border-radius: 999px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  /* logomark */
+  .logo {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-size: 15px;
+    letter-spacing: 0.01em;
+  }
+</style>
+</head>
+<body>
+
+<!-- ───────────────────── 01 — COVER ───────────────────── -->
+<section class="slide slide--dark">
+  <div class="chrome chrome--top">
+    <span>Love Happiness Freedom Foundation</span>
+    <span>Retreat Prospectus · 2026</span>
+  </div>
+  <div class="pad" style="justify-content: space-between;">
+    <div></div>
+    <div>
+      <div class="rainbow" style="margin-bottom: 26px;"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <p class="eyebrow" style="color: rgba(250,247,242,0.7);">A guided plant medicine journey</p>
+      <h1 class="display d-xxl">The Buddha Villa</h1>
+      <h1 class="display d-xxl"><em>Retreat</em>.</h1>
+      <p class="body body--lg" style="max-width: 620px; margin-top: 28px;">Six days. Twelve guests. Three ceremonies. One private villa under the Twelve Apostles. A held container for the deepest work a person can do.</p>
+    </div>
+    <div class="row spread" style="align-items: flex-end;">
+      <span class="logo" style="color: var(--paper);">Love · Happiness · Freedom</span>
+      <span class="body--sm" style="font-family: 'JetBrains Mono', monospace; letter-spacing: 0.1em; color: rgba(250,247,242,0.5);">CAPE TOWN, SOUTH AFRICA</span>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────────── 02 — THE INVITATION ───────────────────── -->
+<section class="slide">
+  <div class="chrome chrome--top">
+    <span>The invitation</span>
+    <span>Buddha Villa Retreat · 02</span>
+  </div>
+  <div class="pad">
+    <p class="eyebrow">Why this exists</p>
+    <h2 class="display d-xl" style="max-width: 940px;">Most people never get a <em>week</em><br/>to do the real work.</h2>
+    <div class="row" style="margin-top: 36px; gap: 56px;">
+      <div class="col grow" style="max-width: 540px;">
+        <p class="body">The Buddha Villa Retreat is the Foundation's deepest offering. A six-day residential built around plant medicine ceremony, held inside a framework of preparation, teaching, and integration.</p>
+        <p class="body" style="margin-top: 14px;">It is not a holiday. It is not a workshop. It is a contained, supported journey through the layers most people spend a lifetime avoiding. The medicine opens the door. The framework makes sure you can walk through it, and walk back.</p>
+      </div>
+      <div class="col grow" style="max-width: 480px; justify-content: center;">
+        <div class="note">
+          <strong>The container holds three things:</strong><br/>
+          the preparation before you arrive, the ceremony work across six days, and the integration that carries it into the life you go back to.
+        </div>
+      </div>
+    </div>
+    <div class="mt-auto">
+      <hr style="border:0; border-top:1px solid var(--rule); margin-bottom: 18px;" />
+      <p class="body--sm" style="font-family:'JetBrains Mono',monospace; letter-spacing:0.08em; color: var(--ink-soft);">A PROGRAMME OF THE LOVE HAPPINESS FREEDOM FOUNDATION</p>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────────── 03 — SECTION: THE SETTING ───────────────────── -->
+<section class="slide slide--img">
+  <div class="bg" style="background-image:url('../assets/villa-hero.jpg');"></div>
+  <div class="scrim"></div>
+  <div class="chrome chrome--top">
+    <span>Section 01</span>
+    <span>Buddha Villa Retreat · 03</span>
+  </div>
+  <div class="pad" style="justify-content: flex-end;">
+    <div class="big-num" style="color: var(--yellow); opacity: 0.95;">01</div>
+    <p class="eyebrow" style="color: var(--yellow); margin-top: 8px;">The setting</p>
+    <h2 class="display d-xl">A villa briefed for <em>one purpose</em>.</h2>
+  </div>
+  <div class="chrome chrome--bot">
+    <span class="logo" style="color: var(--paper);">Love · Happiness · Freedom</span>
+    <span>CAMPS BAY · CAPE TOWN</span>
+  </div>
+</section>
+
+<!-- ───────────────────── 04 — THE BUDDHA VILLA ───────────────────── -->
+<section class="slide">
+  <div class="chrome chrome--top">
+    <span>01 · The setting</span>
+    <span>Buddha Villa Retreat · 04</span>
+  </div>
+  <div class="pad">
+    <p class="eyebrow">The Buddha Villa</p>
+    <h2 class="display d-lg" style="max-width: 900px;">The Atlantic on one side.<br/>The mountains on the <em>other</em>.</h2>
+    <div class="row" style="margin-top: 30px; gap: 40px;">
+      <div class="col" style="max-width: 460px;">
+        <p class="body">A private villa set against the Twelve Apostles in Camps Bay, Cape Town. Communal spaces, private rooms, outdoor decks, a pool that opens onto the ocean. The villa is fully briefed and held: no friction, no logistics, nothing to manage.</p>
+        <p class="body" style="margin-top: 14px;">Guests arrive and the only thing asked of them is presence. Everything else, the space, the food, the rhythm, the safety, is already handled.</p>
+        <div class="note" style="margin-top: 20px;">
+          <strong>Feels like:</strong> a retreat home, not a hotel. Twelve people, one house, one shared week.
+        </div>
+      </div>
+      <div class="col grow stat-tiles" style="grid-template-columns: 1fr 1fr; align-content: start; margin-top: 4px;">
+        <div class="stat-tile"><div class="k">Capacity</div><div class="v">12 guests</div></div>
+        <div class="stat-tile"><div class="k">Location</div><div class="v">Camps Bay</div></div>
+        <div class="stat-tile"><div class="k">Format</div><div class="v">Residential</div></div>
+        <div class="stat-tile"><div class="k">Duration</div><div class="v">6 days</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────────── 05 — SECTION: THE MEDICINE ───────────────────── -->
+<section class="slide slide--purple">
+  <div class="chrome chrome--top">
+    <span>Section 02</span>
+    <span>Buddha Villa Retreat · 05</span>
+  </div>
+  <div class="pad" style="justify-content: flex-end;">
+    <div class="big-num" style="color: var(--yellow);">02</div>
+    <p class="eyebrow" style="color: var(--yellow); margin-top: 8px;">The medicine</p>
+    <h2 class="display d-xl" style="max-width: 880px;">The door, and what it asks of <em>you</em>.</h2>
+    <p class="body body--lg" style="max-width: 600px; margin-top: 18px;">Plant medicine is the centre of the retreat. It is also the most misunderstood part. Here is how the Foundation holds it.</p>
+  </div>
+</section>
+
+<!-- ───────────────────── 06 — THE APPROACH ───────────────────── -->
+<section class="slide">
+  <div class="chrome chrome--top">
+    <span>02 · The medicine</span>
+    <span>Buddha Villa Retreat · 06</span>
+  </div>
+  <div class="pad">
+    <p class="eyebrow">The approach</p>
+    <h2 class="display d-lg" style="max-width: 920px;">Plant medicine is a <em>doorway</em>.<br/>Not a destination.</h2>
+    <div class="row" style="margin-top: 28px; gap: 44px;">
+      <div class="col" style="max-width: 500px;">
+        <p class="body">The Foundation treats plant medicine with the seriousness it deserves. It is not recreational. It is not a shortcut. It is a tool that, held properly, can dissolve the defences a person has spent decades building, and let them see what is underneath.</p>
+        <p class="body" style="margin-top: 14px;">The medicine does the opening. The work is what you do with the door once it is open. That work happens in the teaching sessions, the fire circles, the silence, the integration. The ceremony is one part of a much larger container.</p>
+      </div>
+      <div class="col grow" style="justify-content: center;">
+        <div class="pull">"The medicine opens the door.<br/>What you bring to it shapes<br/>what walks <em>through</em>."</div>
+        <p class="body--sm" style="font-family:'JetBrains Mono',monospace; letter-spacing:0.1em; color: var(--ink-soft); margin-top: 22px;">— CHENEY, FOUNDER</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────────── 07 — THE CONTAINER ───────────────────── -->
+<section class="slide slide--dark">
+  <div class="chrome chrome--top">
+    <span>02 · The medicine</span>
+    <span>Buddha Villa Retreat · 07</span>
+  </div>
+  <div class="pad">
+    <p class="eyebrow">The container</p>
+    <h2 class="display d-lg">How the space is <em>held</em>.</h2>
+    <p class="body" style="max-width: 620px; margin-top: 12px;">Plant medicine is only as safe as the container around it. The Foundation builds that container deliberately, in four layers.</p>
+    <div class="num-list" style="margin-top: 14px;">
+      <div class="nl-row">
+        <span class="nl-n">01</span>
+        <div><div class="nl-title">Screening before acceptance</div><div class="nl-desc">Every guest is screened for medical and psychological fit. Plant medicine is not right for everyone, and the Foundation says so when it isn't.</div></div>
+      </div>
+      <div class="nl-row">
+        <span class="nl-n">02</span>
+        <div><div class="nl-title">Experienced facilitation</div><div class="nl-desc">Ceremonies are led by experienced practitioners. Guests are never alone with the experience. Support is present through every hour of every ceremony.</div></div>
+      </div>
+      <div class="nl-row">
+        <span class="nl-n">03</span>
+        <div><div class="nl-title">A small cohort</div><div class="nl-desc">Twelve guests, no more. Small enough that every person is seen, held, and known by name through the week.</div></div>
+      </div>
+      <div class="nl-row">
+        <span class="nl-n">04</span>
+        <div><div class="nl-title">Framework before and after</div><div class="nl-desc">Preparation in the weeks before. Integration in the weeks after. The ceremony sits inside a structure, never on its own.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────────── 08 — SECTION: THE JOURNEY ───────────────────── -->
+<section class="slide slide--img">
+  <div class="bg" style="background-image:url('../assets/cape-town-mountains.jpg');"></div>
+  <div class="scrim"></div>
+  <div class="chrome chrome--top">
+    <span>Section 03</span>
+    <span>Buddha Villa Retreat · 08</span>
+  </div>
+  <div class="pad" style="justify-content: flex-end;">
+    <div class="big-num" style="color: var(--yellow);">03</div>
+    <p class="eyebrow" style="color: var(--yellow); margin-top: 8px;">The journey</p>
+    <h2 class="display d-xl">Six days, built as an <em>arc</em>.</h2>
+  </div>
+  <div class="chrome chrome--bot">
+    <span class="logo" style="color: var(--paper);">Love · Happiness · Freedom</span>
+    <span>SUNDAY THROUGH FRIDAY</span>
+  </div>
+</section>
+
+<!-- ───────────────────── 09 — THE SIX-DAY ARC ───────────────────── -->
+<section class="slide">
+  <div class="chrome chrome--top">
+    <span>03 · The journey</span>
+    <span>Buddha Villa Retreat · 09</span>
+  </div>
+  <div class="pad">
+    <p class="eyebrow">The six-day arc</p>
+    <h2 class="display d-md" style="max-width: 900px;">Three ceremonies, woven into a structure that <em>builds</em>.</h2>
+    <div class="day-grid">
+      <div class="day-card">
+        <div class="d-day">Sunday</div>
+        <div class="d-title">Arrival</div>
+        <div class="d-desc">Settling in. Purpose and spiritual alignment. The first night is about landing.</div>
+        <div class="d-tag d-tag--plain">Orientation</div>
+      </div>
+      <div class="day-card is-ceremony">
+        <div class="d-day">Monday</div>
+        <div class="d-title">First ceremony</div>
+        <div class="d-desc">Emotional intelligence by day. The first ceremony at night. The door opens.</div>
+        <div class="d-tag">Ceremony 01</div>
+      </div>
+      <div class="day-card is-ceremony">
+        <div class="d-day">Tuesday</div>
+        <div class="d-title">Second ceremony</div>
+        <div class="d-desc">Leadership and the inner work. The second ceremony goes further than the first.</div>
+        <div class="d-tag">Ceremony 02</div>
+      </div>
+      <div class="day-card is-ceremony">
+        <div class="d-day">Wednesday</div>
+        <div class="d-title">Third ceremony</div>
+        <div class="d-desc">The deepest day. The third ceremony, held with the most care.</div>
+        <div class="d-tag">Ceremony 03</div>
+      </div>
+      <div class="day-card">
+        <div class="d-day">Thursday</div>
+        <div class="d-title">Application</div>
+        <div class="d-desc">Practical integration. The fire circle. Turning the work into a life.</div>
+        <div class="d-tag d-tag--plain">Fire circle</div>
+      </div>
+      <div class="day-card">
+        <div class="d-day">Friday</div>
+        <div class="d-title">Closing</div>
+        <div class="d-desc">Closing circle and departure. Guests leave with an integration plan.</div>
+        <div class="d-tag d-tag--plain">Departure</div>
+      </div>
+    </div>
+    <div class="note" style="margin-top: 22px;">
+      <strong>The arc matters:</strong> ceremonies are not stacked back to back. Each is followed by a day of teaching and rest, so the body and mind can metabolise before the next.
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────────── 10 — A DAY IN THE RHYTHM ───────────────────── -->
+<section class="slide">
+  <div class="chrome chrome--top">
+    <span>03 · The journey</span>
+    <span>Buddha Villa Retreat · 10</span>
+  </div>
+  <div class="pad">
+    <p class="eyebrow">A day in the rhythm</p>
+    <h2 class="display d-md">The hours between the <em>ceremonies</em>.</h2>
+    <div class="row" style="margin-top: 14px; gap: 48px;">
+      <div class="timeline grow" style="max-width: 620px;">
+        <div class="tl-row"><div class="tl-time">06:30</div><div class="tl-body"><strong>Sit before the day arrives.</strong><p>Twenty minutes of stillness on the deck. No phones.</p></div></div>
+        <div class="tl-row"><div class="tl-time">08:00</div><div class="tl-body"><strong>Yoga and movement.</strong><p>Bodywork before the mind shows up.</p></div></div>
+        <div class="tl-row"><div class="tl-time">10:00</div><div class="tl-body"><strong>Teaching, a pillar in depth.</strong><p>Group work. One of the seven pillars, unpacked.</p></div></div>
+        <div class="tl-row"><div class="tl-time">13:00</div><div class="tl-body"><strong>Long table lunch.</strong><p>Food cooked at the villa. The community forms here.</p></div></div>
+        <div class="tl-row"><div class="tl-time">15:00</div><div class="tl-body"><strong>A long walk, mostly in silence.</strong><p>The morning's work settles.</p></div></div>
+        <div class="tl-row"><div class="tl-time">19:00</div><div class="tl-body"><strong>Fire circle, or ceremony.</strong><p>Depending on the day. The centre of the week.</p></div></div>
+      </div>
+      <div class="col" style="max-width: 380px; justify-content: center;">
+        <div class="note">
+          <strong>On non-ceremony days,</strong> the rhythm is gentle on purpose. Rest is not a gap in the programme. It is part of the programme. The work needs space to land.
+        </div>
+        <p class="body" style="margin-top: 20px;">By the third day, most guests stop checking the time. The rhythm carries them. That is the point.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────────── 11 — THE THREE CEREMONIES ───────────────────── -->
+<section class="slide slide--purple">
+  <div class="chrome chrome--top">
+    <span>03 · The journey</span>
+    <span>Buddha Villa Retreat · 11</span>
+  </div>
+  <div class="pad">
+    <p class="eyebrow">The three ceremonies</p>
+    <h2 class="display d-md">Each one goes <em>further</em> than the last.</h2>
+    <div class="num-list" style="margin-top: 18px;">
+      <div class="nl-row">
+        <span class="nl-n">01</span>
+        <div><div class="nl-title">Monday — meeting yourself</div><div class="nl-desc">The first ceremony is about contact. Most guests meet a version of themselves they have been avoiding. The facilitators hold steady. Nothing is forced.</div></div>
+      </div>
+      <div class="nl-row">
+        <span class="nl-n">02</span>
+        <div><div class="nl-title">Tuesday — moving through it</div><div class="nl-desc">The second ceremony builds on the first. With the door already open, the work goes to what the first ceremony surfaced. This is often the hardest night, and the most important.</div></div>
+      </div>
+      <div class="nl-row">
+        <span class="nl-n">03</span>
+        <div><div class="nl-title">Wednesday — letting it settle</div><div class="nl-desc">The third ceremony is held with the most care. It is less about opening and more about integration, about beginning to carry what was found back into the body.</div></div>
+      </div>
+    </div>
+    <div class="note" style="margin-top: 24px;">
+      <strong>Between every ceremony:</strong> a full day of teaching, rest, movement, and held conversation. The space between the ceremonies is where the medicine becomes meaning.
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────────── 12 — THE SEVEN PILLARS ───────────────────── -->
+<section class="slide">
+  <div class="chrome chrome--top">
+    <span>03 · The journey</span>
+    <span>Buddha Villa Retreat · 12</span>
+  </div>
+  <div class="pad">
+    <p class="eyebrow">The framework</p>
+    <h2 class="display d-md" style="max-width: 880px;">The seven pillars hold the <em>medicine work</em> in place.</h2>
+    <p class="body" style="max-width: 640px; margin-top: 10px;">Ceremony without a framework is just an experience. The Foundation's seven pillars give the experience structure, language, and a path back into ordinary life.</p>
+    <div class="row" style="margin-top: 20px; gap: 14px;">
+      <div class="col grow" style="gap: 9px;">
+        <div class="body--sm"><span class="swatch" style="background:var(--red);"></span><strong>Purpose</strong> &nbsp; Knowing why you're here.</div>
+        <div class="body--sm"><span class="swatch" style="background:var(--orange);"></span><strong>Wellness</strong> &nbsp; The body is the room the work happens in.</div>
+        <div class="body--sm"><span class="swatch" style="background:var(--yellow);"></span><strong>Communication</strong> &nbsp; Spoken, written, embodied.</div>
+        <div class="body--sm"><span class="swatch" style="background:var(--green);"></span><strong>Meditation</strong> &nbsp; Ten quiet minutes, every day.</div>
+      </div>
+      <div class="col grow" style="gap: 9px;">
+        <div class="body--sm"><span class="swatch" style="background:var(--sky);"></span><strong>Discipline</strong> &nbsp; The bridge between knowing and doing.</div>
+        <div class="body--sm"><span class="swatch" style="background:var(--blue);"></span><strong>Faith</strong> &nbsp; A relationship with what you can't see.</div>
+        <div class="body--sm"><span class="swatch" style="background:var(--purple);"></span><strong>Redemption</strong> &nbsp; Forgive yourself first.</div>
+      </div>
+    </div>
+    <div class="note" style="margin-top: 24px;">
+      <strong>Each teaching day maps to a pillar.</strong> By Friday, guests have a vocabulary for what the medicine showed them, and a structure for living it.
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────────── 13 — SECTION: THE ARC BEYOND ───────────────────── -->
+<section class="slide slide--img">
+  <div class="bg" style="background-image:url('../assets/villa-pool-ocean.jpg');"></div>
+  <div class="scrim"></div>
+  <div class="chrome chrome--top">
+    <span>Section 04</span>
+    <span>Buddha Villa Retreat · 13</span>
+  </div>
+  <div class="pad" style="justify-content: flex-end;">
+    <div class="big-num" style="color: var(--yellow);">04</div>
+    <p class="eyebrow" style="color: var(--yellow); margin-top: 8px;">The arc beyond the week</p>
+    <h2 class="display d-xl">The retreat is six days.<br/>The <em>work</em> is longer.</h2>
+  </div>
+  <div class="chrome chrome--bot">
+    <span class="logo" style="color: var(--paper);">Love · Happiness · Freedom</span>
+    <span>PREPARATION · INTEGRATION · COMPANION</span>
+  </div>
+</section>
+
+<!-- ───────────────────── 14 — PREPARATION ───────────────────── -->
+<section class="slide">
+  <div class="chrome chrome--top">
+    <span>04 · The arc beyond</span>
+    <span>Buddha Villa Retreat · 14</span>
+  </div>
+  <div class="pad">
+    <p class="eyebrow">Before you arrive</p>
+    <h2 class="display d-lg">Preparation begins <em>weeks</em> out.</h2>
+    <div class="row" style="margin-top: 28px; gap: 40px;">
+      <div class="col" style="max-width: 480px;">
+        <p class="body">What a guest brings to the ceremony shapes what the ceremony can do. So the work starts well before arrival. In the weeks leading up, guests are guided to slow down: eat lighter, sleep more, sit quietly, pay attention to what they are carrying.</p>
+        <p class="body" style="margin-top: 14px;">The Foundation provides a structured preparation guide, and NAVID, the Foundation's companion, walks alongside each guest through the lead-up.</p>
+      </div>
+      <div class="col grow" style="gap: 12px; justify-content: center;">
+        <div class="card" style="padding: 20px 22px;">
+          <div class="c-label">The preparation work</div>
+          <ul style="margin-top: 4px;">
+            <li>Slow the body down. Lighter food, more sleep, less stimulation.</li>
+            <li>Sit quietly with yourself, ten minutes a day.</li>
+            <li>Notice what you are carrying in. Name it before you arrive.</li>
+            <li>A structured guide, plus NAVID, in the weeks before.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="note mt-auto"><strong>Preparation is not optional.</strong> It is the first ceremony. The week at the villa simply continues what the preparation begins.</div>
+  </div>
+</section>
+
+<!-- ───────────────────── 15 — INTEGRATION + NAVID ───────────────────── -->
+<section class="slide slide--dark">
+  <div class="chrome chrome--top">
+    <span>04 · The arc beyond</span>
+    <span>Buddha Villa Retreat · 15</span>
+  </div>
+  <div class="pad">
+    <p class="eyebrow">After you leave</p>
+    <h2 class="display d-lg">Integration is where the<br/>lesson becomes a <em>life</em>.</h2>
+    <div class="row" style="margin-top: 28px; gap: 28px;">
+      <div class="card" style="background: var(--ink-2); border-color: var(--rule-light);">
+        <div class="c-label">Integration</div>
+        <div class="c-title" style="color: var(--paper);">The weeks after the villa.</div>
+        <div class="c-body" style="color: rgba(250,247,242,0.72);">Guests leave with an integration plan. Slow mornings, journaling, breathwork, walks, conversations. The ceremony opens the door. Integration walks you through it. This is where the real change holds or fades.</div>
+      </div>
+      <div class="card" style="background: var(--ink-2); border-color: var(--rule-light);">
+        <div class="c-label">NAVID, the companion</div>
+        <div class="c-title" style="color: var(--paper);">A guide that remembers you.</div>
+        <div class="c-body" style="color: rgba(250,247,242,0.72);">Every guest gets access to NAVID, the Foundation's AI companion. Trained on the seven pillars and the rhythm of a retreat, NAVID holds the space between sessions, through preparation and long into integration.</div>
+      </div>
+    </div>
+    <div class="note mt-auto"><strong>The Foundation does not disappear on Friday.</strong> Integration support and NAVID carry the work for as long as the guest needs it.</div>
+  </div>
+</section>
+
+<!-- ───────────────────── 16 — WHO IT'S FOR ───────────────────── -->
+<section class="slide">
+  <div class="chrome chrome--top">
+    <span>The cohort</span>
+    <span>Buddha Villa Retreat · 16</span>
+  </div>
+  <div class="pad">
+    <p class="eyebrow">Who it's for</p>
+    <h2 class="display d-lg" style="max-width: 880px;">Twelve people ready to <em>stop avoiding</em> the work.</h2>
+    <div class="row" style="margin-top: 28px; gap: 28px;">
+      <div class="card">
+        <div class="c-label">This is for you if</div>
+        <ul style="margin-top: 4px;">
+          <li>You have done some inner work and hit a wall the usual tools can't move.</li>
+          <li>You carry something old that you are finally ready to look at.</li>
+          <li>You can give six days fully, with preparation before and integration after.</li>
+          <li>You are willing to be held, not just to perform being fine.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="c-label">This is not for you if</div>
+        <ul style="margin-top: 4px;">
+          <li>You are looking for a holiday, an escape, or an experience to collect.</li>
+          <li>You cannot commit to the preparation and integration around the week.</li>
+          <li>Screening surfaces a medical or psychological reason it would not be safe.</li>
+          <li>You want the door opened, but not the work of walking through it.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note mt-auto"><strong>Every applicant is screened.</strong> Saying no to the wrong fit is part of how the Foundation keeps the container safe for the right one.</div>
+  </div>
+</section>
+
+<!-- ───────────────────── 17 — THE INVESTMENT ───────────────────── -->
+<section class="slide">
+  <div class="chrome chrome--top">
+    <span>The investment</span>
+    <span>Buddha Villa Retreat · 17</span>
+  </div>
+  <div class="pad">
+    <p class="eyebrow">What's included</p>
+    <h2 class="display d-md">One price. The whole <em>container</em>.</h2>
+    <div class="stat-tiles" style="grid-template-columns: repeat(3, 1fr); margin-top: 26px;">
+      <div class="stat-tile"><div class="k">Duration</div><div class="v">6 days residential</div></div>
+      <div class="stat-tile"><div class="k">Ceremonies</div><div class="v">3, fully held</div></div>
+      <div class="stat-tile"><div class="k">Cohort</div><div class="v">12 guests</div></div>
+    </div>
+    <div class="row" style="margin-top: 22px; gap: 40px;">
+      <div class="col" style="max-width: 480px;">
+        <p class="body"><strong>The retreat fee covers everything inside the container:</strong> private villa accommodation, all meals, three facilitated ceremonies, daily teaching and movement, the preparation guide, integration support, and NAVID access through the full arc.</p>
+      </div>
+      <div class="col grow" style="justify-content: center;">
+        <div class="note">
+          <strong>Pricing is confirmed per cohort</strong> and shared on application. Scholarship and sliding-scale places are held for each retreat. The Foundation does not turn away the right person over money.
+        </div>
+      </div>
+    </div>
+    <div class="mt-auto">
+      <hr style="border:0; border-top:1px solid var(--rule); margin-bottom: 16px;" />
+      <p class="body--sm" style="font-family:'JetBrains Mono',monospace; letter-spacing:0.08em; color: var(--ink-soft);">FULL PRICING SHARED ON APPLICATION · SCHOLARSHIP PLACES AVAILABLE</p>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────────── 18 — HOW TO APPLY / CLOSE ───────────────────── -->
+<section class="slide slide--dark">
+  <div class="chrome chrome--top">
+    <span>How to apply</span>
+    <span>Buddha Villa Retreat · 18</span>
+  </div>
+  <div class="pad" style="justify-content: space-between;">
+    <div></div>
+    <div>
+      <div class="rainbow" style="margin-bottom: 26px;"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <p class="eyebrow" style="color: rgba(250,247,242,0.7);">The next cohort</p>
+      <h2 class="display d-xl">If the door is <em>open</em>,<br/>walk through it.</h2>
+      <p class="body body--lg" style="max-width: 580px; margin-top: 22px;">Applications for the Buddha Villa Retreat open by cohort. Every applicant is screened, every place is considered. The work is real. The container is built. The next step is yours.</p>
+      <div style="margin-top: 30px; color: var(--paper);">
+        <span class="pill">Apply via the Foundation</span>
+      </div>
+    </div>
+    <div class="row spread" style="align-items: flex-end;">
+      <span class="logo" style="color: var(--paper);">The Love Happiness Freedom Foundation</span>
+      <span class="body--sm" style="font-family:'JetBrains Mono',monospace; letter-spacing:0.1em; color: rgba(250,247,242,0.5);">CAPE TOWN · SOUTH AFRICA</span>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
