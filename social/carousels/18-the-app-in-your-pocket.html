@@ -2,173 +2,297 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>LHFF — The app, in your pocket · Carousel 18</title>
+<title>LHFF — The Foundation app · Carousel 18</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Open+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="_shared-base.css" />
 <style>
-  /* Atmospheric AI image backgrounds */
-  .p1 .bg { background-image: url("../ai-assets/c18-cover-phone.jpg"); }
-  .p7 .bg { background-image: url("../ai-assets/c18-candle-phone.jpg"); }
+  /* Direct, product-page tone. Screenshots forward. */
+  .panel--cream {
+    background: var(--cream);
+    color: var(--ink);
+  }
+  .panel--cream .chrome-top, .panel--cream .chrome-bot { color: var(--ink-soft); }
+  .panel--cream .display { color: var(--ink); }
+  .panel--cream .body { color: var(--ink-soft); }
+  .panel--cream .eyebrow { color: var(--ink-soft); }
 
-  /* Phone screenshot layout — image background subtly, phone screen prominent */
-  .panel--feature { background: linear-gradient(165deg, #0c0f15 0%, #1a1e2b 100%); }
-  .panel--feature--cream { background: linear-gradient(165deg, #faf7f2 0%, #efe7d8 100%); color: var(--ink); }
-  .panel--feature--cream .body, .panel--feature--cream .chrome-top, .panel--feature--cream .chrome-bot, .panel--feature--cream .eyebrow { color: var(--ink-soft); }
-  .panel--feature--cream .display { color: var(--ink); }
-  .panel--feature--bone { background: linear-gradient(165deg, #f3ede3 0%, #e6dbc6 100%); color: var(--ink); }
-  .panel--feature--bone .body, .panel--feature--bone .chrome-top, .panel--feature--bone .chrome-bot, .panel--feature--bone .eyebrow { color: var(--ink-soft); }
-  .panel--feature--bone .display { color: var(--ink); }
+  .panel--bone {
+    background: var(--bone);
+    color: var(--ink);
+  }
+  .panel--bone .chrome-top, .panel--bone .chrome-bot { color: var(--ink-soft); }
+  .panel--bone .display { color: var(--ink); }
+  .panel--bone .body { color: var(--ink-soft); }
+  .panel--bone .eyebrow { color: var(--ink-soft); }
 
-  .feature-content {
+  .panel--dark {
+    background: var(--ink);
+    color: var(--cream);
+  }
+
+  /* Phone layout — screenshot prominent on right, copy on left */
+  .feat-content {
     position: absolute; inset: 0; z-index: 2;
     padding: 56px 64px;
     display: flex; flex-direction: column;
-    color: var(--cream);
   }
-  .feature-row {
+  .feat-main {
     display: flex; gap: 36px; align-items: center;
     margin-top: auto; margin-bottom: auto;
   }
-  .feature-text { flex: 1; max-width: 540px; }
-  .feature-phone {
+  .feat-text { flex: 1; max-width: 540px; }
+  .feat-text .eyebrow { color: var(--ink-soft); margin-bottom: 12px; }
+  .panel--dark .feat-text .eyebrow { color: rgba(250,247,242,0.65); }
+  .feat-text .title {
+    font-family: "Playfair Display", Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 82px;
+    line-height: 1.0;
+    letter-spacing: -0.012em;
+    color: var(--ink);
+    margin: 0 0 22px;
+  }
+  .panel--dark .feat-text .title { color: var(--cream); }
+  .feat-text .title em { font-style: italic; }
+  .feat-list { list-style: none; padding: 0; margin: 0; }
+  .feat-list li {
+    display: flex; gap: 12px; align-items: flex-start;
+    padding: 9px 0;
+    font-size: 20px; line-height: 1.45;
+    color: var(--ink);
+    border-top: 1px solid var(--rule);
+  }
+  .panel--dark .feat-list li {
+    color: var(--cream);
+    border-top-color: rgba(255,255,255,0.12);
+  }
+  .feat-list li:last-child { border-bottom: 1px solid var(--rule); }
+  .panel--dark .feat-list li:last-child { border-bottom-color: rgba(255,255,255,0.12); }
+  .feat-list .bullet {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    margin-top: 11px;
+    flex-shrink: 0;
+  }
+  .feat-phone {
     width: 320px; aspect-ratio: 9 / 19.5;
     border-radius: 32px;
-    box-shadow: 0 24px 60px rgba(0,0,0,0.4);
-    border: 3px solid rgba(255,255,255,0.08);
+    box-shadow: 0 22px 50px rgba(0,0,0,0.18);
+    border: 3px solid rgba(0,0,0,0.06);
     background: #000;
     object-fit: cover;
     flex-shrink: 0;
   }
-  .panel--feature--cream .feature-phone,
-  .panel--feature--bone .feature-phone {
-    border-color: rgba(0,0,0,0.06);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.18);
+  .panel--dark .feat-phone {
+    border-color: rgba(255,255,255,0.08);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+  }
+
+  /* Phone row layout (for 'what's inside' panel) */
+  .phone-row {
+    display: flex; gap: 14px; justify-content: center; align-items: flex-end;
+    margin: 28px 0;
+  }
+  .phone-row img {
+    width: 168px; aspect-ratio: 9 / 19.5;
+    border-radius: 22px;
+    object-fit: cover;
+    box-shadow: 0 14px 40px rgba(0,0,0,0.22);
+    border: 2px solid rgba(0,0,0,0.07);
+  }
+  .phone-row img.center { transform: translateY(-24px); }
+
+  /* Tech stack grid */
+  .tech-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+    margin-top: 24px;
+  }
+  .tech-card {
+    padding: 22px 24px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 6px;
+  }
+  .tech-card .num {
+    font-family: "JetBrains Mono", monospace; font-size: 11px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(250,247,242,0.6); margin-bottom: 10px;
+  }
+  .tech-card .name {
+    font-family: "Playfair Display", serif; font-style: italic;
+    font-size: 26px; line-height: 1.05;
+    color: var(--cream); margin-bottom: 5px;
+  }
+  .tech-card .desc {
+    font-family: "Open Sans", sans-serif; font-size: 15px;
+    color: rgba(250,247,242,0.7); line-height: 1.5;
   }
 </style>
 </head>
 <body>
 <div class="deck">
 
-  <!-- 1. COVER — atmospheric phone on table dawn -->
-  <section class="panel p1">
-    <div class="bg"></div>
-    <div class="scrim scrim--solid"></div>
+  <!-- 1. COVER — direct, dark, no metaphor -->
+  <section class="panel panel--dark">
     <div class="content">
-      <div class="chrome-top"><span>The Foundation</span><span>01 / 08</span></div>
+      <div class="chrome-top" style="color:rgba(250,247,242,0.7);"><span>The Foundation</span><span>01 / 08</span></div>
       <div>
         <div class="rainbow-bar"></div>
-        <p class="eyebrow">The companion app</p>
-        <h1 class="display" style="font-size: 116px;">The app,<br/>in your<br/><em style="color: var(--yellow);">pocket</em>.</h1>
+        <p class="eyebrow" style="color: rgba(250,247,242,0.7);">Companion app · iOS + Android</p>
+        <h1 class="display" style="font-size: 128px;">The Foundation<br/><em style="color: var(--yellow);">app</em>.</h1>
       </div>
-      <div class="chrome-bot"><span>The retreat doesn't end on Friday</span><span>@lovehappinessfreedom</span></div>
+      <div class="chrome-bot" style="color:rgba(250,247,242,0.7);"><span>Built end-to-end by Divergence</span><span>@lovehappinessfreedom</span></div>
     </div>
   </section>
 
-  <!-- 2. MORNING — app-home + dawn AI bg behind a subtle gradient -->
-  <section class="panel panel--feature">
-    <div class="feature-content">
-      <div class="chrome-top"><span>06:30</span><span>02 / 08</span></div>
-      <div class="feature-row">
-        <div class="feature-text">
-          <p class="eyebrow" style="color: var(--orange);">Before the phone is a phone</p>
-          <h2 class="display" style="font-size: 76px;">Open the<br/>app <em style="color: var(--orange);">before</em><br/>the world.</h2>
-          <p class="body" style="margin-top: 22px; font-size: 22px;">A daily dashboard. What's next. What's been done. The day's work without the noise.</p>
-        </div>
-        <img class="feature-phone" src="../../assets/app-home.png" alt="App home"/>
-      </div>
-      <div class="chrome-bot"><span>The home screen</span><span>@lovehappinessfreedom</span></div>
-    </div>
-  </section>
-
-  <!-- 3. COURSES — app-course on bone/cream gradient -->
-  <section class="panel panel--feature panel--feature--cream">
-    <div class="feature-content">
-      <div class="chrome-top"><span>10:00</span><span>03 / 08</span></div>
-      <div class="feature-row">
-        <div class="feature-text">
-          <p class="eyebrow" style="color: var(--red);">The seven pillars</p>
-          <h2 class="display" style="font-size: 76px;">A <em style="color: var(--red);">pillar</em><br/>in depth,<br/>on repeat.</h2>
-          <p class="body" style="margin-top: 22px; font-size: 22px;">Audio lessons, written practices, short videos. Each pillar broken into weeks. Built for a flight, a walk, a kitchen table.</p>
-        </div>
-        <img class="feature-phone" src="../../assets/app-course.png" alt="App courses"/>
-      </div>
-      <div class="chrome-bot"><span>The courses</span><span>@lovehappinessfreedom</span></div>
-    </div>
-  </section>
-
-  <!-- 4. JOURNAL — app-journal on bone gradient -->
-  <section class="panel panel--feature panel--feature--bone">
-    <div class="feature-content">
-      <div class="chrome-top"><span>21:00</span><span>04 / 08</span></div>
-      <div class="feature-row">
-        <div class="feature-text">
-          <p class="eyebrow" style="color: var(--purple);">A page nobody reads</p>
-          <h2 class="display" style="font-size: 76px;">Write<br/>what's<br/><em style="color: var(--purple);">true</em>.</h2>
-          <p class="body" style="margin-top: 22px; font-size: 22px;">A private journal, encrypted on the device. Daily prompts, weekly reflections. Nobody else gets to read it. Not even us.</p>
-        </div>
-        <img class="feature-phone" src="../../assets/app-journal.png" alt="App journal"/>
-      </div>
-      <div class="chrome-bot"><span>The journal</span><span>@lovehappinessfreedom</span></div>
-    </div>
-  </section>
-
-  <!-- 5. PRACTICE TRACKER -->
-  <section class="panel panel--feature">
-    <div class="feature-content">
-      <div class="chrome-top"><span>Every day</span><span>05 / 08</span></div>
-      <div class="feature-row">
-        <div class="feature-text">
-          <p class="eyebrow" style="color: var(--green);">A streak that matters</p>
-          <h2 class="display" style="font-size: 70px;">The smallest<br/>practices,<br/>kept <em style="color: var(--green);">daily</em>.</h2>
-          <p class="body" style="margin-top: 22px; font-size: 22px;">Meditation, breathwork, movement, journaling. Quietly tracked. Not gamified. The point isn't the streak. It's what the streak builds in you.</p>
-        </div>
-        <img class="feature-phone" src="../../assets/app-practice.png" alt="App practice"/>
-      </div>
-      <div class="chrome-bot"><span>The practice tracker</span><span>@lovehappinessfreedom</span></div>
-    </div>
-  </section>
-
-  <!-- 6. NAVID -->
-  <section class="panel panel--feature">
-    <div class="feature-content">
-      <div class="chrome-top"><span>NAVID</span><span>06 / 08</span></div>
-      <div class="feature-row">
-        <div class="feature-text">
-          <p class="eyebrow" style="color: var(--purple);">A guide that remembers you</p>
-          <h2 class="display" style="font-size: 76px;"><em style="color: var(--purple);">NAVID</em><br/>is in the<br/>corner.</h2>
-          <p class="body" style="margin-top: 22px; font-size: 22px;">Tap the corner of any screen. NAVID is there. Trained on the seven pillars and the rhythm of a retreat. Locked to retreat guests and Foundation members.</p>
-        </div>
-        <img class="feature-phone" src="../../assets/app-welcome.png" alt="App NAVID"/>
-      </div>
-      <div class="chrome-bot"><span>The AI companion</span><span>@lovehappinessfreedom</span></div>
-    </div>
-  </section>
-
-  <!-- 7. WHAT YOU CARRY — atmospheric AI image full bleed -->
-  <section class="panel p7">
-    <div class="bg"></div>
-    <div class="scrim"></div>
+  <!-- 2. WHAT IT IS — direct stats + phone row -->
+  <section class="panel panel--cream">
     <div class="content">
-      <div class="chrome-top"><span>The retreat in your pocket</span><span>07 / 08</span></div>
-      <div>
-        <p class="eyebrow">What you carry with you</p>
-        <h2 class="display" style="font-size: 80px;">The work<br/>doesn't end<br/>when the<br/><em style="color: var(--yellow);">retreat</em><br/>does.</h2>
-        <p class="body" style="margin-top: 24px;">The app holds the curriculum, the practice, the journal, and NAVID in one place. The retreat lives on the phone now.</p>
+      <div class="chrome-top"><span>What it is</span><span>02 / 08</span></div>
+      <div style="margin-top: 18px;">
+        <p class="eyebrow">In one line</p>
+        <h2 class="display" style="font-size: 60px; color: var(--ink); max-width: 920px;">The Foundation's curriculum, journal, practice tracker, and NAVID, in one app.</h2>
       </div>
-      <div class="chrome-bot"><span>Available to members + retreat guests</span><span>@lovehappinessfreedom</span></div>
+      <div class="phone-row">
+        <img src="../../assets/app-home.png" alt="Home"/>
+        <img class="center" src="../../assets/app-course.png" alt="Courses"/>
+        <img src="../../assets/app-journal.png" alt="Journal"/>
+        <img class="center" src="../../assets/app-practice.png" alt="Practice"/>
+        <img src="../../assets/app-welcome.png" alt="NAVID"/>
+      </div>
+      <div class="chrome-bot" style="color:var(--ink-soft);"><span>5 features · 1 ecosystem</span><span>@lovehappinessfreedom</span></div>
     </div>
   </section>
 
-  <!-- 8. CTA -->
-  <section class="panel panel--cta">
+  <!-- 3. HOME -->
+  <section class="panel panel--cream">
+    <div class="feat-content">
+      <div class="chrome-top" style="color:var(--ink-soft);"><span>Feature 01</span><span>03 / 08</span></div>
+      <div class="feat-main">
+        <div class="feat-text">
+          <p class="eyebrow">Feature 01</p>
+          <h3 class="title"><em style="color: var(--red);">Home</em>.</h3>
+          <ul class="feat-list">
+            <li><span class="bullet" style="background: var(--red);"></span>The day's practice at a glance</li>
+            <li><span class="bullet" style="background: var(--red);"></span>Streak counter, pillar of the week</li>
+            <li><span class="bullet" style="background: var(--red);"></span>Quick access to NAVID</li>
+            <li><span class="bullet" style="background: var(--red);"></span>Foundation announcements</li>
+          </ul>
+        </div>
+        <img class="feat-phone" src="../../assets/app-home.png" alt="Home"/>
+      </div>
+      <div class="chrome-bot" style="color:var(--ink-soft);"><span>Daily dashboard</span><span>@lovehappinessfreedom</span></div>
+    </div>
+  </section>
+
+  <!-- 4. COURSES -->
+  <section class="panel panel--bone">
+    <div class="feat-content">
+      <div class="chrome-top" style="color:var(--ink-soft);"><span>Feature 02</span><span>04 / 08</span></div>
+      <div class="feat-main">
+        <div class="feat-text">
+          <p class="eyebrow">Feature 02</p>
+          <h3 class="title"><em style="color: var(--orange);">Courses</em>.</h3>
+          <ul class="feat-list">
+            <li><span class="bullet" style="background: var(--orange);"></span>The 7 pillars curriculum</li>
+            <li><span class="bullet" style="background: var(--orange);"></span>Audio lessons, written practices, short videos</li>
+            <li><span class="bullet" style="background: var(--orange);"></span>Download for offline use</li>
+            <li><span class="bullet" style="background: var(--orange);"></span>Weekly modules, work at your pace</li>
+          </ul>
+        </div>
+        <img class="feat-phone" src="../../assets/app-course.png" alt="Courses"/>
+      </div>
+      <div class="chrome-bot" style="color:var(--ink-soft);"><span>Foundation curriculum</span><span>@lovehappinessfreedom</span></div>
+    </div>
+  </section>
+
+  <!-- 5. JOURNAL -->
+  <section class="panel panel--cream">
+    <div class="feat-content">
+      <div class="chrome-top" style="color:var(--ink-soft);"><span>Feature 03</span><span>05 / 08</span></div>
+      <div class="feat-main">
+        <div class="feat-text">
+          <p class="eyebrow">Feature 03</p>
+          <h3 class="title"><em style="color: var(--purple);">Journal</em>.</h3>
+          <ul class="feat-list">
+            <li><span class="bullet" style="background: var(--purple);"></span>Encrypted on device, never sent to a server</li>
+            <li><span class="bullet" style="background: var(--purple);"></span>Daily prompts and weekly reflections</li>
+            <li><span class="bullet" style="background: var(--purple);"></span>Searchable, tag your entries</li>
+            <li><span class="bullet" style="background: var(--purple);"></span>Mood and energy tracking</li>
+          </ul>
+        </div>
+        <img class="feat-phone" src="../../assets/app-journal.png" alt="Journal"/>
+      </div>
+      <div class="chrome-bot" style="color:var(--ink-soft);"><span>Private journal · device-encrypted</span><span>@lovehappinessfreedom</span></div>
+    </div>
+  </section>
+
+  <!-- 6. PRACTICE TRACKER -->
+  <section class="panel panel--bone">
+    <div class="feat-content">
+      <div class="chrome-top" style="color:var(--ink-soft);"><span>Feature 04</span><span>06 / 08</span></div>
+      <div class="feat-main">
+        <div class="feat-text">
+          <p class="eyebrow">Feature 04</p>
+          <h3 class="title"><em style="color: var(--green);">Practice</em>.</h3>
+          <ul class="feat-list">
+            <li><span class="bullet" style="background: var(--green);"></span>Track meditation, breathwork, movement, journaling</li>
+            <li><span class="bullet" style="background: var(--green);"></span>Daily streak, weekly summary</li>
+            <li><span class="bullet" style="background: var(--green);"></span>Simple check-ins, no gamification</li>
+            <li><span class="bullet" style="background: var(--green);"></span>Set targets per pillar</li>
+          </ul>
+        </div>
+        <img class="feat-phone" src="../../assets/app-practice.png" alt="Practice"/>
+      </div>
+      <div class="chrome-bot" style="color:var(--ink-soft);"><span>Daily practice tracker</span><span>@lovehappinessfreedom</span></div>
+    </div>
+  </section>
+
+  <!-- 7. NAVID + TECH STACK -->
+  <section class="panel panel--dark">
+    <div class="feat-content">
+      <div class="chrome-top" style="color:rgba(250,247,242,0.7);"><span>The stack</span><span>07 / 08</span></div>
+      <div style="margin-top: 24px;">
+        <p class="eyebrow" style="color: rgba(250,247,242,0.7);">How it's built</p>
+        <h3 class="display" style="font-size: 60px; color: var(--cream); margin-top: 12px;"><em style="color: var(--purple);">NAVID</em> built in,<br/>the stack underneath.</h3>
+      </div>
+      <div class="tech-grid">
+        <div class="tech-card">
+          <div class="num">01 · AI companion</div>
+          <div class="name">NAVID</div>
+          <div class="desc">Custom AI trained on the Foundation's curriculum and tone. Tap the corner of any screen to talk. Members + retreat guests only.</div>
+        </div>
+        <div class="tech-card">
+          <div class="num">02 · Cross-platform</div>
+          <div class="name">React Native + Expo</div>
+          <div class="desc">One codebase, iOS + Android. Built end-to-end by Divergence, Cape Town.</div>
+        </div>
+        <div class="tech-card">
+          <div class="num">03 · Privacy</div>
+          <div class="name">On-device encryption</div>
+          <div class="desc">Journal entries are encrypted on the device. Never sent to a server. Member privacy first.</div>
+        </div>
+        <div class="tech-card">
+          <div class="num">04 · Account</div>
+          <div class="name">Foundation cloud</div>
+          <div class="desc">Single login across every Foundation project. Courses, practice, community.</div>
+        </div>
+      </div>
+      <div class="chrome-bot" style="color:rgba(250,247,242,0.7);"><span>Built end-to-end by Divergence</span><span>@lovehappinessfreedom</span></div>
+    </div>
+  </section>
+
+  <!-- 8. ACCESS + CTA -->
+  <section class="panel panel--dark">
     <div class="content">
-      <div class="chrome-top" style="color: rgba(250,247,242,0.7);"><span>The Foundation app</span><span>08 / 08</span></div>
+      <div class="chrome-top" style="color: rgba(250,247,242,0.7);"><span>How to get it</span><span>08 / 08</span></div>
       <div>
         <div class="rainbow-bar"></div>
-        <p class="eyebrow" style="color: rgba(250,247,242,0.7);">iOS + Android · Built by Divergence</p>
-        <h2 class="display" style="font-size: 108px;">Carry the<br/><em style="color: var(--yellow);">work</em><br/>with you.</h2>
+        <p class="eyebrow" style="color: rgba(250,247,242,0.7);">Members + retreat guests · iOS + Android</p>
+        <h2 class="display" style="font-size: 100px;">Get access at the<br/>foundation <em style="color: var(--yellow);">website</em>.</h2>
       </div>
       <div class="meta"><span>@lovehappinessfreedom</span><span>lhffoundation.org / app</span></div>
     </div>
