@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>LHFF — The app, in your pocket · Carousel 18</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Open+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="_shared-base.css" />
+<style>
+  /* Atmospheric AI image backgrounds */
+  .p1 .bg { background-image: url("../ai-assets/c18-cover-phone.jpg"); }
+  .p7 .bg { background-image: url("../ai-assets/c18-candle-phone.jpg"); }
+
+  /* Phone screenshot layout — image background subtly, phone screen prominent */
+  .panel--feature { background: linear-gradient(165deg, #0c0f15 0%, #1a1e2b 100%); }
+  .panel--feature--cream { background: linear-gradient(165deg, #faf7f2 0%, #efe7d8 100%); color: var(--ink); }
+  .panel--feature--cream .body, .panel--feature--cream .chrome-top, .panel--feature--cream .chrome-bot, .panel--feature--cream .eyebrow { color: var(--ink-soft); }
+  .panel--feature--cream .display { color: var(--ink); }
+  .panel--feature--bone { background: linear-gradient(165deg, #f3ede3 0%, #e6dbc6 100%); color: var(--ink); }
+  .panel--feature--bone .body, .panel--feature--bone .chrome-top, .panel--feature--bone .chrome-bot, .panel--feature--bone .eyebrow { color: var(--ink-soft); }
+  .panel--feature--bone .display { color: var(--ink); }
+
+  .feature-content {
+    position: absolute; inset: 0; z-index: 2;
+    padding: 56px 64px;
+    display: flex; flex-direction: column;
+    color: var(--cream);
+  }
+  .feature-row {
+    display: flex; gap: 36px; align-items: center;
+    margin-top: auto; margin-bottom: auto;
+  }
+  .feature-text { flex: 1; max-width: 540px; }
+  .feature-phone {
+    width: 320px; aspect-ratio: 9 / 19.5;
+    border-radius: 32px;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.4);
+    border: 3px solid rgba(255,255,255,0.08);
+    background: #000;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+  .panel--feature--cream .feature-phone,
+  .panel--feature--bone .feature-phone {
+    border-color: rgba(0,0,0,0.06);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.18);
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- 1. COVER — atmospheric phone on table dawn -->
+  <section class="panel p1">
+    <div class="bg"></div>
+    <div class="scrim scrim--solid"></div>
+    <div class="content">
+      <div class="chrome-top"><span>The Foundation</span><span>01 / 08</span></div>
+      <div>
+        <div class="rainbow-bar"></div>
+        <p class="eyebrow">The companion app</p>
+        <h1 class="display" style="font-size: 116px;">The app,<br/>in your<br/><em style="color: var(--yellow);">pocket</em>.</h1>
+      </div>
+      <div class="chrome-bot"><span>The retreat doesn't end on Friday</span><span>@lovehappinessfreedom</span></div>
+    </div>
+  </section>
+
+  <!-- 2. MORNING — app-home + dawn AI bg behind a subtle gradient -->
+  <section class="panel panel--feature">
+    <div class="feature-content">
+      <div class="chrome-top"><span>06:30</span><span>02 / 08</span></div>
+      <div class="feature-row">
+        <div class="feature-text">
+          <p class="eyebrow" style="color: var(--orange);">Before the phone is a phone</p>
+          <h2 class="display" style="font-size: 76px;">Open the<br/>app <em style="color: var(--orange);">before</em><br/>the world.</h2>
+          <p class="body" style="margin-top: 22px; font-size: 22px;">A daily dashboard. What's next. What's been done. The day's work without the noise.</p>
+        </div>
+        <img class="feature-phone" src="../../assets/app-home.png" alt="App home"/>
+      </div>
+      <div class="chrome-bot"><span>The home screen</span><span>@lovehappinessfreedom</span></div>
+    </div>
+  </section>
+
+  <!-- 3. COURSES — app-course on bone/cream gradient -->
+  <section class="panel panel--feature panel--feature--cream">
+    <div class="feature-content">
+      <div class="chrome-top"><span>10:00</span><span>03 / 08</span></div>
+      <div class="feature-row">
+        <div class="feature-text">
+          <p class="eyebrow" style="color: var(--red);">The seven pillars</p>
+          <h2 class="display" style="font-size: 76px;">A <em style="color: var(--red);">pillar</em><br/>in depth,<br/>on repeat.</h2>
+          <p class="body" style="margin-top: 22px; font-size: 22px;">Audio lessons, written practices, short videos. Each pillar broken into weeks. Built for a flight, a walk, a kitchen table.</p>
+        </div>
+        <img class="feature-phone" src="../../assets/app-course.png" alt="App courses"/>
+      </div>
+      <div class="chrome-bot"><span>The courses</span><span>@lovehappinessfreedom</span></div>
+    </div>
+  </section>
+
+  <!-- 4. JOURNAL — app-journal on bone gradient -->
+  <section class="panel panel--feature panel--feature--bone">
+    <div class="feature-content">
+      <div class="chrome-top"><span>21:00</span><span>04 / 08</span></div>
+      <div class="feature-row">
+        <div class="feature-text">
+          <p class="eyebrow" style="color: var(--purple);">A page nobody reads</p>
+          <h2 class="display" style="font-size: 76px;">Write<br/>what's<br/><em style="color: var(--purple);">true</em>.</h2>
+          <p class="body" style="margin-top: 22px; font-size: 22px;">A private journal, encrypted on the device. Daily prompts, weekly reflections. Nobody else gets to read it. Not even us.</p>
+        </div>
+        <img class="feature-phone" src="../../assets/app-journal.png" alt="App journal"/>
+      </div>
+      <div class="chrome-bot"><span>The journal</span><span>@lovehappinessfreedom</span></div>
+    </div>
+  </section>
+
+  <!-- 5. PRACTICE TRACKER -->
+  <section class="panel panel--feature">
+    <div class="feature-content">
+      <div class="chrome-top"><span>Every day</span><span>05 / 08</span></div>
+      <div class="feature-row">
+        <div class="feature-text">
+          <p class="eyebrow" style="color: var(--green);">A streak that matters</p>
+          <h2 class="display" style="font-size: 70px;">The smallest<br/>practices,<br/>kept <em style="color: var(--green);">daily</em>.</h2>
+          <p class="body" style="margin-top: 22px; font-size: 22px;">Meditation, breathwork, movement, journaling. Quietly tracked. Not gamified. The point isn't the streak. It's what the streak builds in you.</p>
+        </div>
+        <img class="feature-phone" src="../../assets/app-practice.png" alt="App practice"/>
+      </div>
+      <div class="chrome-bot"><span>The practice tracker</span><span>@lovehappinessfreedom</span></div>
+    </div>
+  </section>
+
+  <!-- 6. NAVID -->
+  <section class="panel panel--feature">
+    <div class="feature-content">
+      <div class="chrome-top"><span>NAVID</span><span>06 / 08</span></div>
+      <div class="feature-row">
+        <div class="feature-text">
+          <p class="eyebrow" style="color: var(--purple);">A guide that remembers you</p>
+          <h2 class="display" style="font-size: 76px;"><em style="color: var(--purple);">NAVID</em><br/>is in the<br/>corner.</h2>
+          <p class="body" style="margin-top: 22px; font-size: 22px;">Tap the corner of any screen. NAVID is there. Trained on the seven pillars and the rhythm of a retreat. Locked to retreat guests and Foundation members.</p>
+        </div>
+        <img class="feature-phone" src="../../assets/app-welcome.png" alt="App NAVID"/>
+      </div>
+      <div class="chrome-bot"><span>The AI companion</span><span>@lovehappinessfreedom</span></div>
+    </div>
+  </section>
+
+  <!-- 7. WHAT YOU CARRY — atmospheric AI image full bleed -->
+  <section class="panel p7">
+    <div class="bg"></div>
+    <div class="scrim"></div>
+    <div class="content">
+      <div class="chrome-top"><span>The retreat in your pocket</span><span>07 / 08</span></div>
+      <div>
+        <p class="eyebrow">What you carry with you</p>
+        <h2 class="display" style="font-size: 80px;">The work<br/>doesn't end<br/>when the<br/><em style="color: var(--yellow);">retreat</em><br/>does.</h2>
+        <p class="body" style="margin-top: 24px;">The app holds the curriculum, the practice, the journal, and NAVID in one place. The retreat lives on the phone now.</p>
+      </div>
+      <div class="chrome-bot"><span>Available to members + retreat guests</span><span>@lovehappinessfreedom</span></div>
+    </div>
+  </section>
+
+  <!-- 8. CTA -->
+  <section class="panel panel--cta">
+    <div class="content">
+      <div class="chrome-top" style="color: rgba(250,247,242,0.7);"><span>The Foundation app</span><span>08 / 08</span></div>
+      <div>
+        <div class="rainbow-bar"></div>
+        <p class="eyebrow" style="color: rgba(250,247,242,0.7);">iOS + Android · Built by Divergence</p>
+        <h2 class="display" style="font-size: 108px;">Carry the<br/><em style="color: var(--yellow);">work</em><br/>with you.</h2>
+      </div>
+      <div class="meta"><span>@lovehappinessfreedom</span><span>lhffoundation.org / app</span></div>
+    </div>
+  </section>
+
+</div>
+<script>
+  if (new URLSearchParams(location.search).get("render") === "1") {
+    document.body.classList.add("render");
+  }
+</script>
+</body>
+</html>
