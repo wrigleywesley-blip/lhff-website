@@ -373,6 +373,202 @@
     z-index: 5;
   }
 
+  /* ── WEBSITE PATTERNS — exact mirrors from /styles.css ── */
+
+  /* .chapter — small rule + numbered eyebrow with purple <em> */
+  .chapter {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+  .chapter--center { justify-content: center; }
+  .chapter__rule {
+    width: 64px;
+    height: 1px;
+    background: var(--ink);
+    flex-shrink: 0;
+  }
+  .chapter__rule--inverse { background: rgba(255,255,255,0.6); }
+  .chapter__num {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .chapter__num--inverse { color: var(--paper); }
+  .chapter__num em {
+    color: var(--accent);
+    font-style: normal;
+    margin-right: 8px;
+    font-weight: 800;
+  }
+  .chapter__num--inverse em { color: var(--yellow); }
+
+  /* .statement-quote — centered cream/dark statement section (website .statement) */
+  .slide--statement {
+    background: var(--paper);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-block: 1px solid var(--rule);
+  }
+  .slide--statement.is-dark { background: var(--ink); border-block-color: rgba(255,255,255,0.1); }
+  .statement-inner {
+    max-width: 980px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0 88px;
+  }
+  .statement-quote {
+    font-family: "Playfair Display", Georgia, serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 60px;
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin: 0 auto;
+    max-width: 22ch;
+  }
+  .statement-quote em { font-style: italic; color: var(--accent); }
+  .slide--statement.is-dark .statement-quote { color: var(--paper); }
+  .slide--statement.is-dark .statement-quote em { color: var(--yellow); }
+  .statement-attrib {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-top: 36px;
+  }
+  .slide--statement.is-dark .statement-attrib { color: rgba(250,247,242,0.55); }
+
+  /* .pillar-index — the website's pillar list pattern */
+  .pillar-index {
+    border-block: 1px solid var(--rule);
+    background: var(--paper);
+    margin-top: 22px;
+  }
+  .slide--dark .pillar-index { background: transparent; border-color: var(--rule-light); }
+  .slide--purple .pillar-index { background: rgba(255,255,255,0.04); border-color: var(--rule-light); }
+  .pillar-index__row {
+    display: grid;
+    grid-template-columns: 120px 1fr auto;
+    align-items: center;
+    gap: 28px;
+    padding: 22px 16px 22px 22px;
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+  }
+  .slide--dark .pillar-index__row,
+  .slide--purple .pillar-index__row { border-bottom-color: var(--rule-light); }
+  .pillar-index__row:last-child { border-bottom: 0; }
+  .pillar-index__row::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+  }
+  .pillar-index__row[data-color="red"]::before { background: var(--red); }
+  .pillar-index__row[data-color="orange"]::before { background: var(--orange); }
+  .pillar-index__row[data-color="yellow"]::before { background: var(--yellow); }
+  .pillar-index__row[data-color="green"]::before { background: var(--green); }
+  .pillar-index__row[data-color="sky"]::before { background: var(--sky); }
+  .pillar-index__row[data-color="blue"]::before { background: var(--blue); }
+  .pillar-index__row[data-color="purple"]::before { background: var(--purple); }
+  .pillar-index__num {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 44px;
+    line-height: 1;
+    color: var(--ink-soft);
+  }
+  .slide--dark .pillar-index__num,
+  .slide--purple .pillar-index__num { color: rgba(250,247,242,0.5); }
+  .pillar-index__row[data-color="red"] .pillar-index__num { color: var(--red); }
+  .pillar-index__row[data-color="orange"] .pillar-index__num { color: var(--orange); }
+  .pillar-index__row[data-color="yellow"] .pillar-index__num { color: var(--yellow); }
+  .pillar-index__row[data-color="green"] .pillar-index__num { color: var(--green); }
+  .pillar-index__row[data-color="sky"] .pillar-index__num { color: var(--sky); }
+  .pillar-index__row[data-color="blue"] .pillar-index__num { color: var(--blue); }
+  .pillar-index__row[data-color="purple"] .pillar-index__num { color: var(--purple); }
+  .pillar-index__main { display: flex; flex-direction: column; gap: 4px; }
+  .pillar-index__title {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 1.05;
+    letter-spacing: -0.012em;
+    margin: 0;
+  }
+  .slide--dark .pillar-index__title { color: var(--paper); }
+  .pillar-index__sub {
+    font-family: "Open Sans", sans-serif;
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    margin: 0;
+    max-width: 64ch;
+  }
+  .slide--dark .pillar-index__sub,
+  .slide--purple .pillar-index__sub { color: rgba(250,247,242,0.7); }
+  .pillar-index__arrow {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--ink-soft);
+  }
+  .slide--dark .pillar-index__arrow,
+  .slide--purple .pillar-index__arrow { color: rgba(250,247,242,0.5); }
+
+  /* .cinema-chapter — section divider chapter mark on image slides (mirrors website cinema) */
+  .cinema-chapter {
+    position: absolute;
+    top: 44px;
+    left: 64px;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .cinema-chapter__rule {
+    width: 64px;
+    height: 1px;
+    background: rgba(255,255,255,0.85);
+  }
+  .cinema-chapter__text {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: rgba(255,255,255,0.95);
+    text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+  }
+  .cinema-caption {
+    position: absolute;
+    top: 44px;
+    right: 64px;
+    z-index: 3;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: rgba(255,255,255,0.85);
+    text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+  }
+  .cinema-caption__num { color: rgba(255,255,255,0.95); }
+
   /* Phone-mock — mirrors the website's phone-mock pattern exactly
      (dark outer body, inner screen, notch, layered shadow with purple tint) */
   .phone-row {
@@ -486,15 +682,15 @@
   </div>
 </section>
 
-<!-- ─────────── 02 — OPENING QUOTE ─────────── -->
-<section class="slide slide--quote">
+<!-- ─────────── 02 — OPENING QUOTE (statement pattern) ─────────── -->
+<section class="slide slide--statement">
   <div class="chrome chrome--top">
     <span>Opening</span>
     <span>Buddha Villa Retreat · 02</span>
   </div>
-  <div class="quote">
-    <p class="q-text">"The medicine opens<br/>the door.<br/>What you bring<br/>to it shapes what<br/>walks <em>through</em>."</p>
-    <p class="q-attrib">— Cheney, Founder</p>
+  <div class="statement-inner">
+    <p class="statement-quote">"The medicine opens the door. What you bring to it shapes what walks <em>through</em>."</p>
+    <p class="statement-attrib">— Cheney, Founder</p>
   </div>
 </section>
 
@@ -622,12 +818,12 @@
   </div>
 </section>
 
-<!-- ─────────── 10 — PAUSE QUOTE ─────────── -->
-<section class="slide slide--quote is-dark">
+<!-- ─────────── 10 — PAUSE QUOTE (statement pattern, dark) ─────────── -->
+<section class="slide slide--statement is-dark">
   <div class="chrome chrome--top"><span>Pause</span><span>Buddha Villa Retreat · 10</span></div>
-  <div class="quote">
-    <p class="q-text">"You arrive<br/><em>carrying</em>.<br/>You leave<br/><em>clearer</em>."</p>
-    <p class="q-attrib">— A guest from a past cohort</p>
+  <div class="statement-inner">
+    <p class="statement-quote">"You arrive <em>carrying</em>. You leave <em>clearer</em>."</p>
+    <p class="statement-attrib">— A guest, past cohort</p>
   </div>
 </section>
 
@@ -635,7 +831,14 @@
 <section class="slide slide--img">
   <div class="bg" style="background-image:url('../assets/camps-bay.jpg');"></div>
   <div class="scrim"></div>
-  <div class="chrome chrome--top"><span>Section 02</span><span>Buddha Villa Retreat · 11</span></div>
+  <div class="cinema-chapter">
+    <span class="cinema-chapter__rule"></span>
+    <span class="cinema-chapter__text">Section 02 / The Setting</span>
+  </div>
+  <div class="cinema-caption">
+    <span class="cinema-caption__num">02 / 06</span>
+    <span class="cinema-caption__meta">Camps Bay · Cape Town</span>
+  </div>
   <div class="pad" style="justify-content: flex-end;">
     <div class="big-num" style="color: var(--yellow);">02</div>
     <p class="eyebrow" style="color: var(--yellow); margin-top: 12px;">The setting</p>
@@ -694,10 +897,10 @@
 </section>
 
 <!-- ─────────── 15 — PAUSE QUOTE ─────────── -->
-<section class="slide slide--quote">
+<section class="slide slide--statement">
   <div class="chrome chrome--top"><span>Pause</span><span>Buddha Villa Retreat · 17</span></div>
-  <div class="quote">
-    <p class="q-text">The room is <em>built</em>.<br/>The week is <em>held</em>.<br/>The only thing<br/>asked of you<br/>is to <em>arrive</em>.</p>
+  <div class="statement-inner">
+    <p class="statement-quote">The room is <em>built</em>. The week is <em>held</em>. The only thing asked of you is to <em>arrive</em>.</p>
   </div>
 </section>
 
@@ -817,11 +1020,11 @@
 </section>
 
 <!-- ─────────── 21 — PAUSE QUOTE ─────────── -->
-<section class="slide slide--quote">
+<section class="slide slide--statement">
   <div class="chrome chrome--top"><span>Pause</span><span>Buddha Villa Retreat · 23</span></div>
-  <div class="quote">
-    <p class="q-text">A doorway,<br/>not a <em>destination</em>.</p>
-    <p class="q-attrib">— On the medicine</p>
+  <div class="statement-inner">
+    <p class="statement-quote">A doorway, not a <em>destination</em>.</p>
+    <p class="statement-attrib">— On the medicine</p>
   </div>
 </section>
 
@@ -829,7 +1032,14 @@
 <section class="slide slide--img">
   <div class="bg" style="background-image:url('../assets/cape-town-mountains.jpg');"></div>
   <div class="scrim"></div>
-  <div class="chrome chrome--top"><span>Section 04</span><span>Buddha Villa Retreat · 24</span></div>
+  <div class="cinema-chapter">
+    <span class="cinema-chapter__rule"></span>
+    <span class="cinema-chapter__text">Section 04 / The Journey</span>
+  </div>
+  <div class="cinema-caption">
+    <span class="cinema-caption__num">04 / 06</span>
+    <span class="cinema-caption__meta">Sunday through Friday</span>
+  </div>
   <div class="pad" style="justify-content: flex-end;">
     <div class="big-num" style="color: var(--yellow);">04</div>
     <p class="eyebrow" style="color: var(--yellow); margin-top: 12px;">The journey</p>
@@ -979,11 +1189,11 @@
 </section>
 
 <!-- ─────────── 26 — PAUSE QUOTE ─────────── -->
-<section class="slide slide--quote is-dark">
+<section class="slide slide--statement is-dark">
   <div class="chrome chrome--top"><span>Pause</span><span>Buddha Villa Retreat · 28</span></div>
-  <div class="quote">
-    <p class="q-text">"Between every ceremony,<br/>the space to <em>metabolise</em><br/>what was found."</p>
-    <p class="q-attrib">— On the rhythm of the week</p>
+  <div class="statement-inner">
+    <p class="statement-quote">"Between every ceremony, the space to <em>metabolise</em> what was found."</p>
+    <p class="statement-attrib">— On the rhythm of the week</p>
   </div>
 </section>
 
@@ -991,7 +1201,14 @@
 <section class="slide slide--img">
   <div class="bg" style="background-image:url('../assets/villa-pool-ocean.jpg');"></div>
   <div class="scrim"></div>
-  <div class="chrome chrome--top"><span>Section 05</span><span>Buddha Villa Retreat · 29</span></div>
+  <div class="cinema-chapter">
+    <span class="cinema-chapter__rule"></span>
+    <span class="cinema-chapter__text">Section 05 / The Arc Beyond</span>
+  </div>
+  <div class="cinema-caption">
+    <span class="cinema-caption__num">05 / 06</span>
+    <span class="cinema-caption__meta">Preparation · Integration · Companion</span>
+  </div>
   <div class="pad" style="justify-content: flex-end;">
     <div class="big-num" style="color: var(--yellow);">05</div>
     <p class="eyebrow" style="color: var(--yellow); margin-top: 12px;">The arc beyond the week</p>
@@ -1132,11 +1349,11 @@
 </section>
 
 <!-- ─────────── 34 — CLOSING QUOTE ─────────── -->
-<section class="slide slide--quote is-dark">
+<section class="slide slide--statement is-dark">
   <div class="chrome chrome--top"><span>Closing</span><span>Buddha Villa Retreat · 36</span></div>
-  <div class="quote">
-    <p class="q-text">The medicine opens<br/>the door.<br/>You walk <em>through</em>.<br/>The Foundation<br/>walks <em>with</em> you.</p>
-    <p class="q-attrib">— The Love Happiness Freedom Foundation</p>
+  <div class="statement-inner">
+    <p class="statement-quote">The medicine opens the door. You walk <em>through</em>. The Foundation walks <em>with</em> you.</p>
+    <p class="statement-attrib">— The Love Happiness Freedom Foundation</p>
   </div>
 </section>
 
