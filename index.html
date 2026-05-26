@@ -15,6 +15,18 @@
 </head>
 <body>
 
+<!-- Splash — loading overlay, fades out once the bar fills -->
+<div class="splash" id="splash" aria-hidden="false" role="status">
+  <div class="splash__inner">
+    <img class="splash__logo" src="assets/lhff-logo-white.png" alt="Love Happiness Freedom Foundation" />
+    <p class="splash__tagline">Love &middot; Happiness &middot; Freedom</p>
+    <div class="splash__bar" aria-hidden="true">
+      <span class="splash__bar-fill"></span>
+    </div>
+    <p class="splash__sub">Loading the work&hellip;</p>
+  </div>
+</div>
+
 <!-- Email capture modal -->
 <div class="email-modal" id="emailModal" aria-hidden="true" role="dialog" aria-labelledby="emailModalTitle">
   <div class="email-modal__backdrop" data-dismiss-modal></div>

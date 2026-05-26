@@ -2,6 +2,47 @@
    Stagger fade-in, scroll progress bar, NAVID FAB, year stamp, newsletter
 */
 
+// Splash — first-visit loading screen, fades out after ~2.1s
+(() => {
+  const splash = document.getElementById("splash");
+  if (!splash) return;
+  const STORAGE_KEY = "lhff:splash:shown";
+  const seenThisSession = (() => {
+    try { return sessionStorage.getItem(STORAGE_KEY) === "1"; } catch (e) { return false; }
+  })();
+
+  // If we already showed it this session, skip the wait — hide immediately.
+  if (seenThisSession) {
+    splash.classList.add("is-done");
+    splash.setAttribute("aria-hidden", "true");
+    return;
+  }
+
+  // Lock body scroll while splash is up so the page doesn't jump under it
+  document.documentElement.style.overflow = "hidden";
+
+  const dismiss = () => {
+    splash.classList.add("is-done");
+    splash.setAttribute("aria-hidden", "true");
+    document.documentElement.style.overflow = "";
+    try { sessionStorage.setItem(STORAGE_KEY, "1"); } catch (e) {}
+  };
+
+  // Total splash visible time: matches CSS bar-fill (600ms delay + 1500ms duration) + small breather
+  const totalMs = 2200;
+  setTimeout(dismiss, totalMs);
+
+  // Safety: if user clicks/keypresses early, dismiss
+  const earlyDismiss = (e) => {
+    if (e.type === "keydown" && e.key !== "Escape" && e.key !== " " && e.key !== "Enter") return;
+    dismiss();
+    document.removeEventListener("keydown", earlyDismiss);
+    splash.removeEventListener("click", earlyDismiss);
+  };
+  document.addEventListener("keydown", earlyDismiss);
+  splash.addEventListener("click", earlyDismiss);
+})();
+
 // Stagger fade-in observer (respects prefers-reduced-motion)
 (() => {
   const els = document.querySelectorAll(".fade-in");
