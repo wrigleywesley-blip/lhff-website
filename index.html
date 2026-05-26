@@ -99,7 +99,7 @@
         <span class="chapter__num"><em>02</em>The Concept</span>
         <span class="chapter__rule"></span>
       </div>
-      <p class="statement__quote">
+      <p class="statement__quote" data-word-reveal>
         The world's hardest problems get solved from the <em>inside out</em>.
       </p>
       <p class="statement__lede">
@@ -123,32 +123,31 @@
   </div>
 </section>
 
-<!-- Framing strip -->
-<section class="framing">
-  <div class="container">
-    <div class="framing__inner fade-in">
-      <div class="framing__cell">
-        <span class="framing__label">The Heart</span>
-        <h3 class="framing__title">The Foundation</h3>
-        <p class="framing__sub">The mission, the philosophy, the people who hold the work.</p>
-      </div>
-      <div class="framing__cell">
-        <span class="framing__label">The Doorway</span>
-        <h3 class="framing__title">The Retreat</h3>
-        <p class="framing__sub">Six days in Cape Town. Where the work begins in earnest.</p>
-      </div>
-      <div class="framing__cell">
-        <span class="framing__label">The Companion</span>
-        <h3 class="framing__title">The App</h3>
-        <p class="framing__sub">A daily home for the practice between sessions.</p>
-      </div>
-      <div class="framing__cell">
-        <span class="framing__label">The Future</span>
-        <h3 class="framing__title">The Platform</h3>
-        <p class="framing__sub">Where the work meets the wider world. Coming next.</p>
-      </div>
+<!-- Marquee strip — signature motion moment, replaces the old 4-cell box grid -->
+<section class="marquee-strip" aria-label="The work, in four words">
+  <div class="marquee-strip__track" aria-hidden="true">
+    <div class="marquee-strip__set">
+      <span class="marquee-strip__word">The Foundation</span>
+      <span class="marquee-strip__dot" style="--c: var(--red);"></span>
+      <span class="marquee-strip__word">The Retreat</span>
+      <span class="marquee-strip__dot" style="--c: var(--orange);"></span>
+      <span class="marquee-strip__word">The App</span>
+      <span class="marquee-strip__dot" style="--c: var(--yellow);"></span>
+      <span class="marquee-strip__word">The Platform</span>
+      <span class="marquee-strip__dot" style="--c: var(--sky);"></span>
+    </div>
+    <div class="marquee-strip__set" aria-hidden="true">
+      <span class="marquee-strip__word">The Foundation</span>
+      <span class="marquee-strip__dot" style="--c: var(--red);"></span>
+      <span class="marquee-strip__word">The Retreat</span>
+      <span class="marquee-strip__dot" style="--c: var(--orange);"></span>
+      <span class="marquee-strip__word">The App</span>
+      <span class="marquee-strip__dot" style="--c: var(--yellow);"></span>
+      <span class="marquee-strip__word">The Platform</span>
+      <span class="marquee-strip__dot" style="--c: var(--sky);"></span>
     </div>
   </div>
+  <p class="visually-hidden">The Foundation. The Retreat. The App. The Platform. Four parts of one body of work.</p>
 </section>
 
 <!-- The Pillars — Love · Happiness · Freedom -->
@@ -957,27 +956,41 @@
     </div>
   </div>
 
-  <div class="cta-tiles fade-in">
-    <a class="cta-tile cta-tile--red" href="#" data-open-modal="retreat">
-      <div class="cta-tile__num">01 / Participant</div>
-      <h3 class="cta-tile__title">Apply for a retreat</h3>
-      <span class="cta-tile__arrow">→</span>
-    </a>
-    <a class="cta-tile cta-tile--orange" href="#" data-open-modal="general">
-      <div class="cta-tile__num">02 / Organisation</div>
-      <h3 class="cta-tile__title">Partner with us</h3>
-      <span class="cta-tile__arrow">→</span>
-    </a>
-    <a class="cta-tile cta-tile--green" href="#" data-open-modal="school">
-      <div class="cta-tile__num">03 / School</div>
-      <h3 class="cta-tile__title">Bring the curriculum to your school</h3>
-      <span class="cta-tile__arrow">→</span>
-    </a>
-    <a class="cta-tile cta-tile--sky" href="#" data-open-modal="creator">
-      <div class="cta-tile__num">04 / Creator</div>
-      <h3 class="cta-tile__title">Join Studio One</h3>
-      <span class="cta-tile__arrow">→</span>
-    </a>
+  <div class="container">
+    <nav class="cta-index fade-in" aria-label="Ways to step into the Foundation's work">
+      <a class="cta-index__row" data-color="red" href="#" data-open-modal="retreat">
+        <span class="cta-index__num">01</span>
+        <div class="cta-index__main">
+          <h3 class="cta-index__title">Apply for a retreat</h3>
+          <p class="cta-index__sub">For participants ready to do the work. Six days in Cape Town.</p>
+        </div>
+        <span class="cta-index__arrow" aria-hidden="true">→</span>
+      </a>
+      <a class="cta-index__row" data-color="orange" href="#" data-open-modal="general">
+        <span class="cta-index__num">02</span>
+        <div class="cta-index__main">
+          <h3 class="cta-index__title">Partner with us</h3>
+          <p class="cta-index__sub">For organisations, funders, and aligned brands.</p>
+        </div>
+        <span class="cta-index__arrow" aria-hidden="true">→</span>
+      </a>
+      <a class="cta-index__row" data-color="green" href="#" data-open-modal="school">
+        <span class="cta-index__num">03</span>
+        <div class="cta-index__main">
+          <h3 class="cta-index__title">Bring the curriculum to your school</h3>
+          <p class="cta-index__sub">The seven pillars, designed to teach. Pilot programmes open.</p>
+        </div>
+        <span class="cta-index__arrow" aria-hidden="true">→</span>
+      </a>
+      <a class="cta-index__row" data-color="sky" href="#" data-open-modal="creator">
+        <span class="cta-index__num">04</span>
+        <div class="cta-index__main">
+          <h3 class="cta-index__title">Join Studio One</h3>
+          <p class="cta-index__sub">For young creatives. Studio access, mentorship, real briefs.</p>
+        </div>
+        <span class="cta-index__arrow" aria-hidden="true">→</span>
+      </a>
+    </nav>
   </div>
 </section>
 

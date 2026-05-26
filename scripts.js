@@ -2,17 +2,17 @@
    Stagger fade-in, scroll progress bar, NAVID FAB, year stamp, newsletter
 */
 
-// Stagger fade-in observer
+// Stagger fade-in observer (respects prefers-reduced-motion)
 (() => {
   const els = document.querySelectorAll(".fade-in");
-  if (!("IntersectionObserver" in window) || !els.length) {
+  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (prefersReduced || !("IntersectionObserver" in window) || !els.length) {
     els.forEach(el => el.classList.add("is-in"));
     return;
   }
   const io = new IntersectionObserver((entries) => {
     entries.forEach((e) => {
       if (e.isIntersecting) {
-        // honor data-delay if explicitly set, else apply position-based stagger
         e.target.classList.add("is-in");
         io.unobserve(e.target);
       }
@@ -23,8 +23,10 @@
 
 // Auto-stagger sibling reveals inside grids without manual delays
 (() => {
+  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (prefersReduced) return;
   const groups = document.querySelectorAll(
-    ".pillar-tiles, .program-spread, .built-grid, .cta-tiles, .ecosystem"
+    ".pillar-tiles, .program-spread, .built-grid, .cta-index, .ecosystem"
   );
   groups.forEach((group) => {
     const kids = Array.from(group.children);
@@ -48,6 +50,57 @@
     }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
     io.observe(group);
   });
+})();
+
+// Word reveal — signature scroll moment on big statements with [data-word-reveal]
+(() => {
+  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const els = document.querySelectorAll("[data-word-reveal]");
+  if (!els.length) return;
+  if (prefersReduced || !("IntersectionObserver" in window)) return;
+
+  els.forEach((el) => {
+    // Walk the DOM, wrapping each whitespace-separated word in a span.
+    // Preserve inline <em>, <strong>, <br>, etc. — important for the
+    // statement quote with its <em>inside out</em> emphasis.
+    const wrapWords = (node) => {
+      if (node.nodeType === Node.TEXT_NODE) {
+        const frag = document.createDocumentFragment();
+        const tokens = node.textContent.split(/(\s+)/);
+        tokens.forEach((t) => {
+          if (!t.length) return;
+          if (/^\s+$/.test(t)) {
+            frag.appendChild(document.createTextNode(t));
+          } else {
+            const span = document.createElement("span");
+            span.className = "word-reveal__word";
+            span.textContent = t;
+            frag.appendChild(span);
+          }
+        });
+        node.parentNode.replaceChild(frag, node);
+      } else if (node.nodeType === Node.ELEMENT_NODE) {
+        Array.from(node.childNodes).forEach(wrapWords);
+      }
+    };
+    wrapWords(el);
+
+    const words = el.querySelectorAll(".word-reveal__word");
+    words.forEach((w, i) => {
+      w.style.setProperty("--i", i);
+    });
+    el.classList.add("word-reveal-ready");
+  });
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add("word-reveal-active");
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.4, rootMargin: "0px 0px -10% 0px" });
+  els.forEach((el) => io.observe(el));
 })();
 
 // Scroll progress bar (top of page)

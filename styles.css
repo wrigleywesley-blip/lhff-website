@@ -45,8 +45,204 @@
 
   /* Motion */
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
   --dur-fast: 180ms;
   --dur: 320ms;
+  --dur-slow: 600ms;
+}
+
+/* ---------- Visually-hidden utility (a11y, screen-readers only) ---------- */
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Reduced-motion: globally tone down decorative motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .marquee-strip__track { animation: none !important; }
+}
+
+/* ---------- Marquee strip — replaces the old boxed framing grid ---------- */
+.marquee-strip {
+  background: var(--ink);
+  color: var(--cream);
+  padding-block: clamp(2.25rem, 4.5vw, 3.25rem);
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.marquee-strip::before,
+.marquee-strip::after {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0;
+  width: clamp(60px, 8vw, 140px);
+  z-index: 2;
+  pointer-events: none;
+}
+.marquee-strip::before {
+  left: 0;
+  background: linear-gradient(90deg, var(--ink) 0%, rgba(26,26,26,0) 100%);
+}
+.marquee-strip::after {
+  right: 0;
+  background: linear-gradient(270deg, var(--ink) 0%, rgba(26,26,26,0) 100%);
+}
+.marquee-strip__track {
+  display: flex;
+  width: max-content;
+  gap: clamp(2.5rem, 6vw, 5rem);
+  animation: marquee-strip-scroll 60s linear infinite;
+}
+.marquee-strip:hover .marquee-strip__track { animation-play-state: paused; }
+.marquee-strip__set {
+  display: flex;
+  align-items: center;
+  gap: clamp(2.5rem, 6vw, 5rem);
+  padding-right: clamp(2.5rem, 6vw, 5rem);
+}
+.marquee-strip__word {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  line-height: 1;
+  letter-spacing: -0.022em;
+  color: var(--cream);
+  white-space: nowrap;
+}
+.marquee-strip__dot {
+  width: clamp(10px, 1.2vw, 14px);
+  height: clamp(10px, 1.2vw, 14px);
+  border-radius: 50%;
+  background: var(--c, var(--purple));
+  flex-shrink: 0;
+}
+@keyframes marquee-strip-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ---------- Word reveal — staggered word entrance on signature statements ---------- */
+.word-reveal-ready .word-reveal__word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.4em);
+  transition:
+    opacity 700ms var(--ease),
+    transform 700ms var(--ease);
+  transition-delay: calc(var(--i, 0) * 55ms);
+  will-change: opacity, transform;
+}
+.word-reveal-active .word-reveal__word {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Preserve italic emphasis inside the reveal — nested em should still slant + color */
+.word-reveal-ready em .word-reveal__word { color: inherit; }
+
+/* ---------- CTA index — editorial list, replaces the old boxed cta-tiles ---------- */
+.cta-index {
+  border-block: 1px solid var(--line);
+  background: var(--white);
+}
+.cta-index__row {
+  display: grid;
+  grid-template-columns: clamp(48px, 6vw, 80px) 1fr auto;
+  align-items: center;
+  gap: clamp(1rem, 2.5vw, 2.5rem);
+  padding: clamp(1.5rem, 3vw, 2.25rem) 0;
+  border-bottom: 1px solid var(--line);
+  text-decoration: none;
+  color: var(--ink);
+  position: relative;
+  transition: padding-left var(--dur) var(--ease), background var(--dur) var(--ease);
+}
+.cta-index__row:last-child { border-bottom: 0; }
+.cta-index__row:hover,
+.cta-index__row:focus-visible {
+  background: var(--cream);
+  padding-left: clamp(0.75rem, 1.5vw, 1.25rem);
+  outline: none;
+}
+.cta-index__row::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 4px;
+  background: var(--purple);
+  transform: scaleY(0);
+  transform-origin: center;
+  transition: transform var(--dur) var(--ease);
+}
+.cta-index__row[data-color="red"]::before { background: var(--red); }
+.cta-index__row[data-color="orange"]::before { background: var(--orange); }
+.cta-index__row[data-color="yellow"]::before { background: var(--yellow); }
+.cta-index__row[data-color="green"]::before { background: var(--green); }
+.cta-index__row[data-color="sky"]::before { background: var(--sky); }
+.cta-index__row[data-color="blue"]::before { background: var(--blue); }
+.cta-index__row[data-color="purple"]::before { background: var(--purple); }
+.cta-index__row:hover::before,
+.cta-index__row:focus-visible::before { transform: scaleY(1); }
+.cta-index__num {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--muted);
+  transition: color var(--dur) var(--ease);
+}
+.cta-index__row[data-color="red"]:hover .cta-index__num { color: var(--red); }
+.cta-index__row[data-color="orange"]:hover .cta-index__num { color: var(--orange); }
+.cta-index__row[data-color="green"]:hover .cta-index__num { color: var(--green); }
+.cta-index__row[data-color="sky"]:hover .cta-index__num { color: var(--sky); }
+.cta-index__main { display: flex; flex-direction: column; gap: 0.25rem; }
+.cta-index__title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(1.625rem, 3vw, 2.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  margin: 0;
+}
+.cta-index__sub {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  color: var(--muted);
+  line-height: 1.5;
+  margin: 0;
+  max-width: 56ch;
+}
+.cta-index__arrow {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.5rem, 2vw, 2rem);
+  color: var(--muted);
+  transition: transform var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+.cta-index__row:hover .cta-index__arrow,
+.cta-index__row:focus-visible .cta-index__arrow {
+  transform: translateX(10px);
+  color: var(--ink);
+}
+@media (max-width: 720px) {
+  .cta-index__row { padding: 1.25rem 0; gap: 1rem; }
+  .cta-index__sub { font-size: 0.875rem; }
 }
 
 /* ---------- Email capture modal ---------- */
