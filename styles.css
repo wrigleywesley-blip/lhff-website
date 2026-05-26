@@ -135,6 +135,128 @@
   to   { transform: translateX(-50%); }
 }
 
+/* ---------- Stats counter — sparse editorial numbers section ---------- */
+.stats-counter {
+  background: var(--white);
+  padding-block: clamp(3rem, 7vw, 6rem);
+}
+.stats-counter__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(1.5rem, 3vw, 3rem);
+  align-items: end;
+}
+.stats-counter__cell {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-block: clamp(1rem, 2vw, 1.75rem);
+}
+.stats-counter__num {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(4rem, 9vw, 8.5rem);
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+}
+.stats-counter__cell:nth-child(1) .stats-counter__num { color: var(--red); }
+.stats-counter__cell:nth-child(2) .stats-counter__num { color: var(--orange); }
+.stats-counter__cell:nth-child(3) .stats-counter__num { color: var(--green); }
+.stats-counter__cell:nth-child(4) .stats-counter__num { color: var(--purple); }
+.stats-counter__cap {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--muted);
+  margin-top: 0.5rem;
+  border-top: 1px solid var(--line);
+  padding-top: 0.875rem;
+  max-width: 18ch;
+  line-height: 1.4;
+}
+@media (max-width: 720px) {
+  .stats-counter__grid { grid-template-columns: 1fr 1fr; gap: 1.25rem 1.5rem; }
+}
+
+/* ---------- Rainbow line divider — animates scaleX on scroll-in ---------- */
+.rainbow-line {
+  display: block;
+  height: 3px;
+  width: 100%;
+  margin-block: clamp(2rem, 4vw, 3.5rem);
+  background: linear-gradient(90deg,
+    var(--red), var(--orange), var(--yellow), var(--green),
+    var(--sky), var(--blue), var(--purple));
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 1400ms var(--ease);
+  border-radius: 2px;
+}
+.rainbow-line.is-drawn { transform: scaleX(1); }
+@media (prefers-reduced-motion: reduce) {
+  .rainbow-line { transform: scaleX(1); transition: none; }
+}
+
+/* ---------- Footer marquee — counter-direction, smaller, mono ---------- */
+.marquee-foot {
+  background: var(--cream);
+  padding-block: clamp(1.5rem, 2.5vw, 2rem);
+  overflow: hidden;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  position: relative;
+}
+.marquee-foot::before,
+.marquee-foot::after {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0;
+  width: clamp(60px, 8vw, 120px);
+  z-index: 2;
+  pointer-events: none;
+}
+.marquee-foot::before { left: 0; background: linear-gradient(90deg, var(--cream) 0%, rgba(250,247,242,0) 100%); }
+.marquee-foot::after { right: 0; background: linear-gradient(270deg, var(--cream) 0%, rgba(250,247,242,0) 100%); }
+.marquee-foot__track {
+  display: flex;
+  width: max-content;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  animation: marquee-foot-scroll 80s linear infinite;
+}
+.marquee-foot:hover .marquee-foot__track { animation-play-state: paused; }
+.marquee-foot__set {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  padding-right: clamp(1.5rem, 3vw, 2.5rem);
+}
+.marquee-foot__word {
+  font-family: var(--font-mono);
+  font-size: clamp(0.75rem, 1vw, 0.875rem);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--body);
+  white-space: nowrap;
+}
+.marquee-foot__dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--c, var(--purple));
+  flex-shrink: 0;
+}
+@keyframes marquee-foot-scroll {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-foot__track { animation: none; }
+}
+
 /* ---------- Word reveal — staggered word entrance on signature statements ---------- */
 .word-reveal-ready .word-reveal__word {
   display: inline-block;
@@ -851,6 +973,17 @@ body {
   background-image: url("assets/hero-mural.jpg");
   background-size: cover;
   background-position: center center;
+  /* Subtle continuous ken-burns — slow zoom + drift, never finishes, never resets visibly */
+  animation: hero-kenburns 36s var(--ease-in-out) infinite alternate;
+  transform-origin: 50% 55%;
+  will-change: transform;
+}
+@keyframes hero-kenburns {
+  from { transform: scale(1.0) translate3d(0, 0, 0); }
+  to   { transform: scale(1.07) translate3d(0, -1.5%, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__media { animation: none; }
 }
 
 .hero__overlay {
@@ -3392,6 +3525,22 @@ body.is-modal-open { overflow: hidden; }
 
 .pillar-index__row:hover::before { transform: scaleY(1); }
 
+/* Reveal the colored bar when the row scrolls into view (persistent, not just on hover) */
+.pillar-index__row.is-revealed::before {
+  transform: scaleY(1);
+  transform-origin: top;
+  transition: transform 1100ms var(--ease) 100ms;
+}
+.pillar-index__row.is-revealed:nth-child(2)::before { transition-delay: 220ms; }
+.pillar-index__row.is-revealed:nth-child(3)::before { transition-delay: 340ms; }
+.pillar-index__row.is-revealed:nth-child(4)::before { transition-delay: 460ms; }
+.pillar-index__row.is-revealed:nth-child(5)::before { transition-delay: 580ms; }
+.pillar-index__row.is-revealed:nth-child(6)::before { transition-delay: 700ms; }
+.pillar-index__row.is-revealed:nth-child(7)::before { transition-delay: 820ms; }
+@media (prefers-reduced-motion: reduce) {
+  .pillar-index__row.is-revealed::before { transition: none; }
+}
+
 .pillar-index__num {
   font-family: var(--font-display);
   font-style: italic;
@@ -3880,6 +4029,19 @@ body.is-modal-open { overflow: hidden; }
   background-size: cover;
   background-position: center;
   filter: saturate(108%);
+  /* Slow ken-burns on cinema sections — each section gets its own rhythm via animation-delay */
+  animation: cinema-kenburns 48s var(--ease-in-out) infinite alternate;
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+.cinema:nth-of-type(odd) .cinema__media { animation-duration: 52s; transform-origin: 40% 60%; }
+.cinema:nth-of-type(even) .cinema__media { animation-duration: 44s; transform-origin: 60% 40%; }
+@keyframes cinema-kenburns {
+  from { transform: scale(1.0); }
+  to   { transform: scale(1.10); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cinema__media { animation: none; }
 }
 
 .cinema__overlay {

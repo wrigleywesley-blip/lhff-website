@@ -52,6 +52,76 @@
   });
 })();
 
+// Pillar index — animate the colored bar in when the row enters view (persistent reveal)
+(() => {
+  const rows = document.querySelectorAll(".pillar-index__row, .cta-index__row");
+  if (!rows.length || !("IntersectionObserver" in window)) {
+    rows.forEach(r => r.classList.add("is-revealed"));
+    return;
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add("is-revealed");
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.4, rootMargin: "0px 0px -8% 0px" });
+  rows.forEach(r => io.observe(r));
+})();
+
+// Stats counter — count from 0 to target when stat enters viewport
+(() => {
+  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const stats = document.querySelectorAll("[data-count]");
+  if (!stats.length) return;
+  if (prefersReduced || !("IntersectionObserver" in window)) {
+    stats.forEach(s => { s.textContent = s.dataset.count; });
+    return;
+  }
+  const animate = (el) => {
+    const target = parseInt(el.dataset.count, 10);
+    const dur = 1400;
+    const start = performance.now();
+    const ease = t => 1 - Math.pow(1 - t, 3); // ease-out-cubic
+    const tick = (now) => {
+      const t = Math.min((now - start) / dur, 1);
+      const v = Math.floor(ease(t) * target);
+      el.textContent = v;
+      if (t < 1) requestAnimationFrame(tick);
+      else el.textContent = target;
+    };
+    requestAnimationFrame(tick);
+  };
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        animate(e.target);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  stats.forEach(s => { s.textContent = "0"; io.observe(s); });
+})();
+
+// Rainbow divider — scale-x in on scroll
+(() => {
+  const lines = document.querySelectorAll("[data-rainbow-line]");
+  if (!lines.length || !("IntersectionObserver" in window)) {
+    lines.forEach(l => l.classList.add("is-drawn"));
+    return;
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add("is-drawn");
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3, rootMargin: "0px 0px -8% 0px" });
+  lines.forEach(l => io.observe(l));
+})();
+
 // Word reveal — signature scroll moment on big statements with [data-word-reveal]
 (() => {
   const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
