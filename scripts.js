@@ -52,6 +52,143 @@
   });
 })();
 
+// Programs carousel — horizontal scroll-snap slider with controls + drag
+(() => {
+  const root = document.querySelector("[data-programs-carousel]");
+  if (!root) return;
+  const track = root.querySelector(".programs-carousel__track");
+  const slides = Array.from(track.querySelectorAll(".program-slide"));
+  const prev = root.querySelector("[data-programs-prev]");
+  const next = root.querySelector("[data-programs-next]");
+  const current = root.querySelector("[data-programs-current]");
+  const progress = root.querySelector("[data-programs-progress]");
+  if (!slides.length) return;
+
+  const total = slides.length;
+  const pad = (n) => String(n).padStart(2, "0");
+
+  // Determine which slide is "active" based on which is most centered in the track
+  const updateActive = () => {
+    const trackRect = track.getBoundingClientRect();
+    const trackCenter = trackRect.left + trackRect.width / 2;
+    let activeIdx = 0;
+    let bestDist = Infinity;
+    slides.forEach((slide, i) => {
+      const r = slide.getBoundingClientRect();
+      const slideCenter = r.left + r.width / 2;
+      const dist = Math.abs(slideCenter - trackCenter);
+      if (dist < bestDist) { bestDist = dist; activeIdx = i; }
+    });
+    slides.forEach((s, i) => s.classList.toggle("is-active", i === activeIdx));
+    if (current) current.textContent = pad(activeIdx + 1);
+    if (progress) progress.style.width = `${((activeIdx + 1) / total) * 100}%`;
+    if (prev) prev.disabled = activeIdx === 0;
+    if (next) next.disabled = activeIdx === total - 1;
+  };
+
+  let scrollTick = null;
+  track.addEventListener("scroll", () => {
+    if (scrollTick) cancelAnimationFrame(scrollTick);
+    scrollTick = requestAnimationFrame(updateActive);
+  }, { passive: true });
+
+  const scrollToSlide = (idx) => {
+    const target = slides[idx];
+    if (!target) return;
+    const trackRect = track.getBoundingClientRect();
+    const targetRect = target.getBoundingClientRect();
+    const delta = (targetRect.left + targetRect.width / 2) - (trackRect.left + trackRect.width / 2);
+    track.scrollBy({ left: delta, behavior: "smooth" });
+  };
+
+  if (prev) prev.addEventListener("click", () => {
+    const active = slides.findIndex(s => s.classList.contains("is-active"));
+    scrollToSlide(Math.max(0, active - 1));
+  });
+  if (next) next.addEventListener("click", () => {
+    const active = slides.findIndex(s => s.classList.contains("is-active"));
+    scrollToSlide(Math.min(total - 1, active + 1));
+  });
+
+  // Mouse drag-to-scroll
+  let isDown = false, startX = 0, startScroll = 0;
+  track.addEventListener("mousedown", (e) => {
+    isDown = true;
+    startX = e.pageX - track.offsetLeft;
+    startScroll = track.scrollLeft;
+    track.classList.add("is-dragging");
+  });
+  ["mouseleave", "mouseup"].forEach(ev => track.addEventListener(ev, () => {
+    if (!isDown) return;
+    isDown = false;
+    track.classList.remove("is-dragging");
+  }));
+  track.addEventListener("mousemove", (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - track.offsetLeft;
+    track.scrollLeft = startScroll - (x - startX) * 1.4;
+  });
+
+  // Keyboard nav when carousel is in view + focused
+  track.setAttribute("tabindex", "0");
+  track.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft") { e.preventDefault(); prev?.click(); }
+    if (e.key === "ArrowRight") { e.preventDefault(); next?.click(); }
+  });
+
+  updateActive();
+})();
+
+// Magnetic CTA — subtle attraction toward cursor on key buttons
+(() => {
+  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (prefersReduced) return;
+  // Targets: NAVID FAB, primary apply buttons. Anything with data-magnetic.
+  const targets = document.querySelectorAll(".navid-fab, [data-magnetic]");
+  if (!targets.length) return;
+  const strength = 0.25; // 0..1 — how much the element drifts
+  const maxOffset = 14; // px cap
+
+  targets.forEach((el) => {
+    let raf = null;
+    let rect = null;
+    const recalc = () => { rect = el.getBoundingClientRect(); };
+    recalc();
+    window.addEventListener("resize", recalc, { passive: true });
+    window.addEventListener("scroll", recalc, { passive: true });
+
+    const onMove = (e) => {
+      if (!rect) return;
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const dx = e.clientX - cx;
+      const dy = e.clientY - cy;
+      const dist = Math.hypot(dx, dy);
+      // Only attract within a reasonable radius
+      if (dist > Math.max(rect.width, rect.height) * 1.8) {
+        if (raf) cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(() => {
+          el.style.transform = "";
+        });
+        return;
+      }
+      const tx = Math.max(-maxOffset, Math.min(maxOffset, dx * strength));
+      const ty = Math.max(-maxOffset, Math.min(maxOffset, dy * strength));
+      if (raf) cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        el.style.transform = `translate(${tx}px, ${ty}px)`;
+      });
+    };
+    const reset = () => {
+      if (raf) cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => { el.style.transform = ""; });
+    };
+    document.addEventListener("mousemove", onMove, { passive: true });
+    el.addEventListener("mouseleave", reset);
+  });
+})();
+
 // Pillar index — animate the colored bar in when the row enters view (persistent reveal)
 (() => {
   const rows = document.querySelectorAll(".pillar-index__row, .cta-index__row");
