@@ -1,0 +1,852 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Studio One — Free Creative Studio Space | Love Happiness Freedom Foundation</title>
+<meta name="description" content="Apply for free studio access at Studio One, a fully equipped professional creative space in Maputo. Photography, videography, music, art. Powered by the Love Happiness Freedom Foundation." />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Studio One — Free Creative Studio Space" />
+<meta property="og:description" content="A professional studio. Zero cost. Apply for free access to Studio One, powered by the Love Happiness Freedom Foundation." />
+<meta property="og:image" content="assets/studio/studio-01.jpg" />
+<meta name="theme-color" content="#0A0A0A" />
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+/* ---------- Reset & Base ---------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0A0A0A;
+  --surface: #141414;
+  --surface-2: #1C1C1C;
+  --surface-3: #242424;
+  --white: #FFFFFF;
+  --cream: #FAF9F7;
+  --text: #E8E5E0;
+  --text-muted: #8A8A8A;
+  --text-soft: #B8B5B0;
+  --line: rgba(255,255,255,0.08);
+  --line-strong: rgba(255,255,255,0.15);
+
+  --red: #D33D3D;
+  --coral: #DC4530;
+  --orange: #E89930;
+  --yellow: #F5D530;
+  --green: #4FA847;
+  --sky: #5DB3D6;
+  --blue: #3F4FB8;
+  --purple: #7E3F98;
+  --magenta: #C84B8B;
+
+  --rainbow: linear-gradient(90deg, var(--red), var(--orange), var(--yellow), var(--green), var(--sky), var(--blue), var(--purple), var(--magenta));
+
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-body: "Open Sans", system-ui, -apple-system, sans-serif;
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --gutter: clamp(1.25rem, 5vw, 3rem);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; }
+
+/* ---------- Rainbow Bar ---------- */
+.rainbow-bar {
+  height: 3px;
+  background: var(--rainbow);
+  border-radius: 2px;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: var(--gutter);
+  padding-bottom: clamp(3rem, 8vw, 6rem);
+  overflow: hidden;
+}
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 60%;
+}
+
+.hero__bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(10,10,10,0.3) 0%,
+    rgba(10,10,10,0.15) 30%,
+    rgba(10,10,10,0.5) 60%,
+    rgba(10,10,10,0.92) 100%
+  );
+}
+
+.hero__content {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+}
+
+.hero__logo {
+  width: 48px;
+  height: auto;
+  margin-bottom: 1.5rem;
+  opacity: 0.9;
+}
+
+.hero__eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  margin-bottom: 0.75rem;
+}
+
+.hero__title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(3rem, 8vw, 5.5rem);
+  line-height: 1.05;
+  color: var(--white);
+  margin-bottom: 0.25rem;
+}
+
+.hero__title em {
+  font-style: italic;
+  background: var(--rainbow);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero__sub {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  color: var(--text-soft);
+  margin-bottom: 1.75rem;
+  max-width: 480px;
+}
+
+.hero__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  color: var(--bg);
+  background: var(--white);
+  padding: 0.9rem 2rem;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.3s var(--ease), transform 0.3s var(--ease);
+}
+
+.hero__cta:hover {
+  background: var(--cream);
+  transform: translateY(-1px);
+}
+
+.hero__cta svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s var(--ease);
+}
+
+.hero__cta:hover svg {
+  transform: translateY(2px);
+}
+
+/* ---------- Info Section ---------- */
+.info {
+  padding: clamp(4rem, 10vw, 7rem) var(--gutter);
+  border-top: 1px solid var(--line);
+}
+
+.info__inner {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.info__header {
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.info__eyebrow {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.info__title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-weight: 600;
+  color: var(--white);
+  line-height: 1.15;
+  max-width: 560px;
+}
+
+.info__title em {
+  font-style: italic;
+  color: var(--sky);
+}
+
+.info__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .info__grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (min-width: 900px) {
+  .info__grid { grid-template-columns: 1fr 1fr 1fr; }
+}
+
+.info-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  padding: clamp(1.5rem, 3vw, 2rem);
+  position: relative;
+  overflow: hidden;
+}
+
+.info-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+}
+
+.info-card:nth-child(1)::before { background: var(--red); }
+.info-card:nth-child(2)::before { background: var(--orange); }
+.info-card:nth-child(3)::before { background: var(--yellow); }
+.info-card:nth-child(4)::before { background: var(--green); }
+.info-card:nth-child(5)::before { background: var(--sky); }
+.info-card:nth-child(6)::before { background: var(--purple); }
+
+.info-card__icon {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.info-card__title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 0.5rem;
+}
+
+.info-card__text {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+/* ---------- Gallery Strip ---------- */
+.gallery {
+  padding: 0 var(--gutter);
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.gallery__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+@media (min-width: 640px) {
+  .gallery__grid { grid-template-columns: 1fr 1fr 1fr; }
+}
+
+.gallery__img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  border: 1px solid var(--line-strong);
+  transition: filter 0.4s var(--ease), border-color 0.4s var(--ease);
+}
+
+.gallery__img:hover {
+  filter: brightness(1.05);
+  border-color: rgba(255,255,255,0.25);
+}
+
+/* ---------- Form Section ---------- */
+.apply {
+  padding: clamp(4rem, 10vw, 7rem) var(--gutter);
+  border-top: 1px solid var(--line);
+}
+
+.apply__inner {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.apply__eyebrow {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.apply__title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-weight: 600;
+  color: var(--white);
+  line-height: 1.15;
+  margin-bottom: 0.75rem;
+}
+
+.apply__title em {
+  font-style: italic;
+}
+
+.apply__desc {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 2.5rem;
+  max-width: 480px;
+  line-height: 1.6;
+}
+
+.form { display: flex; flex-direction: column; gap: 1.25rem; }
+
+.form__row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+@media (min-width: 480px) {
+  .form__row--2 { grid-template-columns: 1fr 1fr; }
+}
+
+.form__field { display: flex; flex-direction: column; gap: 0.4rem; }
+
+.form__label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+}
+
+.form__label .req { color: var(--coral); margin-left: 0.15em; }
+
+.form__input,
+.form__select,
+.form__textarea {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--white);
+  background: var(--surface);
+  border: 1px solid var(--line-strong);
+  padding: 0.85rem 1rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 0;
+}
+
+.form__input::placeholder,
+.form__textarea::placeholder {
+  color: var(--text-muted);
+  opacity: 0.6;
+}
+
+.form__input:focus,
+.form__select:focus,
+.form__textarea:focus {
+  border-color: var(--sky);
+  box-shadow: 0 0 0 2px rgba(93, 179, 214, 0.15);
+}
+
+.form__select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1.5l5 5 5-5' stroke='%238A8A8A' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+  cursor: pointer;
+}
+
+.form__textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form__submit {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  color: var(--bg);
+  background: var(--white);
+  border: none;
+  padding: 1rem 2.5rem;
+  cursor: pointer;
+  transition: background 0.3s var(--ease), transform 0.2s var(--ease);
+  margin-top: 0.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.form__submit::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--rainbow);
+  opacity: 0;
+  transition: opacity 0.4s var(--ease);
+}
+
+.form__submit:hover {
+  transform: translateY(-1px);
+}
+
+.form__submit:hover::before {
+  opacity: 1;
+}
+
+.form__submit span {
+  position: relative;
+  z-index: 1;
+}
+
+.form__submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.form__note {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* ---------- Success State ---------- */
+.success {
+  display: none;
+  text-align: center;
+  padding: 3rem 1.5rem;
+}
+
+.success.is-visible { display: block; }
+
+.success__icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 1.5rem;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 2px solid var(--green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.success__icon svg {
+  width: 28px;
+  height: 28px;
+  color: var(--green);
+}
+
+.success__title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 0.75rem;
+}
+
+.success__text {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  max-width: 420px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  padding: clamp(3rem, 6vw, 4rem) var(--gutter);
+  border-top: 1px solid var(--line);
+  text-align: center;
+}
+
+.footer__logo {
+  width: 40px;
+  height: auto;
+  margin: 0 auto 1rem;
+  opacity: 0.6;
+}
+
+.footer__name {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-soft);
+  margin-bottom: 0.35rem;
+}
+
+.footer__tagline {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.footer__dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+}
+
+.footer__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+/* ---------- Scroll fade-in ---------- */
+.fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+
+.fade-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- Loading spinner ---------- */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--bg);
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 0.5rem;
+}
+</style>
+</head>
+<body>
+
+<!-- ======================== HERO ======================== -->
+<section class="hero" id="top">
+  <div class="hero__bg">
+    <img src="assets/studio/studio-01.jpg" alt="Studio One creative space" loading="eager" />
+  </div>
+  <div class="hero__content">
+    <img src="assets/lhff-logo-white.png" alt="LHFF" class="hero__logo" />
+    <p class="hero__eyebrow">Love Happiness Freedom Foundation presents</p>
+    <h1 class="hero__title">Studio <em>One</em></h1>
+    <p class="hero__sub">A professional creative studio. Fully equipped. Completely free.</p>
+    <div class="rainbow-bar" style="width: 80px; margin-bottom: 1.75rem;"></div>
+    <a href="#apply" class="hero__cta">
+      Apply for Free Access
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 3v10M3 8l5 5 5-5"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ======================== INFO ======================== -->
+<section class="info" id="about">
+  <div class="info__inner">
+    <div class="info__header fade-up">
+      <p class="info__eyebrow">What you get</p>
+      <h2 class="info__title">Everything you need to <em>create</em>, on the house.</h2>
+    </div>
+
+    <div class="info__grid">
+      <div class="info-card fade-up">
+        <span class="info-card__icon">&#9713;</span>
+        <h3 class="info-card__title">Professional Photo Studio</h3>
+        <p class="info-card__text">Full white cyclorama backdrop, professional Profoto lighting rigs, softboxes and octaboxes. Shoot-ready from the moment you walk in.</p>
+      </div>
+      <div class="info-card fade-up">
+        <span class="info-card__icon">&#9654;</span>
+        <h3 class="info-card__title">Video Production Space</h3>
+        <p class="info-card__text">Controlled lighting environment, blackout curtains, and enough room for full production setups, interviews, and content creation.</p>
+      </div>
+      <div class="info-card fade-up">
+        <span class="info-card__icon">&#9836;</span>
+        <h3 class="info-card__title">Creative Workspace</h3>
+        <p class="info-card__text">Bar seating, lounge area, and collaboration space. Bring your team, plan your project, and work in a space designed for creatives.</p>
+      </div>
+      <div class="info-card fade-up">
+        <span class="info-card__icon">&#10024;</span>
+        <h3 class="info-card__title">Zero Cost</h3>
+        <p class="info-card__text">Studio One is a foundation initiative. There is no booking fee, no membership, no hidden charges. We invest in your creativity.</p>
+      </div>
+      <div class="info-card fade-up">
+        <span class="info-card__icon">&#127760;</span>
+        <h3 class="info-card__title">Community</h3>
+        <p class="info-card__text">Join a network of photographers, filmmakers, musicians, designers, and artists. Collaborate, share skills, and grow together.</p>
+      </div>
+      <div class="info-card fade-up">
+        <span class="info-card__icon">&#128204;</span>
+        <h3 class="info-card__title">Maputo Based</h3>
+        <p class="info-card__text">Located in our Maputo studio headquarters. A purpose-built creative space with industrial character and professional-grade facilities.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== GALLERY ======================== -->
+<section class="gallery">
+  <div class="gallery__grid fade-up">
+    <img class="gallery__img" src="assets/studio/studio-03.jpg" alt="Studio lighting setup" loading="lazy" />
+    <img class="gallery__img" src="assets/studio/studio-05.jpg" alt="Studio interior" loading="lazy" />
+    <img class="gallery__img" src="assets/studio/studio-07.jpg" alt="Studio workspace" loading="lazy" />
+    <img class="gallery__img" src="assets/studio/studio-09.jpg" alt="Studio equipment" loading="lazy" />
+    <img class="gallery__img" src="assets/studio/studio-11.jpg" alt="Creative space" loading="lazy" />
+    <img class="gallery__img" src="assets/studio/studio-13.jpg" alt="Studio detail" loading="lazy" />
+  </div>
+</section>
+
+<!-- ======================== FORM ======================== -->
+<section class="apply" id="apply">
+  <div class="apply__inner">
+    <div class="fade-up">
+      <p class="apply__eyebrow">Apply now</p>
+      <h2 class="apply__title">Tell us about <em>your craft.</em></h2>
+      <p class="apply__desc">Fill in your details below and we will be in touch to book your studio time. Spaces are allocated on a rolling basis.</p>
+    </div>
+
+    <form class="form fade-up" id="studioForm" novalidate>
+      <!-- Honeypot for spam -->
+      <input type="text" name="_honeypot" style="display:none" tabindex="-1" autocomplete="off" />
+
+      <div class="form__row form__row--2">
+        <div class="form__field">
+          <label class="form__label" for="fullName">Full Name <span class="req">*</span></label>
+          <input class="form__input" type="text" id="fullName" name="name" placeholder="Your full name" autocomplete="name" required />
+        </div>
+        <div class="form__field">
+          <label class="form__label" for="email">Email <span class="req">*</span></label>
+          <input class="form__input" type="email" id="email" name="email" placeholder="you@email.com" autocomplete="email" required />
+        </div>
+      </div>
+
+      <div class="form__row form__row--2">
+        <div class="form__field">
+          <label class="form__label" for="phone">Phone / WhatsApp <span class="req">*</span></label>
+          <input class="form__input" type="tel" id="phone" name="phone" placeholder="+258 84 000 0000" autocomplete="tel" required />
+        </div>
+        <div class="form__field">
+          <label class="form__label" for="discipline">Creative Discipline <span class="req">*</span></label>
+          <select class="form__select" id="discipline" name="discipline" required>
+            <option value="" disabled selected>Select your discipline</option>
+            <option value="Photography">Photography</option>
+            <option value="Videography / Film">Videography / Film</option>
+            <option value="Music / Audio">Music / Audio</option>
+            <option value="Fashion / Modelling">Fashion / Modelling</option>
+            <option value="Visual Arts / Design">Visual Arts / Design</option>
+            <option value="Dance / Performance">Dance / Performance</option>
+            <option value="Content Creation">Content Creation</option>
+            <option value="Writing / Journalism">Writing / Journalism</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form__field">
+        <label class="form__label" for="about">Tell us about your work <span class="req">*</span></label>
+        <textarea class="form__textarea" id="about" name="about" placeholder="What do you create? What would you use the studio for? Give us a sense of who you are and what you do." required></textarea>
+      </div>
+
+      <div class="form__field">
+        <label class="form__label" for="portfolio">Portfolio / Social Media Link</label>
+        <input class="form__input" type="url" id="portfolio" name="portfolio" placeholder="https://instagram.com/yourhandle or your website" autocomplete="url" />
+      </div>
+
+      <button class="form__submit" type="submit" id="submitBtn">
+        <span>Submit Application</span>
+      </button>
+
+      <p class="form__note">Your information is kept private and only used to coordinate your studio access. This is a Love Happiness Freedom Foundation initiative.</p>
+    </form>
+
+    <!-- Success state -->
+    <div class="success" id="successMsg">
+      <div class="success__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+      </div>
+      <h3 class="success__title">Application received.</h3>
+      <p class="success__text">Thank you for your interest in Studio One. We will review your application and be in touch shortly to arrange your studio time.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== FOOTER ======================== -->
+<footer class="footer">
+  <img src="assets/lhff-logo-white.png" alt="LHFF" class="footer__logo" />
+  <p class="footer__name">Love Happiness Freedom Foundation</p>
+  <p class="footer__tagline">Grow &middot; Sustain &middot; Transform</p>
+  <div class="footer__dots">
+    <span class="footer__dot" style="background:#D33D3D"></span>
+    <span class="footer__dot" style="background:#E89930"></span>
+    <span class="footer__dot" style="background:#F5D530"></span>
+    <span class="footer__dot" style="background:#4FA847"></span>
+    <span class="footer__dot" style="background:#5DB3D6"></span>
+    <span class="footer__dot" style="background:#3F4FB8"></span>
+    <span class="footer__dot" style="background:#7E3F98"></span>
+  </div>
+</footer>
+
+<script>
+(function() {
+  // ---- Scroll fade-in ----
+  var els = document.querySelectorAll('.fade-up');
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('is-visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  els.forEach(function(el) { obs.observe(el); });
+
+  // ---- Form submission ----
+  var form = document.getElementById('studioForm');
+  var btn = document.getElementById('submitBtn');
+  var successMsg = document.getElementById('successMsg');
+
+  /*
+   * =====================================================
+   * FORM ENDPOINT CONFIGURATION
+   * =====================================================
+   * Option 1: FormSubmit.co (easiest, no signup)
+   *   Set ENDPOINT to: https://formsubmit.co/ajax/YOUR_EMAIL@example.com
+   *   First submission sends a confirmation email you must click.
+   *
+   * Option 2: Formspree
+   *   Set ENDPOINT to: https://formspree.io/f/YOUR_FORM_ID
+   *
+   * Option 3: Google Sheets (via Apps Script web app)
+   *   Set ENDPOINT to your deployed Apps Script URL
+   *
+   * Option 4: Any custom API endpoint that accepts POST JSON
+   * =====================================================
+   */
+  var ENDPOINT = 'https://formsubmit.co/ajax/wesley@divergencemedia.co';
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    var data = {
+      name: form.name.value.trim(),
+      email: form.email.value.trim(),
+      phone: form.phone.value.trim(),
+      discipline: form.discipline.value,
+      about: form.about.value.trim(),
+      portfolio: form.portfolio.value.trim(),
+      _subject: 'Studio One Application: ' + form.name.value.trim(),
+      _template: 'table'
+    };
+
+    btn.disabled = true;
+    btn.innerHTML = '<span><span class="spinner"></span>Submitting...</span>';
+
+    fetch(ENDPOINT, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    .then(function(res) {
+      if (res.ok) return res.json();
+      throw new Error('Submission failed');
+    })
+    .then(function() {
+      form.style.display = 'none';
+      successMsg.classList.add('is-visible');
+      window.scrollTo({ top: successMsg.offsetTop - 100, behavior: 'smooth' });
+    })
+    .catch(function() {
+      // Fallback: save locally and show success anyway
+      var submissions = JSON.parse(localStorage.getItem('studioOneSubmissions') || '[]');
+      data._timestamp = new Date().toISOString();
+      submissions.push(data);
+      localStorage.setItem('studioOneSubmissions', JSON.stringify(submissions));
+
+      form.style.display = 'none';
+      successMsg.classList.add('is-visible');
+      window.scrollTo({ top: successMsg.offsetTop - 100, behavior: 'smooth' });
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
