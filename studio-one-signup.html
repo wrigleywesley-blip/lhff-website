@@ -4,10 +4,10 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Studio One — Free Creative Studio Space | Love Happiness Freedom Foundation</title>
-<meta name="description" content="Apply for free studio access at Studio One, a fully equipped professional creative space in Maputo. Photography, videography, music, art. Powered by the Love Happiness Freedom Foundation." />
+<meta name="description" content="Apply for free studio access at Studio One in the Woodstock Exchange, Cape Town. A fully equipped professional creative space. Photography, videography, music, art. Powered by the Love Happiness Freedom Foundation." />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Studio One — Free Creative Studio Space" />
-<meta property="og:description" content="A professional studio. Zero cost. Apply for free access to Studio One, powered by the Love Happiness Freedom Foundation." />
+<meta property="og:description" content="A professional studio in Cape Town. Zero cost. Apply for free access to Studio One, powered by the Love Happiness Freedom Foundation." />
 <meta property="og:image" content="assets/studio/studio-01.jpg" />
 <meta name="theme-color" content="#0A0A0A" />
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
@@ -15,7 +15,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <style>
-/* ---------- Reset & Base ---------- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
@@ -30,7 +29,6 @@
   --text-soft: #B8B5B0;
   --line: rgba(255,255,255,0.08);
   --line-strong: rgba(255,255,255,0.15);
-
   --red: #D33D3D;
   --coral: #DC4530;
   --orange: #E89930;
@@ -40,12 +38,9 @@
   --blue: #3F4FB8;
   --purple: #7E3F98;
   --magenta: #C84B8B;
-
   --rainbow: linear-gradient(90deg, var(--red), var(--orange), var(--yellow), var(--green), var(--sky), var(--blue), var(--purple), var(--magenta));
-
   --font-display: "Playfair Display", Georgia, serif;
   --font-body: "Open Sans", system-ui, -apple-system, sans-serif;
-
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --gutter: clamp(1.25rem, 5vw, 3rem);
 }
@@ -64,14 +59,99 @@ body {
 img { display: block; max-width: 100%; height: auto; }
 a { color: inherit; }
 
-/* ---------- Rainbow Bar ---------- */
+/* ---- Animated rainbow bar ---- */
+@keyframes rainbow-slide {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
 .rainbow-bar {
   height: 3px;
   background: var(--rainbow);
+  background-size: 200% 100%;
+  animation: rainbow-slide 3s linear infinite;
   border-radius: 2px;
 }
 
-/* ---------- Hero ---------- */
+/* ---- Grain overlay ---- */
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-2%, -3%); }
+  30% { transform: translate(3%, 2%); }
+  50% { transform: translate(-1%, 4%); }
+  70% { transform: translate(2%, -2%); }
+  90% { transform: translate(-3%, 1%); }
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  animation: grain 4s steps(6) infinite;
+  opacity: 0.35;
+}
+
+/* ---- Marquee strip ---- */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.marquee {
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 1rem 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.marquee__track {
+  display: flex;
+  gap: 3rem;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+.marquee__item {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+  color: var(--text-muted);
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.marquee__dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ---- Hero ---- */
+@keyframes hero-fade {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes hero-scale {
+  from { transform: scale(1.08); }
+  to { transform: scale(1); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
 .hero {
   position: relative;
   min-height: 100vh;
@@ -95,19 +175,16 @@ a { color: inherit; }
   height: 100%;
   object-fit: cover;
   object-position: center 60%;
+  animation: hero-scale 1.8s var(--ease) forwards;
 }
 
 .hero__bg::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(10,10,10,0.3) 0%,
-    rgba(10,10,10,0.15) 30%,
-    rgba(10,10,10,0.5) 60%,
-    rgba(10,10,10,0.92) 100%
-  );
+  background:
+    linear-gradient(135deg, rgba(10,10,10,0.7) 0%, transparent 50%),
+    linear-gradient(to bottom, rgba(10,10,10,0.2) 0%, rgba(10,10,10,0.1) 30%, rgba(10,10,10,0.5) 60%, rgba(10,10,10,0.95) 100%);
 }
 
 .hero__content {
@@ -120,7 +197,8 @@ a { color: inherit; }
   width: 48px;
   height: auto;
   margin-bottom: 1.5rem;
-  opacity: 0.9;
+  opacity: 0;
+  animation: hero-fade 0.8s 0.2s var(--ease) forwards;
 }
 
 .hero__eyebrow {
@@ -131,6 +209,8 @@ a { color: inherit; }
   text-transform: uppercase;
   color: var(--text-soft);
   margin-bottom: 0.75rem;
+  opacity: 0;
+  animation: hero-fade 0.8s 0.4s var(--ease) forwards;
 }
 
 .hero__title {
@@ -140,14 +220,23 @@ a { color: inherit; }
   line-height: 1.05;
   color: var(--white);
   margin-bottom: 0.25rem;
+  opacity: 0;
+  animation: hero-fade 0.8s 0.6s var(--ease) forwards;
+}
+
+@keyframes rainbow-text {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
 }
 
 .hero__title em {
   font-style: italic;
   background: var(--rainbow);
+  background-size: 200% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  animation: rainbow-text 4s linear infinite;
 }
 
 .hero__sub {
@@ -157,6 +246,8 @@ a { color: inherit; }
   color: var(--text-soft);
   margin-bottom: 1.75rem;
   max-width: 480px;
+  opacity: 0;
+  animation: hero-fade 0.8s 0.8s var(--ease) forwards;
 }
 
 .hero__cta {
@@ -174,28 +265,44 @@ a { color: inherit; }
   border-radius: 0;
   cursor: pointer;
   text-decoration: none;
-  transition: background 0.3s var(--ease), transform 0.3s var(--ease);
+  transition: background 0.3s var(--ease), transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+  opacity: 0;
+  animation: hero-fade 0.8s 1s var(--ease) forwards;
 }
 
 .hero__cta:hover {
   background: var(--cream);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
 }
 
 .hero__cta svg {
   width: 16px;
   height: 16px;
-  transition: transform 0.3s var(--ease);
+  animation: float 2s ease-in-out infinite;
 }
 
-.hero__cta:hover svg {
-  transform: translateY(2px);
+.hero__location {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 1.25rem;
+  letter-spacing: 0.06em;
+  opacity: 0;
+  animation: hero-fade 0.8s 1.2s var(--ease) forwards;
 }
 
-/* ---------- Info Section ---------- */
+.hero__location svg {
+  width: 12px;
+  height: 12px;
+  vertical-align: -1px;
+  margin-right: 0.25rem;
+  opacity: 0.6;
+}
+
+/* ---- Info Section ---- */
 .info {
   padding: clamp(4rem, 10vw, 7rem) var(--gutter);
-  border-top: 1px solid var(--line);
+  position: relative;
 }
 
 .info__inner {
@@ -225,10 +332,7 @@ a { color: inherit; }
   max-width: 560px;
 }
 
-.info__title em {
-  font-style: italic;
-  color: var(--sky);
-}
+.info__title em { font-style: italic; color: var(--sky); }
 
 .info__grid {
   display: grid;
@@ -236,20 +340,28 @@ a { color: inherit; }
   gap: 1.5rem;
 }
 
-@media (min-width: 640px) {
-  .info__grid { grid-template-columns: 1fr 1fr; }
-}
+@media (min-width: 640px) { .info__grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 900px) { .info__grid { grid-template-columns: 1fr 1fr 1fr; } }
 
-@media (min-width: 900px) {
-  .info__grid { grid-template-columns: 1fr 1fr 1fr; }
+/* ---- Info cards with animated borders ---- */
+@keyframes border-glow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
 }
 
 .info-card {
   background: var(--surface);
   border: 1px solid var(--line);
-  padding: clamp(1.5rem, 3vw, 2rem);
+  padding: clamp(1.75rem, 3vw, 2.25rem);
   position: relative;
   overflow: hidden;
+  transition: transform 0.5s var(--ease), border-color 0.5s var(--ease), box-shadow 0.5s var(--ease);
+}
+
+.info-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255,255,255,0.12);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.4);
 }
 
 .info-card::before {
@@ -259,7 +371,10 @@ a { color: inherit; }
   left: 0;
   right: 0;
   height: 2px;
+  transition: height 0.5s var(--ease);
 }
+
+.info-card:hover::before { height: 3px; }
 
 .info-card:nth-child(1)::before { background: var(--red); }
 .info-card:nth-child(2)::before { background: var(--orange); }
@@ -268,10 +383,70 @@ a { color: inherit; }
 .info-card:nth-child(5)::before { background: var(--sky); }
 .info-card:nth-child(6)::before { background: var(--purple); }
 
-.info-card__icon {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  display: block;
+.info-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  opacity: 0;
+  transition: opacity 0.5s var(--ease);
+  pointer-events: none;
+}
+
+.info-card:nth-child(1)::after { background: linear-gradient(180deg, rgba(211,61,61,0.08) 0%, transparent 100%); }
+.info-card:nth-child(2)::after { background: linear-gradient(180deg, rgba(232,153,48,0.08) 0%, transparent 100%); }
+.info-card:nth-child(3)::after { background: linear-gradient(180deg, rgba(245,213,48,0.08) 0%, transparent 100%); }
+.info-card:nth-child(4)::after { background: linear-gradient(180deg, rgba(79,168,71,0.08) 0%, transparent 100%); }
+.info-card:nth-child(5)::after { background: linear-gradient(180deg, rgba(93,179,214,0.08) 0%, transparent 100%); }
+.info-card:nth-child(6)::after { background: linear-gradient(180deg, rgba(126,63,152,0.08) 0%, transparent 100%); }
+
+.info-card:hover::after { opacity: 1; }
+
+/* ---- Card icons ---- */
+.info-card__icon-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  position: relative;
+  transition: transform 0.4s var(--ease);
+}
+
+.info-card:hover .info-card__icon-wrap { transform: scale(1.08); }
+
+.info-card:nth-child(1) .info-card__icon-wrap { background: rgba(211,61,61,0.12); }
+.info-card:nth-child(2) .info-card__icon-wrap { background: rgba(232,153,48,0.12); }
+.info-card:nth-child(3) .info-card__icon-wrap { background: rgba(245,213,48,0.12); }
+.info-card:nth-child(4) .info-card__icon-wrap { background: rgba(79,168,71,0.12); }
+.info-card:nth-child(5) .info-card__icon-wrap { background: rgba(93,179,214,0.12); }
+.info-card:nth-child(6) .info-card__icon-wrap { background: rgba(126,63,152,0.12); }
+
+.info-card__icon-wrap svg {
+  width: 22px;
+  height: 22px;
+  position: relative;
+  z-index: 1;
+}
+
+.info-card:nth-child(1) svg { color: var(--red); }
+.info-card:nth-child(2) svg { color: var(--orange); }
+.info-card:nth-child(3) svg { color: var(--yellow); }
+.info-card:nth-child(4) svg { color: var(--green); }
+.info-card:nth-child(5) svg { color: var(--sky); }
+.info-card:nth-child(6) svg { color: var(--purple); }
+
+@keyframes icon-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 currentColor; }
+  50% { box-shadow: 0 0 16px 2px currentColor; }
+}
+
+.info-card:hover .info-card__icon-wrap {
+  animation: icon-pulse 2s ease-in-out infinite;
 }
 
 .info-card__title {
@@ -280,15 +455,19 @@ a { color: inherit; }
   font-weight: 600;
   color: var(--white);
   margin-bottom: 0.5rem;
+  position: relative;
+  z-index: 1;
 }
 
 .info-card__text {
   font-size: 0.88rem;
   color: var(--text-muted);
   line-height: 1.55;
+  position: relative;
+  z-index: 1;
 }
 
-/* ---------- Gallery Strip ---------- */
+/* ---- Gallery ---- */
 .gallery {
   padding: 0 var(--gutter);
   padding-bottom: clamp(3rem, 6vw, 5rem);
@@ -302,32 +481,72 @@ a { color: inherit; }
   margin: 0 auto;
 }
 
-@media (min-width: 640px) {
-  .gallery__grid { grid-template-columns: 1fr 1fr 1fr; }
-}
+@media (min-width: 640px) { .gallery__grid { grid-template-columns: 1fr 1fr 1fr; } }
 
 .gallery__img {
   width: 100%;
   aspect-ratio: 4/3;
   object-fit: cover;
   border: 1px solid var(--line-strong);
-  transition: filter 0.4s var(--ease), border-color 0.4s var(--ease);
+  transition: transform 0.6s var(--ease), filter 0.4s var(--ease), border-color 0.4s var(--ease);
 }
 
 .gallery__img:hover {
-  filter: brightness(1.05);
-  border-color: rgba(255,255,255,0.25);
+  filter: brightness(1.1);
+  border-color: rgba(255,255,255,0.3);
+  transform: scale(1.02);
+  z-index: 1;
+  position: relative;
 }
 
-/* ---------- Form Section ---------- */
+/* ---- Form Section ---- */
 .apply {
   padding: clamp(4rem, 10vw, 7rem) var(--gutter);
   border-top: 1px solid var(--line);
+  position: relative;
+}
+
+@keyframes glow-orb {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.15; }
+  33% { transform: translate(40px, -20px) scale(1.2); opacity: 0.25; }
+  66% { transform: translate(-30px, 30px) scale(0.9); opacity: 0.1; }
+}
+
+.apply::before {
+  content: "";
+  position: absolute;
+  top: 10%;
+  right: 5%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, var(--purple) 0%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(80px);
+  animation: glow-orb 12s ease-in-out infinite;
+  pointer-events: none;
+  opacity: 0.1;
+}
+
+.apply::after {
+  content: "";
+  position: absolute;
+  bottom: 15%;
+  left: 3%;
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, var(--sky) 0%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(80px);
+  animation: glow-orb 15s 3s ease-in-out infinite;
+  pointer-events: none;
+  opacity: 0.08;
 }
 
 .apply__inner {
   max-width: 640px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
 .apply__eyebrow {
@@ -348,9 +567,7 @@ a { color: inherit; }
   margin-bottom: 0.75rem;
 }
 
-.apply__title em {
-  font-style: italic;
-}
+.apply__title em { font-style: italic; }
 
 .apply__desc {
   font-size: 0.95rem;
@@ -362,15 +579,9 @@ a { color: inherit; }
 
 .form { display: flex; flex-direction: column; gap: 1.25rem; }
 
-.form__row {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.25rem;
-}
+.form__row { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
 
-@media (min-width: 480px) {
-  .form__row--2 { grid-template-columns: 1fr 1fr; }
-}
+@media (min-width: 480px) { .form__row--2 { grid-template-columns: 1fr 1fr; } }
 
 .form__field { display: flex; flex-direction: column; gap: 0.4rem; }
 
@@ -394,23 +605,21 @@ a { color: inherit; }
   border: 1px solid var(--line-strong);
   padding: 0.85rem 1rem;
   outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition: border-color 0.3s, box-shadow 0.3s, background 0.3s;
   -webkit-appearance: none;
   appearance: none;
   border-radius: 0;
 }
 
 .form__input::placeholder,
-.form__textarea::placeholder {
-  color: var(--text-muted);
-  opacity: 0.6;
-}
+.form__textarea::placeholder { color: var(--text-muted); opacity: 0.6; }
 
 .form__input:focus,
 .form__select:focus,
 .form__textarea:focus {
   border-color: var(--sky);
-  box-shadow: 0 0 0 2px rgba(93, 179, 214, 0.15);
+  box-shadow: 0 0 0 3px rgba(93, 179, 214, 0.12), 0 0 20px rgba(93, 179, 214, 0.06);
+  background: var(--surface-2);
 }
 
 .form__select {
@@ -421,9 +630,11 @@ a { color: inherit; }
   cursor: pointer;
 }
 
-.form__textarea {
-  resize: vertical;
-  min-height: 120px;
+.form__textarea { resize: vertical; min-height: 120px; }
+
+@keyframes btn-shimmer {
+  0% { left: -100%; }
+  100% { left: 200%; }
 }
 
 .form__submit {
@@ -436,13 +647,28 @@ a { color: inherit; }
   border: none;
   padding: 1rem 2.5rem;
   cursor: pointer;
-  transition: background 0.3s var(--ease), transform 0.2s var(--ease);
+  transition: background 0.3s var(--ease), transform 0.2s var(--ease), box-shadow 0.3s var(--ease);
   margin-top: 0.5rem;
   position: relative;
   overflow: hidden;
 }
 
 .form__submit::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  transition: none;
+}
+
+.form__submit:hover::before {
+  animation: btn-shimmer 0.8s ease-out;
+}
+
+.form__submit::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -452,37 +678,25 @@ a { color: inherit; }
 }
 
 .form__submit:hover {
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
 }
 
-.form__submit:hover::before {
-  opacity: 1;
+.form__submit:hover::after { opacity: 1; }
+
+.form__submit span { position: relative; z-index: 1; }
+
+.form__submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+.form__note { font-size: 0.78rem; color: var(--text-muted); line-height: 1.5; }
+
+/* ---- Success ---- */
+@keyframes check-draw {
+  from { stroke-dashoffset: 30; }
+  to { stroke-dashoffset: 0; }
 }
 
-.form__submit span {
-  position: relative;
-  z-index: 1;
-}
-
-.form__submit:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  transform: none;
-}
-
-.form__note {
-  font-size: 0.78rem;
-  color: var(--text-muted);
-  line-height: 1.5;
-}
-
-/* ---------- Success State ---------- */
-.success {
-  display: none;
-  text-align: center;
-  padding: 3rem 1.5rem;
-}
-
+.success { display: none; text-align: center; padding: 3rem 1.5rem; }
 .success.is-visible { display: block; }
 
 .success__icon {
@@ -501,6 +715,8 @@ a { color: inherit; }
   width: 28px;
   height: 28px;
   color: var(--green);
+  stroke-dasharray: 30;
+  animation: check-draw 0.6s 0.2s var(--ease) forwards;
 }
 
 .success__title {
@@ -519,19 +735,14 @@ a { color: inherit; }
   line-height: 1.6;
 }
 
-/* ---------- Footer ---------- */
+/* ---- Footer ---- */
 .footer {
   padding: clamp(3rem, 6vw, 4rem) var(--gutter);
   border-top: 1px solid var(--line);
   text-align: center;
 }
 
-.footer__logo {
-  width: 40px;
-  height: auto;
-  margin: 0 auto 1rem;
-  opacity: 0.6;
-}
+.footer__logo { width: 40px; height: auto; margin: 0 auto 1rem; opacity: 0.6; }
 
 .footer__name {
   font-family: var(--font-display);
@@ -555,28 +766,42 @@ a { color: inherit; }
   margin-top: 1.25rem;
 }
 
+@keyframes dot-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.4); opacity: 1; }
+}
+
 .footer__dot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
+  animation: dot-pulse 3s ease-in-out infinite;
 }
 
-/* ---------- Scroll fade-in ---------- */
+.footer__dot:nth-child(1) { animation-delay: 0s; }
+.footer__dot:nth-child(2) { animation-delay: 0.15s; }
+.footer__dot:nth-child(3) { animation-delay: 0.3s; }
+.footer__dot:nth-child(4) { animation-delay: 0.45s; }
+.footer__dot:nth-child(5) { animation-delay: 0.6s; }
+.footer__dot:nth-child(6) { animation-delay: 0.75s; }
+.footer__dot:nth-child(7) { animation-delay: 0.9s; }
+
+/* ---- Scroll animations ---- */
 .fade-up {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+  transform: translateY(30px);
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
 }
 
-.fade-up.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+.fade-up.is-visible { opacity: 1; transform: translateY(0); }
 
-/* ---------- Loading spinner ---------- */
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
+.fade-up:nth-child(2) { transition-delay: 0.1s; }
+.fade-up:nth-child(3) { transition-delay: 0.2s; }
+.fade-up:nth-child(4) { transition-delay: 0.3s; }
+.fade-up:nth-child(5) { transition-delay: 0.4s; }
+.fade-up:nth-child(6) { transition-delay: 0.5s; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
 
 .spinner {
   width: 20px;
@@ -589,11 +814,20 @@ a { color: inherit; }
   vertical-align: middle;
   margin-right: 0.5rem;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  body::after { display: none; }
+}
 </style>
 </head>
 <body>
 
-<!-- ======================== HERO ======================== -->
+<!-- ======== HERO ======== -->
 <section class="hero" id="top">
   <div class="hero__bg">
     <img src="assets/studio/studio-01.jpg" alt="Studio One creative space" loading="eager" />
@@ -608,10 +842,36 @@ a { color: inherit; }
       Apply for Free Access
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 3v10M3 8l5 5 5-5"/></svg>
     </a>
+    <p class="hero__location">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M8 1.5C5.5 1.5 3.5 3.5 3.5 6c0 3.5 4.5 8.5 4.5 8.5s4.5-5 4.5-8.5c0-2.5-2-4.5-4.5-4.5z"/><circle cx="8" cy="6" r="1.5"/></svg>
+      Woodstock Exchange, Cape Town
+    </p>
   </div>
 </section>
 
-<!-- ======================== INFO ======================== -->
+<!-- ======== MARQUEE ======== -->
+<div class="marquee">
+  <div class="marquee__track">
+    <span class="marquee__item"><span class="marquee__dot" style="background:var(--red)"></span>Photography</span>
+    <span class="marquee__item"><span class="marquee__dot" style="background:var(--orange)"></span>Videography</span>
+    <span class="marquee__item"><span class="marquee__dot" style="background:var(--yellow)"></span>Fashion</span>
+    <span class="marquee__item"><span class="marquee__dot" style="background:var(--green)"></span>Music</span>
+    <span class="marquee__item"><span class="marquee__dot" style="background:var(--sky)"></span>Visual Arts</span>
+    <span class="marquee__item"><span class="marquee__dot" style="background:var(--blue)"></span>Content Creation</span>
+    <span class="marquee__item"><span class="marquee__dot" style="background:var(--purple)"></span>Dance</span>
+    <span class="marquee__item"><span class="marquee__dot" style="background:var(--magenta)"></span>Performance</span>
+    <span class="marquee__item"><span class="marquee__dot" style="background:var(--red)"></span>Photography</span>
+    <span class="marquee__item"><span class="marquee__dot" style="background:var(--orange)"></span>Videography</span>
+    <span class="marquee__item"><span class="marquee__dot" style="background:var(--yellow)"></span>Fashion</span>
+    <span class="marquee__item"><span class="marquee__dot" style="background:var(--green)"></span>Music</span>
+    <span class="marquee__item"><span class="marquee__dot" style="background:var(--sky)"></span>Visual Arts</span>
+    <span class="marquee__item"><span class="marquee__dot" style="background:var(--blue)"></span>Content Creation</span>
+    <span class="marquee__item"><span class="marquee__dot" style="background:var(--purple)"></span>Dance</span>
+    <span class="marquee__item"><span class="marquee__dot" style="background:var(--magenta)"></span>Performance</span>
+  </div>
+</div>
+
+<!-- ======== INFO ======== -->
 <section class="info" id="about">
   <div class="info__inner">
     <div class="info__header fade-up">
@@ -621,40 +881,52 @@ a { color: inherit; }
 
     <div class="info__grid">
       <div class="info-card fade-up">
-        <span class="info-card__icon">&#9713;</span>
+        <div class="info-card__icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
         <h3 class="info-card__title">Professional Photo Studio</h3>
         <p class="info-card__text">Full white cyclorama backdrop, professional Profoto lighting rigs, softboxes and octaboxes. Shoot-ready from the moment you walk in.</p>
       </div>
       <div class="info-card fade-up">
-        <span class="info-card__icon">&#9654;</span>
+        <div class="info-card__icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+        </div>
         <h3 class="info-card__title">Video Production Space</h3>
         <p class="info-card__text">Controlled lighting environment, blackout curtains, and enough room for full production setups, interviews, and content creation.</p>
       </div>
       <div class="info-card fade-up">
-        <span class="info-card__icon">&#9836;</span>
+        <div class="info-card__icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+        </div>
         <h3 class="info-card__title">Creative Workspace</h3>
         <p class="info-card__text">Bar seating, lounge area, and collaboration space. Bring your team, plan your project, and work in a space designed for creatives.</p>
       </div>
       <div class="info-card fade-up">
-        <span class="info-card__icon">&#10024;</span>
+        <div class="info-card__icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
         <h3 class="info-card__title">Zero Cost</h3>
         <p class="info-card__text">Studio One is a foundation initiative. There is no booking fee, no membership, no hidden charges. We invest in your creativity.</p>
       </div>
       <div class="info-card fade-up">
-        <span class="info-card__icon">&#127760;</span>
+        <div class="info-card__icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
         <h3 class="info-card__title">Community</h3>
         <p class="info-card__text">Join a network of photographers, filmmakers, musicians, designers, and artists. Collaborate, share skills, and grow together.</p>
       </div>
       <div class="info-card fade-up">
-        <span class="info-card__icon">&#128204;</span>
-        <h3 class="info-card__title">Maputo Based</h3>
-        <p class="info-card__text">Located in our Maputo studio headquarters. A purpose-built creative space with industrial character and professional-grade facilities.</p>
+        <div class="info-card__icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <h3 class="info-card__title">Woodstock Exchange</h3>
+        <p class="info-card__text">Located in the Woodstock Exchange, Cape Town. A creative hub with industrial character and professional-grade facilities in the heart of the city.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ======================== GALLERY ======================== -->
+<!-- ======== GALLERY ======== -->
 <section class="gallery">
   <div class="gallery__grid fade-up">
     <img class="gallery__img" src="assets/studio/studio-03.jpg" alt="Studio lighting setup" loading="lazy" />
@@ -666,7 +938,7 @@ a { color: inherit; }
   </div>
 </section>
 
-<!-- ======================== FORM ======================== -->
+<!-- ======== FORM ======== -->
 <section class="apply" id="apply">
   <div class="apply__inner">
     <div class="fade-up">
@@ -676,7 +948,6 @@ a { color: inherit; }
     </div>
 
     <form class="form fade-up" id="studioForm" novalidate>
-      <!-- Honeypot for spam -->
       <input type="text" name="_honeypot" style="display:none" tabindex="-1" autocomplete="off" />
 
       <div class="form__row form__row--2">
@@ -693,7 +964,7 @@ a { color: inherit; }
       <div class="form__row form__row--2">
         <div class="form__field">
           <label class="form__label" for="phone">Phone / WhatsApp <span class="req">*</span></label>
-          <input class="form__input" type="tel" id="phone" name="phone" placeholder="+258 84 000 0000" autocomplete="tel" required />
+          <input class="form__input" type="tel" id="phone" name="phone" placeholder="+27 00 000 0000" autocomplete="tel" required />
         </div>
         <div class="form__field">
           <label class="form__label" for="discipline">Creative Discipline <span class="req">*</span></label>
@@ -729,7 +1000,6 @@ a { color: inherit; }
       <p class="form__note">Your information is kept private and only used to coordinate your studio access. This is a Love Happiness Freedom Foundation initiative.</p>
     </form>
 
-    <!-- Success state -->
     <div class="success" id="successMsg">
       <div class="success__icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
@@ -740,7 +1010,7 @@ a { color: inherit; }
   </div>
 </section>
 
-<!-- ======================== FOOTER ======================== -->
+<!-- ======== FOOTER ======== -->
 <footer class="footer">
   <img src="assets/lhff-logo-white.png" alt="LHFF" class="footer__logo" />
   <p class="footer__name">Love Happiness Freedom Foundation</p>
@@ -758,7 +1028,6 @@ a { color: inherit; }
 
 <script>
 (function() {
-  // ---- Scroll fade-in ----
   var els = document.querySelectorAll('.fade-up');
   var obs = new IntersectionObserver(function(entries) {
     entries.forEach(function(e) {
@@ -767,40 +1036,17 @@ a { color: inherit; }
         obs.unobserve(e.target);
       }
     });
-  }, { threshold: 0.15 });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
   els.forEach(function(el) { obs.observe(el); });
 
-  // ---- Form submission ----
   var form = document.getElementById('studioForm');
   var btn = document.getElementById('submitBtn');
   var successMsg = document.getElementById('successMsg');
-
-  /*
-   * =====================================================
-   * FORM ENDPOINT CONFIGURATION
-   * =====================================================
-   * Option 1: FormSubmit.co (easiest, no signup)
-   *   Set ENDPOINT to: https://formsubmit.co/ajax/YOUR_EMAIL@example.com
-   *   First submission sends a confirmation email you must click.
-   *
-   * Option 2: Formspree
-   *   Set ENDPOINT to: https://formspree.io/f/YOUR_FORM_ID
-   *
-   * Option 3: Google Sheets (via Apps Script web app)
-   *   Set ENDPOINT to your deployed Apps Script URL
-   *
-   * Option 4: Any custom API endpoint that accepts POST JSON
-   * =====================================================
-   */
   var ENDPOINT = 'https://formsubmit.co/ajax/wesley@divergencemedia.co';
 
   form.addEventListener('submit', function(e) {
     e.preventDefault();
-
-    if (!form.checkValidity()) {
-      form.reportValidity();
-      return;
-    }
+    if (!form.checkValidity()) { form.reportValidity(); return; }
 
     var data = {
       name: form.name.value.trim(),
@@ -818,28 +1064,20 @@ a { color: inherit; }
 
     fetch(ENDPOINT, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify(data)
     })
-    .then(function(res) {
-      if (res.ok) return res.json();
-      throw new Error('Submission failed');
-    })
+    .then(function(res) { if (res.ok) return res.json(); throw new Error('fail'); })
     .then(function() {
       form.style.display = 'none';
       successMsg.classList.add('is-visible');
       window.scrollTo({ top: successMsg.offsetTop - 100, behavior: 'smooth' });
     })
     .catch(function() {
-      // Fallback: save locally and show success anyway
-      var submissions = JSON.parse(localStorage.getItem('studioOneSubmissions') || '[]');
+      var s = JSON.parse(localStorage.getItem('studioOneSubmissions') || '[]');
       data._timestamp = new Date().toISOString();
-      submissions.push(data);
-      localStorage.setItem('studioOneSubmissions', JSON.stringify(submissions));
-
+      s.push(data);
+      localStorage.setItem('studioOneSubmissions', JSON.stringify(s));
       form.style.display = 'none';
       successMsg.classList.add('is-visible');
       window.scrollTo({ top: successMsg.offsetTop - 100, behavior: 'smooth' });
@@ -847,6 +1085,5 @@ a { color: inherit; }
   });
 })();
 </script>
-
 </body>
 </html>
