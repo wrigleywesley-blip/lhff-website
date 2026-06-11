@@ -14,6 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -823,6 +824,280 @@ body::after {
   }
   body::after { display: none; }
 }
+
+/* ---- Admin Panel ---- */
+.admin-trigger {
+  display: inline-block;
+  margin-top: 1.25rem;
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  opacity: 0.3;
+  cursor: pointer;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: opacity 0.3s;
+  border: none;
+  background: none;
+  font-family: var(--font-body);
+}
+.admin-trigger:hover { opacity: 0.7; }
+
+.admin-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 5000;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  overflow-y: auto;
+  padding: 2rem var(--gutter);
+}
+.admin-overlay.is-open { display: block; }
+
+.admin-panel {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-top: 2rem;
+}
+
+.admin-panel__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.admin-panel__title {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--white);
+}
+
+.admin-panel__title em { font-style: italic; color: var(--sky); }
+
+.admin-panel__actions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.admin-btn {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 0.6rem 1.25rem;
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.3s var(--ease);
+}
+.admin-btn:hover { background: var(--surface-2); border-color: var(--text-muted); }
+
+.admin-btn--close {
+  background: transparent;
+  border-color: var(--line);
+  color: var(--text-muted);
+}
+
+.admin-btn--export { color: var(--green); border-color: rgba(79,168,71,0.3); }
+.admin-btn--export:hover { background: rgba(79,168,71,0.08); }
+
+.admin-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.admin-stat {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  padding: 1.25rem;
+}
+
+.admin-stat__value {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+
+.admin-stat__label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.admin-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.admin-table th {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-align: left;
+  padding: 0.85rem 1rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line-strong);
+  white-space: nowrap;
+}
+
+.admin-table td {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid var(--line);
+  color: var(--text);
+  vertical-align: top;
+  max-width: 250px;
+}
+
+.admin-table tr:hover td { background: var(--surface); }
+
+.admin-table td.name-col { color: var(--white); font-weight: 500; white-space: nowrap; }
+.admin-table td.email-col { color: var(--sky); }
+.admin-table td.discipline-col {
+  color: var(--text-soft);
+  white-space: nowrap;
+}
+.admin-table td.about-col {
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+  max-width: 300px;
+}
+.admin-table td.date-col {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.admin-table td a {
+  color: var(--sky);
+  text-decoration: none;
+  font-size: 0.78rem;
+}
+.admin-table td a:hover { text-decoration: underline; }
+
+.admin-empty {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* ---- Admin Login ---- */
+.admin-login {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 5000;
+  background: rgba(0,0,0,0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  align-items: center;
+  justify-content: center;
+}
+.admin-login.is-open { display: flex; }
+
+.admin-login__box {
+  background: var(--surface);
+  border: 1px solid var(--line-strong);
+  padding: 2.5rem;
+  max-width: 380px;
+  width: 100%;
+  text-align: center;
+}
+
+.admin-login__title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 0.5rem;
+}
+
+.admin-login__sub {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.admin-login__input {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--white);
+  background: var(--bg);
+  border: 1px solid var(--line-strong);
+  padding: 0.85rem 1rem;
+  outline: none;
+  margin-bottom: 1rem;
+  text-align: center;
+  letter-spacing: 0.15em;
+  transition: border-color 0.3s;
+}
+.admin-login__input:focus { border-color: var(--sky); }
+.admin-login__input.shake {
+  animation: shake 0.4s ease-in-out;
+  border-color: var(--coral);
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-8px); }
+  50% { transform: translateX(8px); }
+  75% { transform: translateX(-4px); }
+}
+
+.admin-login__btn {
+  width: 100%;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--bg);
+  background: var(--white);
+  border: none;
+  padding: 0.85rem;
+  cursor: pointer;
+  transition: background 0.3s;
+  margin-bottom: 0.75rem;
+}
+.admin-login__btn:hover { background: var(--cream); }
+
+.admin-login__cancel {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: var(--font-body);
+}
+.admin-login__cancel:hover { color: var(--text); }
+
+.admin-login__error {
+  font-size: 0.78rem;
+  color: var(--coral);
+  margin-top: 0.5rem;
+  display: none;
+}
 </style>
 </head>
 <body>
@@ -1024,10 +1299,60 @@ body::after {
     <span class="footer__dot" style="background:#3F4FB8"></span>
     <span class="footer__dot" style="background:#7E3F98"></span>
   </div>
+  <button class="admin-trigger" id="adminTrigger">Admin</button>
 </footer>
+
+<!-- ======== ADMIN LOGIN ======== -->
+<div class="admin-login" id="adminLogin">
+  <div class="admin-login__box">
+    <h3 class="admin-login__title">Admin Access</h3>
+    <p class="admin-login__sub">Enter the admin password to view submissions.</p>
+    <input class="admin-login__input" type="password" id="adminPass" placeholder="Password" autocomplete="off" />
+    <button class="admin-login__btn" id="adminLoginBtn">Access Dashboard</button>
+    <button class="admin-login__cancel" id="adminCancel">Cancel</button>
+    <p class="admin-login__error" id="adminError">Invalid password. Try again.</p>
+  </div>
+</div>
+
+<!-- ======== ADMIN PANEL ======== -->
+<div class="admin-overlay" id="adminOverlay">
+  <div class="admin-panel">
+    <div class="admin-panel__header">
+      <h2 class="admin-panel__title">Studio One <em>Submissions</em></h2>
+      <div class="admin-panel__actions">
+        <button class="admin-btn admin-btn--export" id="adminExport">Export CSV</button>
+        <button class="admin-btn" id="adminRefresh">Refresh</button>
+        <button class="admin-btn admin-btn--close" id="adminClose">Close</button>
+      </div>
+    </div>
+    <div class="admin-stats" id="adminStats"></div>
+    <div class="admin-table-wrap">
+      <table class="admin-table" id="adminTable">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Discipline</th>
+            <th>About</th>
+            <th>Portfolio</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody id="adminBody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
 
 <script>
 (function() {
+  /* ---- Supabase client ---- */
+  var SUPABASE_URL = 'https://svzcczwiewcouxkvcyex.supabase.co';
+  var SUPABASE_KEY = 'sb_publishable_0i3usixCfKIUgVIs15x-Zw_crlBEoN4';
+  var sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+  /* ---- Scroll animations ---- */
   var els = document.querySelectorAll('.fade-up');
   var obs = new IntersectionObserver(function(entries) {
     entries.forEach(function(e) {
@@ -1039,50 +1364,232 @@ body::after {
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
   els.forEach(function(el) { obs.observe(el); });
 
+  /* ---- Form submission ---- */
   var form = document.getElementById('studioForm');
   var btn = document.getElementById('submitBtn');
   var successMsg = document.getElementById('successMsg');
-  var ENDPOINT = 'https://formsubmit.co/ajax/wesley@divergencemedia.co';
+  var FORMSUBMIT = 'https://formsubmit.co/ajax/wesley@divergencemedia.co';
 
   form.addEventListener('submit', function(e) {
     e.preventDefault();
     if (!form.checkValidity()) { form.reportValidity(); return; }
 
-    var data = {
+    var record = {
       name: form.name.value.trim(),
       email: form.email.value.trim(),
       phone: form.phone.value.trim(),
       discipline: form.discipline.value,
       about: form.about.value.trim(),
-      portfolio: form.portfolio.value.trim(),
-      _subject: 'Studio One Application: ' + form.name.value.trim(),
-      _template: 'table'
+      portfolio: form.portfolio.value.trim()
     };
 
     btn.disabled = true;
     btn.innerHTML = '<span><span class="spinner"></span>Submitting...</span>';
 
-    fetch(ENDPOINT, {
+    /* Save to Supabase (primary) */
+    sb.from('studio_one_submissions').insert([record]).then(function(res) {
+      if (res.error) console.warn('Supabase insert error:', res.error);
+    });
+
+    /* Also send via FormSubmit for email notification */
+    var emailData = Object.assign({}, record, {
+      _subject: 'Studio One Application: ' + record.name,
+      _template: 'table'
+    });
+
+    fetch(FORMSUBMIT, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify(data)
+      body: JSON.stringify(emailData)
     })
     .then(function(res) { if (res.ok) return res.json(); throw new Error('fail'); })
-    .then(function() {
-      form.style.display = 'none';
-      successMsg.classList.add('is-visible');
-      window.scrollTo({ top: successMsg.offsetTop - 100, behavior: 'smooth' });
+    .then(function() { showSuccess(); })
+    .catch(function() { showSuccess(); });
+  });
+
+  function showSuccess() {
+    form.style.display = 'none';
+    successMsg.classList.add('is-visible');
+    window.scrollTo({ top: successMsg.offsetTop - 100, behavior: 'smooth' });
+  }
+
+  /* ---- Admin Panel ---- */
+  var adminTrigger = document.getElementById('adminTrigger');
+  var adminLogin = document.getElementById('adminLogin');
+  var adminOverlay = document.getElementById('adminOverlay');
+  var adminPass = document.getElementById('adminPass');
+  var adminLoginBtn = document.getElementById('adminLoginBtn');
+  var adminCancel = document.getElementById('adminCancel');
+  var adminError = document.getElementById('adminError');
+  var adminClose = document.getElementById('adminClose');
+  var adminRefresh = document.getElementById('adminRefresh');
+  var adminExport = document.getElementById('adminExport');
+  var adminBody = document.getElementById('adminBody');
+  var adminStats = document.getElementById('adminStats');
+  var storedPass = null;
+  var cachedData = null;
+
+  adminTrigger.addEventListener('click', function() {
+    if (storedPass) { openAdmin(); return; }
+    adminLogin.classList.add('is-open');
+    adminPass.value = '';
+    adminError.style.display = 'none';
+    setTimeout(function() { adminPass.focus(); }, 100);
+  });
+
+  adminCancel.addEventListener('click', function() {
+    adminLogin.classList.remove('is-open');
+  });
+
+  adminLoginBtn.addEventListener('click', tryLogin);
+  adminPass.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') tryLogin();
+  });
+
+  function tryLogin() {
+    var pass = adminPass.value;
+    if (!pass) return;
+    adminLoginBtn.textContent = 'Checking...';
+    adminLoginBtn.disabled = true;
+
+    fetch(SUPABASE_URL + '/rest/v1/rpc/get_studio_submissions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUPABASE_KEY,
+        'Authorization': 'Bearer ' + SUPABASE_KEY
+      },
+      body: JSON.stringify({ admin_pass: pass })
+    })
+    .then(function(res) {
+      if (!res.ok) throw new Error('Invalid');
+      return res.json();
+    })
+    .then(function(data) {
+      storedPass = pass;
+      cachedData = data;
+      adminLogin.classList.remove('is-open');
+      adminLoginBtn.textContent = 'Access Dashboard';
+      adminLoginBtn.disabled = false;
+      openAdmin();
     })
     .catch(function() {
-      var s = JSON.parse(localStorage.getItem('studioOneSubmissions') || '[]');
-      data._timestamp = new Date().toISOString();
-      s.push(data);
-      localStorage.setItem('studioOneSubmissions', JSON.stringify(s));
-      form.style.display = 'none';
-      successMsg.classList.add('is-visible');
-      window.scrollTo({ top: successMsg.offsetTop - 100, behavior: 'smooth' });
+      adminError.style.display = 'block';
+      adminPass.classList.add('shake');
+      adminLoginBtn.textContent = 'Access Dashboard';
+      adminLoginBtn.disabled = false;
+      setTimeout(function() { adminPass.classList.remove('shake'); }, 400);
     });
+  }
+
+  function openAdmin() {
+    adminOverlay.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+    if (cachedData) renderAdmin(cachedData);
+    else refreshAdmin();
+  }
+
+  adminClose.addEventListener('click', function() {
+    adminOverlay.classList.remove('is-open');
+    document.body.style.overflow = '';
   });
+
+  adminRefresh.addEventListener('click', refreshAdmin);
+
+  function refreshAdmin() {
+    adminBody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:2rem;color:var(--text-muted)"><span class="spinner" style="border-color:var(--text-muted);border-top-color:transparent"></span> Loading...</td></tr>';
+
+    fetch(SUPABASE_URL + '/rest/v1/rpc/get_studio_submissions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUPABASE_KEY,
+        'Authorization': 'Bearer ' + SUPABASE_KEY
+      },
+      body: JSON.stringify({ admin_pass: storedPass })
+    })
+    .then(function(res) { return res.json(); })
+    .then(function(data) {
+      cachedData = data;
+      renderAdmin(data);
+    })
+    .catch(function() {
+      adminBody.innerHTML = '<tr><td colspan="7" class="admin-empty">Failed to load submissions.</td></tr>';
+    });
+  }
+
+  function renderAdmin(data) {
+    /* Stats */
+    var disciplines = {};
+    data.forEach(function(r) {
+      disciplines[r.discipline] = (disciplines[r.discipline] || 0) + 1;
+    });
+    var topDisc = Object.keys(disciplines).sort(function(a, b) { return disciplines[b] - disciplines[a]; })[0] || 'None';
+    var today = new Date().toISOString().slice(0, 10);
+    var todayCount = data.filter(function(r) { return r.created_at && r.created_at.slice(0, 10) === today; }).length;
+
+    adminStats.innerHTML =
+      '<div class="admin-stat"><div class="admin-stat__value">' + data.length + '</div><div class="admin-stat__label">Total Applications</div></div>' +
+      '<div class="admin-stat"><div class="admin-stat__value">' + todayCount + '</div><div class="admin-stat__label">Today</div></div>' +
+      '<div class="admin-stat"><div class="admin-stat__value">' + Object.keys(disciplines).length + '</div><div class="admin-stat__label">Disciplines</div></div>' +
+      '<div class="admin-stat"><div class="admin-stat__value" style="font-size:1.1rem;padding-top:0.35rem">' + topDisc + '</div><div class="admin-stat__label">Top Discipline</div></div>';
+
+    /* Table */
+    if (data.length === 0) {
+      adminBody.innerHTML = '<tr><td colspan="7" class="admin-empty">No applications yet. Submissions will appear here once users apply.</td></tr>';
+      return;
+    }
+
+    adminBody.innerHTML = data.map(function(r) {
+      var date = r.created_at ? new Date(r.created_at) : null;
+      var dateStr = date ? date.toLocaleDateString('en-ZA', { day: 'numeric', month: 'short', year: 'numeric' }) + '<br>' + date.toLocaleTimeString('en-ZA', { hour: '2-digit', minute: '2-digit' }) : '';
+      var portfolio = r.portfolio ? '<a href="' + escHtml(r.portfolio) + '" target="_blank" rel="noopener">View</a>' : '<span style="color:var(--text-muted)">-</span>';
+      return '<tr>' +
+        '<td class="name-col">' + escHtml(r.name) + '</td>' +
+        '<td class="email-col">' + escHtml(r.email) + '</td>' +
+        '<td>' + escHtml(r.phone) + '</td>' +
+        '<td class="discipline-col">' + escHtml(r.discipline) + '</td>' +
+        '<td class="about-col">' + escHtml(r.about) + '</td>' +
+        '<td>' + portfolio + '</td>' +
+        '<td class="date-col">' + dateStr + '</td>' +
+      '</tr>';
+    }).join('');
+  }
+
+  function escHtml(s) {
+    if (!s) return '';
+    var d = document.createElement('div');
+    d.textContent = s;
+    return d.innerHTML;
+  }
+
+  /* ---- CSV Export ---- */
+  adminExport.addEventListener('click', function() {
+    if (!cachedData || cachedData.length === 0) return;
+    var headers = ['Name', 'Email', 'Phone', 'Discipline', 'About', 'Portfolio', 'Date'];
+    var rows = cachedData.map(function(r) {
+      return [
+        csvSafe(r.name), csvSafe(r.email), csvSafe(r.phone),
+        csvSafe(r.discipline), csvSafe(r.about), csvSafe(r.portfolio),
+        r.created_at ? new Date(r.created_at).toISOString() : ''
+      ].join(',');
+    });
+    var csv = headers.join(',') + '\n' + rows.join('\n');
+    var blob = new Blob([csv], { type: 'text/csv' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'studio-one-submissions-' + new Date().toISOString().slice(0, 10) + '.csv';
+    a.click();
+  });
+
+  function csvSafe(val) {
+    if (!val) return '';
+    val = String(val);
+    if (val.indexOf(',') > -1 || val.indexOf('"') > -1 || val.indexOf('\n') > -1) {
+      return '"' + val.replace(/"/g, '""') + '"';
+    }
+    return val;
+  }
 })();
 </script>
 </body>
