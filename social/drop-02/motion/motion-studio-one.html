@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>LHFF Motion — Studio One</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Open+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="_motion.css" />
+<style>
+  #bg1{background-image:url('../../../assets/fashion.jpg');
+       animation:kenburns 11s ease-out both, bgIn 1s ease-out 0s forwards, bgOut 1s ease 5.2s forwards;}
+  #bg2{background-image:url('../../../assets/studio/studio-01.jpg');
+       animation:kenburns 11s ease-out both, bgIn 1.2s ease-out 5s forwards;}
+  .s1{animation:fadeUp .9s var(--ease) .3s both, fadeOut .6s ease 2.8s forwards;}
+  .s2{animation:fadeUp .9s var(--ease) 3.1s both, fadeOut .6s ease 5.4s forwards;}
+  .s3{animation:fadeUp .9s var(--ease) 5.7s both, fadeOut .6s ease 7.9s forwards;}
+  .s4{animation:fadeUp .9s var(--ease) 8.1s both;}
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="bg" id="bg1"></div>
+  <div class="bg" id="bg2"></div>
+  <div class="scrim"></div>
+
+  <div class="rainbow"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+  <div class="chrome chrome--top"><span>Studio One</span><span>Maputo</span></div>
+
+  <div class="scene s1">
+    <p class="eyebrow" style="color:var(--orange)">Creative · Empowerment</p>
+    <div class="hook">Fashion as a<br/><em style="color:var(--red)">movement</em>.</div>
+  </div>
+
+  <div class="scene s2">
+    <div class="hook" style="font-size:104px">Not a <em style="color:var(--red)">market</em>.</div>
+    <p class="cap">We use fashion to say what matters. Young women's rights. Identity. Freedom.</p>
+  </div>
+
+  <div class="scene s3">
+    <p class="eyebrow" style="color:var(--yellow)">What we built</p>
+    <div class="hook" style="font-size:92px">A studio, handed<br/>to the next<br/><em style="color:var(--yellow)">generation</em>.</div>
+    <p class="cap">Free studio time. Real mentors. Real client work. No gatekeeping.</p>
+  </div>
+
+  <div class="scene s4">
+    <p class="eyebrow">Studio One · open call</p>
+    <div class="hook" style="font-size:108px">Come and make<br/><em style="color:var(--yellow)">something</em>.</div>
+    <span class="pill">Apply · @lovehappinessfreedom</span>
+  </div>
+
+  <div class="chrome chrome--bot"><span>Love · Happiness · Freedom</span><span>Foundation</span></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,232 @@
+/* =========================================================
+   LHFF — Social Drop 02 · Story system
+   1080×1920 (9:16) Instagram Stories
+   Editorial language: ink surfaces · Playfair italic display ·
+   Open Sans body · JetBrains Mono chrome · 7-colour rainbow
+   ========================================================= */
+:root {
+  --cream: #faf7f2;
+  --bone:  #f3ede3;
+  --ink:   #1a1a1a;
+  --ink-2: #0f1016;
+  --ink-soft: #555;
+  --red:    #e84a3f;
+  --orange: #f08a3a;
+  --yellow: #f5c63a;
+  --green:  #5fa85a;
+  --sky:    #5ab8d9;
+  --blue:   #3a72b8;
+  --purple: #8654b8;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  background: #2a2a2a;
+  font-family: "Open Sans", -apple-system, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+body { padding: 48px; }
+
+/* ----- Preview grid (screen) ----- */
+.deck {
+  display: flex; flex-wrap: wrap; gap: 28px;
+  max-width: 3500px; margin: 0 auto; align-items: flex-start;
+}
+.frame {
+  width: 1080px; height: 1920px;
+  position: relative; overflow: hidden;
+  background: var(--ink); color: var(--cream);
+  transform-origin: top left;
+  transform: scale(0.30);
+  /* collapse the scaled-away space so frames tile neatly */
+  margin: 0 -756px -1344px 0;
+}
+
+/* ----- Render mode: full-size stacked strip for screenshots ----- */
+body.render { padding: 0; background: #fff; }
+body.render .deck { display: block; max-width: none; gap: 0; }
+body.render .frame { transform: none; margin: 0; display: block; }
+
+/* ----- Background image + scrims ----- */
+.bg {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  z-index: 0;
+}
+.bg--zoom { transform: scale(1.06); }
+.scrim {
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(180deg, rgba(8,9,14,0.62) 0%, rgba(8,9,14,0.20) 38%, rgba(8,9,14,0.86) 100%);
+}
+.scrim--solid {
+  background: linear-gradient(180deg, rgba(8,9,14,0.80) 0%, rgba(8,9,14,0.48) 42%, rgba(8,9,14,0.92) 100%);
+}
+.scrim--light {
+  background: linear-gradient(180deg, rgba(8,9,14,0.40) 0%, rgba(8,9,14,0.08) 40%, rgba(8,9,14,0.62) 100%);
+}
+.scrim--bottom {
+  background: linear-gradient(180deg, rgba(8,9,14,0.10) 0%, rgba(8,9,14,0.10) 45%, rgba(8,9,14,0.92) 100%);
+}
+
+/* Solid ink stage (no photo) with a faint aurora wash */
+.frame--ink { background: radial-gradient(120% 90% at 50% 0%, #1d1230 0%, #11121b 55%, #0b0c12 100%); }
+.frame--cream { background: var(--cream); color: var(--ink); }
+
+/* ----- Content shell ----- */
+.content {
+  position: absolute; inset: 0; z-index: 3;
+  padding: 96px 80px 104px;
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+
+/* ----- Story progress segments (top) ----- */
+.progress {
+  position: absolute; top: 40px; left: 80px; right: 80px; z-index: 4;
+  display: flex; gap: 8px;
+}
+.progress span {
+  flex: 1; height: 5px; border-radius: 3px;
+  background: rgba(250,247,242,0.28);
+}
+.progress span.on { background: var(--cream); }
+.frame--cream .progress span { background: rgba(26,26,26,0.20); }
+.frame--cream .progress span.on { background: var(--ink); }
+
+/* ----- Top + bottom chrome ----- */
+.chrome-top, .chrome-bot {
+  display: flex; justify-content: space-between; align-items: baseline;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 19px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(250,247,242,0.80);
+}
+.frame--cream .chrome-top, .frame--cream .chrome-bot { color: rgba(26,26,26,0.62); }
+
+/* ----- Rainbow bar ----- */
+.rainbow-bar {
+  display: flex; width: 260px; height: 7px;
+  margin-bottom: 40px; border-radius: 1px; overflow: hidden;
+}
+.rainbow-bar span { flex: 1; }
+.rainbow-bar span:nth-child(1){ background: var(--red); }
+.rainbow-bar span:nth-child(2){ background: var(--orange); }
+.rainbow-bar span:nth-child(3){ background: var(--yellow); }
+.rainbow-bar span:nth-child(4){ background: var(--green); }
+.rainbow-bar span:nth-child(5){ background: var(--sky); }
+.rainbow-bar span:nth-child(6){ background: var(--blue); }
+.rainbow-bar span:nth-child(7){ background: var(--purple); }
+
+/* ----- Typography ----- */
+.eyebrow {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 21px; letter-spacing: 0.20em; text-transform: uppercase;
+  margin: 0 0 36px; color: rgba(250,247,242,0.88);
+}
+.frame--cream .eyebrow { color: var(--ink-soft); }
+
+.display {
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 400; font-style: italic;
+  line-height: 1.0; letter-spacing: -0.014em;
+  font-size: 132px; color: var(--cream); margin: 0;
+}
+.frame--cream .display { color: var(--ink); }
+.display em { font-style: italic; }
+
+.kicker {            /* mid-size serif, for sub-statements */
+  font-family: "Playfair Display", Georgia, serif;
+  font-style: italic; font-weight: 400;
+  font-size: 72px; line-height: 1.05; letter-spacing: -0.012em;
+  color: var(--cream); margin: 0;
+}
+.frame--cream .kicker { color: var(--ink); }
+
+.body {
+  font-family: "Open Sans", sans-serif;
+  font-size: 36px; line-height: 1.5; font-weight: 400;
+  color: rgba(250,247,242,0.94); max-width: 880px;
+}
+.frame--cream .body { color: #3a3a3a; }
+.body strong { font-weight: 700; }
+
+/* ----- Big stat ----- */
+.stat-num {
+  font-family: "Playfair Display", Georgia, serif;
+  font-style: italic; font-weight: 500;
+  font-size: 320px; line-height: 0.82; letter-spacing: -0.04em;
+  color: var(--cream);
+}
+.stat-num.sm { font-size: 220px; }
+.stat-cap {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 26px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: rgba(250,247,242,0.82);
+  border-top: 1px solid rgba(255,255,255,0.22);
+  padding-top: 22px; margin-top: 26px; max-width: 30ch; line-height: 1.45;
+}
+.frame--cream .stat-cap { color: var(--ink-soft); border-color: var(--line, #e2ddd4); }
+
+/* stacked mini-stats list */
+.stat-list { display: flex; flex-direction: column; gap: 30px; }
+.stat-row {
+  display: flex; align-items: baseline; gap: 28px;
+  border-top: 1px solid rgba(255,255,255,0.16); padding-top: 26px;
+}
+.stat-row .n {
+  font-family: "Playfair Display", serif; font-style: italic; font-weight: 500;
+  font-size: 92px; line-height: 0.9; letter-spacing: -0.03em; min-width: 4.6ch;
+}
+.stat-row .l {
+  font-family: "Open Sans", sans-serif; font-size: 31px; line-height: 1.35;
+  color: rgba(250,247,242,0.9);
+}
+.frame--cream .stat-row .l { color: #3a3a3a; }
+
+/* ----- Source / footnote ----- */
+.source {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 17px; letter-spacing: 0.10em;
+  color: rgba(250,247,242,0.55); margin-top: 18px;
+}
+.frame--cream .source { color: var(--soft, #9a958c); }
+
+/* ----- Swipe affordance ----- */
+.swipe {
+  display: inline-flex; align-items: center; gap: 14px;
+  font-family: "JetBrains Mono", monospace; font-size: 21px;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(250,247,242,0.92);
+}
+.swipe .arrow { font-size: 28px; transform: translateY(-1px); }
+.frame--cream .swipe { color: var(--ink); }
+
+/* ----- Tag pill ----- */
+.tag {
+  display: inline-block; padding: 12px 24px; border-radius: 999px;
+  border: 1.5px solid rgba(250,247,242,0.5);
+  font-family: "JetBrains Mono", monospace; font-size: 20px;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--cream);
+}
+.frame--cream .tag { border-color: rgba(26,26,26,0.4); color: var(--ink); }
+
+/* ----- CTA pill (filled) ----- */
+.cta-pill {
+  display: inline-block; padding: 30px 48px; border-radius: 999px;
+  background: var(--cream); color: var(--ink);
+  font-family: "JetBrains Mono", monospace; font-size: 26px;
+  letter-spacing: 0.10em; text-transform: uppercase; font-weight: 500;
+}
+.cta-pill--ghost { background: transparent; color: var(--cream); border: 2px solid var(--cream); }
+
+/* helper: vertically center a block */
+.mid { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+.mid.low { justify-content: flex-end; padding-bottom: 8px; }   /* image-forward: caption sits low */
+.stamp { font-family: "JetBrains Mono", monospace; font-size: 30px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: rgba(250,247,242,0.9); margin-bottom: 22px; }
+
+/* phone mockup (for app screenshots) */
+.phone { width: 540px; margin: 0 auto; border-radius: 50px; overflow: hidden;
+  border: 9px solid #0a0a0a; background: #000; box-shadow: 0 40px 90px rgba(0,0,0,0.55); }
+.phone img { width: 100%; display: block; }
+.center { text-align: center; }
+.tighten { margin-top: -8px; }

@@ -7,6 +7,9 @@
 LHFF STILLS EDITED/
 studio one /
 app/
+DJI_*.MP4
+*.mov
+*.MOV
 
 # Editors
 .vscode
@@ -15,3 +18,6 @@ app/
 # Logs
 *.log
 node_modules/
+
+# Remotion project (source + node_modules) — MP4s are exported to social/drop-02/motion/
+social/drop-02/remotion/

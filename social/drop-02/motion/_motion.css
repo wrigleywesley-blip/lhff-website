@@ -1,0 +1,66 @@
+/* =========================================================
+   LHFF — Drop 02 · editorial motion shorts (1080×1920, 9:16)
+   CSS @keyframes only. Rendered to MP4 via animations/record.py
+   (Chrome --virtual-time-budget per frame + ffmpeg).
+   ========================================================= */
+:root{
+  --cream:#faf7f2; --ink:#1a1a1a;
+  --red:#e84a3f; --orange:#f08a3a; --yellow:#f5c63a; --green:#5fa85a;
+  --sky:#5ab8d9; --blue:#3a72b8; --purple:#8654b8; --magenta:#c84b8b;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#000;
+  font-family:"Open Sans",-apple-system,sans-serif;-webkit-font-smoothing:antialiased;}
+.stage{position:relative;width:1080px;height:1920px;overflow:hidden;
+  background:radial-gradient(120% 90% at 50% 0%,#1d1230 0%,#11121b 55%,#0b0c12 100%);}
+
+/* layered backgrounds with slow ken-burns */
+.bg{position:absolute;inset:0;background-size:cover;background-position:center;
+  opacity:0;will-change:transform,opacity;}
+.bg.kb{animation:kenburns 11s ease-out both;}
+@keyframes kenburns{from{transform:scale(1.02)}to{transform:scale(1.14)}}
+.scrim{position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(8,9,14,.55) 0%,rgba(8,9,14,.25) 38%,rgba(8,9,14,.9) 100%);}
+
+/* persistent brand chrome */
+.chrome{position:absolute;left:64px;right:64px;display:flex;justify-content:space-between;
+  align-items:baseline;font-family:"JetBrains Mono",monospace;font-size:20px;
+  letter-spacing:.18em;text-transform:uppercase;color:rgba(250,247,242,.6);
+  opacity:0;animation:fade 800ms ease-out 200ms forwards;z-index:5;}
+.chrome--top{top:60px;} .chrome--bot{bottom:60px;}
+.rainbow{position:absolute;top:120px;left:64px;display:flex;width:260px;height:7px;
+  border-radius:1px;overflow:hidden;opacity:0;animation:fade 800ms ease-out 300ms forwards;z-index:5;}
+.rainbow span{flex:1;}
+.rainbow span:nth-child(1){background:var(--red)} .rainbow span:nth-child(2){background:var(--orange)}
+.rainbow span:nth-child(3){background:var(--yellow)} .rainbow span:nth-child(4){background:var(--green)}
+.rainbow span:nth-child(5){background:var(--sky)} .rainbow span:nth-child(6){background:var(--blue)}
+.rainbow span:nth-child(7){background:var(--purple)}
+
+/* scene container — centered editorial block */
+.scene{position:absolute;left:64px;right:64px;top:50%;transform:translateY(-50%);
+  z-index:4;opacity:0;}
+.scene .eyebrow{font-family:"JetBrains Mono",monospace;font-size:22px;letter-spacing:.2em;
+  text-transform:uppercase;color:rgba(250,247,242,.85);margin-bottom:30px;}
+.scene .hook{font-family:"Playfair Display",Georgia,serif;font-style:italic;font-weight:400;
+  color:var(--cream);line-height:1.0;letter-spacing:-.014em;font-size:118px;}
+.scene .hook em{font-style:italic;}
+.scene .num{font-family:"Playfair Display",serif;font-style:italic;font-weight:500;
+  font-size:280px;line-height:.82;letter-spacing:-.04em;color:var(--cream);}
+.scene .cap{font-family:"Open Sans",sans-serif;font-size:36px;line-height:1.45;
+  color:rgba(250,247,242,.92);max-width:860px;margin-top:28px;}
+.scene .row{display:flex;align-items:baseline;gap:24px;border-top:1px solid rgba(255,255,255,.16);
+  padding-top:22px;margin-top:26px;}
+.scene .row .n{font-family:"Playfair Display",serif;font-style:italic;font-weight:500;
+  font-size:84px;line-height:.9;letter-spacing:-.03em;min-width:4.4ch;}
+.scene .row .l{font-family:"Open Sans",sans-serif;font-size:30px;color:rgba(250,247,242,.9);}
+.scene .pill{display:inline-block;margin-top:40px;padding:26px 44px;border-radius:999px;
+  background:var(--cream);color:var(--ink);font-family:"JetBrains Mono",monospace;
+  font-size:25px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;}
+
+/* keyframes */
+@keyframes fade{to{opacity:1}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(46px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeOut{to{opacity:0;transform:translateY(-26px)}}
+@keyframes bgIn{to{opacity:1}}
+@keyframes bgOut{to{opacity:0}}

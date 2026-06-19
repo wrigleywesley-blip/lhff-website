@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>LHFF Motion — Conservation &amp; the Ocean</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Open+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="_motion.css" />
+<style>
+  /* backgrounds */
+  #bg1{background-image:url('../../../assets/env-wildlife.jpg');
+       animation:kenburns 11s ease-out both, bgIn 1s ease-out 0s forwards, bgOut 1s ease 5.2s forwards;}
+  #bg2{background-image:url('../ai-assets/ocean-turtle.jpg');
+       animation:kenburns 11s ease-out both, bgIn 1.2s ease-out 5s forwards;}
+  /* scene timings (total 10s) */
+  .s1{animation:fadeUp .9s var(--ease) .3s both, fadeOut .6s ease 2.8s forwards;}
+  .s2{animation:fadeUp .9s var(--ease) 3.1s both, fadeOut .6s ease 5.4s forwards;}
+  .s3{animation:fadeUp .9s var(--ease) 5.7s both, fadeOut .6s ease 7.9s forwards;}
+  .s4{animation:fadeUp .9s var(--ease) 8.1s both;}
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="bg" id="bg1"></div>
+  <div class="bg" id="bg2"></div>
+  <div class="scrim"></div>
+
+  <div class="rainbow"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+  <div class="chrome chrome--top"><span>Marine conservation</span><span>Mozambique</span></div>
+
+  <div class="scene s1">
+    <p class="eyebrow" style="color:var(--sky)">The Indian Ocean</p>
+    <div class="hook">The ocean is<br/>still <em style="color:var(--sky)">teaching</em><br/>us.</div>
+  </div>
+
+  <div class="scene s2">
+    <p class="eyebrow" style="color:var(--sky)">Bazaruto Archipelago</p>
+    <div class="num">250&#8211;350</div>
+    <p class="cap">dugongs survive here. The Western Indian Ocean's last viable population.</p>
+  </div>
+
+  <div class="scene s3">
+    <p class="eyebrow">A small sea, impossibly rich</p>
+    <div class="row"><span class="n" style="color:var(--sky)">2,000+</span><span class="l">fish species in Bazaruto's waters</span></div>
+    <div class="row"><span class="n" style="color:var(--green)">5</span><span class="l">species of sea turtle nest here</span></div>
+    <div class="row"><span class="n" style="color:var(--blue)">300k&nbsp;ha</span><span class="l">of mangroves, Africa's largest</span></div>
+  </div>
+
+  <div class="scene s4">
+    <p class="eyebrow">Grow. Sustain. Transform.</p>
+    <div class="hook" style="font-size:96px">Protect the water.<br/>Life comes <em style="color:var(--sky)">back</em>.</div>
+    <span class="pill">@lovehappinessfreedom</span>
+  </div>
+
+  <div class="chrome chrome--bot"><span>Love · Happiness · Freedom</span><span>Foundation</span></div>
+</div>
+</body>
+</html>

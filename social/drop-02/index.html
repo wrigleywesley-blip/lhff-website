@@ -1,0 +1,616 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>LHFF — Social Drop 02 · Awareness & Conservation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Open+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --paper:#faf7f2; --ink:#1a1a1a; --ink-soft:#555; --rule:rgba(26,26,26,0.14);
+    --red:#e84a3f; --orange:#f08a3a; --yellow:#f5c63a; --green:#5fa85a;
+    --sky:#5ab8d9; --blue:#3a72b8; --purple:#8654b8;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);
+    font-family:"Open Sans",sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1320px;margin:0 auto;padding:48px 32px 120px;}
+  header.cover{background:var(--ink);color:var(--paper);padding:72px 32px;margin:-48px -32px 0;}
+  header.cover .inner{max-width:1320px;margin:0 auto;}
+  .rainbow{display:flex;width:260px;height:7px;margin-bottom:30px;border-radius:1px;overflow:hidden;}
+  .rainbow span{flex:1;}
+  .rainbow span:nth-child(1){background:var(--red)} .rainbow span:nth-child(2){background:var(--orange)}
+  .rainbow span:nth-child(3){background:var(--yellow)} .rainbow span:nth-child(4){background:var(--green)}
+  .rainbow span:nth-child(5){background:var(--sky)} .rainbow span:nth-child(6){background:var(--blue)}
+  .rainbow span:nth-child(7){background:var(--purple)}
+  .eyebrow{font-family:"JetBrains Mono",monospace;font-size:0.75rem;letter-spacing:0.18em;
+    text-transform:uppercase;color:rgba(250,247,242,0.65);margin:0 0 18px;}
+  h1{font-family:"Playfair Display",Georgia,serif;font-style:italic;font-weight:400;
+    font-size:clamp(3rem,7vw,5.75rem);line-height:0.98;letter-spacing:-0.01em;margin:0 0 26px;}
+  h1 em{color:var(--yellow);}
+  header.cover p.dek{font-size:1.0625rem;max-width:42rem;color:rgba(250,247,242,0.85);margin:0;}
+  .cover-stats{display:flex;gap:40px;margin-top:40px;flex-wrap:wrap;}
+  .cover-stats div{font-family:"JetBrains Mono",monospace;font-size:0.7rem;letter-spacing:0.14em;
+    text-transform:uppercase;color:rgba(250,247,242,0.55);}
+  .cover-stats b{display:block;font-family:"Playfair Display",serif;font-style:italic;font-weight:500;
+    font-size:2.4rem;letter-spacing:-0.02em;color:var(--paper);margin-bottom:4px;}
+
+  nav.toc{background:rgba(26,26,26,0.95);backdrop-filter:blur(6px);color:var(--paper);
+    padding:14px 0;border-top:1px solid rgba(255,255,255,0.08);position:sticky;top:0;z-index:10;margin:0 -32px;}
+  nav.toc .inner{max-width:1320px;margin:0 auto;padding:0 32px;display:flex;gap:6px;flex-wrap:wrap;align-items:center;}
+  nav.toc a{font-family:"JetBrains Mono",monospace;font-size:0.6875rem;letter-spacing:0.12em;
+    text-transform:uppercase;color:rgba(250,247,242,0.7);padding:6px 12px;border-radius:999px;
+    text-decoration:none;transition:all 0.18s ease;white-space:nowrap;}
+  nav.toc a:hover{background:rgba(255,255,255,0.1);color:var(--paper);}
+
+  section.topic{margin-bottom:88px;padding-top:56px;border-top:1px solid var(--rule);scroll-margin-top:70px;}
+  section.topic:first-of-type{border-top:0;}
+  .section-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:14px;gap:24px;flex-wrap:wrap;}
+  h2{font-family:"Playfair Display",serif;font-style:italic;font-weight:400;
+    font-size:clamp(2rem,4vw,3.1rem);line-height:1.05;margin:0;}
+  h2 em{color:var(--red);}
+  .section-meta{font-family:"JetBrains Mono",monospace;font-size:0.72rem;letter-spacing:0.16em;
+    text-transform:uppercase;color:var(--ink-soft);}
+  .lede{max-width:46rem;font-size:1.0625rem;color:var(--ink-soft);margin:0 0 32px;}
+  .badge{display:inline-block;font-family:"JetBrains Mono",monospace;font-size:0.625rem;letter-spacing:0.18em;
+    text-transform:uppercase;padding:4px 10px;border-radius:999px;margin-right:8px;vertical-align:middle;
+    border:1px solid var(--rule);color:var(--ink-soft);}
+  .badge--edu{color:var(--blue);border-color:rgba(58,114,184,0.4);background:rgba(58,114,184,0.06);}
+  .badge--cons{color:var(--green);border-color:rgba(95,168,90,0.4);background:rgba(95,168,90,0.06);}
+  .badge--creative{color:var(--red);border-color:rgba(232,74,63,0.4);background:rgba(232,74,63,0.06);}
+  .badge--sustain{color:var(--orange);border-color:rgba(240,138,58,0.4);background:rgba(240,138,58,0.06);}
+
+  .media{display:grid;grid-template-columns:360px 1fr;gap:32px;align-items:start;}
+  @media (max-width:900px){.media{grid-template-columns:1fr;}}
+  .film .label,.story-label{font-family:"JetBrains Mono",monospace;font-size:0.6875rem;letter-spacing:0.16em;
+    text-transform:uppercase;color:var(--ink-soft);margin:0 0 12px;display:flex;justify-content:space-between;}
+  .film video{width:100%;aspect-ratio:9/16;display:block;border-radius:6px;background:#000;
+    border:1px solid var(--rule);box-shadow:0 10px 30px rgba(0,0,0,0.12);}
+  .frames{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;}
+  .frame-thumb{position:relative;aspect-ratio:9/16;border-radius:5px;overflow:hidden;
+    border:1px solid var(--rule);box-shadow:0 6px 18px rgba(0,0,0,0.07);background:#222;}
+  .frame-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+  .frame-thumb .n{position:absolute;bottom:7px;left:7px;background:rgba(0,0,0,0.72);color:#fff;
+    font-family:"JetBrains Mono",monospace;font-size:0.6rem;letter-spacing:0.1em;padding:3px 7px;border-radius:3px;}
+
+  footer{margin-top:80px;padding-top:32px;border-top:1px solid var(--rule);
+    font-family:"JetBrains Mono",monospace;font-size:0.6875rem;letter-spacing:0.16em;text-transform:uppercase;
+    color:var(--ink-soft);display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:12px;}
+</style>
+</head>
+<body>
+<header class="cover">
+  <div class="inner">
+    <div class="rainbow"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    <p class="eyebrow">Social Drop 02 · Love Happiness Freedom Foundation</p>
+    <h1>Awareness,<br/>in <em>motion</em>.</h1>
+    <p class="dek">Eighteen topics across the Foundation's whole world: Awareness &amp; Conservation, the Studio One creative collection, Nature &amp; Well-being, and Education &amp; Technology, closing on the full ecosystem. Every statistic is sourced. Topics ship as swipeable story sets, most with a matching 9:16 motion graphic, all in the Foundation's editorial system.</p>
+    <div class="cover-stats">
+      <div><b>18</b>Topics</div>
+      <div><b>84</b>Story frames</div>
+      <div><b>12</b>Motion graphics</div>
+      <div><b>9:16</b>Reels &amp; Stories</div>
+    </div>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="inner">
+    <a href="#mozambique">01 · Wild Mozambique</a>
+    <a href="#ocean">02 · The Ocean</a>
+    <a href="#studio">03 · Studio One</a>
+    <a href="#seeds">04 · Seeds of Change</a>
+    <a href="#lookbook" style="color:var(--yellow);">05 · Lookbook</a>
+    <a href="#day" style="color:var(--yellow);">06 · A Day</a>
+    <a href="#patterns" style="color:var(--yellow);">07 · Patterns</a>
+    <a href="#creators" style="color:var(--yellow);">11 · Creators</a>
+    <a href="#faces" style="color:var(--yellow);">12 · Faces</a>
+    <a href="#hands" style="color:var(--yellow);">13 · Maker's Hands</a>
+    <a href="#stillness" style="color:var(--green);">08 · Stillness</a>
+    <a href="#pillars" style="color:var(--green);">09 · 7 Pillars</a>
+    <a href="#nature" style="color:var(--green);">10 · Nature</a>
+    <a href="#empower" style="color:var(--green);">17 · Empower</a>
+    <a href="#school" style="color:var(--sky);">14 · The School</a>
+    <a href="#app" style="color:var(--sky);">15 · The App</a>
+    <a href="#navid" style="color:var(--sky);">16 · NAVID</a>
+    <a href="#ecosystem">18 · What We're Building</a>
+    <a href="#notes">Notes</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <!-- 01 MOZAMBIQUE -->
+  <section class="topic" id="mozambique">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow" style="color:var(--ink-soft);"><span class="badge badge--edu">Educational</span><span class="badge badge--cons">Conservation</span> Topic 01 · 5 frames + motion</p>
+        <h2>Mozambique's wild <em>wonders</em>.</h2>
+      </div>
+      <span class="section-meta">A wilderness that came back</span>
+    </div>
+    <p class="lede">Gorongosa lost over 90% of its large wildlife to civil war, then staged one of Africa's greatest comebacks. The story leads with the collapse, the return to 110,000+ animals, and the species-by-species rebound.</p>
+    <div class="media">
+      <div class="film">
+        <p class="label"><span>Motion · 15s</span><span>9:16</span></p>
+        <video src="motion/motion-mozambique.mp4" poster="exports/01-mozambique-wild-wonders/frame-01.png" controls muted loop playsinline></video>
+      </div>
+      <div>
+        <p class="story-label"><span>Story set · 5 frames · 1080×1920</span><span>swipe →</span></p>
+        <div class="frames">
+          <div class="frame-thumb"><img src="exports/01-mozambique-wild-wonders/frame-01.png" alt=""><span class="n">01</span></div>
+          <div class="frame-thumb"><img src="exports/01-mozambique-wild-wonders/frame-02.png" alt=""><span class="n">02</span></div>
+          <div class="frame-thumb"><img src="exports/01-mozambique-wild-wonders/frame-03.png" alt=""><span class="n">03</span></div>
+          <div class="frame-thumb"><img src="exports/01-mozambique-wild-wonders/frame-04.png" alt=""><span class="n">04</span></div>
+          <div class="frame-thumb"><img src="exports/01-mozambique-wild-wonders/frame-05.png" alt=""><span class="n">05</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 OCEAN -->
+  <section class="topic" id="ocean">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow" style="color:var(--ink-soft);"><span class="badge badge--edu">Educational</span><span class="badge badge--cons">Conservation</span> Topic 02 · 4 frames + motion</p>
+        <h2>Conservation &amp; the <em>ocean</em>.</h2>
+      </div>
+      <span class="section-meta">The Indian Ocean, off Mozambique</span>
+    </div>
+    <p class="lede">The Bazaruto seascape holds the Western Indian Ocean's last viable dugong population, 2,000+ fish species, five sea turtles and Africa's largest mangrove forest. A reminder that when we protect the water, life returns.</p>
+    <div class="media">
+      <div class="film">
+        <p class="label"><span>Motion · 13s</span><span>9:16</span></p>
+        <video src="motion/motion-ocean.mp4" poster="exports/02-ocean-conservation/frame-01.png" controls muted loop playsinline></video>
+      </div>
+      <div>
+        <p class="story-label"><span>Story set · 4 frames · 1080×1920</span><span>swipe →</span></p>
+        <div class="frames">
+          <div class="frame-thumb"><img src="exports/02-ocean-conservation/frame-01.png" alt=""><span class="n">01</span></div>
+          <div class="frame-thumb"><img src="exports/02-ocean-conservation/frame-02.png" alt=""><span class="n">02</span></div>
+          <div class="frame-thumb"><img src="exports/02-ocean-conservation/frame-03.png" alt=""><span class="n">03</span></div>
+          <div class="frame-thumb"><img src="exports/02-ocean-conservation/frame-04.png" alt=""><span class="n">04</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 STUDIO ONE -->
+  <section class="topic" id="studio">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow" style="color:var(--ink-soft);"><span class="badge badge--creative">Creative</span> Topic 03 · 4 frames + motion</p>
+        <h2>Studio One: fashion as a <em>movement</em>.</h2>
+      </div>
+      <span class="section-meta">Empowerment through creativity</span>
+    </div>
+    <p class="lede">A working studio in Maputo, handed to young creatives for free. Fashion as a tool for change, not commerce: a way to talk about young women's rights, identity and freedom, and to bring the next generation into the work.</p>
+    <div class="media">
+      <div class="film">
+        <p class="label"><span>Motion · 12s</span><span>9:16</span></p>
+        <video src="motion/motion-studio-one.mp4" poster="exports/03-studio-one-fashion/frame-01.png" controls muted loop playsinline></video>
+      </div>
+      <div>
+        <p class="story-label"><span>Story set · 4 frames · 1080×1920</span><span>swipe →</span></p>
+        <div class="frames">
+          <div class="frame-thumb"><img src="exports/03-studio-one-fashion/frame-01.png" alt=""><span class="n">01</span></div>
+          <div class="frame-thumb"><img src="exports/03-studio-one-fashion/frame-02.png" alt=""><span class="n">02</span></div>
+          <div class="frame-thumb"><img src="exports/03-studio-one-fashion/frame-03.png" alt=""><span class="n">03</span></div>
+          <div class="frame-thumb"><img src="exports/03-studio-one-fashion/frame-04.png" alt=""><span class="n">04</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 SEEDS -->
+  <section class="topic" id="seeds">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow" style="color:var(--ink-soft);"><span class="badge badge--edu">Educational</span><span class="badge badge--sustain">Sustainability</span> Topic 04 · 4 frames + motion</p>
+        <h2>Seeds of <em>change</em>.</h2>
+      </div>
+      <span class="section-meta">Organic Seeds · in schools</span>
+    </div>
+    <p class="lede">Mozambique loses around 267,000 hectares of forest a year. The Foundation's Organic Seeds initiative answers with sustainable farming taught in classrooms: no chemicals, healthier soil, better yields, seeds saved and replanted.</p>
+    <div class="media">
+      <div class="film">
+        <p class="label"><span>Motion · 13s</span><span>9:16</span></p>
+        <video src="motion/motion-seeds.mp4" poster="exports/04-seeds-of-change/frame-01.png" controls muted loop playsinline></video>
+      </div>
+      <div>
+        <p class="story-label"><span>Story set · 4 frames · 1080×1920</span><span>swipe →</span></p>
+        <div class="frames">
+          <div class="frame-thumb"><img src="exports/04-seeds-of-change/frame-01.png" alt=""><span class="n">01</span></div>
+          <div class="frame-thumb"><img src="exports/04-seeds-of-change/frame-02.png" alt=""><span class="n">02</span></div>
+          <div class="frame-thumb"><img src="exports/04-seeds-of-change/frame-03.png" alt=""><span class="n">03</span></div>
+          <div class="frame-thumb"><img src="exports/04-seeds-of-change/frame-04.png" alt=""><span class="n">04</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STUDIO ONE COLLECTION ===== -->
+  <div style="border-top:2px solid var(--ink);padding-top:22px;margin-bottom:8px;">
+    <p class="eyebrow" style="color:var(--ink-soft);margin:0;">Studio One Collection · fashion &amp; creative · photo-led</p>
+  </div>
+
+  <!-- 05 LOOKBOOK -->
+  <section class="topic" id="lookbook" style="border-top:0;padding-top:24px;">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow" style="color:var(--ink-soft);"><span class="badge badge--creative">Creative</span><span class="badge badge--creative">Fashion</span> Topic 05 · 5 frames + motion</p>
+        <h2>Studio One · the <em>Lookbook</em>.</h2>
+      </div>
+      <span class="section-meta">Editorial, photo-led</span>
+    </div>
+    <p class="lede">An editorial lookbook of pieces made at Studio One: wax print, denim, beadwork and the rainbow that runs through the brand. Less copy, more image.</p>
+    <div class="media">
+      <div class="film">
+        <p class="label"><span>Motion · 12s</span><span>9:16</span></p>
+        <video src="motion/motion-studio-lookbook.mp4" poster="exports/05-studio-one-lookbook/frame-01.png" controls muted loop playsinline></video>
+      </div>
+      <div>
+        <p class="story-label"><span>Story set · 5 frames · 1080×1920</span><span>swipe →</span></p>
+        <div class="frames">
+          <div class="frame-thumb"><img src="exports/05-studio-one-lookbook/frame-01.png" alt=""><span class="n">01</span></div>
+          <div class="frame-thumb"><img src="exports/05-studio-one-lookbook/frame-02.png" alt=""><span class="n">02</span></div>
+          <div class="frame-thumb"><img src="exports/05-studio-one-lookbook/frame-03.png" alt=""><span class="n">03</span></div>
+          <div class="frame-thumb"><img src="exports/05-studio-one-lookbook/frame-04.png" alt=""><span class="n">04</span></div>
+          <div class="frame-thumb"><img src="exports/05-studio-one-lookbook/frame-05.png" alt=""><span class="n">05</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 A DAY -->
+  <section class="topic" id="day">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow" style="color:var(--ink-soft);"><span class="badge badge--creative">Creative</span> Topic 06 · 6 frames + motion</p>
+        <h2>A day at Studio <em>One</em>.</h2>
+      </div>
+      <span class="section-meta">A visual diary, hour by hour</span>
+    </div>
+    <p class="lede">From doors open to after hours: the brief becoming a shoot, the set, the mentor review, the room filling up. What a working day in the studio actually feels like.</p>
+    <div class="media">
+      <div class="film">
+        <p class="label"><span>Motion · 14s</span><span>9:16</span></p>
+        <video src="motion/motion-day-at-studio.mp4" poster="exports/06-a-day-at-studio-one/frame-01.png" controls muted loop playsinline></video>
+      </div>
+      <div>
+        <p class="story-label"><span>Story set · 6 frames · 1080×1920</span><span>swipe →</span></p>
+        <div class="frames">
+          <div class="frame-thumb"><img src="exports/06-a-day-at-studio-one/frame-01.png" alt=""><span class="n">01</span></div>
+          <div class="frame-thumb"><img src="exports/06-a-day-at-studio-one/frame-02.png" alt=""><span class="n">02</span></div>
+          <div class="frame-thumb"><img src="exports/06-a-day-at-studio-one/frame-03.png" alt=""><span class="n">03</span></div>
+          <div class="frame-thumb"><img src="exports/06-a-day-at-studio-one/frame-04.png" alt=""><span class="n">04</span></div>
+          <div class="frame-thumb"><img src="exports/06-a-day-at-studio-one/frame-05.png" alt=""><span class="n">05</span></div>
+          <div class="frame-thumb"><img src="exports/06-a-day-at-studio-one/frame-06.png" alt=""><span class="n">06</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 PATTERNS -->
+  <section class="topic" id="patterns">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow" style="color:var(--ink-soft);"><span class="badge badge--creative">Creative</span><span class="badge badge--edu">Cultural</span> Topic 07 · 4 frames</p>
+        <h2>The patterns we <em>wear</em>.</h2>
+      </div>
+      <span class="section-meta">Fashion as identity</span>
+    </div>
+    <p class="lede">Beadwork and African print as language, not decoration. The cultural case for the Foundation's standpoint: fashion as a tool for change, and for young women's rights.</p>
+    <p class="story-label"><span>Story set · 4 frames · 1080×1920</span><span>swipe →</span></p>
+    <div class="frames" style="grid-template-columns:repeat(auto-fill,minmax(190px,1fr));">
+      <div class="frame-thumb"><img src="exports/07-the-patterns-we-wear/frame-01.png" alt=""><span class="n">01</span></div>
+      <div class="frame-thumb"><img src="exports/07-the-patterns-we-wear/frame-02.png" alt=""><span class="n">02</span></div>
+      <div class="frame-thumb"><img src="exports/07-the-patterns-we-wear/frame-03.png" alt=""><span class="n">03</span></div>
+      <div class="frame-thumb"><img src="exports/07-the-patterns-we-wear/frame-04.png" alt=""><span class="n">04</span></div>
+    </div>
+  </section>
+
+  <!-- 11 FOR THE CREATORS -->
+  <section class="topic" id="creators">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow" style="color:var(--ink-soft);"><span class="badge badge--creative">Creative</span> Topic 11 · 5 frames + motion</p>
+        <h2>For the <em>creators</em>.</h2>
+      </div>
+      <span class="section-meta">Models, photographers, designers, filmmakers</span>
+    </div>
+    <p class="lede">The open call, by discipline. What each kind of creative gets at Studio One: cameras, machines, fabric, sets, mentors and real client briefs. Free, no gatekeeping.</p>
+    <div class="media">
+      <div class="film">
+        <p class="label"><span>Motion · 12s</span><span>9:16</span></p>
+        <video src="motion/motion-for-the-creators.mp4" poster="exports/11-for-the-creators/frame-01.png" controls muted loop playsinline></video>
+      </div>
+      <div>
+        <p class="story-label"><span>Story set · 5 frames · 1080×1920</span><span>swipe →</span></p>
+        <div class="frames">
+          <div class="frame-thumb"><img src="exports/11-for-the-creators/frame-01.png" alt=""><span class="n">01</span></div>
+          <div class="frame-thumb"><img src="exports/11-for-the-creators/frame-02.png" alt=""><span class="n">02</span></div>
+          <div class="frame-thumb"><img src="exports/11-for-the-creators/frame-03.png" alt=""><span class="n">03</span></div>
+          <div class="frame-thumb"><img src="exports/11-for-the-creators/frame-04.png" alt=""><span class="n">04</span></div>
+          <div class="frame-thumb"><img src="exports/11-for-the-creators/frame-05.png" alt=""><span class="n">05</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12 FACES -->
+  <section class="topic" id="faces">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow" style="color:var(--ink-soft);"><span class="badge badge--creative">Creative</span> Topic 12 · 4 frames</p>
+        <h2>Faces of Studio <em>One</em>.</h2>
+      </div>
+      <span class="section-meta">Portraits, photo-led</span>
+    </div>
+    <p class="lede">The people behind the work: the models given a real platform, the makers given real tools. Minimal copy, faces forward.</p>
+    <p class="story-label"><span>Story set · 4 frames · 1080×1920</span><span>swipe →</span></p>
+    <div class="frames" style="grid-template-columns:repeat(auto-fill,minmax(190px,1fr));">
+      <div class="frame-thumb"><img src="exports/12-faces-of-studio-one/frame-01.png" alt=""><span class="n">01</span></div>
+      <div class="frame-thumb"><img src="exports/12-faces-of-studio-one/frame-02.png" alt=""><span class="n">02</span></div>
+      <div class="frame-thumb"><img src="exports/12-faces-of-studio-one/frame-03.png" alt=""><span class="n">03</span></div>
+      <div class="frame-thumb"><img src="exports/12-faces-of-studio-one/frame-04.png" alt=""><span class="n">04</span></div>
+    </div>
+  </section>
+
+  <!-- 13 MAKER'S HANDS -->
+  <section class="topic" id="hands">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow" style="color:var(--ink-soft);"><span class="badge badge--creative">Creative</span> Topic 13 · 4 frames</p>
+        <h2>The maker's <em>hands</em>.</h2>
+      </div>
+      <span class="section-meta">Craft close-ups</span>
+    </div>
+    <p class="lede">Beadwork, the sewing machine, the camera. The craft that outlasts any single shoot, taught hands-on.</p>
+    <p class="story-label"><span>Story set · 4 frames · 1080×1920</span><span>swipe →</span></p>
+    <div class="frames" style="grid-template-columns:repeat(auto-fill,minmax(190px,1fr));">
+      <div class="frame-thumb"><img src="exports/13-the-makers-hands/frame-01.png" alt=""><span class="n">01</span></div>
+      <div class="frame-thumb"><img src="exports/13-the-makers-hands/frame-02.png" alt=""><span class="n">02</span></div>
+      <div class="frame-thumb"><img src="exports/13-the-makers-hands/frame-03.png" alt=""><span class="n">03</span></div>
+      <div class="frame-thumb"><img src="exports/13-the-makers-hands/frame-04.png" alt=""><span class="n">04</span></div>
+    </div>
+  </section>
+
+  <!-- ===== NATURE & WELL-BEING COLLECTION ===== -->
+  <div style="border-top:2px solid var(--ink);padding-top:22px;margin-bottom:8px;">
+    <p class="eyebrow" style="color:var(--ink-soft);margin:0;">Nature &amp; Well-being Collection · the retreat, the curriculum, the wild</p>
+  </div>
+
+  <!-- 08 STILLNESS -->
+  <section class="topic" id="stillness" style="border-top:0;padding-top:24px;">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow" style="color:var(--ink-soft);"><span class="badge badge--sustain">Well-being</span><span class="badge badge--brand">Retreat</span> Topic 08 · 5 frames + motion</p>
+        <h2>Stillness · the <em>retreat</em>.</h2>
+      </div>
+      <span class="section-meta">Six days, beneath the mountain</span>
+    </div>
+    <p class="lede">The six-day retreats at the Cape Town villa: slow mornings, long walks, the fire circle. Learning to be still as a skill, not a luxury.</p>
+    <div class="media">
+      <div class="film">
+        <p class="label"><span>Motion · 12s</span><span>9:16</span></p>
+        <video src="motion/motion-stillness.mp4" poster="exports/08-stillness-the-retreat/frame-01.png" controls muted loop playsinline></video>
+      </div>
+      <div>
+        <p class="story-label"><span>Story set · 5 frames · 1080×1920</span><span>swipe →</span></p>
+        <div class="frames">
+          <div class="frame-thumb"><img src="exports/08-stillness-the-retreat/frame-01.png" alt=""><span class="n">01</span></div>
+          <div class="frame-thumb"><img src="exports/08-stillness-the-retreat/frame-02.png" alt=""><span class="n">02</span></div>
+          <div class="frame-thumb"><img src="exports/08-stillness-the-retreat/frame-03.png" alt=""><span class="n">03</span></div>
+          <div class="frame-thumb"><img src="exports/08-stillness-the-retreat/frame-04.png" alt=""><span class="n">04</span></div>
+          <div class="frame-thumb"><img src="exports/08-stillness-the-retreat/frame-05.png" alt=""><span class="n">05</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09 SEVEN PILLARS -->
+  <section class="topic" id="pillars">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow" style="color:var(--ink-soft);"><span class="badge badge--edu">Educational</span><span class="badge badge--sustain">Well-being</span> Topic 09 · 5 frames + motion</p>
+        <h2>The seven <em>pillars</em>.</h2>
+      </div>
+      <span class="section-meta">The curriculum, colour-coded</span>
+    </div>
+    <p class="lede">The life-skills curriculum taught in schools and retreats: Purpose, Wellness, Communication, Meditation, Discipline, Faith, Redemption. One colour each, across the rainbow.</p>
+    <div class="media">
+      <div class="film">
+        <p class="label"><span>Motion · 11s</span><span>9:16</span></p>
+        <video src="motion/motion-seven-pillars.mp4" poster="exports/09-the-seven-pillars/frame-01.png" controls muted loop playsinline></video>
+      </div>
+      <div>
+        <p class="story-label"><span>Story set · 5 frames · 1080×1920</span><span>swipe →</span></p>
+        <div class="frames">
+          <div class="frame-thumb"><img src="exports/09-the-seven-pillars/frame-01.png" alt=""><span class="n">01</span></div>
+          <div class="frame-thumb"><img src="exports/09-the-seven-pillars/frame-02.png" alt=""><span class="n">02</span></div>
+          <div class="frame-thumb"><img src="exports/09-the-seven-pillars/frame-03.png" alt=""><span class="n">03</span></div>
+          <div class="frame-thumb"><img src="exports/09-the-seven-pillars/frame-04.png" alt=""><span class="n">04</span></div>
+          <div class="frame-thumb"><img src="exports/09-the-seven-pillars/frame-05.png" alt=""><span class="n">05</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 NATURE HEALS -->
+  <section class="topic" id="nature">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow" style="color:var(--ink-soft);"><span class="badge badge--sustain">Well-being</span><span class="badge badge--cons">Nature</span> Topic 10 · 4 frames</p>
+        <h2>Nature <em>heals</em>.</h2>
+      </div>
+      <span class="section-meta">Place as medicine</span>
+    </div>
+    <p class="lede">Why the setting matters: the Cape Floral Kingdom, the smallest and richest on Earth, and what stillness outdoors does for the nervous system. Where conservation and well-being meet.</p>
+    <p class="story-label"><span>Story set · 4 frames · 1080×1920</span><span>swipe →</span></p>
+    <div class="frames" style="grid-template-columns:repeat(auto-fill,minmax(190px,1fr));">
+      <div class="frame-thumb"><img src="exports/10-nature-heals/frame-01.png" alt=""><span class="n">01</span></div>
+      <div class="frame-thumb"><img src="exports/10-nature-heals/frame-02.png" alt=""><span class="n">02</span></div>
+      <div class="frame-thumb"><img src="exports/10-nature-heals/frame-03.png" alt=""><span class="n">03</span></div>
+      <div class="frame-thumb"><img src="exports/10-nature-heals/frame-04.png" alt=""><span class="n">04</span></div>
+    </div>
+  </section>
+
+  <!-- 17 EMPOWER -->
+  <section class="topic" id="empower">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow" style="color:var(--ink-soft);"><span class="badge badge--sustain">Well-being</span><span class="badge badge--creative">Women</span> Topic 17 · 5 frames + motion</p>
+        <h2>Empower your true <em>self</em>.</h2>
+      </div>
+      <span class="section-meta">The women's empowerment retreat</span>
+    </div>
+    <p class="lede">The six-day retreat built first for young models, approached from a human-rights standpoint: strength, resilience, sisterhood, and the right to take up space.</p>
+    <div class="media">
+      <div class="film">
+        <p class="label"><span>Motion · 10s</span><span>9:16</span></p>
+        <video src="motion/motion-empower.mp4" poster="exports/17-empower-your-true-self/frame-01.png" controls muted loop playsinline></video>
+      </div>
+      <div>
+        <p class="story-label"><span>Story set · 5 frames · 1080×1920</span><span>swipe →</span></p>
+        <div class="frames">
+          <div class="frame-thumb"><img src="exports/17-empower-your-true-self/frame-01.png" alt=""><span class="n">01</span></div>
+          <div class="frame-thumb"><img src="exports/17-empower-your-true-self/frame-02.png" alt=""><span class="n">02</span></div>
+          <div class="frame-thumb"><img src="exports/17-empower-your-true-self/frame-03.png" alt=""><span class="n">03</span></div>
+          <div class="frame-thumb"><img src="exports/17-empower-your-true-self/frame-04.png" alt=""><span class="n">04</span></div>
+          <div class="frame-thumb"><img src="exports/17-empower-your-true-self/frame-05.png" alt=""><span class="n">05</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EDUCATION & TECHNOLOGY COLLECTION ===== -->
+  <div style="border-top:2px solid var(--ink);padding-top:22px;margin-bottom:8px;">
+    <p class="eyebrow" style="color:var(--ink-soft);margin:0;">Education &amp; Technology Collection · the school, the app, the AI companion</p>
+  </div>
+
+  <!-- 14 THE SCHOOL -->
+  <section class="topic" id="school" style="border-top:0;padding-top:24px;">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow" style="color:var(--ink-soft);"><span class="badge badge--edu">Educational</span> Topic 14 · 5 frames + motion</p>
+        <h2>The <em>school</em>.</h2>
+      </div>
+      <span class="section-meta">Maputo · the education pillar</span>
+    </div>
+    <p class="lede">The renovated public school in Maputo: classrooms rebuilt, Organic Seeds grown in class, and Triangle Empowerment balancing student, teacher and parent.</p>
+    <div class="media">
+      <div class="film">
+        <p class="label"><span>Motion · 12s</span><span>9:16</span></p>
+        <video src="motion/motion-school.mp4" poster="exports/14-the-school/frame-01.png" controls muted loop playsinline></video>
+      </div>
+      <div>
+        <p class="story-label"><span>Story set · 5 frames · 1080×1920</span><span>swipe →</span></p>
+        <div class="frames">
+          <div class="frame-thumb"><img src="exports/14-the-school/frame-01.png" alt=""><span class="n">01</span></div>
+          <div class="frame-thumb"><img src="exports/14-the-school/frame-02.png" alt=""><span class="n">02</span></div>
+          <div class="frame-thumb"><img src="exports/14-the-school/frame-03.png" alt=""><span class="n">03</span></div>
+          <div class="frame-thumb"><img src="exports/14-the-school/frame-04.png" alt=""><span class="n">04</span></div>
+          <div class="frame-thumb"><img src="exports/14-the-school/frame-05.png" alt=""><span class="n">05</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 15 THE APP -->
+  <section class="topic" id="app">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow" style="color:var(--ink-soft);"><span class="badge badge--brand">Tech</span> Topic 15 · 5 frames</p>
+        <h2>The Foundation <em>app</em>.</h2>
+      </div>
+      <span class="section-meta">Companion technology · real screens</span>
+    </div>
+    <p class="lede">The retreat doesn't end when you leave. Home, practice, journal and progress, carried in your pocket. Real app screens, built by Divergence.</p>
+    <p class="story-label"><span>Story set · 5 frames · 1080×1920</span><span>swipe →</span></p>
+    <div class="frames" style="grid-template-columns:repeat(auto-fill,minmax(190px,1fr));">
+      <div class="frame-thumb"><img src="exports/15-the-foundation-app/frame-01.png" alt=""><span class="n">01</span></div>
+      <div class="frame-thumb"><img src="exports/15-the-foundation-app/frame-02.png" alt=""><span class="n">02</span></div>
+      <div class="frame-thumb"><img src="exports/15-the-foundation-app/frame-03.png" alt=""><span class="n">03</span></div>
+      <div class="frame-thumb"><img src="exports/15-the-foundation-app/frame-04.png" alt=""><span class="n">04</span></div>
+      <div class="frame-thumb"><img src="exports/15-the-foundation-app/frame-05.png" alt=""><span class="n">05</span></div>
+    </div>
+  </section>
+
+  <!-- 16 NAVID -->
+  <section class="topic" id="navid">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow" style="color:var(--ink-soft);"><span class="badge badge--brand">Tech</span><span class="badge badge--brand">AI</span> Topic 16 · 4 frames + motion</p>
+        <h2>Meet <em>NAVID</em>.</h2>
+      </div>
+      <span class="section-meta">The AI companion</span>
+    </div>
+    <p class="lede">The virtual voice of the Foundation: an AI guide shaped around the 7 Pillars. A guide, not a guru. No diagnoses, no dogma, just the right questions.</p>
+    <div class="media">
+      <div class="film">
+        <p class="label"><span>Motion · 10s</span><span>9:16</span></p>
+        <video src="motion/motion-navid.mp4" poster="exports/16-meet-navid/frame-01.png" controls muted loop playsinline></video>
+      </div>
+      <div>
+        <p class="story-label"><span>Story set · 4 frames · 1080×1920</span><span>swipe →</span></p>
+        <div class="frames">
+          <div class="frame-thumb"><img src="exports/16-meet-navid/frame-01.png" alt=""><span class="n">01</span></div>
+          <div class="frame-thumb"><img src="exports/16-meet-navid/frame-02.png" alt=""><span class="n">02</span></div>
+          <div class="frame-thumb"><img src="exports/16-meet-navid/frame-03.png" alt=""><span class="n">03</span></div>
+          <div class="frame-thumb"><img src="exports/16-meet-navid/frame-04.png" alt=""><span class="n">04</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FINALE ===== -->
+  <div style="border-top:2px solid var(--ink);padding-top:22px;margin-bottom:8px;">
+    <p class="eyebrow" style="color:var(--ink-soft);margin:0;">The whole picture · one ecosystem</p>
+  </div>
+
+  <!-- 18 WHAT WE'RE BUILDING -->
+  <section class="topic" id="ecosystem" style="border-top:0;padding-top:24px;">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow" style="color:var(--ink-soft);"><span class="badge badge--brand">Brand</span><span class="badge badge--brand">Manifesto</span> Topic 18 · 6 frames</p>
+        <h2>What we're <em>building</em>.</h2>
+      </div>
+      <span class="section-meta">Five spaces, one mission</span>
+    </div>
+    <p class="lede">The whole map in one swipe: spaces to heal, learn, create and protect, tied together by NAVID and the app. Retreats, the school, Studio One, conservation, and the technology layer.</p>
+    <p class="story-label"><span>Story set · 6 frames · 1080×1920</span><span>swipe →</span></p>
+    <div class="frames" style="grid-template-columns:repeat(auto-fill,minmax(180px,1fr));">
+      <div class="frame-thumb"><img src="exports/18-what-we-are-building/frame-01.png" alt=""><span class="n">01</span></div>
+      <div class="frame-thumb"><img src="exports/18-what-we-are-building/frame-02.png" alt=""><span class="n">02</span></div>
+      <div class="frame-thumb"><img src="exports/18-what-we-are-building/frame-03.png" alt=""><span class="n">03</span></div>
+      <div class="frame-thumb"><img src="exports/18-what-we-are-building/frame-04.png" alt=""><span class="n">04</span></div>
+      <div class="frame-thumb"><img src="exports/18-what-we-are-building/frame-05.png" alt=""><span class="n">05</span></div>
+      <div class="frame-thumb"><img src="exports/18-what-we-are-building/frame-06.png" alt=""><span class="n">06</span></div>
+    </div>
+  </section>
+
+  <!-- NOTES -->
+  <section class="topic" id="notes">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow" style="color:var(--ink-soft);">Appendix</p>
+        <h2>Notes &amp; <em>sources</em>.</h2>
+      </div>
+      <span class="section-meta">Every number is real</span>
+    </div>
+    <p class="lede" style="max-width:54rem;">
+      Statistics are drawn from peer-reviewed and official sources, including Stalmans et al. (PLOS One, 2019) and the Gorongosa Aerial Wildlife Count (2022) for the Gorongosa recovery; the Marine Mammal Protected Areas Task Force and Trotzuk et al. (2021) for dugongs; African Parks and Shapiro et al. (2018) for Bazaruto and mangroves; ANAC (2023) for protected-area coverage; Mozambique's National Forest Inventory (2018) for deforestation; and the Foundation's own Organic Seeds research (2025). Imagery is a blend of the Foundation's own library and cinematic stills generated for this drop. Motion graphics are built in Remotion and exported at 1080×1920.
+    </p>
+  </section>
+
+</div>
+
+<footer>
+  <div><span>Love · Happiness · Freedom Foundation</span></div>
+  <div><span>Built by Divergence · Social Drop 02 · 18 topics · 84 frames · 12 motion graphics</span></div>
+</footer>
+</body>
+</html>
