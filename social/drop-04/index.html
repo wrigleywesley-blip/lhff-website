@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>LHFF — Social Drop 04 · Sustainability &amp; The Land</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Open+Sans:wght@300;400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --cream: #faf7f2; --ink: #1a1a1a; --ink-2: #232323;
+    --red:#e84a3f; --orange:#f08a3a; --yellow:#f5c63a; --green:#5fa85a;
+    --sky:#5ab8d9; --blue:#3a72b8; --purple:#8654b8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--ink); color: var(--cream);
+    font-family: "Open Sans", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    padding: 72px 48px 120px;
+  }
+  header { max-width: 1400px; margin: 0 auto 72px; }
+  .rainbow-bar { display: flex; width: 260px; height: 6px; margin-bottom: 32px; border-radius: 1px; overflow: hidden; }
+  .rainbow-bar span { flex: 1; }
+  .rainbow-bar span:nth-child(1){background:var(--red)}
+  .rainbow-bar span:nth-child(2){background:var(--orange)}
+  .rainbow-bar span:nth-child(3){background:var(--yellow)}
+  .rainbow-bar span:nth-child(4){background:var(--green)}
+  .rainbow-bar span:nth-child(5){background:var(--sky)}
+  .rainbow-bar span:nth-child(6){background:var(--blue)}
+  .rainbow-bar span:nth-child(7){background:var(--purple)}
+  .eyebrow {
+    font-family: "JetBrains Mono", monospace; font-size: 13px;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(250,247,242,0.6); margin-bottom: 20px;
+  }
+  h1 { font-family: "Playfair Display", serif; font-style: italic; font-weight: 400;
+       font-size: clamp(48px, 6vw, 88px); line-height: 1.02; letter-spacing: -0.02em; }
+  .lede { font-size: 19px; font-weight: 300; line-height: 1.6; max-width: 720px;
+          color: rgba(250,247,242,0.78); margin-top: 28px; }
+  .stats { display: flex; gap: 48px; margin-top: 40px; flex-wrap: wrap;
+           font-family: "JetBrains Mono", monospace; font-size: 13px;
+           letter-spacing: 0.14em; text-transform: uppercase; color: rgba(250,247,242,0.55); }
+  .stats b { display: block; font-family: "Playfair Display", serif; font-style: italic;
+             font-size: 44px; letter-spacing: -0.02em; color: var(--cream); margin-bottom: 6px; font-weight: 400; }
+
+  main { max-width: 1400px; margin: 0 auto; }
+  section.car { margin-bottom: 88px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.14); }
+  .car-head { display: flex; justify-content: space-between; align-items: baseline;
+              gap: 24px; flex-wrap: wrap; margin-bottom: 26px; }
+  .car-head h2 { font-family: "Playfair Display", serif; font-style: italic;
+                 font-weight: 400; font-size: 40px; letter-spacing: -0.015em; }
+  .car-head .meta { font-family: "JetBrains Mono", monospace; font-size: 12px;
+                    letter-spacing: 0.16em; text-transform: uppercase; color: rgba(250,247,242,0.5); }
+  .car-note { font-size: 15px; font-weight: 300; color: rgba(250,247,242,0.62);
+              max-width: 780px; margin-bottom: 26px; }
+  .strip { display: flex; gap: 14px; overflow-x: auto; padding-bottom: 14px; scroll-snap-type: x mandatory; }
+  .strip::-webkit-scrollbar { height: 8px; }
+  .strip::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.18); border-radius: 4px; }
+  .strip img { width: 264px; height: 330px; object-fit: cover; flex: 0 0 auto;
+               background: var(--ink-2); border-radius: 3px; scroll-snap-align: start; }
+  .links { margin-top: 18px; font-family: "JetBrains Mono", monospace; font-size: 12px;
+           letter-spacing: 0.12em; text-transform: uppercase; }
+  .links a { color: rgba(250,247,242,0.55); text-decoration: none; margin-right: 26px;
+             border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 2px; }
+  .links a:hover { color: var(--cream); border-color: var(--cream); }
+  .motion-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 22px; }
+  .motion-grid figure { margin: 0; }
+  .motion-grid video { width: 100%; aspect-ratio: 9 / 16; object-fit: cover;
+                       background: var(--ink-2); border-radius: 4px; display: block; }
+  .motion-grid figcaption { font-family: "JetBrains Mono", monospace; font-size: 11px;
+                            letter-spacing: 0.14em; text-transform: uppercase;
+                            color: rgba(250,247,242,0.5); margin-top: 12px; }
+  footer { max-width: 1400px; margin: 80px auto 0; padding-top: 32px;
+           border-top: 1px solid rgba(255,255,255,0.14);
+           display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+           font-family: "JetBrains Mono", monospace; font-size: 12px;
+           letter-spacing: 0.14em; text-transform: uppercase; color: rgba(250,247,242,0.5); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="rainbow-bar"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+  <p class="eyebrow">Love, Happiness &amp; Freedom Foundation · Social Drop 04</p>
+  <h1>Sustainability<br/>&amp; the land.</h1>
+  <p class="lede">Eight Instagram carousels on the third pillar. Food, water, energy, waste and the ground itself, shot across Maputo and Cape Town. Same build system as Drop 01: HTML panels at 1080&times;1350, rendered headless to PNG.</p>
+  <div class="stats">
+    <div><b>8</b>Carousels</div>
+    <div><b>59</b>Panels</div>
+    <div><b>27</b>New stills</div>
+    <div><b>8</b>Motion cuts</div>
+    <div><b>1080&times;1350</b>Export size</div>
+  </div>
+</header>
+
+<main>
+
+  <section class="car">
+    <div class="car-head">
+      <h2>01 · The garden that feeds the school</h2>
+      <span class="meta">7 panels · Maputo</span>
+    </div>
+    <p class="car-note">The origin story of the food garden: dead ground, months of composting, and the twelve metres between a raised bed and the school pot. Ends on the argument that a fed child can learn.</p>
+    <div class="strip">
+      <img src="exports/carousel-01/thumb-01.jpg" alt="Panel 1" loading="lazy" />
+      <img src="exports/carousel-01/thumb-02.jpg" alt="Panel 2" loading="lazy" />
+      <img src="exports/carousel-01/thumb-03.jpg" alt="Panel 3" loading="lazy" />
+      <img src="exports/carousel-01/thumb-04.jpg" alt="Panel 4" loading="lazy" />
+      <img src="exports/carousel-01/thumb-05.jpg" alt="Panel 5" loading="lazy" />
+      <img src="exports/carousel-01/thumb-06.jpg" alt="Panel 6" loading="lazy" />
+      <img src="exports/carousel-01/thumb-07.jpg" alt="Panel 7" loading="lazy" />
+    </div>
+    <p class="links"><a href="carousels/01-the-garden-that-feeds-the-school.html">Open source</a><a href="exports/carousel-01/">Exports</a></p>
+  </section>
+
+  <section class="car">
+    <div class="car-head">
+      <h2>02 · Seed to plate</h2>
+      <span class="meta">8 panels · The cycle</span>
+    </div>
+    <p class="car-note">Six numbered steps that close into a circle: seed, soil, time, harvest, table, return. Carries the FAO food-waste figure on the compost panel.</p>
+    <div class="strip">
+      <img src="exports/carousel-02/thumb-01.jpg" alt="Panel 1" loading="lazy" />
+      <img src="exports/carousel-02/thumb-02.jpg" alt="Panel 2" loading="lazy" />
+      <img src="exports/carousel-02/thumb-03.jpg" alt="Panel 3" loading="lazy" />
+      <img src="exports/carousel-02/thumb-04.jpg" alt="Panel 4" loading="lazy" />
+      <img src="exports/carousel-02/thumb-05.jpg" alt="Panel 5" loading="lazy" />
+      <img src="exports/carousel-02/thumb-06.jpg" alt="Panel 6" loading="lazy" />
+      <img src="exports/carousel-02/thumb-07.jpg" alt="Panel 7" loading="lazy" />
+      <img src="exports/carousel-02/thumb-08.jpg" alt="Panel 8" loading="lazy" />
+    </div>
+    <p class="links"><a href="carousels/02-seed-to-plate.html">Open source</a><a href="exports/carousel-02/">Exports</a></p>
+  </section>
+
+  <section class="car">
+    <div class="car-head">
+      <h2>03 · Why sustainability is a pillar</h2>
+      <span class="meta">7 panels · The argument</span>
+    </div>
+    <p class="car-note">Five reasons a foundation about people teaches soil. The strongest donor-facing piece in the set: aid arrives, a garden stays.</p>
+    <div class="strip">
+      <img src="exports/carousel-03/thumb-01.jpg" alt="Panel 1" loading="lazy" />
+      <img src="exports/carousel-03/thumb-02.jpg" alt="Panel 2" loading="lazy" />
+      <img src="exports/carousel-03/thumb-03.jpg" alt="Panel 3" loading="lazy" />
+      <img src="exports/carousel-03/thumb-04.jpg" alt="Panel 4" loading="lazy" />
+      <img src="exports/carousel-03/thumb-05.jpg" alt="Panel 5" loading="lazy" />
+      <img src="exports/carousel-03/thumb-06.jpg" alt="Panel 6" loading="lazy" />
+      <img src="exports/carousel-03/thumb-07.jpg" alt="Panel 7" loading="lazy" />
+    </div>
+    <p class="links"><a href="carousels/03-why-sustainability-is-a-pillar.html">Open source</a><a href="exports/carousel-03/">Exports</a></p>
+  </section>
+
+  <section class="car">
+    <div class="car-head">
+      <h2>04 · Water</h2>
+      <span class="meta">7 panels · Cape Town + Maputo</span>
+    </div>
+    <p class="car-note">Day Zero as the anchor. Two sourced figures, rainwater harvesting, mulching, and the closing line about a child who carries water.</p>
+    <div class="strip">
+      <img src="exports/carousel-04/thumb-01.jpg" alt="Panel 1" loading="lazy" />
+      <img src="exports/carousel-04/thumb-02.jpg" alt="Panel 2" loading="lazy" />
+      <img src="exports/carousel-04/thumb-03.jpg" alt="Panel 3" loading="lazy" />
+      <img src="exports/carousel-04/thumb-04.jpg" alt="Panel 4" loading="lazy" />
+      <img src="exports/carousel-04/thumb-05.jpg" alt="Panel 5" loading="lazy" />
+      <img src="exports/carousel-04/thumb-06.jpg" alt="Panel 6" loading="lazy" />
+      <img src="exports/carousel-04/thumb-07.jpg" alt="Panel 7" loading="lazy" />
+    </div>
+    <p class="links"><a href="carousels/04-water.html">Open source</a><a href="exports/carousel-04/">Exports</a></p>
+  </section>
+
+  <section class="car">
+    <div class="car-head">
+      <h2>05 · The house that runs on sun</h2>
+      <span class="meta">7 panels · The retreat villa</span>
+    </div>
+    <p class="car-note">The villa as infrastructure, not perk. Solar, kitchen garden, closed-loop waste, and the line that does the commercial work: a retreat in Cape Town pays for a classroom in Maputo.</p>
+    <div class="strip">
+      <img src="exports/carousel-05/thumb-01.jpg" alt="Panel 1" loading="lazy" />
+      <img src="exports/carousel-05/thumb-02.jpg" alt="Panel 2" loading="lazy" />
+      <img src="exports/carousel-05/thumb-03.jpg" alt="Panel 3" loading="lazy" />
+      <img src="exports/carousel-05/thumb-04.jpg" alt="Panel 4" loading="lazy" />
+      <img src="exports/carousel-05/thumb-05.jpg" alt="Panel 5" loading="lazy" />
+      <img src="exports/carousel-05/thumb-06.jpg" alt="Panel 6" loading="lazy" />
+      <img src="exports/carousel-05/thumb-07.jpg" alt="Panel 7" loading="lazy" />
+    </div>
+    <p class="links"><a href="carousels/05-the-house-that-runs-on-sun.html">Open source</a><a href="exports/carousel-05/">Exports</a></p>
+  </section>
+
+  <section class="car">
+    <div class="car-head">
+      <h2>06 · Seven small things</h2>
+      <span class="meta">9 panels · Save-and-share</span>
+    </div>
+    <p class="car-note">Seven habits, one per rainbow colour, all free to start. Built to be the saves-and-shares piece of the drop.</p>
+    <div class="strip">
+      <img src="exports/carousel-06/thumb-01.jpg" alt="Panel 1" loading="lazy" />
+      <img src="exports/carousel-06/thumb-02.jpg" alt="Panel 2" loading="lazy" />
+      <img src="exports/carousel-06/thumb-03.jpg" alt="Panel 3" loading="lazy" />
+      <img src="exports/carousel-06/thumb-04.jpg" alt="Panel 4" loading="lazy" />
+      <img src="exports/carousel-06/thumb-05.jpg" alt="Panel 5" loading="lazy" />
+      <img src="exports/carousel-06/thumb-06.jpg" alt="Panel 6" loading="lazy" />
+      <img src="exports/carousel-06/thumb-07.jpg" alt="Panel 7" loading="lazy" />
+      <img src="exports/carousel-06/thumb-08.jpg" alt="Panel 8" loading="lazy" />
+      <img src="exports/carousel-06/thumb-09.jpg" alt="Panel 9" loading="lazy" />
+    </div>
+    <p class="links"><a href="carousels/06-seven-small-things.html">Open source</a><a href="exports/carousel-06/">Exports</a></p>
+  </section>
+
+  <section class="car">
+    <div class="car-head">
+      <h2>07 · What we throw away</h2>
+      <span class="meta">7 panels · Waste</span>
+    </div>
+    <p class="car-note">Opens on "there is no such place as away." Ties the FAO food figure to Studio One offcuts and lands on waste as a design decision.</p>
+    <div class="strip">
+      <img src="exports/carousel-07/thumb-01.jpg" alt="Panel 1" loading="lazy" />
+      <img src="exports/carousel-07/thumb-02.jpg" alt="Panel 2" loading="lazy" />
+      <img src="exports/carousel-07/thumb-03.jpg" alt="Panel 3" loading="lazy" />
+      <img src="exports/carousel-07/thumb-04.jpg" alt="Panel 4" loading="lazy" />
+      <img src="exports/carousel-07/thumb-05.jpg" alt="Panel 5" loading="lazy" />
+      <img src="exports/carousel-07/thumb-06.jpg" alt="Panel 6" loading="lazy" />
+      <img src="exports/carousel-07/thumb-07.jpg" alt="Panel 7" loading="lazy" />
+    </div>
+    <p class="links"><a href="carousels/07-what-we-throw-away.html">Open source</a><a href="exports/carousel-07/">Exports</a></p>
+  </section>
+
+  <section class="car">
+    <div class="car-head">
+      <h2>08 · The land remembers</h2>
+      <span class="meta">7 panels · Restoration</span>
+    </div>
+    <p class="car-note">Fynbos, indigenous planting and community planting days. Closes the drop on the long view: planting for people we will never meet.</p>
+    <div class="strip">
+      <img src="exports/carousel-08/thumb-01.jpg" alt="Panel 1" loading="lazy" />
+      <img src="exports/carousel-08/thumb-02.jpg" alt="Panel 2" loading="lazy" />
+      <img src="exports/carousel-08/thumb-03.jpg" alt="Panel 3" loading="lazy" />
+      <img src="exports/carousel-08/thumb-04.jpg" alt="Panel 4" loading="lazy" />
+      <img src="exports/carousel-08/thumb-05.jpg" alt="Panel 5" loading="lazy" />
+      <img src="exports/carousel-08/thumb-06.jpg" alt="Panel 6" loading="lazy" />
+      <img src="exports/carousel-08/thumb-07.jpg" alt="Panel 7" loading="lazy" />
+    </div>
+    <p class="links"><a href="carousels/08-the-land-remembers.html">Open source</a><a href="exports/carousel-08/">Exports</a></p>
+  </section>
+
+  <section class="car">
+    <div class="car-head">
+      <h2>Motion</h2>
+      <span class="meta">8 cuts · 1080&times;1920 · 30fps</span>
+    </div>
+    <p class="car-note">One Remotion cut per carousel, 14 to 19 seconds, for Reels and Stories. Ken Burns push on every still, fade transitions, animated counters on the sourced figures. Project at <code>remotion/</code>, render with <code>npx remotion render &lt;CompId&gt;</code>.</p>
+    <div class="motion-grid">
+      <figure><video src="motion/motion-the-garden.mp4" controls muted playsinline preload="metadata"></video><figcaption>01 · The garden · 14s</figcaption></figure>
+      <figure><video src="motion/motion-seed-to-plate.mp4" controls muted playsinline preload="metadata"></video><figcaption>02 · Seed to plate · 18s</figcaption></figure>
+      <figure><video src="motion/motion-why-sustainability.mp4" controls muted playsinline preload="metadata"></video><figcaption>03 · Why sustainability · 14s</figcaption></figure>
+      <figure><video src="motion/motion-water.mp4" controls muted playsinline preload="metadata"></video><figcaption>04 · Water · 14s</figcaption></figure>
+      <figure><video src="motion/motion-house-runs-on-sun.mp4" controls muted playsinline preload="metadata"></video><figcaption>05 · Runs on sun · 14s</figcaption></figure>
+      <figure><video src="motion/motion-seven-small-things.mp4" controls muted playsinline preload="metadata"></video><figcaption>06 · Seven small things · 19s</figcaption></figure>
+      <figure><video src="motion/motion-what-we-throw-away.mp4" controls muted playsinline preload="metadata"></video><figcaption>07 · What we throw away · 14s</figcaption></figure>
+      <figure><video src="motion/motion-the-land-remembers.mp4" controls muted playsinline preload="metadata"></video><figcaption>08 · The land remembers · 14s</figcaption></figure>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>@lovehappinessfreedom</span>
+  <span>Grow. Sustain. Transform.</span>
+  <span>Drop 04 · Sustainability</span>
+</footer>
+
+</body>
+</html>
