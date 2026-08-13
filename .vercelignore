@@ -19,5 +19,6 @@ DJI_*.MP4
 *.log
 node_modules/
 
-# Remotion project (source + node_modules) — MP4s are exported to social/drop-02/motion/
-social/drop-02/remotion/
+# Remotion projects (source + node_modules). MP4s are exported to social/*/motion/,
+# which is what the site actually serves, so no remotion dir needs deploying.
+social/*/remotion/

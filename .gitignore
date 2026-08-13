@@ -17,11 +17,12 @@ DJI_*.MP4
 *.mov
 *.MOV
 
-# Remotion build artifacts (node_modules covered below; MP4s live in social/drop-02/motion/)
-social/drop-02/remotion/out/
-social/drop-02/remotion/.remotion/
-# Regenerable image copies (originals live in ai-assets/ and assets/)
-social/drop-02/remotion/public/
+# Remotion build artifacts (node_modules covered below; MP4s ship from social/*/motion/).
+# Remotion SOURCE stays tracked so any drop can be re-rendered; only artifacts are ignored.
+social/*/remotion/out/
+social/*/remotion/.remotion/
+# Regenerable image copies (originals live in each drop's ai-assets/)
+social/*/remotion/public/
 
 # Logs
 *.log
