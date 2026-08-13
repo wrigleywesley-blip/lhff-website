@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<base href="/social/drop-03/" />
+<title>LHFF — Social Drop 03 · Education &amp; Empowerment</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Open+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --paper:#faf7f2; --ink:#1a1a1a; --ink-soft:#555; --rule:rgba(26,26,26,0.14);
+    --red:#e84a3f; --orange:#f08a3a; --yellow:#f5c63a; --green:#5fa85a;
+    --sky:#5ab8d9; --blue:#3a72b8; --purple:#8654b8;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);
+    font-family:"Open Sans",sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1320px;margin:0 auto;padding:48px 32px 120px;}
+  header.cover{background:var(--ink);color:var(--paper);padding:72px 32px;margin:0;}
+  header.cover .inner{max-width:1320px;margin:0 auto;}
+  .rainbow{display:flex;width:300px;height:8px;margin-bottom:30px;border-radius:1px;overflow:hidden;}
+  .rainbow span{flex:1;}
+  .rainbow span:nth-child(1){background:var(--red)} .rainbow span:nth-child(2){background:var(--orange)}
+  .rainbow span:nth-child(3){background:var(--yellow)} .rainbow span:nth-child(4){background:var(--green)}
+  .rainbow span:nth-child(5){background:var(--sky)} .rainbow span:nth-child(6){background:var(--blue)}
+  .rainbow span:nth-child(7){background:var(--purple)}
+  .eyebrow{font-family:"JetBrains Mono",monospace;font-size:0.75rem;letter-spacing:0.18em;
+    text-transform:uppercase;color:rgba(250,247,242,0.65);margin:0 0 18px;}
+  h1{font-family:"Playfair Display",Georgia,serif;font-style:italic;font-weight:400;
+    font-size:clamp(3rem,7vw,5.75rem);line-height:0.98;letter-spacing:-0.01em;margin:0 0 26px;}
+  h1 em{color:var(--yellow);}
+  header.cover p.dek{font-size:1.0625rem;max-width:44rem;color:rgba(250,247,242,0.85);margin:0;}
+  .cover-stats{display:flex;gap:40px;margin-top:40px;flex-wrap:wrap;}
+  .cover-stats div{font-family:"JetBrains Mono",monospace;font-size:0.7rem;letter-spacing:0.14em;
+    text-transform:uppercase;color:rgba(250,247,242,0.55);}
+  .cover-stats b{display:block;font-family:"Playfair Display",serif;font-style:italic;font-weight:500;
+    font-size:2.4rem;letter-spacing:-0.02em;color:var(--paper);margin-bottom:4px;}
+
+  nav.toc{background:rgba(26,26,26,0.95);backdrop-filter:blur(6px);color:var(--paper);
+    padding:14px 0;border-top:1px solid rgba(255,255,255,0.08);position:sticky;top:0;z-index:10;}
+  nav.toc .inner{max-width:1320px;margin:0 auto;padding:0 32px;display:flex;gap:6px;flex-wrap:wrap;align-items:center;}
+  nav.toc a{font-family:"JetBrains Mono",monospace;font-size:0.6875rem;letter-spacing:0.10em;
+    text-transform:uppercase;color:rgba(250,247,242,0.7);padding:6px 12px;border-radius:999px;
+    text-decoration:none;transition:all 0.18s ease;white-space:nowrap;}
+  nav.toc a:hover{background:rgba(255,255,255,0.1);color:var(--paper);}
+
+  section.topic{margin-bottom:80px;padding-top:56px;border-top:1px solid var(--rule);scroll-margin-top:70px;}
+  section.topic:first-of-type{border-top:0;}
+  .section-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:12px;gap:24px;flex-wrap:wrap;}
+  h2{font-family:"Playfair Display",serif;font-style:italic;font-weight:400;
+    font-size:clamp(2rem,4vw,3.1rem);line-height:1.05;margin:6px 0 0;}
+  .section-meta{font-family:"JetBrains Mono",monospace;font-size:0.72rem;letter-spacing:0.16em;
+    text-transform:uppercase;color:var(--ink-soft);}
+  .lede{max-width:46rem;font-size:1.0625rem;color:var(--ink-soft);margin:0 0 30px;}
+  .badge{display:inline-block;font-family:"JetBrains Mono",monospace;font-size:0.625rem;letter-spacing:0.16em;
+    text-transform:uppercase;padding:4px 10px;border-radius:999px;margin-right:8px;vertical-align:middle;
+    border:1px solid var(--rule);color:var(--ink-soft);}
+  .badge--edu{color:var(--blue);border-color:rgba(58,114,184,0.4);background:rgba(58,114,184,0.06);}
+  .badge--empower{color:var(--green);border-color:rgba(95,168,90,0.4);background:rgba(95,168,90,0.06);}
+  .badge--tech{color:var(--sky);border-color:rgba(90,184,217,0.45);background:rgba(90,184,217,0.07);}
+  .badge--create{color:var(--red);border-color:rgba(232,74,63,0.4);background:rgba(232,74,63,0.06);}
+  .badge--vision{color:var(--purple);border-color:rgba(134,84,184,0.4);background:rgba(134,84,184,0.06);}
+
+  .frames{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;}
+  .frame-thumb{position:relative;aspect-ratio:9/16;border-radius:5px;overflow:hidden;
+    border:1px solid var(--rule);box-shadow:0 6px 18px rgba(0,0,0,0.07);background:#222;}
+  .frame-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+  .frame-thumb .n{position:absolute;bottom:7px;left:7px;background:rgba(0,0,0,0.72);color:#fff;
+    font-family:"JetBrains Mono",monospace;font-size:0.6rem;letter-spacing:0.1em;padding:3px 7px;border-radius:3px;}
+
+  footer{margin-top:40px;padding:40px 32px;border-top:1px solid var(--rule);background:var(--ink);color:rgba(250,247,242,0.7);
+    font-family:"JetBrains Mono",monospace;font-size:0.6875rem;letter-spacing:0.16em;text-transform:uppercase;
+    display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:12px;}
+</style>
+</head>
+<body>
+<header class="cover">
+  <div class="inner">
+    <div class="rainbow"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    <p class="eyebrow">Social Drop 03 · Love Happiness Freedom Foundation</p>
+    <h1>Education,<br/>made <em>whole</em>.</h1>
+    <p class="dek">Eleven story sets on the Foundation's second pillar: Education &amp; Empowerment. From the school in Maputo to MetaLearning, WeFree Points, girls who lead, second chances, and the vision that ties it together. Every public statistic is sourced. Every Foundation programme is told without invented numbers. Swipeable 9:16 story sets in the Foundation's editorial system.</p>
+    <div class="cover-stats">
+      <div><b>11</b>Story sets</div>
+      <div><b>55</b>Story frames</div>
+      <div><b>4</b>New stills</div>
+      <div><b>9:16</b>Instagram Stories</div>
+    </div>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="inner">
+    <a href="#the-school-that-grew">01 · The School That Grew</a>
+    <a href="#why-education">02 · Why Education</a>
+    <a href="#metalearning">03 · MetaLearning</a>
+    <a href="#wefree-points">04 · WeFree Points</a>
+    <a href="#girls-who-lead">05 · Girls Who Lead</a>
+    <a href="#second-chances">06 · Second Chances</a>
+    <a href="#a-day-in-class">07 · A Day in Class</a>
+    <a href="#the-teacher">08 · The Teacher</a>
+    <a href="#skills-open-doors">09 · Skills Open Doors</a>
+    <a href="#the-digital-classroom">10 · The Digital Classroom</a>
+    <a href="#what-were-building">11 · What We're Building</a>
+    <a href="#building" style="color:var(--yellow);">Notes below ↓</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <section class="topic" id="the-school-that-grew">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow" style="color:var(--ink-soft);"><span class="badge badge--edu">Education</span> Topic 01 · 5 frames</p>
+        <h2>The School That Grew</h2>
+      </div>
+      <div class="section-meta">01 / 11</div>
+    </div>
+    <p class="lede">It started with one classroom in Maputo. A school where children are fed, taught, and seen.</p>
+    <div class="frames">
+      <div class="frame-thumb"><img loading="lazy" src="exports/01-the-school-that-grew/thumb-01.jpg" alt="01-the-school-that-grew frame 1"/><span class="n">01</span></div>
+      <div class="frame-thumb"><img loading="lazy" src="exports/01-the-school-that-grew/thumb-02.jpg" alt="01-the-school-that-grew frame 2"/><span class="n">02</span></div>
+      <div class="frame-thumb"><img loading="lazy" src="exports/01-the-school-that-grew/thumb-03.jpg" alt="01-the-school-that-grew frame 3"/><span class="n">03</span></div>
+      <div class="frame-thumb"><img loading="lazy" src="exports/01-the-school-that-grew/thumb-04.jpg" alt="01-the-school-that-grew frame 4"/><span class="n">04</span></div>
+      <div class="frame-thumb"><img loading="lazy" src="exports/01-the-school-that-grew/thumb-05.jpg" alt="01-the-school-that-grew frame 5"/><span class="n">05</span></div>
+    </div>
+  </section>
+  <section class="topic" id="why-education">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow" style="color:var(--ink-soft);"><span class="badge badge--edu">Education · Sourced</span> Topic 02 · 5 frames</p>
+        <h2>Why Education</h2>
+      </div>
+      <div class="section-meta">02 / 11</div>
+    </div>
+    <p class="lede">The case for betting everything on a classroom, told in sourced numbers.</p>
+    <div class="frames">
+      <div class="frame-thumb"><img loading="lazy" src="exports/02-why-education/thumb-01.jpg" alt="02-why-education frame 1"/><span class="n">01</span></div>
+      <div class="frame-thumb"><img loading="lazy" src="exports/02-why-education/thumb-02.jpg" alt="02-why-education frame 2"/><span class="n">02</span></div>
+      <div class="frame-thumb"><img loading="lazy" src="exports/02-why-education/thumb-03.jpg" alt="02-why-education frame 3"/><span class="n">03</span></div>
+      <div class="frame-thumb"><img loading="lazy" src="exports/02-why-education/thumb-04.jpg" alt="02-why-education frame 4"/><span class="n">04</span></div>
+      <div class="frame-thumb"><img loading="lazy" src="exports/02-why-education/thumb-05.jpg" alt="02-why-education frame 5"/><span class="n">05</span></div>
+    </div>
+  </section>
+  <section class="topic" id="metalearning">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow" style="color:var(--ink-soft);"><span class="badge badge--tech">Method</span> Topic 03 · 5 frames</p>
+        <h2>MetaLearning</h2>
+      </div>
+      <div class="section-meta">03 / 11</div>
+    </div>
+    <p class="lede">We don't teach facts. We teach how to learn. The method behind the Foundation's schools.</p>
+    <div class="frames">
+      <div class="frame-thumb"><img loading="lazy" src="exports/03-metalearning/thumb-01.jpg" alt="03-metalearning frame 1"/><span class="n">01</span></div>
+      <div class="frame-thumb"><img loading="lazy" src="exports/03-metalearning/thumb-02.jpg" alt="03-metalearning frame 2"/><span class="n">02</span></div>
+      <div class="frame-thumb"><img loading="lazy" src="exports/03-metalearning/thumb-03.jpg" alt="03-metalearning frame 3"/><span class="n">03</span></div>
+      <div class="frame-thumb"><img loading="lazy" src="exports/03-metalearning/thumb-04.jpg" alt="03-metalearning frame 4"/><span class="n">04</span></div>
+      <div class="frame-thumb"><img loading="lazy" src="exports/03-metalearning/thumb-05.jpg" alt="03-metalearning frame 5"/><span class="n">05</span></div>
+    </div>
+  </section>
+  <section class="topic" id="wefree-points">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow" style="color:var(--ink-soft);"><span class="badge badge--tech">System</span> Topic 04 · 5 frames</p>
+        <h2>WeFree Points</h2>
+      </div>
+      <div class="section-meta">04 / 11</div>
+    </div>
+    <p class="lede">Good, made visible. How WeFree Points recognise the good a community puts in.</p>
+    <div class="frames">
+      <div class="frame-thumb"><img loading="lazy" src="exports/04-wefree-points/thumb-01.jpg" alt="04-wefree-points frame 1"/><span class="n">01</span></div>
+      <div class="frame-thumb"><img loading="lazy" src="exports/04-wefree-points/thumb-02.jpg" alt="04-wefree-points frame 2"/><span class="n">02</span></div>
+      <div class="frame-thumb"><img loading="lazy" src="exports/04-wefree-points/thumb-03.jpg" alt="04-wefree-points frame 3"/><span class="n">03</span></div>
+      <div class="frame-thumb"><img loading="lazy" src="exports/04-wefree-points/thumb-04.jpg" alt="04-wefree-points frame 4"/><span class="n">04</span></div>
+      <div class="frame-thumb"><img loading="lazy" src="exports/04-wefree-points/thumb-05.jpg" alt="04-wefree-points frame 5"/><span class="n">05</span></div>
+    </div>
+  </section>
+  <section class="topic" id="girls-who-lead">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow" style="color:var(--ink-soft);"><span class="badge badge--empower">Empowerment</span> Topic 05 · 5 frames</p>
+        <h2>Girls Who Lead</h2>
+      </div>
+      <div class="section-meta">05 / 11</div>
+    </div>
+    <p class="lede">Educate a girl and you change a nation. The ripple, and what we do about it.</p>
+    <div class="frames">
+      <div class="frame-thumb"><img loading="lazy" src="exports/05-girls-who-lead/thumb-01.jpg" alt="05-girls-who-lead frame 1"/><span class="n">01</span></div>
+      <div class="frame-thumb"><img loading="lazy" src="exports/05-girls-who-lead/thumb-02.jpg" alt="05-girls-who-lead frame 2"/><span class="n">02</span></div>
+      <div class="frame-thumb"><img loading="lazy" src="exports/05-girls-who-lead/thumb-03.jpg" alt="05-girls-who-lead frame 3"/><span class="n">03</span></div>
+      <div class="frame-thumb"><img loading="lazy" src="exports/05-girls-who-lead/thumb-04.jpg" alt="05-girls-who-lead frame 4"/><span class="n">04</span></div>
+      <div class="frame-thumb"><img loading="lazy" src="exports/05-girls-who-lead/thumb-05.jpg" alt="05-girls-who-lead frame 5"/><span class="n">05</span></div>
+    </div>
+  </section>
+  <section class="topic" id="second-chances">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow" style="color:var(--ink-soft);"><span class="badge badge--empower">Redemption</span> Topic 06 · 4 frames</p>
+        <h2>Second Chances</h2>
+      </div>
+      <div class="section-meta">06 / 11</div>
+    </div>
+    <p class="lede">No one is their worst day. Education as a road back, for anyone.</p>
+    <div class="frames">
+      <div class="frame-thumb"><img loading="lazy" src="exports/06-second-chances/thumb-01.jpg" alt="06-second-chances frame 1"/><span class="n">01</span></div>
+      <div class="frame-thumb"><img loading="lazy" src="exports/06-second-chances/thumb-02.jpg" alt="06-second-chances frame 2"/><span class="n">02</span></div>
+      <div class="frame-thumb"><img loading="lazy" src="exports/06-second-chances/thumb-03.jpg" alt="06-second-chances frame 3"/><span class="n">03</span></div>
+      <div class="frame-thumb"><img loading="lazy" src="exports/06-second-chances/thumb-04.jpg" alt="06-second-chances frame 4"/><span class="n">04</span></div>
+    </div>
+  </section>
+  <section class="topic" id="a-day-in-class">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow" style="color:var(--ink-soft);"><span class="badge badge--create">Documentary</span> Topic 07 · 6 frames</p>
+        <h2>A Day in Class</h2>
+      </div>
+      <div class="section-meta">07 / 11</div>
+    </div>
+    <p class="lede">A day at the school, told in pictures. From the gate opening to the last bell.</p>
+    <div class="frames">
+      <div class="frame-thumb"><img loading="lazy" src="exports/07-a-day-in-class/thumb-01.jpg" alt="07-a-day-in-class frame 1"/><span class="n">01</span></div>
+      <div class="frame-thumb"><img loading="lazy" src="exports/07-a-day-in-class/thumb-02.jpg" alt="07-a-day-in-class frame 2"/><span class="n">02</span></div>
+      <div class="frame-thumb"><img loading="lazy" src="exports/07-a-day-in-class/thumb-03.jpg" alt="07-a-day-in-class frame 3"/><span class="n">03</span></div>
+      <div class="frame-thumb"><img loading="lazy" src="exports/07-a-day-in-class/thumb-04.jpg" alt="07-a-day-in-class frame 4"/><span class="n">04</span></div>
+      <div class="frame-thumb"><img loading="lazy" src="exports/07-a-day-in-class/thumb-05.jpg" alt="07-a-day-in-class frame 5"/><span class="n">05</span></div>
+      <div class="frame-thumb"><img loading="lazy" src="exports/07-a-day-in-class/thumb-06.jpg" alt="07-a-day-in-class frame 6"/><span class="n">06</span></div>
+    </div>
+  </section>
+  <section class="topic" id="the-teacher">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow" style="color:var(--ink-soft);"><span class="badge badge--empower">Empowerment</span> Topic 08 · 4 frames</p>
+        <h2>The Teacher</h2>
+      </div>
+      <div class="section-meta">08 / 11</div>
+    </div>
+    <p class="lede">The most powerful technology in a school is a teacher. Why we invest upstream.</p>
+    <div class="frames">
+      <div class="frame-thumb"><img loading="lazy" src="exports/08-the-teacher/thumb-01.jpg" alt="08-the-teacher frame 1"/><span class="n">01</span></div>
+      <div class="frame-thumb"><img loading="lazy" src="exports/08-the-teacher/thumb-02.jpg" alt="08-the-teacher frame 2"/><span class="n">02</span></div>
+      <div class="frame-thumb"><img loading="lazy" src="exports/08-the-teacher/thumb-03.jpg" alt="08-the-teacher frame 3"/><span class="n">03</span></div>
+      <div class="frame-thumb"><img loading="lazy" src="exports/08-the-teacher/thumb-04.jpg" alt="08-the-teacher frame 4"/><span class="n">04</span></div>
+    </div>
+  </section>
+  <section class="topic" id="skills-open-doors">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow" style="color:var(--ink-soft);"><span class="badge badge--create">Livelihoods</span> Topic 09 · 5 frames</p>
+        <h2>Skills Open Doors</h2>
+      </div>
+      <div class="section-meta">09 / 11</div>
+    </div>
+    <p class="lede">School opens the mind. Skills open doors. Livelihoods through Studio One and the trades.</p>
+    <div class="frames">
+      <div class="frame-thumb"><img loading="lazy" src="exports/09-skills-open-doors/thumb-01.jpg" alt="09-skills-open-doors frame 1"/><span class="n">01</span></div>
+      <div class="frame-thumb"><img loading="lazy" src="exports/09-skills-open-doors/thumb-02.jpg" alt="09-skills-open-doors frame 2"/><span class="n">02</span></div>
+      <div class="frame-thumb"><img loading="lazy" src="exports/09-skills-open-doors/thumb-03.jpg" alt="09-skills-open-doors frame 3"/><span class="n">03</span></div>
+      <div class="frame-thumb"><img loading="lazy" src="exports/09-skills-open-doors/thumb-04.jpg" alt="09-skills-open-doors frame 4"/><span class="n">04</span></div>
+      <div class="frame-thumb"><img loading="lazy" src="exports/09-skills-open-doors/thumb-05.jpg" alt="09-skills-open-doors frame 5"/><span class="n">05</span></div>
+    </div>
+  </section>
+  <section class="topic" id="the-digital-classroom">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow" style="color:var(--ink-soft);"><span class="badge badge--tech">Technology</span> Topic 10 · 5 frames</p>
+        <h2>The Digital Classroom</h2>
+      </div>
+      <div class="section-meta">10 / 11</div>
+    </div>
+    <p class="lede">The classroom, everywhere. MetaLearning carried by the Foundation App.</p>
+    <div class="frames">
+      <div class="frame-thumb"><img loading="lazy" src="exports/10-the-digital-classroom/thumb-01.jpg" alt="10-the-digital-classroom frame 1"/><span class="n">01</span></div>
+      <div class="frame-thumb"><img loading="lazy" src="exports/10-the-digital-classroom/thumb-02.jpg" alt="10-the-digital-classroom frame 2"/><span class="n">02</span></div>
+      <div class="frame-thumb"><img loading="lazy" src="exports/10-the-digital-classroom/thumb-03.jpg" alt="10-the-digital-classroom frame 3"/><span class="n">03</span></div>
+      <div class="frame-thumb"><img loading="lazy" src="exports/10-the-digital-classroom/thumb-04.jpg" alt="10-the-digital-classroom frame 4"/><span class="n">04</span></div>
+      <div class="frame-thumb"><img loading="lazy" src="exports/10-the-digital-classroom/thumb-05.jpg" alt="10-the-digital-classroom frame 5"/><span class="n">05</span></div>
+    </div>
+  </section>
+  <section class="topic" id="what-were-building">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow" style="color:var(--ink-soft);"><span class="badge badge--vision">Vision</span> Topic 11 · 6 frames</p>
+        <h2>What We're Building</h2>
+      </div>
+      <div class="section-meta">11 / 11</div>
+    </div>
+    <p class="lede">Educate. Empower. Transform. The vision the whole drop is built toward.</p>
+    <div class="frames">
+      <div class="frame-thumb"><img loading="lazy" src="exports/11-what-were-building/thumb-01.jpg" alt="11-what-were-building frame 1"/><span class="n">01</span></div>
+      <div class="frame-thumb"><img loading="lazy" src="exports/11-what-were-building/thumb-02.jpg" alt="11-what-were-building frame 2"/><span class="n">02</span></div>
+      <div class="frame-thumb"><img loading="lazy" src="exports/11-what-were-building/thumb-03.jpg" alt="11-what-were-building frame 3"/><span class="n">03</span></div>
+      <div class="frame-thumb"><img loading="lazy" src="exports/11-what-were-building/thumb-04.jpg" alt="11-what-were-building frame 4"/><span class="n">04</span></div>
+      <div class="frame-thumb"><img loading="lazy" src="exports/11-what-were-building/thumb-05.jpg" alt="11-what-were-building frame 5"/><span class="n">05</span></div>
+      <div class="frame-thumb"><img loading="lazy" src="exports/11-what-were-building/thumb-06.jpg" alt="11-what-were-building frame 6"/><span class="n">06</span></div>
+    </div>
+  </section>
+
+</div>
+<footer>
+  <span>LHFF · Social Drop 03 · Education &amp; Empowerment</span>
+  <span>Grow. Sustain. Transform. · @lovehappinessfreedom</span>
+</footer>
+</body>
+</html>
