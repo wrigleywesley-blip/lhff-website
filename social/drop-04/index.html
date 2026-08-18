@@ -73,6 +73,23 @@
   .motion-grid figcaption { font-family: "JetBrains Mono", monospace; font-size: 11px;
                             letter-spacing: 0.14em; text-transform: uppercase;
                             color: rgba(250,247,242,0.5); margin-top: 12px; }
+  .dl { display: inline-block; margin-top: 10px; padding: 9px 16px; border-radius: 999px;
+        background: var(--cream); color: var(--ink); text-decoration: none;
+        font-family: "JetBrains Mono", monospace; font-size: 11px; font-weight: 500;
+        letter-spacing: 0.12em; text-transform: uppercase; }
+  .dl:hover { background: #fff; }
+  .dl--ghost { background: transparent; color: var(--cream);
+               border: 1px solid rgba(255,255,255,0.32); }
+  .dl--ghost:hover { border-color: var(--cream); background: rgba(255,255,255,0.06); }
+  .strip a { flex: 0 0 auto; display: block; line-height: 0; scroll-snap-align: start; }
+  .strip a img { display: block; }
+  .handoff { border: 1px solid rgba(255,255,255,0.18); border-radius: 6px;
+             padding: 26px 30px; margin-top: 44px; max-width: 900px; }
+  .handoff h3 { font-family: "Playfair Display", serif; font-style: italic;
+                font-weight: 400; font-size: 26px; margin-bottom: 12px; }
+  .handoff p { font-size: 15px; font-weight: 300; line-height: 1.6;
+               color: rgba(250,247,242,0.72); }
+  .handoff .dl { margin-top: 18px; margin-right: 12px; }
   footer { max-width: 1400px; margin: 80px auto 0; padding-top: 32px;
            border-top: 1px solid rgba(255,255,255,0.14);
            display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px;
@@ -94,6 +111,13 @@
     <div><b>8</b>Motion cuts</div>
     <div><b>1080&times;1350</b>Export size</div>
   </div>
+
+  <div class="handoff">
+    <h3>For the social team</h3>
+    <p>Everything on this page is a real file you can download. Videos are H.264 MP4 (1080&times;1920, no audio), ready to upload straight to Reels, TikTok or Stories. Panels are full-resolution PNG at 1080&times;1350 for Instagram carousels. Click any panel below to download it at full size, or grab a whole carousel as a ZIP.</p>
+    <a class="dl" href="motion/lhff-drop-04-videos.zip" download>Download all 8 videos (ZIP, 34MB)</a>
+    <a class="dl dl--ghost" href="#motion">Jump to videos</a>
+  </div>
 </header>
 
 <main>
@@ -105,15 +129,15 @@
     </div>
     <p class="car-note">The origin story of the food garden: dead ground, months of composting, and the twelve metres between a raised bed and the school pot. Ends on the argument that a fed child can learn.</p>
     <div class="strip">
-      <img src="exports/carousel-01/thumb-01.jpg" alt="Panel 1" loading="lazy" />
-      <img src="exports/carousel-01/thumb-02.jpg" alt="Panel 2" loading="lazy" />
-      <img src="exports/carousel-01/thumb-03.jpg" alt="Panel 3" loading="lazy" />
-      <img src="exports/carousel-01/thumb-04.jpg" alt="Panel 4" loading="lazy" />
-      <img src="exports/carousel-01/thumb-05.jpg" alt="Panel 5" loading="lazy" />
-      <img src="exports/carousel-01/thumb-06.jpg" alt="Panel 6" loading="lazy" />
-      <img src="exports/carousel-01/thumb-07.jpg" alt="Panel 7" loading="lazy" />
+      <a href="exports/carousel-01/panel-01.png" download title="Download Panel 1 (1080x1350 PNG)"><img src="exports/carousel-01/thumb-01.jpg" alt="Panel 1" loading="lazy" /></a>
+      <a href="exports/carousel-01/panel-02.png" download title="Download Panel 2 (1080x1350 PNG)"><img src="exports/carousel-01/thumb-02.jpg" alt="Panel 2" loading="lazy" /></a>
+      <a href="exports/carousel-01/panel-03.png" download title="Download Panel 3 (1080x1350 PNG)"><img src="exports/carousel-01/thumb-03.jpg" alt="Panel 3" loading="lazy" /></a>
+      <a href="exports/carousel-01/panel-04.png" download title="Download Panel 4 (1080x1350 PNG)"><img src="exports/carousel-01/thumb-04.jpg" alt="Panel 4" loading="lazy" /></a>
+      <a href="exports/carousel-01/panel-05.png" download title="Download Panel 5 (1080x1350 PNG)"><img src="exports/carousel-01/thumb-05.jpg" alt="Panel 5" loading="lazy" /></a>
+      <a href="exports/carousel-01/panel-06.png" download title="Download Panel 6 (1080x1350 PNG)"><img src="exports/carousel-01/thumb-06.jpg" alt="Panel 6" loading="lazy" /></a>
+      <a href="exports/carousel-01/panel-07.png" download title="Download Panel 7 (1080x1350 PNG)"><img src="exports/carousel-01/thumb-07.jpg" alt="Panel 7" loading="lazy" /></a>
     </div>
-    <p class="links"><a href="carousels/01-the-garden-that-feeds-the-school.html">Open source</a><a href="exports/carousel-01/">Exports</a></p>
+    <p class="links"><a href="carousels/01-the-garden-that-feeds-the-school.html">Open source</a><a href="exports/carousel-01/lhff-drop-04-carousel-01-panels.zip" download>Download panels (ZIP)</a></p>
   </section>
 
   <section class="car">
@@ -123,16 +147,16 @@
     </div>
     <p class="car-note">Six numbered steps that close into a circle: seed, soil, time, harvest, table, return. Carries the FAO food-waste figure on the compost panel.</p>
     <div class="strip">
-      <img src="exports/carousel-02/thumb-01.jpg" alt="Panel 1" loading="lazy" />
-      <img src="exports/carousel-02/thumb-02.jpg" alt="Panel 2" loading="lazy" />
-      <img src="exports/carousel-02/thumb-03.jpg" alt="Panel 3" loading="lazy" />
-      <img src="exports/carousel-02/thumb-04.jpg" alt="Panel 4" loading="lazy" />
-      <img src="exports/carousel-02/thumb-05.jpg" alt="Panel 5" loading="lazy" />
-      <img src="exports/carousel-02/thumb-06.jpg" alt="Panel 6" loading="lazy" />
-      <img src="exports/carousel-02/thumb-07.jpg" alt="Panel 7" loading="lazy" />
-      <img src="exports/carousel-02/thumb-08.jpg" alt="Panel 8" loading="lazy" />
+      <a href="exports/carousel-02/panel-01.png" download title="Download Panel 1 (1080x1350 PNG)"><img src="exports/carousel-02/thumb-01.jpg" alt="Panel 1" loading="lazy" /></a>
+      <a href="exports/carousel-02/panel-02.png" download title="Download Panel 2 (1080x1350 PNG)"><img src="exports/carousel-02/thumb-02.jpg" alt="Panel 2" loading="lazy" /></a>
+      <a href="exports/carousel-02/panel-03.png" download title="Download Panel 3 (1080x1350 PNG)"><img src="exports/carousel-02/thumb-03.jpg" alt="Panel 3" loading="lazy" /></a>
+      <a href="exports/carousel-02/panel-04.png" download title="Download Panel 4 (1080x1350 PNG)"><img src="exports/carousel-02/thumb-04.jpg" alt="Panel 4" loading="lazy" /></a>
+      <a href="exports/carousel-02/panel-05.png" download title="Download Panel 5 (1080x1350 PNG)"><img src="exports/carousel-02/thumb-05.jpg" alt="Panel 5" loading="lazy" /></a>
+      <a href="exports/carousel-02/panel-06.png" download title="Download Panel 6 (1080x1350 PNG)"><img src="exports/carousel-02/thumb-06.jpg" alt="Panel 6" loading="lazy" /></a>
+      <a href="exports/carousel-02/panel-07.png" download title="Download Panel 7 (1080x1350 PNG)"><img src="exports/carousel-02/thumb-07.jpg" alt="Panel 7" loading="lazy" /></a>
+      <a href="exports/carousel-02/panel-08.png" download title="Download Panel 8 (1080x1350 PNG)"><img src="exports/carousel-02/thumb-08.jpg" alt="Panel 8" loading="lazy" /></a>
     </div>
-    <p class="links"><a href="carousels/02-seed-to-plate.html">Open source</a><a href="exports/carousel-02/">Exports</a></p>
+    <p class="links"><a href="carousels/02-seed-to-plate.html">Open source</a><a href="exports/carousel-02/lhff-drop-04-carousel-02-panels.zip" download>Download panels (ZIP)</a></p>
   </section>
 
   <section class="car">
@@ -142,15 +166,15 @@
     </div>
     <p class="car-note">Five reasons a foundation about people teaches soil. The strongest donor-facing piece in the set: aid arrives, a garden stays.</p>
     <div class="strip">
-      <img src="exports/carousel-03/thumb-01.jpg" alt="Panel 1" loading="lazy" />
-      <img src="exports/carousel-03/thumb-02.jpg" alt="Panel 2" loading="lazy" />
-      <img src="exports/carousel-03/thumb-03.jpg" alt="Panel 3" loading="lazy" />
-      <img src="exports/carousel-03/thumb-04.jpg" alt="Panel 4" loading="lazy" />
-      <img src="exports/carousel-03/thumb-05.jpg" alt="Panel 5" loading="lazy" />
-      <img src="exports/carousel-03/thumb-06.jpg" alt="Panel 6" loading="lazy" />
-      <img src="exports/carousel-03/thumb-07.jpg" alt="Panel 7" loading="lazy" />
+      <a href="exports/carousel-03/panel-01.png" download title="Download Panel 1 (1080x1350 PNG)"><img src="exports/carousel-03/thumb-01.jpg" alt="Panel 1" loading="lazy" /></a>
+      <a href="exports/carousel-03/panel-02.png" download title="Download Panel 2 (1080x1350 PNG)"><img src="exports/carousel-03/thumb-02.jpg" alt="Panel 2" loading="lazy" /></a>
+      <a href="exports/carousel-03/panel-03.png" download title="Download Panel 3 (1080x1350 PNG)"><img src="exports/carousel-03/thumb-03.jpg" alt="Panel 3" loading="lazy" /></a>
+      <a href="exports/carousel-03/panel-04.png" download title="Download Panel 4 (1080x1350 PNG)"><img src="exports/carousel-03/thumb-04.jpg" alt="Panel 4" loading="lazy" /></a>
+      <a href="exports/carousel-03/panel-05.png" download title="Download Panel 5 (1080x1350 PNG)"><img src="exports/carousel-03/thumb-05.jpg" alt="Panel 5" loading="lazy" /></a>
+      <a href="exports/carousel-03/panel-06.png" download title="Download Panel 6 (1080x1350 PNG)"><img src="exports/carousel-03/thumb-06.jpg" alt="Panel 6" loading="lazy" /></a>
+      <a href="exports/carousel-03/panel-07.png" download title="Download Panel 7 (1080x1350 PNG)"><img src="exports/carousel-03/thumb-07.jpg" alt="Panel 7" loading="lazy" /></a>
     </div>
-    <p class="links"><a href="carousels/03-why-sustainability-is-a-pillar.html">Open source</a><a href="exports/carousel-03/">Exports</a></p>
+    <p class="links"><a href="carousels/03-why-sustainability-is-a-pillar.html">Open source</a><a href="exports/carousel-03/lhff-drop-04-carousel-03-panels.zip" download>Download panels (ZIP)</a></p>
   </section>
 
   <section class="car">
@@ -160,15 +184,15 @@
     </div>
     <p class="car-note">Day Zero as the anchor. Two sourced figures, rainwater harvesting, mulching, and the closing line about a child who carries water.</p>
     <div class="strip">
-      <img src="exports/carousel-04/thumb-01.jpg" alt="Panel 1" loading="lazy" />
-      <img src="exports/carousel-04/thumb-02.jpg" alt="Panel 2" loading="lazy" />
-      <img src="exports/carousel-04/thumb-03.jpg" alt="Panel 3" loading="lazy" />
-      <img src="exports/carousel-04/thumb-04.jpg" alt="Panel 4" loading="lazy" />
-      <img src="exports/carousel-04/thumb-05.jpg" alt="Panel 5" loading="lazy" />
-      <img src="exports/carousel-04/thumb-06.jpg" alt="Panel 6" loading="lazy" />
-      <img src="exports/carousel-04/thumb-07.jpg" alt="Panel 7" loading="lazy" />
+      <a href="exports/carousel-04/panel-01.png" download title="Download Panel 1 (1080x1350 PNG)"><img src="exports/carousel-04/thumb-01.jpg" alt="Panel 1" loading="lazy" /></a>
+      <a href="exports/carousel-04/panel-02.png" download title="Download Panel 2 (1080x1350 PNG)"><img src="exports/carousel-04/thumb-02.jpg" alt="Panel 2" loading="lazy" /></a>
+      <a href="exports/carousel-04/panel-03.png" download title="Download Panel 3 (1080x1350 PNG)"><img src="exports/carousel-04/thumb-03.jpg" alt="Panel 3" loading="lazy" /></a>
+      <a href="exports/carousel-04/panel-04.png" download title="Download Panel 4 (1080x1350 PNG)"><img src="exports/carousel-04/thumb-04.jpg" alt="Panel 4" loading="lazy" /></a>
+      <a href="exports/carousel-04/panel-05.png" download title="Download Panel 5 (1080x1350 PNG)"><img src="exports/carousel-04/thumb-05.jpg" alt="Panel 5" loading="lazy" /></a>
+      <a href="exports/carousel-04/panel-06.png" download title="Download Panel 6 (1080x1350 PNG)"><img src="exports/carousel-04/thumb-06.jpg" alt="Panel 6" loading="lazy" /></a>
+      <a href="exports/carousel-04/panel-07.png" download title="Download Panel 7 (1080x1350 PNG)"><img src="exports/carousel-04/thumb-07.jpg" alt="Panel 7" loading="lazy" /></a>
     </div>
-    <p class="links"><a href="carousels/04-water.html">Open source</a><a href="exports/carousel-04/">Exports</a></p>
+    <p class="links"><a href="carousels/04-water.html">Open source</a><a href="exports/carousel-04/lhff-drop-04-carousel-04-panels.zip" download>Download panels (ZIP)</a></p>
   </section>
 
   <section class="car">
@@ -178,15 +202,15 @@
     </div>
     <p class="car-note">The villa as infrastructure, not perk. Solar, kitchen garden, closed-loop waste, and the line that does the commercial work: a retreat in Cape Town pays for a classroom in Maputo.</p>
     <div class="strip">
-      <img src="exports/carousel-05/thumb-01.jpg" alt="Panel 1" loading="lazy" />
-      <img src="exports/carousel-05/thumb-02.jpg" alt="Panel 2" loading="lazy" />
-      <img src="exports/carousel-05/thumb-03.jpg" alt="Panel 3" loading="lazy" />
-      <img src="exports/carousel-05/thumb-04.jpg" alt="Panel 4" loading="lazy" />
-      <img src="exports/carousel-05/thumb-05.jpg" alt="Panel 5" loading="lazy" />
-      <img src="exports/carousel-05/thumb-06.jpg" alt="Panel 6" loading="lazy" />
-      <img src="exports/carousel-05/thumb-07.jpg" alt="Panel 7" loading="lazy" />
+      <a href="exports/carousel-05/panel-01.png" download title="Download Panel 1 (1080x1350 PNG)"><img src="exports/carousel-05/thumb-01.jpg" alt="Panel 1" loading="lazy" /></a>
+      <a href="exports/carousel-05/panel-02.png" download title="Download Panel 2 (1080x1350 PNG)"><img src="exports/carousel-05/thumb-02.jpg" alt="Panel 2" loading="lazy" /></a>
+      <a href="exports/carousel-05/panel-03.png" download title="Download Panel 3 (1080x1350 PNG)"><img src="exports/carousel-05/thumb-03.jpg" alt="Panel 3" loading="lazy" /></a>
+      <a href="exports/carousel-05/panel-04.png" download title="Download Panel 4 (1080x1350 PNG)"><img src="exports/carousel-05/thumb-04.jpg" alt="Panel 4" loading="lazy" /></a>
+      <a href="exports/carousel-05/panel-05.png" download title="Download Panel 5 (1080x1350 PNG)"><img src="exports/carousel-05/thumb-05.jpg" alt="Panel 5" loading="lazy" /></a>
+      <a href="exports/carousel-05/panel-06.png" download title="Download Panel 6 (1080x1350 PNG)"><img src="exports/carousel-05/thumb-06.jpg" alt="Panel 6" loading="lazy" /></a>
+      <a href="exports/carousel-05/panel-07.png" download title="Download Panel 7 (1080x1350 PNG)"><img src="exports/carousel-05/thumb-07.jpg" alt="Panel 7" loading="lazy" /></a>
     </div>
-    <p class="links"><a href="carousels/05-the-house-that-runs-on-sun.html">Open source</a><a href="exports/carousel-05/">Exports</a></p>
+    <p class="links"><a href="carousels/05-the-house-that-runs-on-sun.html">Open source</a><a href="exports/carousel-05/lhff-drop-04-carousel-05-panels.zip" download>Download panels (ZIP)</a></p>
   </section>
 
   <section class="car">
@@ -196,17 +220,17 @@
     </div>
     <p class="car-note">Seven habits, one per rainbow colour, all free to start. Built to be the saves-and-shares piece of the drop.</p>
     <div class="strip">
-      <img src="exports/carousel-06/thumb-01.jpg" alt="Panel 1" loading="lazy" />
-      <img src="exports/carousel-06/thumb-02.jpg" alt="Panel 2" loading="lazy" />
-      <img src="exports/carousel-06/thumb-03.jpg" alt="Panel 3" loading="lazy" />
-      <img src="exports/carousel-06/thumb-04.jpg" alt="Panel 4" loading="lazy" />
-      <img src="exports/carousel-06/thumb-05.jpg" alt="Panel 5" loading="lazy" />
-      <img src="exports/carousel-06/thumb-06.jpg" alt="Panel 6" loading="lazy" />
-      <img src="exports/carousel-06/thumb-07.jpg" alt="Panel 7" loading="lazy" />
-      <img src="exports/carousel-06/thumb-08.jpg" alt="Panel 8" loading="lazy" />
-      <img src="exports/carousel-06/thumb-09.jpg" alt="Panel 9" loading="lazy" />
+      <a href="exports/carousel-06/panel-01.png" download title="Download Panel 1 (1080x1350 PNG)"><img src="exports/carousel-06/thumb-01.jpg" alt="Panel 1" loading="lazy" /></a>
+      <a href="exports/carousel-06/panel-02.png" download title="Download Panel 2 (1080x1350 PNG)"><img src="exports/carousel-06/thumb-02.jpg" alt="Panel 2" loading="lazy" /></a>
+      <a href="exports/carousel-06/panel-03.png" download title="Download Panel 3 (1080x1350 PNG)"><img src="exports/carousel-06/thumb-03.jpg" alt="Panel 3" loading="lazy" /></a>
+      <a href="exports/carousel-06/panel-04.png" download title="Download Panel 4 (1080x1350 PNG)"><img src="exports/carousel-06/thumb-04.jpg" alt="Panel 4" loading="lazy" /></a>
+      <a href="exports/carousel-06/panel-05.png" download title="Download Panel 5 (1080x1350 PNG)"><img src="exports/carousel-06/thumb-05.jpg" alt="Panel 5" loading="lazy" /></a>
+      <a href="exports/carousel-06/panel-06.png" download title="Download Panel 6 (1080x1350 PNG)"><img src="exports/carousel-06/thumb-06.jpg" alt="Panel 6" loading="lazy" /></a>
+      <a href="exports/carousel-06/panel-07.png" download title="Download Panel 7 (1080x1350 PNG)"><img src="exports/carousel-06/thumb-07.jpg" alt="Panel 7" loading="lazy" /></a>
+      <a href="exports/carousel-06/panel-08.png" download title="Download Panel 8 (1080x1350 PNG)"><img src="exports/carousel-06/thumb-08.jpg" alt="Panel 8" loading="lazy" /></a>
+      <a href="exports/carousel-06/panel-09.png" download title="Download Panel 9 (1080x1350 PNG)"><img src="exports/carousel-06/thumb-09.jpg" alt="Panel 9" loading="lazy" /></a>
     </div>
-    <p class="links"><a href="carousels/06-seven-small-things.html">Open source</a><a href="exports/carousel-06/">Exports</a></p>
+    <p class="links"><a href="carousels/06-seven-small-things.html">Open source</a><a href="exports/carousel-06/lhff-drop-04-carousel-06-panels.zip" download>Download panels (ZIP)</a></p>
   </section>
 
   <section class="car">
@@ -216,15 +240,15 @@
     </div>
     <p class="car-note">Opens on "there is no such place as away." Ties the FAO food figure to Studio One offcuts and lands on waste as a design decision.</p>
     <div class="strip">
-      <img src="exports/carousel-07/thumb-01.jpg" alt="Panel 1" loading="lazy" />
-      <img src="exports/carousel-07/thumb-02.jpg" alt="Panel 2" loading="lazy" />
-      <img src="exports/carousel-07/thumb-03.jpg" alt="Panel 3" loading="lazy" />
-      <img src="exports/carousel-07/thumb-04.jpg" alt="Panel 4" loading="lazy" />
-      <img src="exports/carousel-07/thumb-05.jpg" alt="Panel 5" loading="lazy" />
-      <img src="exports/carousel-07/thumb-06.jpg" alt="Panel 6" loading="lazy" />
-      <img src="exports/carousel-07/thumb-07.jpg" alt="Panel 7" loading="lazy" />
+      <a href="exports/carousel-07/panel-01.png" download title="Download Panel 1 (1080x1350 PNG)"><img src="exports/carousel-07/thumb-01.jpg" alt="Panel 1" loading="lazy" /></a>
+      <a href="exports/carousel-07/panel-02.png" download title="Download Panel 2 (1080x1350 PNG)"><img src="exports/carousel-07/thumb-02.jpg" alt="Panel 2" loading="lazy" /></a>
+      <a href="exports/carousel-07/panel-03.png" download title="Download Panel 3 (1080x1350 PNG)"><img src="exports/carousel-07/thumb-03.jpg" alt="Panel 3" loading="lazy" /></a>
+      <a href="exports/carousel-07/panel-04.png" download title="Download Panel 4 (1080x1350 PNG)"><img src="exports/carousel-07/thumb-04.jpg" alt="Panel 4" loading="lazy" /></a>
+      <a href="exports/carousel-07/panel-05.png" download title="Download Panel 5 (1080x1350 PNG)"><img src="exports/carousel-07/thumb-05.jpg" alt="Panel 5" loading="lazy" /></a>
+      <a href="exports/carousel-07/panel-06.png" download title="Download Panel 6 (1080x1350 PNG)"><img src="exports/carousel-07/thumb-06.jpg" alt="Panel 6" loading="lazy" /></a>
+      <a href="exports/carousel-07/panel-07.png" download title="Download Panel 7 (1080x1350 PNG)"><img src="exports/carousel-07/thumb-07.jpg" alt="Panel 7" loading="lazy" /></a>
     </div>
-    <p class="links"><a href="carousels/07-what-we-throw-away.html">Open source</a><a href="exports/carousel-07/">Exports</a></p>
+    <p class="links"><a href="carousels/07-what-we-throw-away.html">Open source</a><a href="exports/carousel-07/lhff-drop-04-carousel-07-panels.zip" download>Download panels (ZIP)</a></p>
   </section>
 
   <section class="car">
@@ -234,32 +258,33 @@
     </div>
     <p class="car-note">Fynbos, indigenous planting and community planting days. Closes the drop on the long view: planting for people we will never meet.</p>
     <div class="strip">
-      <img src="exports/carousel-08/thumb-01.jpg" alt="Panel 1" loading="lazy" />
-      <img src="exports/carousel-08/thumb-02.jpg" alt="Panel 2" loading="lazy" />
-      <img src="exports/carousel-08/thumb-03.jpg" alt="Panel 3" loading="lazy" />
-      <img src="exports/carousel-08/thumb-04.jpg" alt="Panel 4" loading="lazy" />
-      <img src="exports/carousel-08/thumb-05.jpg" alt="Panel 5" loading="lazy" />
-      <img src="exports/carousel-08/thumb-06.jpg" alt="Panel 6" loading="lazy" />
-      <img src="exports/carousel-08/thumb-07.jpg" alt="Panel 7" loading="lazy" />
+      <a href="exports/carousel-08/panel-01.png" download title="Download Panel 1 (1080x1350 PNG)"><img src="exports/carousel-08/thumb-01.jpg" alt="Panel 1" loading="lazy" /></a>
+      <a href="exports/carousel-08/panel-02.png" download title="Download Panel 2 (1080x1350 PNG)"><img src="exports/carousel-08/thumb-02.jpg" alt="Panel 2" loading="lazy" /></a>
+      <a href="exports/carousel-08/panel-03.png" download title="Download Panel 3 (1080x1350 PNG)"><img src="exports/carousel-08/thumb-03.jpg" alt="Panel 3" loading="lazy" /></a>
+      <a href="exports/carousel-08/panel-04.png" download title="Download Panel 4 (1080x1350 PNG)"><img src="exports/carousel-08/thumb-04.jpg" alt="Panel 4" loading="lazy" /></a>
+      <a href="exports/carousel-08/panel-05.png" download title="Download Panel 5 (1080x1350 PNG)"><img src="exports/carousel-08/thumb-05.jpg" alt="Panel 5" loading="lazy" /></a>
+      <a href="exports/carousel-08/panel-06.png" download title="Download Panel 6 (1080x1350 PNG)"><img src="exports/carousel-08/thumb-06.jpg" alt="Panel 6" loading="lazy" /></a>
+      <a href="exports/carousel-08/panel-07.png" download title="Download Panel 7 (1080x1350 PNG)"><img src="exports/carousel-08/thumb-07.jpg" alt="Panel 7" loading="lazy" /></a>
     </div>
-    <p class="links"><a href="carousels/08-the-land-remembers.html">Open source</a><a href="exports/carousel-08/">Exports</a></p>
+    <p class="links"><a href="carousels/08-the-land-remembers.html">Open source</a><a href="exports/carousel-08/lhff-drop-04-carousel-08-panels.zip" download>Download panels (ZIP)</a></p>
   </section>
 
-  <section class="car">
+  <section class="car" id="motion">
     <div class="car-head">
       <h2>Motion</h2>
       <span class="meta">8 cuts · 1080&times;1920 · 30fps</span>
     </div>
-    <p class="car-note">One Remotion cut per carousel, 14 to 19 seconds, for Reels and Stories. Ken Burns push on every still, fade transitions, animated counters on the sourced figures. Project at <code>remotion/</code>, render with <code>npx remotion render &lt;CompId&gt;</code>.</p>
+    <p class="car-note">One cut per carousel, 14 to 19 seconds, for Reels and Stories. H.264 MP4, 1080&times;1920, 30fps, no audio. Every player below has a download link, or take the whole set in one file.</p>
+    <p><a class="dl" href="motion/lhff-drop-04-videos.zip" download>Download all 8 videos (ZIP, 34MB)</a></p>
     <div class="motion-grid">
-      <figure><video src="motion/motion-the-garden.mp4" controls muted playsinline preload="metadata"></video><figcaption>01 · The garden · 14s</figcaption></figure>
-      <figure><video src="motion/motion-seed-to-plate.mp4" controls muted playsinline preload="metadata"></video><figcaption>02 · Seed to plate · 18s</figcaption></figure>
-      <figure><video src="motion/motion-why-sustainability.mp4" controls muted playsinline preload="metadata"></video><figcaption>03 · Why sustainability · 14s</figcaption></figure>
-      <figure><video src="motion/motion-water.mp4" controls muted playsinline preload="metadata"></video><figcaption>04 · Water · 14s</figcaption></figure>
-      <figure><video src="motion/motion-house-runs-on-sun.mp4" controls muted playsinline preload="metadata"></video><figcaption>05 · Runs on sun · 14s</figcaption></figure>
-      <figure><video src="motion/motion-seven-small-things.mp4" controls muted playsinline preload="metadata"></video><figcaption>06 · Seven small things · 19s</figcaption></figure>
-      <figure><video src="motion/motion-what-we-throw-away.mp4" controls muted playsinline preload="metadata"></video><figcaption>07 · What we throw away · 14s</figcaption></figure>
-      <figure><video src="motion/motion-the-land-remembers.mp4" controls muted playsinline preload="metadata"></video><figcaption>08 · The land remembers · 14s</figcaption></figure>
+      <figure><video src="motion/motion-the-garden.mp4" controls muted playsinline preload="metadata"></video><figcaption>01 · The garden · 14s</figcaption><a class="dl" href="motion/motion-the-garden.mp4" download>Download MP4</a></figure>
+      <figure><video src="motion/motion-seed-to-plate.mp4" controls muted playsinline preload="metadata"></video><figcaption>02 · Seed to plate · 18s</figcaption><a class="dl" href="motion/motion-seed-to-plate.mp4" download>Download MP4</a></figure>
+      <figure><video src="motion/motion-why-sustainability.mp4" controls muted playsinline preload="metadata"></video><figcaption>03 · Why sustainability · 14s</figcaption><a class="dl" href="motion/motion-why-sustainability.mp4" download>Download MP4</a></figure>
+      <figure><video src="motion/motion-water.mp4" controls muted playsinline preload="metadata"></video><figcaption>04 · Water · 14s</figcaption><a class="dl" href="motion/motion-water.mp4" download>Download MP4</a></figure>
+      <figure><video src="motion/motion-house-runs-on-sun.mp4" controls muted playsinline preload="metadata"></video><figcaption>05 · Runs on sun · 14s</figcaption><a class="dl" href="motion/motion-house-runs-on-sun.mp4" download>Download MP4</a></figure>
+      <figure><video src="motion/motion-seven-small-things.mp4" controls muted playsinline preload="metadata"></video><figcaption>06 · Seven small things · 19s</figcaption><a class="dl" href="motion/motion-seven-small-things.mp4" download>Download MP4</a></figure>
+      <figure><video src="motion/motion-what-we-throw-away.mp4" controls muted playsinline preload="metadata"></video><figcaption>07 · What we throw away · 14s</figcaption><a class="dl" href="motion/motion-what-we-throw-away.mp4" download>Download MP4</a></figure>
+      <figure><video src="motion/motion-the-land-remembers.mp4" controls muted playsinline preload="metadata"></video><figcaption>08 · The land remembers · 14s</figcaption><a class="dl" href="motion/motion-the-land-remembers.mp4" download>Download MP4</a></figure>
     </div>
   </section>
 
