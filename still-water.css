@@ -1,0 +1,935 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   LOVE HAPPINESS FREEDOM FOUNDATION · the app's front door
+   "STILL WATER", the same design law the application is built on.
+
+   Warm graphite ground, never black, never gray-blue. Light arrives in pools.
+   Colour is almost withheld: warm neutrals, smoked glass, champagne, sage.
+   The foundation's seven colours survive only as votive accents.
+   Structure comes from hairlines, corner brackets, margins and type.
+   No cards. No panels. No boxes.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── TOKENS ─────────────────────────────────────────────────────────────── */
+:root {
+  /* the ground: warm graphite, layered */
+  --ground-0:  #0A0809;   /* the deepest room, warm, never blue */
+  --ground:    #0B0A0C;
+  --ground-2:  #17151B;
+  --ground-3:  #1E1B22;
+
+  /* light on it */
+  --lit:       #F2EDE6;   /* headings, warm off-white */
+  --body:      #B9B2A9;   /* running text  (8.5:1 on --ground-2) */
+  --dim:       #8F8880;   /* mono labels   (5.2:1 on --ground-2) */
+  --faint:     #857F78;   /* quiet text  (5.0:1 on --ground) */
+
+  /* the withheld palette */
+  --gold:      #D6B27C;
+  --sage:      #9DB89F;
+  --foam:      #8FC7E8;
+
+  /* the foundation's seven, votive use only */
+  --c1: #F0464A; --c2: #FEA027; --c3: #F7E808; --c4: #4CCB5F;
+  --c5: #4BC3ED; --c6: #4067AB; --c7: #873A93;
+
+  /* hairlines: the only structural device */
+  --rule:      rgba(242, 237, 230, 0.11);
+  --rule-soft: rgba(242, 237, 230, 0.055);
+  --rule-lit:  rgba(242, 237, 230, 0.22);
+
+  /* type */
+  --sans: "Outfit", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  /* measure and rhythm, at a four-count */
+  --gutter:    clamp(1.375rem, 5vw, 4rem);
+  --section-y: clamp(5rem, 11vw, 9.5rem);
+  --max:       1240px;
+  --measure:   34rem;
+
+  /* breath: slow in, slower out. never bouncy. */
+  --ease:     cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --breath:   1100ms;
+}
+
+/* ── BASE ───────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: 8.75rem;   /* the bar plus the rail beneath it */
+}
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--body);
+  font-family: var(--sans);
+  font-size: 1.0625rem;      /* 17px, the app's own body size */
+  font-weight: 400;
+  line-height: 1.65;
+  letter-spacing: -0.005em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+img, svg, video { display: block; max-width: 100%; }
+img { height: auto; }
+
+a { color: inherit; text-decoration: none; }
+p  { margin: 0 0 1.15em; }
+p:last-child { margin-bottom: 0; }
+
+h1, h2, h3, h4 {
+  margin: 0;
+  color: var(--lit);
+  font-family: var(--sans);
+  font-weight: 300;
+  letter-spacing: -0.032em;
+  line-height: 1.03;
+}
+
+ul, ol { margin: 0; padding: 0; list-style: none; }
+
+::selection { background: var(--gold); color: var(--ground); }
+
+:focus-visible {
+  outline: 2px solid var(--foam);
+  outline-offset: 4px;
+  border-radius: 3px;
+}
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+}
+
+.skip {
+  position: fixed; top: -100px; left: var(--gutter); z-index: 200;
+  padding: 0.75rem 1.25rem;
+  background: var(--ground-3); color: var(--lit);
+  border: 1px solid var(--rule-lit);
+  font-family: var(--mono); font-size: 0.6875rem;
+  letter-spacing: 0.18em; text-transform: uppercase;
+}
+.skip:focus { top: 1rem; }
+
+/* ── TYPE UTILITIES ─────────────────────────────────────────────────────── */
+.display {
+  font-size: clamp(2.5rem, 8.6vw, 6rem);
+  font-weight: 300;
+  line-height: 0.98;
+  letter-spacing: -0.038em;
+}
+.h2 {
+  font-size: clamp(2rem, 5.4vw, 3.5rem);
+  font-weight: 300;
+  line-height: 1.02;
+  letter-spacing: -0.034em;
+}
+.h3 {
+  font-size: clamp(1.3rem, 2.6vw, 1.7rem);
+  font-weight: 400;
+  line-height: 1.16;
+  letter-spacing: -0.022em;
+}
+.h4 {
+  font-size: 1.0625rem;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -0.012em;
+  color: var(--lit);
+}
+.lede {
+  max-width: var(--measure);
+  font-size: clamp(1.0625rem, 1.5vw, 1.1875rem);
+  font-weight: 300;
+  line-height: 1.62;
+  color: var(--body);
+}
+.body-sm { font-size: 0.9375rem; line-height: 1.62; }
+
+/* small tracked uppercase labels: the app's second voice */
+.mono {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--dim);
+  line-height: 1.6;
+}
+.mono--gold { color: var(--gold); }
+.mono--tight { letter-spacing: 0.14em; }
+
+/* .mono is a label and stays one line. A sentence that would wrap wears this
+   instead: the same quiet register, at a size and colour built for reading. */
+.aside {
+  font-family: var(--sans);
+  font-size: 0.9375rem;
+  font-weight: 300;
+  line-height: 1.62;
+  letter-spacing: -0.004em;
+  color: var(--dim);
+  max-width: 46ch;
+}
+
+/* numerals treated as objects */
+.numeral {
+  font-family: var(--mono);
+  font-weight: 400;
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  color: var(--faint);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── LAYOUT ─────────────────────────────────────────────────────────────── */
+.wrap {
+  width: 100%;
+  max-width: var(--max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+.section { position: relative; padding-block: var(--section-y); }
+.section--seam { border-top: 1px solid var(--rule-soft); }
+.section--deep { background: var(--ground); }
+.section--raised { background: var(--ground-2); }
+
+/* a chapter mark: hairline, numeral, name */
+.chapter {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+.chapter__rule {
+  width: 2.25rem; height: 1px;
+  background: var(--rule-lit);
+  flex: none;
+}
+.chapter__text {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+.chapter__text em { font-style: normal; color: var(--gold); }
+
+/* corner brackets: structure without a box */
+.bracket {
+  position: relative;
+  padding: clamp(1.5rem, 4vw, 2.75rem);
+}
+.bracket::before,
+.bracket::after {
+  content: "";
+  position: absolute;
+  width: 22px; height: 22px;
+  border: 1px solid var(--rule-lit);
+  pointer-events: none;
+}
+.bracket::before { top: 0; left: 0; border-right: 0; border-bottom: 0; }
+.bracket::after { right: 0; bottom: 0; border-left: 0; border-top: 0; }
+
+/* the seven, as a single thin votive rule */
+.votive {
+  display: flex;
+  width: 100%;
+  max-width: 22rem;
+  height: 2px;
+  overflow: hidden;
+}
+.votive span { flex: 1 1 0; }
+.votive span:nth-child(1) { background: var(--c1); }
+.votive span:nth-child(2) { background: var(--c2); }
+.votive span:nth-child(3) { background: var(--c3); }
+.votive span:nth-child(4) { background: var(--c4); }
+.votive span:nth-child(5) { background: var(--c5); }
+.votive span:nth-child(6) { background: var(--c6); }
+.votive span:nth-child(7) { background: var(--c7); }
+
+/* ── MOTION: reveal from a VISIBLE baseline ─────────────────────────────
+   Without JS, .reveal is simply visible. The .js class is written by an
+   inline script in <head>, so a failed or blocked script can never hide
+   content. */
+.reveal { opacity: 1; transform: none; }
+
+html.js .reveal {
+  opacity: 0;
+  transform: translate3d(0, 20px, 0);
+  transition:
+    opacity var(--breath) var(--ease) calc(var(--d, 0) * 90ms),
+    transform var(--breath) var(--ease) calc(var(--d, 0) * 90ms);
+}
+html.js .reveal.is-in { opacity: 1; transform: none; }
+
+/* a hairline that draws itself on */
+html.js .draw { transform: scaleX(0); transform-origin: left center;
+  transition: transform 1400ms var(--ease) calc(var(--d, 0) * 90ms); }
+html.js .draw.is-in { transform: scaleX(1); }
+
+/* ── AMBIENT: light in pools, drifting at breath pace ───────────────────── */
+.ambient {
+  position: absolute;
+  inset: -25% -20%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.ambient span {
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+  filter: blur(72px);
+  will-change: transform;
+}
+.ambient__a {
+  width: 62vmax; height: 62vmax; top: -18%; left: -14%;
+  background: radial-gradient(circle, rgba(214,178,124,0.20), rgba(214,178,124,0) 68%);
+  animation: driftA 58s var(--ease) infinite alternate;
+}
+.ambient__b {
+  width: 54vmax; height: 54vmax; top: 12%; right: -18%;
+  background: radial-gradient(circle, rgba(64,103,171,0.26), rgba(64,103,171,0) 68%);
+  animation: driftB 76s var(--ease) infinite alternate;
+}
+.ambient__c {
+  width: 44vmax; height: 44vmax; bottom: -22%; left: 22%;
+  background: radial-gradient(circle, rgba(143,199,232,0.13), rgba(143,199,232,0) 70%);
+  animation: driftC 94s var(--ease) infinite alternate;
+}
+@keyframes driftA {
+  from { transform: translate3d(0,0,0) scale(1); }
+  to   { transform: translate3d(7vw, 5vh, 0) scale(1.14); }
+}
+@keyframes driftB {
+  from { transform: translate3d(0,0,0) scale(1.08); }
+  to   { transform: translate3d(-6vw, 8vh, 0) scale(0.94); }
+}
+@keyframes driftC {
+  from { transform: translate3d(0,0,0) scale(0.96); }
+  to   { transform: translate3d(5vw, -7vh, 0) scale(1.16); }
+}
+
+/* ── NAV ────────────────────────────────────────────────────────────────── */
+.nav {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 100;
+  background: rgba(11, 10, 12, 0.78);
+  -webkit-backdrop-filter: blur(18px) saturate(1.1);
+  backdrop-filter: blur(18px) saturate(1.1);
+  border-bottom: 1px solid var(--rule-soft);
+}
+.nav__inner {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  min-height: 3.9rem;
+}
+.nav__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-right: auto;
+}
+.nav__mark { width: 42px; height: auto; }
+.nav__word {
+  font-family: var(--mono);
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--dim);
+  line-height: 1.3;
+  max-width: 8rem;
+}
+.nav__links { display: none; gap: 1.75rem; }
+.nav__link {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--dim);
+  padding-block: 0.5rem;
+  transition: color 380ms var(--ease);
+}
+.nav__link:hover { color: var(--lit); }
+
+/* Below 900px the five links leave the bar and become a quiet scrolling row
+   beneath it, on the same hairline. Exactly one of the two is ever displayed,
+   so nothing is announced twice. No control to find, no state to remember. */
+.nav__rail {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  border-top: 1px solid var(--rule-soft);
+  padding: 0.3rem var(--gutter) 0.45rem;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.nav__rail::-webkit-scrollbar { display: none; }
+.nav__rail .nav__link { flex: none; padding-block: 0.35rem; }
+
+/* ── BUTTONS ────────────────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.5rem;
+  border: 1px solid var(--rule-lit);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--lit);
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 420ms var(--ease), background-color 420ms var(--ease), color 420ms var(--ease);
+}
+.btn:hover { border-color: var(--gold); color: var(--gold); }
+.btn--solid {
+  border-color: var(--gold);
+  background: var(--gold);
+  color: #171316;
+}
+.btn--solid:hover { background: #E4C594; border-color: #E4C594; color: #171316; }
+.btn--sm { padding: 0.6rem 1.1rem; font-size: 0.625rem; }
+.btn__arrow { transition: transform 420ms var(--ease); }
+.btn:hover .btn__arrow { transform: translateX(3px); }
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+/* ── HERO ───────────────────────────────────────────────────────────────── */
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding-top: clamp(9.25rem, 16vw, 11rem);
+  padding-bottom: clamp(4rem, 9vw, 7rem);
+  background:
+    radial-gradient(120% 80% at 50% 0%, var(--ground-2) 0%, var(--ground) 62%);
+}
+.hero__inner { position: relative; z-index: 2; }
+.hero__grid {
+  display: grid;
+  gap: clamp(3rem, 7vw, 4.5rem);
+  align-items: center;
+}
+.hero__mark {
+  width: clamp(76px, 13vw, 104px);
+  height: auto;
+  margin-bottom: 1.75rem;
+}
+.hero__eyebrow { margin-bottom: 1.5rem; }
+.hero h1 { margin-bottom: 1.75rem; max-width: 15ch; }
+.hero__lede { margin-bottom: 2.25rem; }
+.hero__votive { margin-top: 2.75rem; }
+/* spacing only: the type comes from .aside, so this line reads as a sentence
+   rather than wearing a label style it is too long for */
+.hero__meta { margin-top: 1rem; }
+.hero__device { justify-self: center; width: 100%; max-width: 312px; }
+
+/* ── DEVICE FRAME (CSS drawn, the way the app deck presents phones) ─────── */
+.device { position: relative; width: 100%; max-width: 300px; margin-inline: auto; }
+.device__body {
+  position: relative;
+  padding: 9px;
+  border-radius: 46px;
+  background: linear-gradient(155deg, #3E3944 0%, #221E28 34%, #100E13 100%);
+  box-shadow:
+    0 0 0 1px rgba(242, 237, 230, 0.07),
+    0 1px 0 rgba(255, 255, 255, 0.13) inset,
+    0 44px 90px -34px rgba(0, 0, 0, 0.92),
+    0 12px 34px -18px rgba(0, 0, 0, 0.7);
+}
+.device__screen {
+  position: relative;
+  border-radius: 38px;
+  overflow: hidden;
+  background: var(--ground);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.6) inset;
+}
+.device__screen img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+/* one soft rake of light across the glass, never a sparkle */
+.device__body::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 46px;
+  pointer-events: none;
+  background: linear-gradient(118deg, rgba(255,255,255,0.055) 0%, rgba(255,255,255,0) 38%);
+}
+.device__caption {
+  margin-top: 1.15rem;
+  text-align: center;
+}
+.device--sm { max-width: 208px; }
+.device--sm .device__body { padding: 7px; border-radius: 34px; }
+.device--sm .device__body::after { border-radius: 34px; }
+.device--sm .device__screen { border-radius: 28px; }
+
+/* ── LEDGER: hairline rows, the app's own structure ─────────────────────── */
+.ledger { border-top: 1px solid var(--rule); }
+.ledger__row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.4rem 2rem;
+  padding-block: clamp(1.5rem, 3vw, 2.15rem);
+  border-bottom: 1px solid var(--rule);
+}
+.ledger__key { color: var(--gold); }
+.ledger__val { color: var(--body); max-width: 46ch; }
+
+/* ── THE SEVEN SECTIONS OF THE APP ──────────────────────────────────────── */
+.tabs { display: grid; gap: 0; }
+.tab {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1.75rem, 4vw, 3rem);
+  align-items: center;
+  padding-block: clamp(3rem, 6vw, 4.75rem);
+  border-top: 1px solid var(--rule-soft);
+}
+.tab:first-child { border-top: 1px solid var(--rule); }
+.tab__copy { position: relative; padding-left: 2.25rem; }
+/* one thin votive rule per room, held far apart from the others */
+.tab__seam {
+  position: absolute;
+  left: 0; top: 0.35rem;
+  width: 2px; height: 2.25rem;
+  background: var(--seam, var(--gold));
+  opacity: 0.85;
+}
+.tab__index { display: block; margin-bottom: 1.1rem; }
+.tab__glyph { color: var(--lit); margin-bottom: 1.15rem; opacity: 0.9; }
+.tab__glyph svg { width: 30px; height: 30px; }
+.tab h3 { margin-bottom: 0.85rem; }
+.tab__line { color: var(--body); max-width: 40ch; margin-bottom: 1rem; font-weight: 300; font-size: 1.0625rem; }
+.tab__detail { color: var(--dim); font-size: 0.9375rem; max-width: 44ch; }
+.tab__media { justify-self: center; width: 100%; }
+
+/* ── NAVID ──────────────────────────────────────────────────────────────── */
+.navid { position: relative; overflow: hidden; background: var(--ground-0); }
+.navid__inner { position: relative; z-index: 2; }
+.navid__head { text-align: center; margin-bottom: clamp(3rem, 6vw, 4.5rem); }
+.navid__orb {
+  width: clamp(150px, 34vw, 216px);
+  height: clamp(150px, 34vw, 216px);
+  margin: 0 auto 2.25rem;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 36% 28%,
+      rgba(224, 210, 232, 0.88) 0%,
+      rgba(158, 130, 188, 0.72) 30%,
+      rgba(94, 74, 128, 0.78) 58%,
+      rgba(38, 30, 52, 0.94) 100%);
+  box-shadow:
+    0 0 110px -18px rgba(135, 58, 147, 0.42),
+    0 0 190px -40px rgba(143, 199, 232, 0.2);
+  animation: orbBreath 7.5s ease-in-out infinite;
+}
+@keyframes orbBreath {
+  0%, 100% { transform: scale(1); filter: brightness(1); }
+  50%      { transform: scale(1.035); filter: brightness(1.09); }
+}
+.navid__name { margin-bottom: 0.9rem; }
+.navid__lede { margin: 1.75rem auto 0; text-align: left; }
+.navid__grid {
+  display: grid;
+  gap: clamp(2.5rem, 6vw, 4rem);
+  align-items: start;
+}
+.navid__blocks { display: grid; gap: clamp(2rem, 4vw, 2.75rem); }
+.navid__block { border-top: 1px solid var(--rule); padding-top: 1.5rem; }
+.navid__block .mono { margin-bottom: 0.85rem; }
+.navid__block .h4 { margin-bottom: 0.6rem; }
+.navid__block p { color: var(--body); font-size: 0.9375rem; }
+
+/* the four intake questions, in his own words */
+.asks { margin-top: 1.35rem; display: grid; gap: 0.9rem; }
+.asks li {
+  position: relative;
+  padding-left: 1.5rem;
+  color: var(--lit);
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+.asks li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0.66em;
+  width: 8px; height: 1px;
+  background: var(--gold);
+}
+.limits li {
+  max-width: 62ch;
+  padding-block: 0.85rem;
+  border-bottom: 1px solid var(--rule-soft);
+  color: var(--body);
+  font-size: 0.9375rem;
+}
+.limits li:first-child { border-top: 1px solid var(--rule-soft); }
+.limits strong { color: var(--lit); font-weight: 500; }
+
+.model-line {
+  margin-top: 2.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--rule-soft);
+}
+
+/* ── PULL QUOTE (the medication gate, the app's own words) ──────────────── */
+.pull { max-width: 46rem; }
+.pull__title { margin-bottom: 1rem; }
+.pull__body { color: var(--body); font-weight: 300; font-size: clamp(1rem, 1.6vw, 1.125rem); }
+.pull__note { margin-top: 1.5rem; }
+
+/* ── RAIL: a row of small devices that scrolls on a phone ───────────────── */
+.rail {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 208px;
+  gap: clamp(1.25rem, 3vw, 2rem);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+  padding-block: 0.5rem 1.5rem;
+  padding-inline: var(--gutter);
+  margin-inline: calc(var(--gutter) * -1);
+  scrollbar-width: thin;
+  scrollbar-color: var(--rule-lit) transparent;
+}
+.rail > * { scroll-snap-align: center; }
+.rail::-webkit-scrollbar { height: 3px; }
+.rail::-webkit-scrollbar-track { background: var(--rule-soft); }
+.rail::-webkit-scrollbar-thumb { background: var(--rule-lit); }
+
+/* ── PHOTOGRAPHY: never carries text ────────────────────────────────────── */
+.plate { position: relative; }
+.plate__img {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;   /* the warm veil stays inside the photograph */
+}
+/* The photographs arrive graded for a light page: cool, bright, and sitting
+   on top of the dusk instead of inside it. This pulls them into the page's
+   own value range and takes the blue out of the sky. */
+.plate__img img,
+.gallery img { filter: saturate(0.72) brightness(0.62) contrast(1.04); }
+
+/* a warm veil, multiplied, so the highlights stay warm instead of gray-blue */
+.plate__img::before,
+.gallery figure::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: #9C8A76;
+  mix-blend-mode: multiply;
+}
+.plate__img img { width: 100%; height: auto; object-fit: cover; }
+/* the photograph dissolves into the ground at both edges */
+.plate__img::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  background:
+    linear-gradient(to bottom,
+      var(--fade-top, var(--ground)) 0%,
+      rgba(11, 10, 12, 0) 38%,
+      rgba(11, 10, 12, 0) 64%,
+      var(--fade-bottom, var(--ground)) 100%);
+}
+.plate--bleed .plate__img { height: clamp(240px, 46vw, 520px); }
+.plate--bleed .plate__img img { width: 100%; height: 100%; }
+.plate__caption {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  justify-content: space-between;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--rule-soft);
+  margin-top: 0.5rem;
+}
+
+.gallery { display: grid; gap: clamp(1rem, 2.5vw, 1.5rem); }
+.gallery figure {
+  margin: 0;
+  display: grid;
+  grid-template-rows: auto auto;
+  isolation: isolate;
+  position: relative;
+}
+.gallery figure img,
+.gallery figure::before { grid-area: 1 / 1; }
+.gallery figure::before { position: relative; }
+.gallery img { width: 100%; height: auto; object-fit: cover; aspect-ratio: 4 / 5; }
+.gallery figcaption { grid-area: 2 / 1; margin-top: 0.8rem; }
+
+/* ── INSTALL ────────────────────────────────────────────────────────────── */
+.install { display: grid; gap: clamp(2.5rem, 5vw, 4rem); }
+.steps { counter-reset: step; margin-top: 1.5rem; }
+.steps li {
+  counter-increment: step;
+  position: relative;
+  padding: 0.95rem 0 0.95rem 2.75rem;
+  border-bottom: 1px solid var(--rule-soft);
+  color: var(--body);
+  font-size: 0.9375rem;
+}
+.steps li:first-child { border-top: 1px solid var(--rule-soft); }
+.steps li::before {
+  content: counter(step, decimal-leading-zero);
+  position: absolute;
+  left: 0; top: 1.05rem;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── THE FOUNDATION: three pillars, one votive accent each ──────────────── */
+.pillars { border-top: 1px solid var(--rule); }
+.pillar {
+  display: grid;
+  gap: 0.35rem 1.75rem;
+  padding-block: clamp(1.6rem, 3.2vw, 2.25rem);
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+  padding-left: 2.25rem;
+}
+.pillar__seam {
+  position: absolute;
+  left: 0; top: clamp(1.75rem, 3.4vw, 2.4rem);
+  width: 2px; height: 1.75rem;
+  background: var(--seam);
+}
+.pillar h3 { font-weight: 300; }
+.pillar p { color: var(--body); font-size: 0.9375rem; max-width: 52ch; }
+
+/* ── FOOTER ─────────────────────────────────────────────────────────────── */
+.footer {
+  border-top: 1px solid var(--rule);
+  padding-block: clamp(3.5rem, 7vw, 5rem) 2.5rem;
+  background: var(--ground);
+}
+.footer__grid {
+  display: grid;
+  gap: clamp(2.5rem, 5vw, 3.5rem);
+  margin-bottom: clamp(3rem, 6vw, 4rem);
+}
+.footer__mark { width: 52px; margin-bottom: 1.25rem; }
+.footer__blurb { color: var(--dim); font-size: 0.9375rem; max-width: 32ch; }
+.footer__col .mono { margin-bottom: 1.1rem; }
+.footer__list li { margin-bottom: 0.25rem; }
+.footer__list a {
+  display: inline-block;
+  padding-block: 0.35rem;          /* past the 24px target minimum */
+  color: var(--body);
+  font-size: 0.9375rem;
+  overflow-wrap: anywhere;         /* the address never touches the screen edge */
+  transition: color 380ms var(--ease);
+}
+.footer__list a:hover { color: var(--gold); }
+.footer__note {
+  margin-top: 0.9rem;
+  color: var(--faint);
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  max-width: 24ch;
+}
+.footer__base {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 2rem;
+  justify-content: space-between;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--rule-soft);
+}
+.footer__base p { color: var(--faint); font-family: var(--mono); font-size: 0.625rem; letter-spacing: 0.14em; text-transform: uppercase; margin: 0; }
+
+/* ── RESPONSIVE: phone first, then the room opens ───────────────────────── */
+@media (min-width: 640px) {
+  .ledger__row { grid-template-columns: 13rem 1fr; align-items: baseline; }
+  .gallery { grid-template-columns: repeat(3, 1fr); }
+  .footer__grid { grid-template-columns: 1.4fr 1fr 1fr; }
+}
+
+@media (min-width: 900px) {
+  html { scroll-padding-top: 5.5rem; }
+  .nav__inner { min-height: 4.25rem; }
+  .nav__rail { display: none; }
+  .nav__links { display: flex; }
+  .hero__grid { grid-template-columns: 1.15fr 0.85fr; }
+  .hero h1 { max-width: 13ch; }
+
+  /* The copy caps at ~44ch, so a full-width 1fr column left a wide hole
+     between the last word and the phone, seven times, alternating sides.
+     Capping the pair puts that space in the outer margin, where it reads as
+     interval rather than as something unfinished. */
+  .tab { max-width: 62rem; margin-inline: auto; grid-template-columns: 1fr 300px; gap: clamp(2.5rem, 5vw, 4rem); }
+  .tab:nth-child(even) { grid-template-columns: 300px 1fr; }
+  .tab:nth-child(even) .tab__copy { order: 2; }
+  .tab:nth-child(even) .tab__media { order: 1; }
+
+  .navid__grid { grid-template-columns: 0.9fr 1.1fr; gap: clamp(3rem, 6vw, 5rem); }
+  .install { grid-template-columns: 1fr 1fr; }
+  .footer__grid { grid-template-columns: 1.6fr 1fr 1fr 1fr; }
+}
+
+@media (min-width: 1100px) {
+  .tab { grid-template-columns: 1fr 320px; }
+  .tab:nth-child(even) { grid-template-columns: 320px 1fr; }
+}
+
+/* the horizontal rail becomes a grid once there is room for it */
+@media (min-width: 1000px) {
+  .rail {
+    grid-auto-flow: row;
+    grid-template-columns: repeat(var(--cols, 5), 1fr);
+    grid-auto-columns: auto;
+    overflow: visible;
+    padding-inline: 0;
+    margin-inline: 0;
+  }
+}
+
+/* ── REDUCED MOTION: everything stills ──────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  html.js .reveal { opacity: 1 !important; transform: none !important; }
+  html.js .draw { transform: none !important; }
+  html.js .tab__glyph svg :is(path, line, rect, circle) { stroke-dashoffset: 0 !important; }
+  .ambient span { animation: none; }
+  .navid__orb { animation: none; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   MOTION SIGNATURES
+   Four of them, and no more. Each is breath paced, each starts from a state
+   that is already legible, and every one of them stills under reduced motion.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* 01 · the reading line: the seven colours, drawn across the top as you go */
+.nav__progress {
+  position: absolute;
+  left: 0; right: 0; bottom: -1px;
+  height: 2px;
+  overflow: hidden;
+  pointer-events: none;
+}
+.nav__progress span {
+  display: block;
+  width: 100%; height: 100%;
+  transform: scaleX(0);
+  transform-origin: left center;
+  /* The seven colours are the mark's, directly above this line. A second
+     rainbow in the same fixed corner is the fruit-salad the law bans, so the
+     reading line is champagne and the votive rules keep the colour. */
+  background: linear-gradient(90deg, rgba(214, 178, 124, 0.3) 0%, var(--gold) 100%);
+  opacity: 0.9;
+}
+
+/* 02 · the phone in the hero, breathing on the spot */
+.hero__device .device { animation: hover 12s ease-in-out infinite; }
+@keyframes hover {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50%      { transform: translate3d(0, -10px, 0); }
+}
+
+/* 03 · hairlines that draw themselves on, left to right */
+html.js .draw {
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 1500ms var(--ease) calc(var(--d, 0) * 90ms);
+}
+html.js .draw.is-in { transform: scaleX(1); }
+
+/* 04 · each glyph draws itself on, in the single hand the copy describes */
+html.js .tab__glyph svg :is(path, line, rect, circle) {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 1600ms var(--ease) 240ms;
+}
+html.js .tab.is-in .tab__glyph svg :is(path, line, rect, circle) {
+  stroke-dashoffset: 0;
+}
+
+/* 05 · a votive rule falling down the edge of each room, after the words land */
+html.js .tab__seam,
+html.js .pillar__seam {
+  transform: scaleY(0);
+  transform-origin: top center;
+  transition: transform 950ms var(--ease) 260ms;
+}
+html.js .tab.is-in .tab__seam,
+html.js .pillars.is-in .pillar__seam { transform: scaleY(1); }
+
+/* ── LATE LAYOUT CORRECTIONS ────────────────────────────────────────────── */
+
+/* a two column split where the words lead and the screens follow */
+.split { display: grid; gap: clamp(2.5rem, 6vw, 4rem); align-items: start; }
+
+/* the gallery is tall on a phone; give it a landscape crop until there is room */
+.gallery img { aspect-ratio: 16 / 10; }
+
+@media (max-width: 479px) {
+  /* the wordmark steps aside so the mark and the sign in control never crowd */
+  .nav__word { display: none; }
+}
+
+@media (min-width: 640px) {
+  .gallery img { aspect-ratio: 4 / 5; }
+}
+
+@media (min-width: 900px) {
+  .split { grid-template-columns: minmax(0, 1fr) minmax(0, 27rem); max-width: 68rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__device .device { animation: none; }
+  html.js .draw,
+  html.js .tab__seam,
+  html.js .pillar__seam { transform: none !important; }
+  html.js .tab__glyph svg :is(path, line, rect, circle) { stroke-dashoffset: 0 !important; }
+  .nav__progress span { transition: none; }
+}
+
+/* Navid's blocks run long; the phone stays alongside them instead of
+   stranding half a column of empty dark. */
+@media (min-width: 900px) {
+  .navid__grid > :first-child { position: sticky; top: 6.5rem; }
+}

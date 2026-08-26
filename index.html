@@ -2,1267 +2,895 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Love Happiness Freedom Foundation — Protecting human rights, environment, and conservation</title>
-<meta name="description" content="A foundation using fashion, education, spirituality, and sustainability to protect human rights, environment, and conservation. Home of NAVID, RESET Mozambique, and the 7 Pillars curriculum." />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>The LHFF app · Love Happiness Freedom Foundation</title>
+<meta name="description" content="The companion app for guests of the Love Happiness Freedom Foundation retreat above Camps Bay, Cape Town. The forty day preparation, the six days at the villa, the teachings, the house, the practices, and Navid. Installs to your home screen from the browser." />
 <link rel="canonical" href="https://lhffoundation.org/" />
+
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Love Happiness Freedom Foundation" />
-<meta property="og:title" content="Love Happiness Freedom Foundation" />
-<meta property="og:description" content="A foundation using fashion, education, spirituality, and sustainability to protect human rights, environment, and conservation. Home of NAVID, RESET Mozambique, and the 7 Pillars curriculum." />
+<meta property="og:title" content="The LHFF app" />
+<meta property="og:description" content="Six days that rearrange you, and every day either side. The retreat companion app from the Love Happiness Freedom Foundation." />
 <meta property="og:url" content="https://lhffoundation.org/" />
-<meta property="og:image" content="https://lhffoundation.org/assets/og-cover.jpg" />
+<meta property="og:image" content="https://lhffoundation.org/assets/site/og-cover.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Love Happiness Freedom Foundation" />
-<meta name="twitter:description" content="Protecting human rights, environment, and conservation through fashion, education, spirituality, and sustainability." />
-<meta name="twitter:image" content="https://lhffoundation.org/assets/og-cover.jpg" />
-<meta name="theme-color" content="#FAF7F2" />
+<meta name="twitter:title" content="The LHFF app" />
+<meta name="twitter:description" content="Six days that rearrange you, and every day either side. The retreat companion app from the Love Happiness Freedom Foundation." />
+<meta name="twitter:image" content="https://lhffoundation.org/assets/site/og-cover.jpg" />
+<meta name="theme-color" content="#0B0A0C" />
+
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
 <link rel="icon" type="image/png" sizes="512x512" href="/assets/favicon-512.png" />
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="styles.css" />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="still-water.css" />
+
+<script>
+  /* Written before first paint so scroll reveal only ever hides content when
+     JavaScript is definitely running. Without this class every .reveal element
+     stays visible, so a blocked or failed script costs motion, never content. */
+  document.documentElement.classList.add('js');
+</script>
 </head>
 <body>
 
-<!-- Splash — loading overlay, fades out once the bar fills -->
-<div class="splash" id="splash" aria-hidden="false" role="status">
-  <div class="splash__inner">
-    <img class="splash__logo" src="assets/lhff-logo-white.png" alt="Love Happiness Freedom Foundation" />
-    <p class="splash__tagline">Love &middot; Happiness &middot; Freedom</p>
-    <div class="splash__bar" aria-hidden="true">
-      <span class="splash__bar-fill"></span>
-    </div>
-    <p class="splash__sub">Loading the work&hellip;</p>
-  </div>
-</div>
+<a class="skip" href="#main">Skip to content</a>
 
-<!-- Email capture modal -->
-<div class="email-modal" id="emailModal" aria-hidden="true" role="dialog" aria-labelledby="emailModalTitle">
-  <div class="email-modal__backdrop" data-dismiss-modal></div>
-  <div class="email-modal__panel" role="document">
-    <button class="email-modal__close" aria-label="Close" data-dismiss-modal>×</button>
-    <div class="email-modal__rainbow" aria-hidden="true"></div>
-
-    <div class="email-modal__brand">
-      <img src="assets/lhff-logo.png" alt="LHFF" class="email-modal__brand-img" />
-    </div>
-
-    <p class="email-modal__eyebrow">Stay in touch</p>
-    <h2 class="email-modal__title" id="emailModalTitle">Walk with the <em>Foundation</em>.</h2>
-    <p class="email-modal__body">
-      A short letter, once a season. New retreats, new writing, what we are building. No noise, no spam, leave any time.
-    </p>
-
-    <form class="email-modal__form" id="emailModalForm" novalidate>
-      <label class="email-modal__field">
-        <span class="email-modal__label">Your name</span>
-        <input type="text" name="name" autocomplete="name" required />
-      </label>
-      <label class="email-modal__field">
-        <span class="email-modal__label">Email</span>
-        <input type="email" name="email" autocomplete="email" required />
-      </label>
-      <div class="email-modal__actions">
-        <button type="submit" class="btn btn--purple email-modal__submit">Stay in touch</button>
-        <button type="button" class="email-modal__skip" data-dismiss-modal>Maybe later</button>
-      </div>
-      <p class="email-modal__note" hidden id="emailModalThanks">Thanks. We'll be in touch when there is something worth sending.</p>
-    </form>
-  </div>
-</div>
-
-<!-- Nav -->
+<!-- ═══ NAV ═══════════════════════════════════════════════════════════════ -->
 <header class="nav">
-  <div class="nav__inner">
-    <nav class="nav__menu-left" aria-label="Primary left">
-      <a class="nav__link" href="index.html">Home</a>
-      <a class="nav__link" href="mission.html">Concept</a>
-    </nav>
-    <a class="nav__brand" href="index.html" aria-label="Love Happiness Freedom Foundation home">
-      <span class="nav__logo" role="img" aria-label="LHFF logo"></span>
+  <div class="wrap nav__inner">
+    <a class="nav__brand" href="#top" aria-label="Love Happiness Freedom Foundation, top of page">
+      <img class="nav__mark" src="assets/site/lhff-mark-dark.png" alt="Love Happiness Freedom Foundation" width="512" height="512" />
+      <span class="nav__word">Love Happiness<br />Freedom</span>
     </a>
-    <nav class="nav__menu-right" aria-label="Primary right">
-      <a class="nav__link" href="#programs">Programs</a>
-      <a class="nav__link" href="#app">The App</a>
-      <a class="nav__link" href="contact.html">Contact</a>
+
+    <nav class="nav__links" aria-label="Sections of this page">
+      <a class="nav__link" href="#app">The app</a>
+      <a class="nav__link" href="#navid">Navid</a>
+      <a class="nav__link" href="#preparation">Preparation</a>
+      <a class="nav__link" href="#privacy">Privacy</a>
+      <a class="nav__link" href="#foundation">Foundation</a>
     </nav>
-    <button class="nav__toggle" aria-label="Open menu">☰</button>
+
+    <a class="btn btn--sm btn--solid" href="https://lhff-v2.vercel.app/signin">Sign in</a>
   </div>
+
+  <nav class="nav__rail" aria-label="Sections of this page">
+    <a class="nav__link" href="#app">The app</a>
+    <a class="nav__link" href="#navid">Navid</a>
+    <a class="nav__link" href="#preparation">Preparation</a>
+    <a class="nav__link" href="#privacy">Privacy</a>
+    <a class="nav__link" href="#foundation">Foundation</a>
+    <a class="nav__link" href="#install">Install</a>
+  </nav>
+
+  <div class="nav__progress" aria-hidden="true"><span data-progress></span></div>
 </header>
 
-<!-- Hero — mural full-bleed with big centered logo -->
-<section class="hero hero--minimal">
-  <div class="hero__rainbow" aria-hidden="true"></div>
-  <div class="hero__media" aria-hidden="true"></div>
-  <div class="hero__overlay" aria-hidden="true"></div>
+<main id="main">
+<span id="top"></span>
 
-  <div class="hero__chapter" aria-hidden="true">
-    <span class="hero__chapter-rule"></span>
-    <span class="hero__chapter-text">Chapter 01 / The Vision</span>
+<!-- ═══ HERO ══════════════════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="ambient" aria-hidden="true">
+    <span class="ambient__a"></span>
+    <span class="ambient__b"></span>
+    <span class="ambient__c"></span>
   </div>
 
-  <div class="hero__meta" aria-hidden="true">
-    <span class="hero__meta-line">Year 03 of 07</span>
-    <span class="hero__meta-line">Cape Town · Maputo</span>
-  </div>
+  <div class="wrap hero__inner">
+    <div class="hero__grid">
+      <div>
+        <img class="hero__mark reveal" src="assets/site/lhff-mark-dark.png" alt="" width="512" height="512" />
+        <span class="mono hero__eyebrow reveal" style="--d:1">The retreat companion</span>
 
-  <div class="hero__brand-mark" aria-hidden="true">
-    <img src="assets/lhff-logo-white.png" alt="" class="hero__brand-mark-img" />
-  </div>
-</section>
+        <h1 class="display reveal" style="--d:2">Six days that rearrange you. And every day either side.</h1>
 
-<!-- Statement / pull-quote -->
-<section class="statement" id="concept">
-  <div class="container">
-    <div class="statement__inner fade-in">
-      <div class="chapter chapter--center">
-        <span class="chapter__rule"></span>
-        <span class="chapter__num"><em>02</em>The Concept</span>
-        <span class="chapter__rule"></span>
-      </div>
-      <p class="statement__quote" data-word-reveal>
-        The world's hardest problems get solved from the <em>inside out</em>.
-      </p>
-      <p class="statement__lede">
-        Burnout, disconnection, lost purpose, broken leadership. We work where they actually start: inside the people living through them. Ancient wisdom, modern psychology, somatic practice, and leadership development, woven together so you can come back to who you are and lead from there.
-      </p>
-      <div class="rainbow-dots" role="presentation" style="margin: 1rem auto 1.75rem;">
-        <span class="rainbow-dots__dot"></span>
-        <span class="rainbow-dots__dot"></span>
-        <span class="rainbow-dots__dot"></span>
-        <span class="rainbow-dots__dot"></span>
-        <span class="rainbow-dots__dot"></span>
-        <span class="rainbow-dots__dot"></span>
-        <span class="rainbow-dots__dot"></span>
-        <span class="rainbow-dots__dot"></span>
-        <span class="rainbow-dots__dot"></span>
-        <span class="rainbow-dots__dot"></span>
-        <span class="rainbow-dots__dot"></span>
-      </div>
-      <div class="statement__attribution">Love Happiness Freedom Foundation · Est. 2023 · Cape Town</div>
-    </div>
-  </div>
-</section>
-
-<!-- Marquee strip — signature motion moment, replaces the old 4-cell box grid -->
-<section class="marquee-strip" aria-label="The work, in four words">
-  <div class="marquee-strip__track" aria-hidden="true">
-    <div class="marquee-strip__set">
-      <span class="marquee-strip__word">The Foundation</span>
-      <span class="marquee-strip__dot" style="--c: var(--red);"></span>
-      <span class="marquee-strip__word">The Retreat</span>
-      <span class="marquee-strip__dot" style="--c: var(--orange);"></span>
-      <span class="marquee-strip__word">The App</span>
-      <span class="marquee-strip__dot" style="--c: var(--yellow);"></span>
-      <span class="marquee-strip__word">The Platform</span>
-      <span class="marquee-strip__dot" style="--c: var(--sky);"></span>
-    </div>
-    <div class="marquee-strip__set" aria-hidden="true">
-      <span class="marquee-strip__word">The Foundation</span>
-      <span class="marquee-strip__dot" style="--c: var(--red);"></span>
-      <span class="marquee-strip__word">The Retreat</span>
-      <span class="marquee-strip__dot" style="--c: var(--orange);"></span>
-      <span class="marquee-strip__word">The App</span>
-      <span class="marquee-strip__dot" style="--c: var(--yellow);"></span>
-      <span class="marquee-strip__word">The Platform</span>
-      <span class="marquee-strip__dot" style="--c: var(--sky);"></span>
-    </div>
-  </div>
-  <p class="visually-hidden">The Foundation. The Retreat. The App. The Platform. Four parts of one body of work.</p>
-</section>
-
-<!-- Stats counter — sparse editorial moment between marquee and pillars -->
-<section class="stats-counter" aria-label="The Foundation by the numbers">
-  <div class="container">
-    <div class="stats-counter__grid">
-      <div class="stats-counter__cell">
-        <div class="stats-counter__num"><span data-count="3">3</span></div>
-        <div class="stats-counter__cap">Ceremonies per retreat</div>
-      </div>
-      <div class="stats-counter__cell">
-        <div class="stats-counter__num"><span data-count="6">6</span></div>
-        <div class="stats-counter__cap">Days at the villa</div>
-      </div>
-      <div class="stats-counter__cell">
-        <div class="stats-counter__num"><span data-count="7">7</span></div>
-        <div class="stats-counter__cap">Pillars in the curriculum</div>
-      </div>
-      <div class="stats-counter__cell">
-        <div class="stats-counter__num"><span data-count="12">12</span></div>
-        <div class="stats-counter__cap">Guests per cohort</div>
-      </div>
-    </div>
-    <div class="rainbow-line" data-rainbow-line aria-hidden="true"></div>
-  </div>
-</section>
-
-<!-- The Pillars — Love · Happiness · Freedom -->
-<section>
-  <div class="pillar-index fade-in">
-    <a class="pillar-index__row" data-color="red" href="#programs">
-      <span class="pillar-index__num">01</span>
-      <div class="pillar-index__main">
-        <h3 class="pillar-index__title">Love</h3>
-        <p class="pillar-index__sub">Reconnection to self, to others, and to the natural world. The starting point of every other pillar.</p>
-      </div>
-      <span class="pillar-index__arrow">→</span>
-    </a>
-    <a class="pillar-index__row" data-color="orange" href="#programs">
-      <span class="pillar-index__num">02</span>
-      <div class="pillar-index__main">
-        <h3 class="pillar-index__title">Happiness</h3>
-        <p class="pillar-index__sub">Sustainable wellbeing rooted in presence, not performance. Built through practice, not pursued as outcome.</p>
-      </div>
-      <span class="pillar-index__arrow">→</span>
-    </a>
-    <a class="pillar-index__row" data-color="purple" href="#programs">
-      <span class="pillar-index__num">03</span>
-      <div class="pillar-index__main">
-        <h3 class="pillar-index__title">Freedom</h3>
-        <p class="pillar-index__sub">Liberation from the patterns, fears, and conditioning that keep people stuck. The work, and the result of the work.</p>
-      </div>
-      <span class="pillar-index__arrow">→</span>
-    </a>
-  </div>
-</section>
-
-<!-- Inside the villa — cover + heading + marquee carousel -->
-<section class="section section--tight villa-section" id="villa">
-
-  <!-- Full-bleed cover hero -->
-  <figure class="studio-cover fade-in" aria-hidden="true">
-    <div class="studio-cover__media" style="background-image:url('assets/villa-hero.jpg');background-position:center 35%;"></div>
-    <div class="studio-cover__overlay"></div>
-    <figcaption class="studio-cover__caption">
-      <span class="studio-cover__label">The Villa · Retreat home</span>
-    </figcaption>
-    <span class="studio-cover__location">Camps Bay · Cape Town</span>
-  </figure>
-
-  <div class="container">
-    <div class="chapter chapter--center fade-in" style="margin-bottom:1.5rem;">
-      <span class="chapter__rule"></span>
-      <span class="chapter__num"><em>04</em>The Villa</span>
-      <span class="chapter__rule"></span>
-    </div>
-    <div class="heading-block fade-in" style="margin-bottom:2.5rem;">
-      <h2 class="heading-block__title">Our <em style="color:var(--coral);">Camps Bay</em>, Cape Town retreats</h2>
-      <p class="heading-block__sub">
-        A private villa set against the Twelve Apostles, opening onto the ocean. Mountain views, communal spaces, private rooms, outdoor decks. The villa itself is part of the medicine.
-      </p>
-    </div>
-  </div>
-
-  <!-- Full-width marquee carousel -->
-  <div class="villa-marquee fade-in" aria-hidden="true">
-    <div class="villa-marquee__track">
-      <figure class="villa-marquee__slide" style="background-image:url('assets/villa-hero.jpg');"></figure>
-      <figure class="villa-marquee__slide" style="background-image:url('assets/villa-pool-pergola.jpg');"></figure>
-      <figure class="villa-marquee__slide" style="background-image:url('assets/villa-bedroom.jpg');"></figure>
-      <figure class="villa-marquee__slide" style="background-image:url('assets/villa-pool-ocean.jpg');"></figure>
-      <figure class="villa-marquee__slide" style="background-image:url('assets/villa-living.jpg');"></figure>
-      <figure class="villa-marquee__slide" style="background-image:url('assets/camps-bay.jpg');"></figure>
-      <figure class="villa-marquee__slide" style="background-image:url('assets/villa-kitchen.jpg');"></figure>
-      <figure class="villa-marquee__slide" style="background-image:url('assets/villa-office.jpg');"></figure>
-      <figure class="villa-marquee__slide" style="background-image:url('assets/villa-bath.jpg');"></figure>
-      <figure class="villa-marquee__slide" style="background-image:url('assets/cape-town-mountains.jpg');"></figure>
-      <!-- duplicate set for seamless loop -->
-      <figure class="villa-marquee__slide" style="background-image:url('assets/villa-hero.jpg');" aria-hidden="true"></figure>
-      <figure class="villa-marquee__slide" style="background-image:url('assets/villa-pool-pergola.jpg');" aria-hidden="true"></figure>
-      <figure class="villa-marquee__slide" style="background-image:url('assets/villa-bedroom.jpg');" aria-hidden="true"></figure>
-      <figure class="villa-marquee__slide" style="background-image:url('assets/villa-pool-ocean.jpg');" aria-hidden="true"></figure>
-      <figure class="villa-marquee__slide" style="background-image:url('assets/villa-living.jpg');" aria-hidden="true"></figure>
-      <figure class="villa-marquee__slide" style="background-image:url('assets/camps-bay.jpg');" aria-hidden="true"></figure>
-      <figure class="villa-marquee__slide" style="background-image:url('assets/villa-kitchen.jpg');" aria-hidden="true"></figure>
-      <figure class="villa-marquee__slide" style="background-image:url('assets/villa-office.jpg');" aria-hidden="true"></figure>
-      <figure class="villa-marquee__slide" style="background-image:url('assets/villa-bath.jpg');" aria-hidden="true"></figure>
-      <figure class="villa-marquee__slide" style="background-image:url('assets/cape-town-mountains.jpg');" aria-hidden="true"></figure>
-    </div>
-  </div>
-
-  <div class="container" style="margin-top:2rem;">
-    <div class="villa-meta fade-in">
-      <span class="villa-meta__line">Camps Bay · Twelve Apostles · Atlantic seaboard</span>
-      <span class="villa-meta__line">Cape Town established · Mozambique in development</span>
-    </div>
-  </div>
-</section>
-
-<!-- Environment — cinematic full-width feature -->
-<section class="cinema" id="environment" data-color="green">
-  <div class="cinema__media" style="background-image:url('assets/environment-dolphins.jpg');" aria-hidden="true"></div>
-  <div class="cinema__overlay" aria-hidden="true"></div>
-
-  <div class="cinema__chapter">
-    <span class="cinema__chapter-rule"></span>
-    <span class="cinema__chapter-text">Pillar 01 / The Environment</span>
-  </div>
-
-  <div class="cinema__content fade-in">
-    <h2 class="cinema__title">Conservation as <em>love</em> for humanity.</h2>
-    <p class="cinema__body">
-      The environment and conservation are vital to the survival of our planet and every living creature on it. Love and respect for nature go hand in hand with love for humanity. By protecting the environment, we fight for human rights and a better world for all.
-    </p>
-    <a class="cinema__cta" href="#concept">
-      Support our mission
-      <span aria-hidden="true">→</span>
-    </a>
-  </div>
-
-  <div class="cinema__caption">
-    <span class="cinema__caption-num">01 / 03</span>
-    <span class="cinema__caption-meta">Marine conservation · Mozambican coast</span>
-  </div>
-</section>
-
-
-<!-- The School — cinematic feature + companion image -->
-<section class="cinema cinema--school" id="school" data-color="orange">
-  <div class="cinema__media" style="background-image:url('assets/school-fountain-night.jpg');" aria-hidden="true"></div>
-  <div class="cinema__overlay" aria-hidden="true"></div>
-
-  <div class="cinema__chapter">
-    <span class="cinema__chapter-rule"></span>
-    <span class="cinema__chapter-text">Pillar 02 / The School</span>
-  </div>
-
-  <div class="cinema__content fade-in">
-    <h2 class="cinema__title">A school built around the <em>spirit</em> of the work.</h2>
-    <p class="cinema__body">
-      The Foundation's school carries the work into the next generation. A campus the children walk through every day, anchored by a centerpiece sculpture and the Love Happiness Freedom mural. The seven pillars taught not as a curriculum on a wall, but as a living environment.
-    </p>
-    <a class="cinema__cta" href="#programs">
-      See the programs
-      <span aria-hidden="true">→</span>
-    </a>
-  </div>
-
-  <div class="cinema__caption">
-    <span class="cinema__caption-num">02 / 03</span>
-    <span class="cinema__caption-meta">The campus · Mozambique</span>
-  </div>
-</section>
-
-<!-- School companion plate — day shot + context -->
-<section class="section section--tight school-plate" id="school-plate" style="background:var(--cream);">
-  <div class="container">
-    <div class="school-plate__grid fade-in">
-      <figure class="school-plate__media">
-        <img src="assets/school-fountain-day.jpg" alt="The Love Happiness Freedom school: rainbow-painted fountain sculpture with the Foundation mural and wordmark behind it, daylight." loading="lazy" />
-        <figcaption class="school-plate__caption">
-          <span>The campus, by day</span>
-          <span class="school-plate__caption-meta">Centerpiece sculpture · Foundation wordmark · the mural in the background</span>
-        </figcaption>
-      </figure>
-      <div class="school-plate__copy">
-        <span class="school-plate__eyebrow">A built environment</span>
-        <h3 class="school-plate__title">Every detail teaches.</h3>
-        <p>
-          The fountain is the first thing the children walk past. A painted figure in the Foundation's seven colours, hands in prayer, water falling. The mural that started everything sits on the wall behind. Love, Happiness, and Freedom written above it in colour.
-        </p>
-        <p>
-          The architecture of the school carries the message before anyone says it. The work the children do inside the classrooms is shaped by the world they walk through to get there.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- 322 & Rainbow concept -->
-<section class="section" id="322" style="background:var(--cream);">
-  <div class="container">
-    <div class="heading-block fade-in">
-      <h2 class="heading-block__title">The <em style="color:var(--red);">322</em> &amp; Rainbow Concept</h2>
-      <div class="divider-zigzag divider-zigzag--coral"></div>
-      <p class="heading-block__sub">
-        The digits of 322 sum to seven. Seven is the spiritual number of growth, of completion, of arrival. Our mission is to spread this message within seven years. The rainbow stands for diversity, inclusivity, and the shared sky we all live under.
-      </p>
-    </div>
-
-    <div class="rainbow-dots fade-in" role="presentation">
-      <span class="rainbow-dots__dot"></span>
-      <span class="rainbow-dots__dot"></span>
-      <span class="rainbow-dots__dot"></span>
-      <span class="rainbow-dots__dot"></span>
-      <span class="rainbow-dots__dot"></span>
-      <span class="rainbow-dots__dot"></span>
-      <span class="rainbow-dots__dot"></span>
-      <span class="rainbow-dots__dot"></span>
-      <span class="rainbow-dots__dot"></span>
-      <span class="rainbow-dots__dot"></span>
-      <span class="rainbow-dots__dot"></span>
-    </div>
-
-    <div class="stats-band fade-in">
-      <div class="stats-band__item">
-        <div class="stats-band__value">3</div>
-        <div class="stats-band__label">Year of the mission</div>
-      </div>
-      <div class="stats-band__item">
-        <div class="stats-band__value">2</div>
-        <div class="stats-band__label">Continents active</div>
-      </div>
-      <div class="stats-band__item">
-        <div class="stats-band__value">2</div>
-        <div class="stats-band__label">HQs · Cape Town &amp; Maputo</div>
-      </div>
-      <div class="stats-band__item">
-        <div class="stats-band__value">7</div>
-        <div class="stats-band__label">Year mission</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Rainbow line divider -->
-<div class="container"><div class="rainbow-line" data-rainbow-line aria-hidden="true"></div></div>
-
-<!-- Pack-break: full-bleed looping animation -->
-<div class="video-block video-block--full" id="video" aria-hidden="true">
-  <div class="video-block__frame">
-    <video class="video-block__video" autoplay muted loop playsinline preload="metadata">
-      <source src="assets/lhff-animation.mp4" type="video/mp4" />
-    </video>
-  </div>
-  <div class="video-block__rainbow"></div>
-</div>
-
-<!-- Programs — magazine spread rows -->
-<section class="section" id="programs">
-  <div class="container">
-    <div class="chapter chapter--center fade-in" style="margin-bottom:1.25rem;">
-      <span class="chapter__rule"></span>
-      <span class="chapter__num"><em>06</em>The Programs</span>
-      <span class="chapter__rule"></span>
-    </div>
-    <div class="heading-block fade-in">
-      <h2 class="heading-block__title" data-word-reveal>Programs that <em style="color:var(--green);">move</em> people</h2>
-      <p class="heading-block__sub">
-        Four active program lines across schools, corporates, and community. Each is built to be adopted, not just attended. Every program is bookended by the My Purpose pre and post curriculum.
-      </p>
-    </div>
-  </div>
-
-  <!-- Horizontal slider — each program is its own editorial slide, scroll-snap -->
-  <div class="programs-carousel" data-programs-carousel>
-    <div class="programs-carousel__track">
-
-      <article class="program-slide" data-color="red">
-        <span class="program-slide__num">01</span>
-        <div class="program-slide__head">
-          <span class="program-slide__meta">Women's Empowerment · 6 days · Cape Town · 12 per cohort</span>
-          <h3 class="program-slide__title">Empower your true <em>inner</em> self.</h3>
-        </div>
-        <p class="program-slide__body">
-          A six-day women's residential at the Cape Town villa. Practitioner-led work through the My Purpose pre-program and the full 7 Pillars. Built for young women ready to take a week and do real work on the self they've been waiting to meet, in community.
-        </p>
-        <div class="program-slide__tags">
-          <span>Meta Learning</span><span>Wellness</span><span>Communication</span><span>Meditation</span><span>Discipline</span><span>Faith</span><span>Redemption</span>
-        </div>
-        <a class="program-slide__cta" href="#" data-open-modal="retreat">Apply or nominate <span aria-hidden="true">→</span></a>
-      </article>
-
-      <article class="program-slide" data-color="orange">
-        <span class="program-slide__num">02</span>
-        <div class="program-slide__head">
-          <span class="program-slide__meta">Flagship · 6 days · Cape Town villa</span>
-          <h3 class="program-slide__title">Enlightening leadership &amp; <em>purposeful</em> living.</h3>
-        </div>
-        <p class="program-slide__body">
-          A facilitator-led six-day immersive at the villa. Built for founders, executives, creatives, and changemakers ready to lead from a deeper, more conscious place. No ice-breakers. No surface exercises. Direct workshops, embodied practice, and the inner work that actually shifts how you lead.
-        </p>
-        <div class="program-slide__tags">
-          <span>Conscious leadership</span><span>Breathwork</span><span>Meditation</span><span>Yoga · One Flow</span><span>Self-inquiry</span><span>Nature immersion</span><span>Integration</span>
-        </div>
-        <a class="program-slide__cta" href="#" data-open-modal="corporate">Apply for the next cohort <span aria-hidden="true">→</span></a>
-      </article>
-
-      <article class="program-slide" data-color="green">
-        <span class="program-slide__num">03</span>
-        <div class="program-slide__head">
-          <span class="program-slide__meta">Curriculum · Term-length · School-integrated</span>
-          <h3 class="program-slide__title">The 7 Pillars <em>curriculum</em>.</h3>
-        </div>
-        <p class="program-slide__body">
-          The Foundation's whole-person curriculum for schools. Seven themes integrated into the school day, framed by the My Purpose pre and post programs. Designed for adoption: trained teachers, illustrated learner books, and ongoing practitioner support.
-        </p>
-        <div class="program-slide__tags">
-          <span>Meta Learning</span><span>Personal Wellness</span><span>Communication</span><span>Meditation</span><span>Discipline</span><span>Faith</span><span>Redemption</span>
-        </div>
-        <a class="program-slide__cta" href="#" data-open-modal="school">Bring it to a school <span aria-hidden="true">→</span></a>
-      </article>
-
-      <article class="program-slide" data-color="sky">
-        <span class="program-slide__num">04</span>
-        <div class="program-slide__head">
-          <span class="program-slide__meta">Community · Ongoing · Cape Town HQ</span>
-          <h3 class="program-slide__title">Creative <em>studios</em> programme.</h3>
-        </div>
-        <p class="program-slide__body">
-          Free studio access for emerging podcasters, filmmakers, photographers, and wellness educators. In exchange, one piece of co-produced work per quarter we both stand behind. Twelve creators per quarter at the Foundation's Cape Town HQ.
-        </p>
-        <div class="program-slide__tags">
-          <span>Podcast</span><span>Film</span><span>Photo</span><span>Wellness</span>
-        </div>
-        <a class="program-slide__cta" href="#" data-open-modal="creator">Apply as a creator <span aria-hidden="true">→</span></a>
-      </article>
-
-    </div>
-
-    <div class="programs-carousel__chrome">
-      <div class="programs-carousel__counter">
-        <span data-programs-current>01</span><span class="programs-carousel__counter-sep"> / </span><span>04</span>
-      </div>
-      <div class="programs-carousel__progress" aria-hidden="true">
-        <span data-programs-progress></span>
-      </div>
-      <div class="programs-carousel__nav">
-        <button type="button" class="programs-carousel__btn" data-programs-prev aria-label="Previous program">
-          <span aria-hidden="true">←</span>
-        </button>
-        <button type="button" class="programs-carousel__btn" data-programs-next aria-label="Next program">
-          <span aria-hidden="true">→</span>
-        </button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- The App -->
-<section class="section app-section" id="app">
-  <div class="container">
-    <div class="chapter chapter--center fade-in" style="margin-bottom:1.25rem;">
-      <span class="chapter__rule"></span>
-      <span class="chapter__num"><em>08</em>The App</span>
-      <span class="chapter__rule"></span>
-    </div>
-
-    <div class="app-section__inner">
-      <div class="fade-in">
-        <h2 class="app-section__heading" data-word-reveal>A companion in your <em>pocket</em></h2>
-        <p class="app-section__body">
-          Most retreats fade within weeks. People come home, the calendar swallows them, the work slips. We built the app so it doesn't. A private, beautifully designed home for the practice, the curriculum, daily check-ins, and the cohort, every day after you leave the villa.
-        </p>
-        <p class="app-section__body" style="font-style:italic;color:var(--ink);">
-          Calm. Warm. Sacred. Built to be used daily, not just opened once.
+        <p class="lede hero__lede reveal" style="--d:3">
+          The companion app for guests of the foundation's retreat, in a private villa above Camps Bay,
+          Cape Town. It carries the forty day preparation, every hour of the six days, the teachings as
+          they are taught in the room, the house itself, and Navid, who is there at three in the morning.
         </p>
 
-        <!-- Small NAVID callout -->
-        <div class="navid-mini">
-          <span class="navid-mini__mark">N</span>
-          <div class="navid-mini__text">
-            <strong>NAVID lives inside.</strong>
-            <span>An AI guide trained on the Foundation's philosophy, available around the clock for prompts, support, and integration questions.</span>
-          </div>
+        <div class="btn-row reveal" style="--d:4">
+          <a class="btn btn--solid" href="https://lhff-v2.vercel.app">
+            Open the app <span class="btn__arrow" aria-hidden="true">&rarr;</span>
+          </a>
+          <a class="btn" href="https://lhff-v2.vercel.app/signin">Sign in</a>
+          <a class="btn" href="#install">Add to home screen</a>
         </div>
 
-        <div class="app-section__platforms">
-          <span class="app-section__platform">iOS</span>
-          <span class="app-section__platform">Android</span>
-          <span class="app-section__platform">Members only</span>
+        <div class="votive hero__votive reveal draw" style="--d:5" role="img" aria-label="The foundation's seven colours, as a single rule">
+          <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
         </div>
-      </div>
-
-      <div class="fade-in" data-delay="2">
-        <div class="phone-mock">
-          <div class="phone-mock__screen" role="img" aria-label="LHFF companion app — Home screen with Your Retreat Journey, progress card, and tools grid"></div>
-        </div>
-        <p class="caption" style="text-align:center;margin-top:1.25rem;">LHFF App · Home screen</p>
-      </div>
-    </div>
-
-    <!-- Phone row: 5 app screens -->
-    <div class="phone-row fade-in">
-      <figure class="phone-row__phone">
-        <div class="phone-row__screen" style="background-image:url('assets/app-home.png');"></div>
-        <figcaption class="phone-row__label">Home</figcaption>
-      </figure>
-      <figure class="phone-row__phone">
-        <div class="phone-row__screen" style="background-image:url('assets/app-course.png');"></div>
-        <figcaption class="phone-row__label">Course</figcaption>
-      </figure>
-      <figure class="phone-row__phone">
-        <div class="phone-row__screen" style="background-image:url('assets/app-calendar.png');"></div>
-        <figcaption class="phone-row__label">Calendar</figcaption>
-      </figure>
-      <figure class="phone-row__phone">
-        <div class="phone-row__screen" style="background-image:url('assets/app-practice.png');"></div>
-        <figcaption class="phone-row__label">Practice</figcaption>
-      </figure>
-      <figure class="phone-row__phone">
-        <div class="phone-row__screen" style="background-image:url('assets/app-journal.png');"></div>
-        <figcaption class="phone-row__label">Journal</figcaption>
-      </figure>
-    </div>
-  </div>
-</section>
-
-<!-- Roadmap / Future Vision -->
-<section class="section roadmap" id="roadmap">
-  <div class="container">
-    <div class="chapter chapter--center fade-in" style="margin-bottom:1.25rem;">
-      <span class="chapter__rule"></span>
-      <span class="chapter__num"><em>09</em>What's Next</span>
-      <span class="chapter__rule"></span>
-    </div>
-
-    <div class="roadmap__head fade-in">
-      <h2 class="roadmap__heading">The Foundation is the heart. The retreat is the doorway. The platform is the <em>future</em>.</h2>
-      <p class="roadmap__sub">
-        Version one was built for our retreat guests. Version two opens the work to the wider world. A public wellbeing platform, more retreat formats, a trained facilitator network, corporate programmes, scholarship places for people who could not otherwise access the work, and a long-term home for everyone who has walked through it. The same practice, scaled.
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- AI development callout -->
-<section class="ai-callout">
-  <div class="container">
-    <div class="ai-callout__inner fade-in">
-      <span class="ai-callout__tag">A new frontier</span>
-      <h2 class="ai-callout__heading">We are leaning into <em>artificial intelligence</em> as the next chapter of the work.</h2>
-      <p class="ai-callout__body">
-        NAVID is live. EduAI is in build. The Foundation, with Divergence, is using AI to scale practice, teach the teachers, and reach the people we could not reach otherwise. Not as a replacement for the work. As a way to widen the door.
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- Rainbow line divider -->
-<div class="container"><div class="rainbow-line" data-rainbow-line aria-hidden="true"></div></div>
-
-<!-- Built for the Foundation -->
-<section class="section built-section" id="built">
-  <div class="container">
-    <div class="chapter built-section__chapter fade-in">
-      <span class="chapter__rule"></span>
-      <span class="chapter__num"><em>09</em>Built for the Foundation</span>
-    </div>
-
-    <h2 class="built-section__heading fade-in">Innovation in service of <em>mission</em>.</h2>
-    <p class="built-section__lede fade-in">
-      The key parts of what the Foundation is building. Physical locations, digital products, and the partner that ships everything alongside us.
-    </p>
-
-    <div class="accordion accordion--on-dark fade-in">
-      <details class="accordion__item" data-color="purple">
-        <summary class="accordion__head">
-          <span class="accordion__num">01</span>
-          <h3 class="accordion__title">NAVID</h3>
-          <span class="accordion__meta">Artificial Intelligence · Live</span>
-          <span class="accordion__icon" aria-hidden="true"></span>
-        </summary>
-        <div class="accordion__body"><div class="accordion__body-inner"><div class="accordion__body-content">
-          <p class="accordion__text">A custom AI companion trained on the Foundation's curriculum and years of retreat work. Public, member, and practitioner tiers with full continuity. The Foundation's voice, available around the clock.</p>
-        </div></div></div>
-      </details>
-
-      <details class="accordion__item" data-color="orange">
-        <summary class="accordion__head">
-          <span class="accordion__num">02</span>
-          <h3 class="accordion__title">LHFF App</h3>
-          <span class="accordion__meta">Mobile · iOS &amp; Android</span>
-          <span class="accordion__icon" aria-hidden="true"></span>
-        </summary>
-        <div class="accordion__body"><div class="accordion__body-inner"><div class="accordion__body-content">
-          <p class="accordion__text">A native iOS and Android app for members and retreat graduates. Daily practice, curriculum library, NAVID, cohort messaging. Built so the work continues every day after the retreat ends.</p>
-        </div></div></div>
-      </details>
-
-      <details class="accordion__item" data-color="yellow">
-        <summary class="accordion__head">
-          <span class="accordion__num">03</span>
-          <h3 class="accordion__title">EduAI</h3>
-          <span class="accordion__meta">In development · Education</span>
-          <span class="accordion__icon" aria-hidden="true"></span>
-        </summary>
-        <div class="accordion__body"><div class="accordion__body-inner"><div class="accordion__body-content">
-          <p class="accordion__text">A platform we are building to empower young African teachers through AI. The idea is simple: train the teacher, the teacher trains the kids. Many of the libraries and schools we work with are running on outdated information, with limited connectivity. EduAI brings modern teaching tools, AI-assisted lesson planning, and Starlink-powered Wi-Fi into the same package.</p>
-          <p class="accordion__text">Still early. Pilots planned with partner schools across Mozambique and South Africa.</p>
-        </div></div></div>
-      </details>
-
-      <details class="accordion__item" data-color="coral">
-        <summary class="accordion__head">
-          <span class="accordion__num">04</span>
-          <h3 class="accordion__title">The Villa</h3>
-          <span class="accordion__meta">Physical · Camps Bay, Cape Town</span>
-          <span class="accordion__icon" aria-hidden="true"></span>
-        </summary>
-        <div class="accordion__body"><div class="accordion__body-inner"><div class="accordion__body-content">
-          <p class="accordion__text">The Foundation's established retreat home. A private villa set against the Twelve Apostles, opening onto the ocean. Communal spaces, private rooms, outdoor decks, and a fully briefed environment so guests can drop in without friction.</p>
-        </div></div></div>
-      </details>
-
-      <details class="accordion__item" data-color="green">
-        <summary class="accordion__head">
-          <span class="accordion__num">05</span>
-          <h3 class="accordion__title">Studio One</h3>
-          <span class="accordion__meta">Physical · Cape Town</span>
-          <span class="accordion__icon" aria-hidden="true"></span>
-        </summary>
-        <div class="accordion__body"><div class="accordion__body-inner"><div class="accordion__body-content">
-          <p class="accordion__text">The Foundation's working creative studio. Cyc, professional lighting, lounge, and an edit suite. Open to retreat alumni, models, podcasters, filmmakers, and the Creative Studios programme.</p>
-        </div></div></div>
-      </details>
-
-      <details class="accordion__item" data-color="sky">
-        <summary class="accordion__head">
-          <span class="accordion__num">06</span>
-          <h3 class="accordion__title">Divergence</h3>
-          <span class="accordion__meta">Strategic Partner · AI agency</span>
-          <span class="accordion__icon" aria-hidden="true"></span>
-        </summary>
-        <div class="accordion__body"><div class="accordion__body-inner"><div class="accordion__body-content">
-          <p class="accordion__text">A cutting-edge agency building artificial intelligence for marketing. Smart agents, bots, AI-native apps and platforms. The Foundation's equal partner on every digital product it ships.</p>
-        </div></div></div>
-      </details>
-    </div>
-  </div>
-</section>
-
-<!-- Divergence — strategic partnership section -->
-<section class="partner-section" id="divergence">
-  <div class="container">
-    <div class="chapter chapter--center fade-in" style="margin-bottom:1.25rem;">
-      <span class="chapter__rule"></span>
-      <span class="chapter__num"><em>10</em>The Strategic Partnership</span>
-      <span class="chapter__rule"></span>
-    </div>
-
-    <div class="partner-section__solo fade-in">
-      <h2 class="partner-section__heading">Built with <em>Divergence</em>.</h2>
-      <p class="partner-section__lede">
-        Divergence is a cutting-edge agency building artificial intelligence for marketing. Smart agents, conversational bots, AI-native apps, websites, and platforms. Agency work, made different by the systems we use to ship it.
-      </p>
-      <p class="partner-section__body">
-        The Foundation runs as an equal partnership with Divergence. NAVID, the app, this website, and everything else digital are designed, built, and operated together in Cape Town. Not outsourced. Not templated. Built in the same room.
-      </p>
-
-      <div class="partner-section__ctas">
-        <a class="btn btn--purple" href="https://divergencemedia.co.za" target="_blank" rel="noopener">Visit Divergence</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- NAVID -->
-<section class="section navid">
-  <div class="container">
-    <div class="navid__inner">
-      <div class="fade-in">
-        <div class="chapter navid__chapter">
-          <span class="chapter__rule"></span>
-          <span class="chapter__num"><em>06</em>NAVID · The Foundation's voice</span>
-        </div>
-        <h2 class="navid__title-display">A guide that <em>remembers</em> you</h2>
-        <p class="navid__body-text">
-          NAVID is the Foundation's custom AI companion. Trained on the 7 Pillars curriculum, our retreat work, and seven years of conversations with young people. Built to hold presence, not perform it.
+        <p class="aside hero__meta reveal" style="--d:5">
+          It installs from the browser on iPhone and Android. There is no app store listing to find.
         </p>
-        <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
-          <a class="btn btn--purple" href="navid.html">Meet NAVID</a>
-          <a class="btn btn--ghost" style="color:#fff;border-color:rgba(255,255,255,0.6);" href="navid.html#how">How it works</a>
-        </div>
       </div>
 
-      <div class="chat-mock fade-in" aria-hidden="true">
-        <div class="chat-mock__header">
-          <div class="chat-mock__title">NAVID</div>
-          <div class="chat-mock__mode">Online</div>
-        </div>
-        <div class="chat-msg">
-          <div class="chat-msg__avatar chat-msg__avatar--user">YOU</div>
-          <div class="chat-msg__body">
-            <div class="chat-msg__name">You</div>
-            I finished the retreat three weeks ago and I don't know what to do with what I learned.
-          </div>
-        </div>
-        <div class="chat-msg">
-          <div class="chat-msg__avatar chat-msg__avatar--navid">N</div>
-          <div class="chat-msg__body">
-            <div class="chat-msg__name">NAVID</div>
-            That is a real place to be. You worked your purpose pillar hardest. Let us start there: what is one small thing you have wanted to do since you got home, and have not?
-          </div>
-        </div>
-        <div class="chat-mock__input">
-          <span class="chat-mock__input-placeholder">Tell NAVID what you are sitting with...</span>
-          <span class="chat-mock__send" aria-hidden="true">→</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Studio One — facilities for young creatives -->
-<section class="studio-section" id="studio">
-
-  <!-- Full-bleed cover image -->
-  <figure class="studio-cover fade-in" aria-hidden="true">
-    <div class="studio-cover__media" style="background-image:url('assets/studio/studio-cover.jpg'), url('assets/studio/studio-05.jpg');"></div>
-    <div class="studio-cover__overlay"></div>
-    <figcaption class="studio-cover__caption">
-      <span class="studio-cover__label">Studio One · Working space</span>
-      <span class="studio-cover__location">Cape Town</span>
-    </figcaption>
-  </figure>
-
-  <div class="container">
-    <div class="chapter chapter--center fade-in" style="margin-bottom:1.25rem;">
-      <span class="chapter__rule"></span>
-      <span class="chapter__num"><em>11</em>Studio One</span>
-      <span class="chapter__rule"></span>
-    </div>
-
-    <div class="heading-block fade-in" style="margin-bottom:2.5rem;">
-      <h2 class="heading-block__title">Facilities to <em style="color:var(--orange);">empower</em> young creatives</h2>
-      <p class="heading-block__sub">
-        Studio One is the Foundation's working space for young creators, photographers, filmmakers, podcasters, models, and the brand work that comes out of the retreats. A real production studio with cyc, lighting, lounge, and the equipment to make work that travels.
-      </p>
-    </div>
-  </div>
-
-  <!-- Full-bleed studio carousel -->
-  <div class="marquee fade-in" aria-hidden="true">
-    <div class="marquee__track">
-      <figure class="marquee__slide" style="background-image:url('assets/studio/studio-01.jpg');"></figure>
-      <figure class="marquee__slide" style="background-image:url('assets/studio/studio-05.jpg');"></figure>
-      <figure class="marquee__slide" style="background-image:url('assets/studio/studio-08.jpg');"></figure>
-      <figure class="marquee__slide" style="background-image:url('assets/studio/studio-02.jpg');"></figure>
-      <figure class="marquee__slide" style="background-image:url('assets/studio/studio-06.jpg');"></figure>
-      <figure class="marquee__slide" style="background-image:url('assets/studio/studio-04.jpg');"></figure>
-      <figure class="marquee__slide" style="background-image:url('assets/studio/studio-09.jpg');"></figure>
-      <figure class="marquee__slide" style="background-image:url('assets/studio/studio-11.jpg');"></figure>
-      <figure class="marquee__slide" style="background-image:url('assets/studio/studio-03.jpg');"></figure>
-      <figure class="marquee__slide" style="background-image:url('assets/studio/studio-13.jpg');"></figure>
-      <figure class="marquee__slide" style="background-image:url('assets/studio/studio-12.jpg');"></figure>
-      <figure class="marquee__slide" style="background-image:url('assets/studio/studio-14.jpg');"></figure>
-      <!-- duplicate set -->
-      <figure class="marquee__slide" style="background-image:url('assets/studio/studio-01.jpg');"></figure>
-      <figure class="marquee__slide" style="background-image:url('assets/studio/studio-05.jpg');"></figure>
-      <figure class="marquee__slide" style="background-image:url('assets/studio/studio-08.jpg');"></figure>
-      <figure class="marquee__slide" style="background-image:url('assets/studio/studio-02.jpg');"></figure>
-      <figure class="marquee__slide" style="background-image:url('assets/studio/studio-06.jpg');"></figure>
-      <figure class="marquee__slide" style="background-image:url('assets/studio/studio-04.jpg');"></figure>
-      <figure class="marquee__slide" style="background-image:url('assets/studio/studio-09.jpg');"></figure>
-      <figure class="marquee__slide" style="background-image:url('assets/studio/studio-11.jpg');"></figure>
-      <figure class="marquee__slide" style="background-image:url('assets/studio/studio-03.jpg');"></figure>
-      <figure class="marquee__slide" style="background-image:url('assets/studio/studio-13.jpg');"></figure>
-      <figure class="marquee__slide" style="background-image:url('assets/studio/studio-12.jpg');"></figure>
-      <figure class="marquee__slide" style="background-image:url('assets/studio/studio-14.jpg');"></figure>
-    </div>
-  </div>
-
-  <div class="container" style="margin-top:2rem;">
-    <div class="studio-meta fade-in">
-      <span class="studio-meta__line">Cyc · Profoto &amp; Godox lighting · Lounge · Edit suite</span>
-      <span class="studio-meta__line">Open to retreat alumni, models, and the Creative Studios programme</span>
-    </div>
-  </div>
-</section>
-
-<!-- Fashion Perspective — expanded gallery + framework -->
-<section class="section" id="fashion" style="background:var(--cream);">
-  <div class="container">
-    <div class="chapter chapter--center fade-in" style="margin-bottom:1.25rem;">
-      <span class="chapter__rule"></span>
-      <span class="chapter__num"><em>12</em>The Fashion Perspective</span>
-      <span class="chapter__rule"></span>
-    </div>
-
-    <div class="heading-block fade-in" style="margin-bottom:3rem;">
-      <h2 class="heading-block__title">When we say <em style="color:var(--orange);">fashion</em>, we mean culture.</h2>
-      <p class="heading-block__sub">
-        Not clothes. A whole culture that shapes how young people see themselves and the world they inherit. The Foundation uses fashion as a tool, never as a product. The shoots happen at Studio One. The story carries through the retreats, the curriculum, and the platform.
-      </p>
-    </div>
-  </div>
-
-  <!-- Single editorial fashion feature -->
-  <div class="container">
-    <figure class="fashion-feature fade-in">
-      <div class="fashion-feature__media" style="background-image:url('assets/fashion.jpg');"></div>
-      <figcaption class="fashion-feature__caption">
-        <span class="fashion-feature__cap-tag">Foundation editorial</span>
-        <span class="fashion-feature__cap-title">Patchwork series</span>
-      </figcaption>
-    </figure>
-
-    <!-- Framework callout -->
-    <div class="fashion-framework fade-in">
-      <div class="fashion-framework__inner">
-        <h3 class="fashion-framework__title">Fashion, the way we mean it.</h3>
-        <div class="fashion-framework__points">
-          <div class="fashion-framework__point">
-            <span class="fashion-framework__point-num">01</span>
-            <div>
-              <strong>A tool, not a product.</strong>
-              <p>We use fashion to shape culture, not to sell it. The shoots, the styling, and the editorial all serve the mission. Revenue is not the metric.</p>
+      <div class="hero__device reveal" style="--d:3">
+        <div class="device">
+          <div class="device__body">
+            <div class="device__screen">
+              <img src="assets/screens/today.jpg" width="600" height="1301" alt="The app's Today screen: a large greeting, then the day drawn as an arc from dawn to night with day 02 lit at its centre, the next session below it, and one short line from Navid." />
             </div>
           </div>
-          <div class="fashion-framework__point">
-            <span class="fashion-framework__point-num">02</span>
-            <div>
-              <strong>Models as collaborators.</strong>
-              <p>We work alongside young models from a human rights perspective. Fashion as education, culture, and work. Never exploitation. Protections in writing.</p>
-            </div>
-          </div>
-          <div class="fashion-framework__point">
-            <span class="fashion-framework__point-num">03</span>
-            <div>
-              <strong>Made at Studio One.</strong>
-              <p>Every shoot, film, and editorial is produced in-house at the Foundation's Cape Town studio. Same team, same standards, same care, every time.</p>
-            </div>
-          </div>
+          <p class="device__caption mono">Today · The day as an arc</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Cheney voice — color block -->
-<section class="voice-block">
-  <div class="container">
-    <div class="voice-block__inner fade-in">
-      <div class="chapter chapter--center voice-block__chapter">
-        <span class="chapter__rule"></span>
-        <span class="chapter__num">In his own words</span>
-        <span class="chapter__rule"></span>
-      </div>
-      <p class="voice-block__quote">
-        We are not using fashion to sell things. We are using it to <em>move</em> things. Starting with how young women see themselves.
-      </p>
-      <div class="voice-block__attribution">
-        <strong>Cheney</strong>
-        Founder &amp; CEO · Love Happiness Freedom Foundation
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- What we think about — interesting points the Foundation cares about -->
-<section class="section" style="background:var(--cream);">
-  <div class="container">
-    <div class="heading-block fade-in">
-      <h2 class="heading-block__title" data-word-reveal>Things we keep coming <em style="color:var(--purple);">back to</em></h2>
-      <div class="divider-zigzag divider-zigzag--purple"></div>
-      <p class="heading-block__sub">
-        Some of the conversations the Foundation cares about. Questions we want more people sitting with, ideas we think deserve more attention, and the parts of the world we keep returning to.
-      </p>
-    </div>
-
-    <div class="research-list fade-in">
-      <article class="research-item">
-        <div class="research-item__num">01</div>
-        <h3 class="research-item__title">Food, sovereignty, and the school garden as civic infrastructure</h3>
-        <div class="research-item__meta">Sustainability</div>
-      </article>
-      <article class="research-item">
-        <div class="research-item__num">02</div>
-        <h3 class="research-item__title">What a healthier alternative to social credit could look like</h3>
-        <div class="research-item__meta">Social systems</div>
-      </article>
-      <article class="research-item">
-        <div class="research-item__num">03</div>
-        <h3 class="research-item__title">Legal dignity for young women working in fashion</h3>
-        <div class="research-item__meta">Advocacy</div>
-      </article>
-      <article class="research-item">
-        <div class="research-item__num">04</div>
-        <h3 class="research-item__title">Regenerative medicine and what it could mean for southern Africa</h3>
-        <div class="research-item__meta">Science</div>
-      </article>
-    </div>
-
-    <div style="text-align:center;margin-top:2.5rem;">
-      <a class="btn btn--purple" href="contact.html">Start a conversation</a>
-    </div>
-  </div>
-</section>
-
-<!-- Get Involved — full-width color block tiles -->
-<section style="padding-top:clamp(4rem,7vw,5rem);">
-  <div class="container">
-    <div class="chapter chapter--center fade-in" style="margin-bottom:2rem;">
+<!-- ═══ 01 · WHAT IT IS ═══════════════════════════════════════════════════ -->
+<section class="section section--raised" id="what" aria-labelledby="what-h">
+  <div class="wrap">
+    <div class="chapter reveal">
       <span class="chapter__rule"></span>
-      <span class="chapter__num"><em>10</em>Step in</span>
+      <span class="chapter__text"><em>01</em> &nbsp;The companion</span>
+    </div>
+
+    <h2 class="h2 reveal" id="what-h" style="--d:1">One place for the whole arc.</h2>
+    <p class="lede reveal" style="--d:2; margin-top: 1.5rem;">
+      The retreat is six days. The work is longer than that. The app opens the day a guest is booked and
+      stays open long after they fly home, so nothing has to be remembered, chased, or asked twice.
+    </p>
+
+    <div class="ledger reveal" style="--d:3; margin-top: clamp(2.5rem, 5vw, 3.5rem);">
+      <div class="ledger__row">
+        <span class="mono ledger__key">Forty days before</span>
+        <p class="ledger__val">
+          The preparation guide, stage by stage. The medication gate, the cleanse in two lists, a two week
+          menu plan, a packing list of seventeen things, and one sentence of intention you keep reworking.
+        </p>
+      </div>
+      <div class="ledger__row">
+        <span class="mono ledger__key">Six days at the villa</span>
+        <p class="ledger__val">
+          Every hour your facilitators have planned, the six teachings exactly as they are taught in the room,
+          and the house guide for the fourteen things people actually ask about.
+        </p>
+      </div>
+      <div class="ledger__row">
+        <span class="mono ledger__key">The return</span>
+        <p class="ledger__val">
+          Twelve guided practices filed by the moment you are in, your notes, your journal, and a record you
+          can take out of the app whenever you want it.
+        </p>
+      </div>
+    </div>
+
+    <p class="aside reveal" style="--d:4; margin-top: 2.5rem;">
+      It is a progressive web app: Next.js on Vercel, Supabase behind it, and a service worker and manifest,
+      so it installs to the home screen like anything else.
+    </p>
+  </div>
+</section>
+
+<!-- photograph: atmosphere only, never carries text -->
+<figure class="plate plate--bleed reveal" style="margin: 0; --fade-top: var(--ground-2);">
+  <div class="plate__img">
+    <img src="assets/site/coast-aerial.jpg" width="1400" height="786"
+         alt="Camps Bay from above: white houses stepping down the slope of the Twelve Apostles towards the Atlantic." loading="lazy" />
+  </div>
+  <figcaption class="wrap">
+    <div class="plate__caption">
+      <span class="mono">Camps Bay, Cape Town</span>
+      <span class="mono">The villa sits above this line</span>
+    </div>
+  </figcaption>
+</figure>
+
+<!-- ═══ 02 · THE SEVEN SECTIONS ═══════════════════════════════════════════ -->
+<section class="section" id="app" aria-labelledby="app-h">
+  <div class="wrap">
+    <div class="chapter reveal">
       <span class="chapter__rule"></span>
+      <span class="chapter__text"><em>02</em> &nbsp;Inside the app</span>
     </div>
-    <div class="heading-block fade-in" style="margin-bottom:3rem;">
-      <h2 class="heading-block__title" data-word-reveal>Four ways to <em style="color:var(--orange);">join</em> the mission</h2>
-    </div>
-  </div>
 
-  <div class="container">
-    <nav class="cta-index fade-in" aria-label="Ways to step into the Foundation's work">
-      <a class="cta-index__row" data-color="red" href="#" data-open-modal="retreat">
-        <span class="cta-index__num">01</span>
-        <div class="cta-index__main">
-          <h3 class="cta-index__title">Apply for a retreat</h3>
-          <p class="cta-index__sub">For participants ready to do the work. Six days in Cape Town.</p>
+    <h2 class="h2 reveal" id="app-h" style="--d:1">Seven rooms, and nothing else to learn.</h2>
+    <p class="lede reveal" style="--d:2; margin-top: 1.5rem; margin-bottom: clamp(2.5rem, 5vw, 4rem);">
+      One tab bar along the bottom, drawn in a single hand. Every glyph is a continuous two pixel line,
+      and every one of them is alive: it draws itself on, as they do here, and in the app it keeps breathing
+      while you are standing in the room.
+    </p>
+
+    <div class="tabs">
+
+      <article class="tab reveal">
+        <div class="tab__copy">
+          <span class="tab__seam" style="--seam: var(--c1);" aria-hidden="true"></span>
+          <span class="numeral tab__index">01 / 07</span>
+          <span class="tab__glyph" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <line pathLength="1" x1="6" y1="28" x2="34" y2="28" /><path pathLength="1" d="M12 28a8 8 0 0116 0" />
+              <line pathLength="1" x1="20" y1="13" x2="20" y2="9" /><line pathLength="1" x1="11" y1="17" x2="8.5" y2="14.5" /><line pathLength="1" x1="29" y1="17" x2="31.5" y2="14.5" />
+            </svg>
+          </span>
+          <h3 class="h3">Today</h3>
+          <p class="tab__line">The whole day, drawn as one arc.</p>
+          <p class="tab__detail">
+            A ritual dial runs from dawn to night with the day's numeral lit at its centre and a marker where
+            you actually are. Underneath it, the session happening now, and one short line from Navid about it.
+          </p>
         </div>
-        <span class="cta-index__arrow" aria-hidden="true">→</span>
-      </a>
-      <a class="cta-index__row" data-color="orange" href="#" data-open-modal="general">
-        <span class="cta-index__num">02</span>
-        <div class="cta-index__main">
-          <h3 class="cta-index__title">Partner with us</h3>
-          <p class="cta-index__sub">For organisations, funders, and aligned brands.</p>
+        <div class="tab__media">
+          <div class="device">
+            <div class="device__body"><div class="device__screen">
+              <img src="assets/screens/today.jpg" width="600" height="1301" loading="lazy"
+                   alt="Today screen: Good morning, Wesley, above a thin arc marked dawn and night with the numeral 02 at its centre, then the morning's session and a note from Navid." />
+            </div></div>
+          </div>
         </div>
-        <span class="cta-index__arrow" aria-hidden="true">→</span>
-      </a>
-      <a class="cta-index__row" data-color="green" href="#" data-open-modal="school">
-        <span class="cta-index__num">03</span>
-        <div class="cta-index__main">
-          <h3 class="cta-index__title">Bring the curriculum to your school</h3>
-          <p class="cta-index__sub">The seven pillars, designed to teach. Pilot programmes open.</p>
+      </article>
+
+      <article class="tab reveal">
+        <div class="tab__copy">
+          <span class="tab__seam" style="--seam: var(--c2);" aria-hidden="true"></span>
+          <span class="numeral tab__index">02 / 07</span>
+          <span class="tab__glyph" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2">
+              <rect pathLength="1" x="8" y="8" width="10.5" height="10.5" rx="3" /><rect pathLength="1" x="21.5" y="8" width="10.5" height="10.5" rx="3" />
+              <rect pathLength="1" x="8" y="21.5" width="10.5" height="10.5" rx="3" /><rect pathLength="1" x="21.5" y="21.5" width="10.5" height="10.5" rx="3" />
+            </svg>
+          </span>
+          <h3 class="h3">Tools</h3>
+          <p class="tab__line">Everything you use every day, in one place.</p>
+          <p class="tab__detail">
+            The preparation companion, your journal, your notes, the packing list, your intention, your path,
+            and the export. Laid out so the thing you need today is the largest thing on the screen.
+          </p>
         </div>
-        <span class="cta-index__arrow" aria-hidden="true">→</span>
-      </a>
-      <a class="cta-index__row" data-color="sky" href="#" data-open-modal="creator">
-        <span class="cta-index__num">04</span>
-        <div class="cta-index__main">
-          <h3 class="cta-index__title">Join Studio One</h3>
-          <p class="cta-index__sub">For young creatives. Studio access, mentorship, real briefs.</p>
+        <div class="tab__media">
+          <div class="device">
+            <div class="device__body"><div class="device__screen">
+              <img src="assets/screens/tools.jpg" width="600" height="1301" loading="lazy"
+                   alt="Tools screen: today's list showing two of four done, then tiles for the journal, notes, packing and the guest's written intention." />
+            </div></div>
+          </div>
         </div>
-        <span class="cta-index__arrow" aria-hidden="true">→</span>
-      </a>
-    </nav>
+      </article>
+
+      <article class="tab reveal">
+        <div class="tab__copy">
+          <span class="tab__seam" style="--seam: var(--c3);" aria-hidden="true"></span>
+          <span class="numeral tab__index">03 / 07</span>
+          <span class="tab__glyph" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <rect pathLength="1" x="7" y="10" width="26" height="24" rx="4" /><line pathLength="1" x1="7" y1="17.5" x2="33" y2="17.5" />
+              <line pathLength="1" x1="14" y1="6" x2="14" y2="12" /><line pathLength="1" x1="26" y1="6" x2="26" y2="12" />
+            </svg>
+          </span>
+          <h3 class="h3">Calendar</h3>
+          <p class="tab__line">Every hour of the retreat, and everything your facilitators plan for you.</p>
+          <p class="tab__detail">
+            Day, month and list views over the same hour blocks. Sessions, meals, workshops, ceremonies and
+            open time, each in its own weight, so a full day never reads as noise.
+          </p>
+        </div>
+        <div class="tab__media">
+          <div class="device">
+            <div class="device__body"><div class="device__screen">
+              <img src="assets/screens/calendar.jpg" width="600" height="1301" loading="lazy"
+                   alt="Calendar screen: Monday 5 October, villa day 2 of six, with morning yoga, breakfast, the emotional intelligence workshop and free time set out in hour blocks." />
+            </div></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="tab reveal">
+        <div class="tab__copy">
+          <span class="tab__seam" style="--seam: var(--c4);" aria-hidden="true"></span>
+          <span class="numeral tab__index">04 / 07</span>
+          <span class="tab__glyph" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
+              <path pathLength="1" d="M20 12c-3-2.5-7.5-3.5-13-3v22c5.5-.5 10 .5 13 3V12z" />
+              <path pathLength="1" d="M20 12c3-2.5 7.5-3.5 13-3v22c-5.5-.5-10 .5-13 3V12z" />
+              <path pathLength="1" d="M25 9.5v7l2.5-2 2.5 2v-7.5" />
+            </svg>
+          </span>
+          <h3 class="h3">Course</h3>
+          <p class="tab__line">Six days of teachings, exactly as they are taught at the villa.</p>
+          <p class="tab__detail">
+            Six teachings across fifty nine slides, presented full screen the way the facilitator presents
+            them, with the PDFs to keep. Nothing paraphrased, nothing summarised down.
+          </p>
+        </div>
+        <div class="tab__media">
+          <div class="device">
+            <div class="device__body"><div class="device__screen">
+              <img src="assets/screens/course.jpg" width="600" height="1301" loading="lazy"
+                   alt="Course screen: Teaching one, Arrival and Introduction, marked yours now, above Teaching two, Emotional Intelligence and First Ceremony." />
+            </div></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="tab reveal">
+        <div class="tab__copy">
+          <span class="tab__seam" style="--seam: var(--c5);" aria-hidden="true"></span>
+          <span class="numeral tab__index">05 / 07</span>
+          <span class="tab__glyph" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path pathLength="1" d="M8 19L20 8l12 11" /><path pathLength="1" d="M11 17v15h18V17" /><path pathLength="1" d="M17 32v-8h6v8" />
+            </svg>
+          </span>
+          <h3 class="h3">Villa</h3>
+          <p class="tab__line">The house, in fourteen topics.</p>
+          <p class="tab__detail">
+            Arrival and keys, the alarm, the Wi-Fi, the safes, power, water and gas, the kitchen, the pools,
+            departure. A map of the house, and a Cape Town guide of twenty one places across eating, wellness,
+            walks and activities, each one measured as a straight line from the front door.
+          </p>
+        </div>
+        <div class="tab__media">
+          <div class="device">
+            <div class="device__body"><div class="device__screen">
+              <img src="assets/screens/villa.jpg" width="600" height="1301" loading="lazy"
+                   alt="Villa screen: a photograph of the house above Camps Bay, its address, a map, and the Wi-Fi network with a copy password control." />
+            </div></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="tab reveal">
+        <div class="tab__copy">
+          <span class="tab__seam" style="--seam: var(--c6);" aria-hidden="true"></span>
+          <span class="numeral tab__index">06 / 07</span>
+          <span class="tab__glyph" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <path pathLength="1" d="M8 26c4-5 8-5 12 0s8 5 12 0" /><path pathLength="1" d="M8 19c4-5 8-5 12 0s8 5 12 0" opacity=".7" />
+              <path pathLength="1" d="M12 12c3-3.5 5.5-3.5 8 0s5 3.5 8 0" opacity=".45" />
+            </svg>
+          </span>
+          <h3 class="h3">Practice</h3>
+          <p class="tab__line">Guided breathwork, meditation and rest, filed by the moment you are in.</p>
+          <p class="tab__detail">
+            Twelve practices, each with its own artwork. They are sorted by where you are rather than by
+            category: the night before ceremony, the morning after, between ceremonies, when it gets heavy,
+            back at your desk, first Monday back.
+          </p>
+        </div>
+        <div class="tab__media">
+          <div class="device">
+            <div class="device__body"><div class="device__screen">
+              <img src="assets/screens/practice.jpg" width="600" height="1301" loading="lazy"
+                   alt="Practice screen: the library asking where are you right now, with entries for the night before ceremony, the morning after, between ceremonies, when it gets heavy, back at your desk and first Monday back." />
+            </div></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="tab reveal">
+        <div class="tab__copy">
+          <span class="tab__seam" style="--seam: var(--c7);" aria-hidden="true"></span>
+          <span class="numeral tab__index">07 / 07</span>
+          <span class="tab__glyph" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <circle pathLength="1" cx="20" cy="20" r="12.5" /><path pathLength="1" d="M11 23.5c3-4.5 6-6.5 9-6.5s6 2 9 6.5" opacity=".55" />
+              <circle pathLength="1" cx="20" cy="16.5" r="2.4" fill="currentColor" stroke="none" />
+            </svg>
+          </span>
+          <h3 class="h3">Navid</h3>
+          <p class="tab__line">Here with you.</p>
+          <p class="tab__detail">
+            The companion. He gets his own chapter, below, because he is the part of this we are proudest of
+            and the part that needs the most honesty about what it will not do.
+          </p>
+          <p style="margin-top: 1.25rem;">
+            <a class="btn btn--sm" href="#navid">Read about Navid <span class="btn__arrow" aria-hidden="true">&rarr;</span></a>
+          </p>
+        </div>
+        <div class="tab__media">
+          <div class="device">
+            <div class="device__body"><div class="device__screen">
+              <img src="assets/screens/navid.jpg" width="600" height="1301" loading="lazy"
+                   alt="Navid screen: a softly lit violet orb above his name, the line here with you, an opening question, two suggested prompts, and a composer reading say it as it comes." />
+            </div></div>
+          </div>
+        </div>
+      </article>
+
+    </div>
   </div>
 </section>
 
-<!-- Footer marquee — research/values terms scrolling counter to the top marquee -->
-<section class="marquee-foot" aria-hidden="true">
-  <div class="marquee-foot__track">
-    <div class="marquee-foot__set">
-      <span class="marquee-foot__word">Plant medicine</span>
-      <span class="marquee-foot__dot" style="--c: var(--red);"></span>
-      <span class="marquee-foot__word">Integration</span>
-      <span class="marquee-foot__dot" style="--c: var(--orange);"></span>
-      <span class="marquee-foot__word">Ceremony</span>
-      <span class="marquee-foot__dot" style="--c: var(--yellow);"></span>
-      <span class="marquee-foot__word">The seven pillars</span>
-      <span class="marquee-foot__dot" style="--c: var(--green);"></span>
-      <span class="marquee-foot__word">Cape Town</span>
-      <span class="marquee-foot__dot" style="--c: var(--sky);"></span>
-      <span class="marquee-foot__word">Conservation</span>
-      <span class="marquee-foot__dot" style="--c: var(--blue);"></span>
-      <span class="marquee-foot__word">The work</span>
-      <span class="marquee-foot__dot" style="--c: var(--purple);"></span>
+<!-- ═══ 03 · NAVID ════════════════════════════════════════════════════════ -->
+<section class="section navid" id="navid" aria-labelledby="navid-h">
+  <div class="ambient" aria-hidden="true">
+    <span class="ambient__b" style="opacity:.55;"></span>
+    <span class="ambient__c"></span>
+  </div>
+
+  <div class="wrap navid__inner">
+    <div class="navid__head">
+      <div class="navid__orb" aria-hidden="true"></div>
+      <span class="mono reveal">03 &nbsp;·&nbsp; The companion</span>
+      <h2 class="h2 navid__name reveal" id="navid-h" style="--d:1; margin-top: 1rem;">Navid.</h2>
+      <span class="mono reveal" style="--d:2">Here with you</span>
+      <p class="lede navid__lede reveal" style="--d:3">
+        Navid is the app's companion, and he is a real conversation, not a scripted one. His replies stream
+        live through the app's own server. He knows the retreat because he reads the same files the screens
+        read, so what he tells you about a ceremony or the Wi-Fi is what the app is showing three tabs away.
+      </p>
     </div>
-    <div class="marquee-foot__set" aria-hidden="true">
-      <span class="marquee-foot__word">Plant medicine</span>
-      <span class="marquee-foot__dot" style="--c: var(--red);"></span>
-      <span class="marquee-foot__word">Integration</span>
-      <span class="marquee-foot__dot" style="--c: var(--orange);"></span>
-      <span class="marquee-foot__word">Ceremony</span>
-      <span class="marquee-foot__dot" style="--c: var(--yellow);"></span>
-      <span class="marquee-foot__word">The seven pillars</span>
-      <span class="marquee-foot__dot" style="--c: var(--green);"></span>
-      <span class="marquee-foot__word">Cape Town</span>
-      <span class="marquee-foot__dot" style="--c: var(--sky);"></span>
-      <span class="marquee-foot__word">Conservation</span>
-      <span class="marquee-foot__dot" style="--c: var(--blue);"></span>
-      <span class="marquee-foot__word">The work</span>
-      <span class="marquee-foot__dot" style="--c: var(--purple);"></span>
+
+    <div class="navid__grid">
+      <div class="reveal">
+        <div class="device">
+          <div class="device__body"><div class="device__screen">
+            <img src="assets/screens/navid.jpg" width="600" height="1301" loading="lazy"
+                 alt="The Navid room in the app: a violet orb breathing above his name, a first question, suggested prompts, and a footer naming the model and stating that there is no medical or dosing advice." />
+          </div></div>
+          <p class="device__caption mono">Navid · The room</p>
+        </div>
+      </div>
+
+      <div class="navid__blocks">
+        <div class="navid__block reveal">
+          <span class="mono">What he knows</span>
+          <h3 class="h4">The retreat's own material, not a search result.</h3>
+          <p>
+            The ceremonies, the dieta, the villa Wi-Fi, the packing list, the six teachings, the schedule.
+            He is not a general assistant pointed at a help page. He is reading the source the app renders,
+            which means he is never one content update behind the screens.
+          </p>
+        </div>
+
+        <div class="navid__block reveal">
+          <span class="mono">What he remembers</span>
+          <h3 class="h4">He asks first, and you can say no.</h3>
+          <p>
+            Before anything else he offers a short intake and waits. Decline it and he simply says you can
+            always do it later, and asks what is on your mind. Accept it and he asks four things:
+          </p>
+          <ul class="asks">
+            <li>What are you hoping this whole experience gives you?</li>
+            <li>When things get heavy for you, what usually helps, even a little?</li>
+            <li>How has your body been lately, your sleep, your energy?</li>
+            <li>Is there anything you want me to hold on to, so you never have to explain it twice?</li>
+          </ul>
+          <p style="margin-top: 1.25rem;">
+            Past conversations stay, and you can move between them, so nobody has to start from nothing at
+            two in the morning on day four.
+          </p>
+        </div>
+
+        <div class="navid__block reveal">
+          <span class="mono">The voice</span>
+          <h3 class="h4">A call, with something to look at while you talk.</h3>
+          <p>
+            Navid has a voice call mode built around a living orb that moves while he listens and while he
+            speaks, so a spoken conversation has a face to hold. He is written to be spoken: short lines for
+            weight, a held beat where a person would breathe, no markdown or stage directions to stumble over.
+          </p>
+          <p>
+            He runs three conversational registers. Ordinary talk stays alive, with opinions and callbacks and
+            room to laugh. When something true lands, the jokes stop and he reflects instead. When it is
+            genuinely heavy he goes spare: one sentence, sometimes four words, no questions, no repair.
+          </p>
+        </div>
+
+        <div class="navid__block reveal">
+          <span class="mono">What he will never do</span>
+          <h3 class="h4">The honest limits, written into him.</h3>
+          <ul class="limits" style="margin-top: 1.25rem;">
+            <li><strong>No medical advice.</strong> Nothing medical, psychiatric, or about medication or dosing. Those go to the retreat's medical team, who are one tap away in the app.</li>
+            <li><strong>No emotion scoring.</strong> He responds to feeling in the conversation, always. He will never classify, label, score, or store anyone's emotional state, and never tell you what you are feeling. That is a legal line as much as a design one.</li>
+            <li><strong>No diagnosis, no promises.</strong> He does not diagnose, does not promise outcomes, and does not spiritually bypass a hard thing by reframing it.</li>
+            <li><strong>In a crisis he steps aside.</strong> If someone is in acute distress he drops every style rule, says plainly that they deserve immediate human support, and points at the on-site facilitator, the medical team, or emergency services.</li>
+          </ul>
+          <p class="aside model-line">
+            Claude Sonnet 5, from Anthropic, streamed through the app's own route.
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- Footer -->
+<!-- ═══ 04 · THE FORTY DAY PREPARATION ════════════════════════════════════ -->
+<section class="section section--raised" id="preparation" aria-labelledby="prep-h">
+  <div class="wrap">
+    <div class="chapter reveal">
+      <span class="chapter__rule"></span>
+      <span class="chapter__text"><em>04</em> &nbsp;Before you arrive</span>
+    </div>
+
+    <h2 class="h2 reveal" id="prep-h" style="--d:1">Forty days, counted down.</h2>
+    <p class="lede reveal" style="--d:2; margin-top: 1.5rem;">
+      The preparation opens the moment a guest is booked. It counts the days to Cape Town on the front of the
+      screen and asks for one thing at a time, in the order the body can actually take it.
+    </p>
+
+    <div class="bracket pull reveal" style="--d:3; margin-top: clamp(2.5rem, 5vw, 3.5rem);">
+      <h3 class="h3 pull__title">One thing before everything else.</h3>
+      <p class="pull__body">
+        If you take any medication or supplement, anything at all, the medical team needs to know now. Some
+        need weeks of lead time, and the team will walk you through it personally, in confidence.
+      </p>
+      <p class="aside pull__note">This gate stays lit until you have spoken to them.</p>
+    </div>
+
+    <div class="ledger reveal" style="--d:1; margin-top: clamp(2.5rem, 5vw, 3.5rem);">
+      <div class="ledger__row">
+        <span class="mono ledger__key">I &nbsp;The month before</span>
+        <p class="ledger__val">Four weeks out, and starting early is fine. Lifestyle changes begin here. Nothing drastic yet.</p>
+      </div>
+      <div class="ledger__row">
+        <span class="mono ledger__key">II &nbsp;Two weeks out</span>
+        <p class="ledger__val">Days fourteen to eight. The dieta starts: simpler food, no alcohol, quieter evenings.</p>
+      </div>
+      <div class="ledger__row">
+        <span class="mono ledger__key">III &nbsp;The final week</span>
+        <p class="ledger__val">Days seven to three. The strictest window: no caffeine, no red meat, lighter meals.</p>
+      </div>
+      <div class="ledger__row">
+        <span class="mono ledger__key">IV &nbsp;The last days</span>
+        <p class="ledger__val">Three days to arrival. Light meals, packing, and as much sleep as you can get.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap" style="margin-top: clamp(2.5rem, 5vw, 3.5rem);">
+    <div class="rail reveal">
+      <figure class="device device--sm" style="margin:0 auto;">
+        <div class="device__body"><div class="device__screen">
+          <img src="assets/screens/prepare-runway.jpg" width="600" height="1301" loading="lazy"
+               alt="The preparation guide, showing the runway split into the month, two weeks, the final week and the last days, with a checklist under the month before." />
+        </div></div>
+        <figcaption class="device__caption mono">The runway</figcaption>
+      </figure>
+      <figure class="device device--sm" style="margin:0 auto;">
+        <div class="device__body"><div class="device__screen">
+          <img src="assets/screens/prepare-cleanse.jpg" width="600" height="1301" loading="lazy"
+               alt="The cleanse screen, with a what to avoid and what to eat toggle above a list covering alcohol, recreational substances, red meat and aged foods." />
+        </div></div>
+        <figcaption class="device__caption mono">The cleanse</figcaption>
+      </figure>
+      <figure class="device device--sm" style="margin:0 auto;">
+        <div class="device__body"><div class="device__screen">
+          <img src="assets/screens/prepare-menu.jpg" width="600" height="1301" loading="lazy"
+               alt="The menu plan screen, with a photograph of a prepared meal above week one, softening, listing morning, midday and evening for each day." />
+        </div></div>
+        <figcaption class="device__caption mono">The menu plan</figcaption>
+      </figure>
+      <figure class="device device--sm" style="margin:0 auto;">
+        <div class="device__body"><div class="device__screen">
+          <img src="assets/screens/packing.jpg" width="600" height="1301" loading="lazy"
+               alt="The packing list screen, showing clothing and practical sections with items ticked off, three of seventeen packed." />
+        </div></div>
+        <figcaption class="device__caption mono">The packing list</figcaption>
+      </figure>
+      <figure class="device device--sm" style="margin:0 auto;">
+        <div class="device__body"><div class="device__screen">
+          <img src="assets/screens/intention.jpg" width="600" height="1301" loading="lazy"
+               alt="The intention screen, holding one sentence written during the application, with a rework it control beneath it." />
+        </div></div>
+        <figcaption class="device__caption mono">Your intention</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="ledger reveal" style="margin-top: clamp(1.5rem, 3vw, 2.5rem);">
+      <div class="ledger__row">
+        <span class="mono ledger__key">The cleanse</span>
+        <p class="ledger__val">Two lists, what to avoid and what to eat, with the reason next to each one rather than a rule on its own.</p>
+      </div>
+      <div class="ledger__row">
+        <span class="mono ledger__key">The menu plan</span>
+        <p class="ledger__val">Two weeks of meals, photographed, swap freely. Downloadable as a PDF for whoever does the cooking.</p>
+      </div>
+      <div class="ledger__row">
+        <span class="mono ledger__key">The intention</span>
+        <p class="ledger__val">One sentence you keep reworking until it is yours. It follows you into every ceremony.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 05 · PRIVACY ══════════════════════════════════════════════════════ -->
+<section class="section" id="privacy" aria-labelledby="privacy-h">
+  <div class="wrap">
+    <div class="chapter reveal">
+      <span class="chapter__rule"></span>
+      <span class="chapter__text"><em>05</em> &nbsp;What is yours</span>
+    </div>
+
+    <div class="split">
+      <div>
+        <h2 class="h2 reveal" id="privacy-h">Your journey, kept.</h2>
+        <p class="lede reveal" style="--d:1; margin-top: 1.5rem;">
+          Everything a guest writes belongs to the guest. The export gathers the whole record on the device
+          itself and hands it back, in one piece, whenever it is asked for.
+        </p>
+
+        <ul class="limits reveal" style="--d:2; margin-top: 2.25rem;">
+          <li><strong>It sits on your device.</strong> Your notes, your journal, your intention, your checklist, and what Navid holds for you.</li>
+          <li><strong>Sentiment is off by default.</strong> The one setting that lets Navid read your recent mood is worded plainly in the app: sentiment only, never your words, off by default.</li>
+          <li><strong>Nothing is scored.</strong> No mood scores, no streaks, no leaderboards. The path screen says it out loud: where you are, and what is still ahead. No scores, nothing to keep up.</li>
+          <li><strong>You can take it with you.</strong> One control assembles your journey and gives it to you. There is no version of this where you have to ask us for your own writing.</li>
+        </ul>
+      </div>
+
+      <div class="rail reveal" style="--d:1; --cols:2;">
+        <figure class="device device--sm" style="margin:0 auto;">
+          <div class="device__body"><div class="device__screen">
+            <img src="assets/screens/settings.jpg" width="600" height="1301" loading="lazy"
+                 alt="Settings screen: reminder and rhythm switches, including one reading Navid may read my recent mood, sentiment only, never your words, off by default, shown turned off." />
+          </div></div>
+          <figcaption class="device__caption mono">Settings</figcaption>
+        </figure>
+        <figure class="device device--sm" style="margin:0 auto;">
+          <div class="device__body"><div class="device__screen">
+            <img src="assets/screens/journey.jpg" width="600" height="1301" loading="lazy"
+                 alt="Your path screen: the guest's written intention held at the top, then the approach, the week and the return laid out as stages with no scores attached." />
+          </div></div>
+          <figcaption class="device__caption mono">Your path</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 06 · INSTALL ══════════════════════════════════════════════════════ -->
+<section class="section section--raised" id="install" aria-labelledby="install-h">
+  <div class="wrap">
+    <div class="chapter reveal">
+      <span class="chapter__rule"></span>
+      <span class="chapter__text"><em>06</em> &nbsp;Open it</span>
+    </div>
+
+    <h2 class="h2 reveal" id="install-h" style="--d:1">It installs from the browser.</h2>
+    <p class="lede reveal" style="--d:2; margin-top: 1.5rem; margin-bottom: clamp(2.5rem, 5vw, 3.5rem);">
+      There is no app store listing, and there is no download to hunt for. The app is a progressive web app:
+      open it in a browser, sign in, and add it to your home screen. After that it opens like any other app,
+      full screen, with its own icon.
+    </p>
+
+    <div class="install">
+      <div class="reveal">
+        <span class="mono">On iPhone and iPad</span>
+        <ol class="steps">
+          <li>Open <span style="color:var(--lit);">lhff-v2.vercel.app</span> in Safari and sign in.</li>
+          <li>Tap the share button in the browser toolbar.</li>
+          <li>Scroll down the share sheet and choose Add to Home Screen.</li>
+          <li>Tap Add. The icon appears on your home screen.</li>
+        </ol>
+      </div>
+
+      <div class="reveal" style="--d:1">
+        <span class="mono">On Android</span>
+        <ol class="steps">
+          <li>Open <span style="color:var(--lit);">lhff-v2.vercel.app</span> in Chrome and sign in.</li>
+          <li>Accept the install prompt when it appears at the bottom of the screen.</li>
+          <li>If it does not appear, open the browser menu and choose Install app, or Add to Home screen.</li>
+          <li>Confirm. The icon appears in your app drawer.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="btn-row reveal" style="margin-top: clamp(2.5rem, 5vw, 3.5rem);">
+      <a class="btn btn--solid" href="https://lhff-v2.vercel.app">
+        Open the app <span class="btn__arrow" aria-hidden="true">&rarr;</span>
+      </a>
+      <a class="btn" href="https://lhff-v2.vercel.app/signin">Sign in</a>
+    </div>
+    <p class="aside reveal" style="margin-top: 1.5rem;">
+      Built for booked guests and the facilitator team.
+    </p>
+  </div>
+</section>
+
+<!-- ═══ 07 · THE FOUNDATION ═══════════════════════════════════════════════ -->
+<section class="section" id="foundation" aria-labelledby="foundation-h">
+  <div class="wrap">
+    <div class="chapter reveal">
+      <span class="chapter__rule"></span>
+      <span class="chapter__text"><em>07</em> &nbsp;The foundation</span>
+    </div>
+
+    <h2 class="h2 reveal" id="foundation-h" style="--d:1">Love. Happiness. Freedom.</h2>
+    <p class="lede reveal" style="--d:2; margin-top: 1.5rem;">
+      A foundation using fashion, education, spirituality and sustainability to protect human rights, the
+      environment and conservation. Cape Town and Maputo. The retreat and this app are one part of that work,
+      and the part where the foundation's own people are in the room with you.
+    </p>
+
+    <div class="pillars reveal" style="--d:3; margin-top: clamp(2.5rem, 5vw, 3.5rem);">
+      <article class="pillar">
+        <span class="pillar__seam" style="--seam: var(--c1);" aria-hidden="true"></span>
+        <h3 class="h3">Love</h3>
+        <p>Reconnection to self, to others, and to the natural world. The starting point of every other pillar.</p>
+      </article>
+      <article class="pillar">
+        <span class="pillar__seam" style="--seam: var(--c2);" aria-hidden="true"></span>
+        <h3 class="h3">Happiness</h3>
+        <p>Sustainable wellbeing rooted in presence, not performance. Built through practice, not pursued as an outcome.</p>
+      </article>
+      <article class="pillar">
+        <span class="pillar__seam" style="--seam: var(--c7);" aria-hidden="true"></span>
+        <h3 class="h3">Freedom</h3>
+        <p>Liberation from the patterns, fears and conditioning that keep people stuck. The work, and the result of the work.</p>
+      </article>
+    </div>
+
+    <div class="reveal" style="margin-top: clamp(3rem, 6vw, 4.5rem); max-width: 46rem;">
+      <span class="mono">322 and the rainbow</span>
+      <p class="lede" style="margin-top: 1rem;">
+        The digits of 322 sum to seven. Seven is the number of growth, of completion, of arrival, and the
+        mission is to carry this message within seven years. The rainbow stands for diversity, inclusivity,
+        and the shared sky we all live under. Those seven colours run through everything the foundation
+        makes, including this app, where they are used sparingly and on purpose.
+      </p>
+      <div class="votive draw" style="margin-top: 2rem;" role="img" aria-label="The foundation's seven colours">
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<figure class="plate plate--bleed reveal" style="margin: 0 0 clamp(3rem, 6vw, 5rem); --fade-bottom: var(--ground-2);">
+  <div class="plate__img">
+    <img src="assets/site/mural.jpg" width="1600" height="900" loading="lazy"
+         alt="The foundation's mural: a painted heart in the seven colours, surrounded by flowers and dancing figures, on the wall of the school campus." />
+  </div>
+  <figcaption class="wrap">
+    <div class="plate__caption">
+      <span class="mono">The foundation mural</span>
+      <span class="mono">The seven colours, where they started</span>
+    </div>
+  </figcaption>
+</figure>
+
+<section class="section section--raised" style="padding-block: clamp(3.5rem, 7vw, 5.5rem);" aria-label="The retreat setting">
+  <div class="wrap">
+    <div class="gallery reveal">
+      <figure>
+        <img src="assets/site/deck-view.jpg" width="1400" height="933" loading="lazy"
+             alt="A wooden deck at the villa with a bench, looking across Camps Bay to Lion's Head." />
+        <figcaption class="mono">The deck, looking north</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/site/lounge-ocean.jpg" width="1200" height="1800" loading="lazy"
+             alt="A quiet lounge inside the villa, a round sofa and cushions in warm light, an open door to the next room." />
+        <figcaption class="mono">Inside the house</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/site/horizon.jpg" width="1200" height="1800" loading="lazy"
+             alt="The Atlantic from the villa balcony, the horizon barely separating water from sky." />
+        <figcaption class="mono">The horizon</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CLOSE ═════════════════════════════════════════════════════════════ -->
+<section class="section" aria-labelledby="close-h" style="text-align:center;">
+  <div class="wrap">
+    <h2 class="h2 reveal" id="close-h" style="max-width: 18ch; margin-inline: auto;">Open it, and it is already yours.</h2>
+    <div class="btn-row reveal" style="--d:1; justify-content:center; margin-top: 2.25rem;">
+      <a class="btn btn--solid" href="https://lhff-v2.vercel.app">
+        Open the app <span class="btn__arrow" aria-hidden="true">&rarr;</span>
+      </a>
+      <a class="btn" href="https://lhff-v2.vercel.app/signin">Sign in</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ═══ FOOTER ════════════════════════════════════════════════════════════ -->
 <footer class="footer">
-  <div class="container">
+  <div class="wrap">
     <div class="footer__grid">
       <div>
-        <div class="footer__brand-name">Love Happiness Freedom Foundation</div>
-        <p class="footer__brand-body">
-          A foundation using fashion, education, spirituality, and sustainability to scale love, happiness, and freedom. Cape Town &amp; Maputo.
+        <img class="footer__mark" src="assets/site/lhff-mark-dark.png" alt="" width="512" height="512" />
+        <p class="footer__blurb">
+          Love Happiness Freedom Foundation. Cape Town and Maputo. The retreat companion app is built with Divergence.
         </p>
-        <form class="footer__newsletter" action="#" method="post">
-          <input type="email" placeholder="Your email for the quarterly letter" required />
-          <button type="submit">Subscribe</button>
-        </form>
       </div>
-      <div>
-        <div class="footer__col-title">Foundation</div>
+
+      <div class="footer__col">
+        <span class="mono">The app</span>
+        <ul class="footer__list">
+          <li><a href="https://lhff-v2.vercel.app">Open the app</a></li>
+          <li><a href="https://lhff-v2.vercel.app/signin">Sign in</a></li>
+          <li><a href="#install">Add to home screen</a></li>
+          <li><a href="#navid">About Navid</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <span class="mono">The foundation site</span>
         <ul class="footer__list">
           <li><a href="mission.html">Concept</a></li>
-          <li><a href="programs.html">Programs</a></li>
+          <li><a href="programs.html">Programmes</a></li>
           <li><a href="impact.html">Projects</a></li>
-          <li><a href="research.html">Research</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="footer__col-title">Ecosystem</div>
-        <ul class="footer__list">
-          <li><a href="navid.html">NAVID</a></li>
-          <li><a href="#">EduAI</a></li>
-          <li><a href="#divergence">Divergence</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="footer__col-title">Connect</div>
-        <ul class="footer__list">
           <li><a href="get-involved.html">Get involved</a></li>
-          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <p class="footer__note">These open the foundation's main website, which has a look of its own.</p>
+      </div>
+
+      <div class="footer__col">
+        <span class="mono">Connect</span>
+        <ul class="footer__list">
+          <li><a href="mailto:info@lovehappinessfreedomfoundation.com">info@<wbr />lovehappinessfreedomfoundation.com</a></li>
           <li><a href="https://www.instagram.com/lhf.foundation322" target="_blank" rel="noopener">Instagram</a></li>
-          <li><a href="mailto:info@lovehappinessfreedomfoundation.com">Email</a></li>
+          <li><a href="contact.html">Contact</a></li>
         </ul>
       </div>
     </div>
+
     <div class="footer__base">
-      <div>© <span data-year>2026</span> Love Happiness Freedom Foundation. All rights reserved.</div>
-      <div class="footer__legal">
-        <a href="#">Privacy</a>
-        <a href="#">Terms</a>
-        <a href="#">Annual reports</a>
-      </div>
+      <p>&copy; <span data-year>2026</span> Love Happiness Freedom Foundation</p>
+      <p>Still Water · Outfit and JetBrains Mono</p>
     </div>
   </div>
 </footer>
 
-<!-- NAVID floating widget -->
-<button class="navid-fab" aria-label="Open NAVID">
-  <span class="navid-fab__mark">N</span>
-  <span>
-    <span class="navid-fab__text">Talk to NAVID</span>
-    <span class="navid-fab__status">Online · Replies instantly</span>
-  </span>
-</button>
+<script>
+(function () {
+  'use strict';
 
-<!-- NAVID Chat Modal -->
-<div class="navid-chat" id="navidChat" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="navidChatTitle">
-  <aside class="navid-chat__panel">
-    <header class="navid-chat__header">
-      <div class="navid-chat__avatar" aria-hidden="true">N</div>
-      <div class="navid-chat__title-block">
-        <h3 class="navid-chat__title" id="navidChatTitle">Navid</h3>
-        <div class="navid-chat__sub">Your companion</div>
-      </div>
-      <button type="button" class="navid-chat__close" data-navid-close aria-label="Close chat">×</button>
-    </header>
+  /* the year, so nobody has to remember to change it */
+  var y = document.querySelector('[data-year]');
+  if (y) { y.textContent = String(new Date().getFullYear()); }
 
-    <div class="navid-chat__body" id="navidChatBody">
-      <!-- Intake form — members + retreat guests only -->
-      <div class="navid-chat__intake" id="navidIntake">
-        <div>
-          <span class="navid-chat__intake-lock">🔒 Members &amp; retreat guests only</span>
-          <h4 class="navid-chat__intake-greeting">Hi. I'm <em>Navid</em>.</h4>
-          <p class="navid-chat__intake-sub">I'm reserved for active retreat guests and Foundation alumni. Enter the access code you received from us to begin.</p>
-        </div>
-        <form class="navid-chat__intake-form" id="navidIntakeForm" novalidate>
-          <div class="navid-chat__intake-field">
-            <label for="navidName">Your name</label>
-            <input type="text" id="navidName" name="name" placeholder="Full name" required autocomplete="name" />
-          </div>
-          <div class="navid-chat__intake-field">
-            <label for="navidEmail">Email address</label>
-            <input type="email" id="navidEmail" name="email" placeholder="The email we sent your code to" required autocomplete="email" />
-          </div>
-          <div class="navid-chat__intake-field">
-            <label for="navidCode">Access code</label>
-            <input type="text" id="navidCode" name="code" placeholder="6-character code (e.g. LHFF-2026)" required autocomplete="off" autocapitalize="characters" spellcheck="false" />
-          </div>
-          <p class="navid-chat__intake-error" id="navidIntakeError" hidden>That code doesn't match what we have on file. Check the email we sent you, or apply for a retreat below.</p>
-          <button type="submit" class="navid-chat__intake-submit">Unlock NAVID</button>
-          <div class="navid-chat__intake-help">
-            <a href="get-involved.html#apply">Don't have a code? Apply for a retreat →</a>
-          </div>
-          <p class="navid-chat__intake-foot">Your conversations are private and stay on this device. You can clear them any time.</p>
-        </form>
-      </div>
+  /* The reading line: the seven colours, tracking how far down the page you are.
+     Set up first, because it is a position indicator rather than an ornament,
+     and it should survive reduced motion and older browsers alike. */
+  var bar = document.querySelector('[data-progress]');
+  if (bar) {
+    var queued = false;
+    var paint = function () {
+      queued = false;
+      var doc = document.documentElement;
+      var span = (doc.scrollHeight - window.innerHeight) || 1;
+      var p = Math.min(1, Math.max(0, (window.pageYOffset || doc.scrollTop) / span));
+      bar.style.transform = 'scaleX(' + p.toFixed(4) + ')';
+    };
+    window.addEventListener('scroll', function () {
+      if (!queued) { queued = true; requestAnimationFrame(paint); }
+    }, { passive: true });
+    window.addEventListener('resize', paint, { passive: true });
+    paint();
+  }
 
-      <!-- Messages render here after intake -->
-    </div>
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var targets = document.querySelectorAll('.reveal, .draw');
 
-    <!-- Suggested starters (shown when chat is empty after intake) -->
-    <div class="navid-chat__starters" id="navidStarters" hidden>
-      <button type="button" class="navid-chat__starter" data-navid-starter>How do I prepare for ceremony?</button>
-      <button type="button" class="navid-chat__starter" data-navid-starter>What is Emotional Intelligence?</button>
-      <button type="button" class="navid-chat__starter" data-navid-starter>Help me with integration</button>
-      <button type="button" class="navid-chat__starter" data-navid-starter>Explain breathwork techniques</button>
-    </div>
+  /* Reduced motion, or no IntersectionObserver: everything is simply present. */
+  if (reduce || !('IntersectionObserver' in window)) {
+    for (var i = 0; i < targets.length; i++) { targets[i].classList.add('is-in'); }
+    return;
+  }
 
-    <!-- Composer -->
-    <form class="navid-chat__composer" id="navidComposer" hidden>
-      <textarea class="navid-chat__input" id="navidInput" rows="1" placeholder="Tell me what you're sitting with..."></textarea>
-      <button type="submit" class="navid-chat__send" aria-label="Send">→</button>
-    </form>
+  var io = new IntersectionObserver(function (entries) {
+    for (var i = 0; i < entries.length; i++) {
+      if (entries[i].isIntersecting) {
+        entries[i].target.classList.add('is-in');
+        io.unobserve(entries[i].target);
+      }
+    }
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
 
-    <button type="button" class="navid-chat__reset" id="navidReset" hidden>Clear conversation</button>
-  </aside>
-</div>
+  for (var j = 0; j < targets.length; j++) { io.observe(targets[j]); }
 
-<!-- Application / Booking modal -->
-<div class="app-modal" id="appModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="appModalTitle">
-  <div class="app-modal__card">
-    <button type="button" class="app-modal__close" data-close-modal aria-label="Close">×</button>
+  /* Anything already in view on load arrives without waiting for a scroll. */
+  requestAnimationFrame(function () {
+    for (var k = 0; k < targets.length; k++) {
+      var r = targets[k].getBoundingClientRect();
+      if (r.top < window.innerHeight && r.bottom > 0) { targets[k].classList.add('is-in'); }
+    }
+  });
+}());
+</script>
 
-    <div class="app-modal__chapter">
-      <span class="app-modal__chapter-rule"></span>
-      <span class="app-modal__chapter-text" id="appModalChapter">Apply</span>
-    </div>
-    <h3 class="app-modal__title" id="appModalTitle">Tell us about you</h3>
-    <p class="app-modal__sub" id="appModalSub">Short and honest is better than long and polished. We read every message and reply personally.</p>
-
-    <form class="app-modal__form" id="appModalForm" novalidate>
-      <input type="hidden" name="form_type" id="appModalFormType" value="general" />
-
-      <div class="app-modal__row">
-        <div class="app-modal__field">
-          <label for="appModalName">Your name</label>
-          <input type="text" id="appModalName" name="name" required />
-        </div>
-        <div class="app-modal__field">
-          <label for="appModalEmail">Email</label>
-          <input type="email" id="appModalEmail" name="email" required />
-        </div>
-      </div>
-
-      <!-- Retreat-specific fields -->
-      <div class="app-modal__row" data-form-context="retreat">
-        <div class="app-modal__field">
-          <label for="appModalPhone">Phone (optional)</label>
-          <input type="tel" id="appModalPhone" name="phone" />
-        </div>
-        <div class="app-modal__field">
-          <label for="appModalDates">Preferred dates / month</label>
-          <input type="text" id="appModalDates" name="dates" placeholder="e.g. June 2026" />
-        </div>
-      </div>
-
-      <!-- Creator-specific field -->
-      <div class="app-modal__field" data-form-context="creator">
-        <label for="appModalCreatorType">What you make</label>
-        <select id="appModalCreatorType" name="creator_type">
-          <option value="">Select one</option>
-          <option>Podcasting</option>
-          <option>Film / video</option>
-          <option>Photography</option>
-          <option>Wellness / coaching</option>
-          <option>Other</option>
-        </select>
-      </div>
-
-      <div class="app-modal__field">
-        <label for="appModalMessage" id="appModalMessageLabel">Why this, why now?</label>
-        <textarea id="appModalMessage" name="message" required></textarea>
-      </div>
-
-      <button type="submit" class="app-modal__submit">Send</button>
-      <p class="app-modal__footnote">We will come back to you within two working days.</p>
-    </form>
-
-    <div class="app-modal__thanks" id="appModalThanks" hidden>
-      <h4 class="app-modal__thanks-title">Thank you.</h4>
-      <p class="app-modal__thanks-body">Message received. We will be in touch within two working days.</p>
-    </div>
-  </div>
-</div>
-
-<script src="scripts.js"></script>
 </body>
 </html>
